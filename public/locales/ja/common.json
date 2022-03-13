@@ -8,6 +8,11 @@
     "siteName": "QuadraticVoarding.jp"
   },
   "common": {
+    "buttonSize": {
+      "small": "small",
+      "large": "large",
+      "medium": "medium"
+    },
     "button": {
       "eventCreation": "イベント作成",
       "add": "追加"

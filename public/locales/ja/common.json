@@ -1,0 +1,61 @@
+{
+  "header": {
+    "siteName": "QuadraticVoarding.jp"
+  },
+  "footer": {
+    "terms": "利用規約",
+    "policy": "プライバシーポリシー",
+    "siteName": "QuadraticVoarding.jp"
+  },
+  "common": {
+    "button": {
+      "eventCreation": "イベント作成",
+      "add": "追加"
+    },
+    "event": {
+      "eventTitle": {
+        "title": "タイトル",
+        "detail": "イベントタイトルを40文字で入力してください。"
+      },
+      "overview": {
+        "title": "概要",
+        "detail": "イベント概要を240文字で入力してください。"
+      },
+      "publicationStartDate": {
+        "title": "公開開始日",
+        "detail": "公開開始日を入力してください。"
+      },
+      "participant": {},
+      "votes": {},
+      "choices": {},
+      "createChoices": {
+        "formTitle": "選択肢作成",
+        "formDetail": "選択肢を追加してください。\\n最低2件必要です。",
+        "choiceTitle": "タイトル",
+        "choiceDetail": "概要",
+        "choiceLink": "リンク"
+      }
+    }
+  },
+  "unique": {
+    "screen": {
+      "top": {
+        "pageTitle": {
+          "title": "QuadraticVoardingとは？",
+          "detail": "二次投票とは、個人が自分の好みの方向だけでなく、好みの程度を表すために表を割り当てる集団的意思決定方法である。\\nそうすることで、二次投票は投票のパラドックスや多数決の問題を解決しようとしているだ。"
+        },
+        "rule": "ルール",
+        "ruleOne": "一定量のCreditが全員に配布される。Creditは使わずに蓄積していくことも可能",
+        "ruleTwo": "そのCreditを消費して表を購入し、投票することができる",
+        "ruleThree": "ただし、x票を購入する際に要するCreditはx^2である",
+        "referencesOne": "Wikipedia",
+        "referencesTwo": "Redical Democracy - 革命的な民主主義を実現するためのQuadratic Votingについて"
+      },
+      "eventCreation": {
+        "pageTitle": {
+          "title": "イベント作成"
+        }
+      }
+    }
+  }
+}

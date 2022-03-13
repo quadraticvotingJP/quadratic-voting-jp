@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 // component
 import { MoHeader } from "@/components/molecules/MoHeader";
+import { MoFooter } from "@/components/molecules/MoFooter";
 import { PaTop } from "@/pages/PaTop";
 
 /**
@@ -15,6 +16,7 @@ const Home: NextPage = ({}) => {
     <>
       <MoHeader />
       <PaTop />
+      <MoFooter />
     </>
   );
 };

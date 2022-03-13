@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { Button } from "@mui/material";
 
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -23,6 +24,7 @@ const Home: NextPage = ({}) => {
       >
         {t("unique.screen.top.pageTitle.title")}
       </a>
+      <Button variant="text">Text</Button>
     </>
   );
 };

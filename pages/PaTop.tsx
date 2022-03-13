@@ -2,40 +2,15 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { useForm } from "react-hook-form";
 // component
-import { AtButton } from "@/components/atoms/AtButton";
-import { AtH2 } from "@/components/atoms/AtH2";
-import { OrForm } from "@/components/organisms/OrForm";
+import { EcExplanation } from "@/components/ecosystems/EcExplanation";
+import { EcAdvertisement } from "@/components/ecosystems/EcAdvertisement";
 
 export const PaTop = () => {
-  const { t } = useTranslation("common");
-  const {
-    register,
-    formState: { errors },
-  } = useForm();
   return (
-    <>
-      <AtButton
-        title={t("common.button.eventCreation")}
-        disabled={false}
-        size={t("common.buttonSize.large")}
-      />
-      <AtH2 title={t("unique.screen.top.pageTitle.title")} />
-      <OrForm
-        title={t("common.event.eventTitle.title")}
-        required={true}
-        overView={t("common.event.eventTitle.detail")}
-        register={register("hoge", {
-          required: "true",
-        })}
-        id="hoge"
-        name="hoge"
-        placeholder={t("common.event.eventTitle.detail")}
-        disabled={false}
-        disableUnderline={false}
-        type="text"
-        readOnly={false}
-        error={errors.hoge}
-      />
-    </>
+    <div className="flex">
+      <EcAdvertisement className="w-1/5 bg-gray-400" />
+      <EcExplanation className="w-full" />
+      <EcAdvertisement className="w-1/5 bg-gray-400" />
+    </div>
   );
 };

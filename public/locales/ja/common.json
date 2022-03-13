@@ -56,7 +56,9 @@
         "ruleTwo": "そのCreditを消費して表を購入し、投票することができる",
         "ruleThree": "ただし、x票を購入する際に要するCreditはx^2である",
         "referencesOne": "Wikipedia",
-        "referencesTwo": "Redical Democracy - 革命的な民主主義を実現するためのQuadratic Votingについて"
+        "referencesLinkOne": "https://en.wikipedia.org/wiki/Quadratic_voting",
+        "referencesTwo": "Redical Democracy - 革命的な民主主義を実現するためのQuadratic Votingについて",
+        "referencesLinkTwo": "https://alis.to/AB2/articles/aoNXAZLjkY0q"
       },
       "eventCreation": {
         "pageTitle": {

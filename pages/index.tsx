@@ -1,17 +1,19 @@
 import type { NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 // component
+import { MoHeader } from "@/components/molecules/MoHeader";
 import { PaTop } from "@/pages/PaTop";
 
 /**
  * @description
- *  - Index.tsxファイルにはHeader,Footer,Routingを定義する
+ *  - Index.tsxファイルにはFooter,Routingを定義する
  * @todo
- *  - Header, Footer, Routing 追加
+ *  - Footer, Routing 追加
  */
 const Home: NextPage = ({}) => {
   return (
     <>
+      <MoHeader />
       <PaTop />
     </>
   );

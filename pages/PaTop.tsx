@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 // component
 import { AtButton } from "@/components/atoms/AtButton";
 import { AtH2 } from "@/components/atoms/AtH2";
-import { AtAtag } from "@/components/atoms/AtAtag";
 import { OrForm } from "@/components/organisms/OrForm";
 
 export const PaTop = () => {
@@ -15,7 +14,6 @@ export const PaTop = () => {
   } = useForm();
   return (
     <>
-      <AtAtag title={t("header.siteName")} link={t("common.link")}></AtAtag>
       <AtButton
         title={t("common.button.eventCreation")}
         disabled={false}

@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { Button } from "@mui/material";
 
 const Home: NextPage = () => {
   return (
@@ -12,6 +13,7 @@ const Home: NextPage = () => {
       >
         quadratic-voting-jp
       </a>
+      <Button variant="text">Text</Button>
     </>
   );
 };

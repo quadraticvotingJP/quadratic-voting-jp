@@ -2,9 +2,9 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "baseUrl": ".",
+    "baseUrl": ".", // import時root参照ができる
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"] //エイリアス
     },
     "noImplicitAny": true, //暗黙的にanyになる値をエラーにする
     "allowJs": true, // .jsと.jsxもコンパイル対象に含めるか
@@ -27,7 +27,6 @@
     "isolatedModules": true, // コンパイル対象のファイル間の関係性を一切無視して、全てのファイルを単一のモジュールとしてコンパイル
     "noEmit": true, // trueにするとコンパイル結果を出力しなくなる
     "jsx": "preserve", // tsxファイルをjsxやjsにコンパイルする際の出力の形式を指定
-    "baseUrl": ".", // import時root参照ができる
     "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"], // コンパイルする対象ファイルを記述

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { AtButton } from "@/components/atoms/AtButton";
 import { AtH2 } from "@/components/atoms/AtH2";
 import { AtAtag } from "@/components/atoms/AtAtag";
-import { MoForm } from "@/components/molecules/MoForm";
+import { OrForm } from "@/components/organisms/OrForm";
 
 export const PaTop = () => {
   const { t } = useTranslation("common");
@@ -22,9 +22,10 @@ export const PaTop = () => {
         size={t("common.buttonSize.large")}
       />
       <AtH2 title={t("unique.screen.top.pageTitle.title")} />
-      <MoForm
+      <OrForm
         title={t("common.event.eventTitle.title")}
         required={true}
+        overView={t("common.event.eventTitle.detail")}
         register={register("hoge", {
           required: "true",
         })}

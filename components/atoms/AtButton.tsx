@@ -16,7 +16,7 @@ type Props = {
 export const AtButton: React.FC<Props> = React.memo(
   ({ title, disabled, size }) => {
     return (
-      <Button disabled={disabled} size={size}>
+      <Button variant="outlined" disabled={disabled} size={size}>
         {title}
       </Button>
     );

@@ -13,14 +13,12 @@ type Props = {
   readOnly: boolean;
   id: string;
   name: string;
-  className: string;
 };
 
 // eslint-disable-next-line react/display-name
 export const AtInput: React.FC<Props> = React.memo(
   ({
     register,
-    className,
     id,
     name,
     placeholder,
@@ -31,8 +29,8 @@ export const AtInput: React.FC<Props> = React.memo(
   }) => {
     return (
       <Input
+        className="w-6/12 px-0.5 py-0.5 rounded-l-lg rounded-r-lg bg-white"
         {...register}
-        className={className}
         id={id}
         name={name}
         type={type}

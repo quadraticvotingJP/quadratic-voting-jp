@@ -28,7 +28,6 @@ export const PaTop = () => {
         register={register("hoge", {
           required: "true",
         })}
-        className="w-6/12 px-0.5 py-0.5 rounded-l-lg rounded-r-lg bg-white"
         id="hoge"
         name="hoge"
         placeholder={t("common.event.eventTitle.detail")}

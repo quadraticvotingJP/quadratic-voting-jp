@@ -19,7 +19,6 @@ type Props = {
   readOnly: boolean;
   id: string;
   name: string;
-  className: string;
   error: any;
 };
 
@@ -32,7 +31,6 @@ export const MoForm: React.FC<Props> = React.memo(
     required,
     // form
     register,
-    className,
     id,
     name,
     placeholder,
@@ -49,7 +47,6 @@ export const MoForm: React.FC<Props> = React.memo(
         </div>
         <AtInput
           register={register}
-          className={className}
           id={id}
           name={name}
           type={type}

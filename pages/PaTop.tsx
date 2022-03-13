@@ -3,6 +3,7 @@ import { useTranslation } from "next-i18next";
 // component
 import { AtButton } from "@/components/atoms/AtButton";
 import { AtH2 } from "@/components/atoms/AtH2";
+import { AtAtag } from "@/components/atoms/AtAtag";
 import { AtInputLabel } from "@/components/atoms/AtInputLabel";
 
 export const PaTop = () => {
@@ -10,6 +11,7 @@ export const PaTop = () => {
   return (
     <>
       <AtH2 title={t("unique.screen.top.pageTitle.title")} />
+      <AtAtag title={t("header.siteName")} link={t("common.link")}></AtAtag>
       <AtInputLabel title={t("common.button.eventCreation")} required={true} />
       <AtButton
         title={t("common.button.eventCreation")}

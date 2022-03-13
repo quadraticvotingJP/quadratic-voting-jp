@@ -5,21 +5,38 @@ import { useForm } from "react-hook-form";
 import { AtButton } from "@/components/atoms/AtButton";
 import { AtH2 } from "@/components/atoms/AtH2";
 import { AtAtag } from "@/components/atoms/AtAtag";
-import { AtInput } from "@/components/atoms/AtInput";
-import { AtInputLabel } from "@/components/atoms/AtInputLabel";
+import { MoForm } from "@/components/molecules/MoForm";
 
 export const PaTop = () => {
   const { t } = useTranslation("common");
-  const { register, handleSubmit, reset, watch } = useForm();
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
   return (
     <>
       <AtAtag title={t("header.siteName")} link={t("common.link")}></AtAtag>
-      <AtH2 title={t("unique.screen.top.pageTitle.title")} />
-      <AtInputLabel title={t("common.button.eventCreation")} required={true} />
       <AtButton
         title={t("common.button.eventCreation")}
         disabled={false}
         size={t("common.buttonSize.large")}
+      />
+      <AtH2 title={t("unique.screen.top.pageTitle.title")} />
+      <MoForm
+        title={t("common.event.eventTitle.title")}
+        required={true}
+        register={register("hoge", {
+          required: "true",
+        })}
+        className="w-6/12 px-0.5 py-0.5 rounded-l-lg rounded-r-lg bg-white"
+        id="hoge"
+        name="hoge"
+        placeholder={t("common.event.eventTitle.detail")}
+        disabled={false}
+        disableUnderline={false}
+        type="text"
+        readOnly={false}
+        error={errors.hoge}
       />
     </>
   );

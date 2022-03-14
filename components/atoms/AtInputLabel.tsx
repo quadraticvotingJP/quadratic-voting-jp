@@ -13,7 +13,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-export const AtInputLabel: React.FC<Props> = React.memo(
+const AtInputLabel: React.FC<Props> = React.memo(
   ({ title, required, focused }) => {
     return (
       <div className="flex h-6">
@@ -29,3 +29,4 @@ export const AtInputLabel: React.FC<Props> = React.memo(
     );
   }
 );
+export default AtInputLabel;

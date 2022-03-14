@@ -2,10 +2,10 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 // component
 import { Box, AppBar, Toolbar, Typography } from "@mui/material";
-import { AtAtag } from "@/components/atoms/AtAtag";
+import { AtAtag } from "@/components/atoms/EntryPoint";
 
 // eslint-disable-next-line react/display-name
-export const MoHeader = React.memo(({}) => {
+const MoHeader = React.memo(({}) => {
   const { t } = useTranslation("common");
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -19,3 +19,4 @@ export const MoHeader = React.memo(({}) => {
     </Box>
   );
 });
+export default MoHeader;

@@ -6,6 +6,7 @@
   - 例：MoTags.tsx
 - n 個(1 以上)の最小要素をグループ化で構成される
 - component の import は atoms のみ
+- EntryPoint.tsx すべてまとめる
 
 ## 参照
 

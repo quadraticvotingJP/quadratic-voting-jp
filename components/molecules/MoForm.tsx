@@ -1,7 +1,7 @@
 import React from "react";
 // component
-import { AtInputLabel } from "@/components/atoms/AtInputLabel";
-import { AtInput } from "@/components/atoms/AtInput";
+import { AtInputLabel, AtInput } from "@/components/atoms/EntryPoint";
+
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
 
@@ -24,7 +24,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-export const MoForm: React.FC<Props> = ({
+const MoForm: React.FC<Props> = ({
   // label
   title,
   focused,
@@ -64,3 +64,4 @@ export const MoForm: React.FC<Props> = ({
     </>
   );
 };
+export default MoForm;

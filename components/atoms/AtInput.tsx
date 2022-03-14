@@ -16,7 +16,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-export const AtInput: React.FC<Props> = React.memo(
+const AtInput: React.FC<Props> = React.memo(
   ({
     register,
     id,
@@ -42,3 +42,4 @@ export const AtInput: React.FC<Props> = React.memo(
     );
   }
 );
+export default AtInput;

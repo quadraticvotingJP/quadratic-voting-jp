@@ -1,14 +1,13 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 // component
-import { AtAtag } from "@/components/atoms/AtAtag";
-import { AtButton } from "@/components/atoms/AtButton";
+import { AtAtag, AtButton } from "@/components/atoms/EntryPoint";
 
 type Props = {
   className: string;
 };
 // eslint-disable-next-line react/display-name
-export const EcExplanation: React.FC<Props> = ({ className }) => {
+const EcExplanation: React.FC<Props> = ({ className }) => {
   const { t } = useTranslation("common");
   return (
     <div className={className}>
@@ -56,3 +55,4 @@ export const EcExplanation: React.FC<Props> = ({ className }) => {
     </div>
   );
 };
+export default EcExplanation;

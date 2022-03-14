@@ -6,6 +6,7 @@
   - 例：AtInput.tsx
 - component の最小単位でロジックは持たない
 - component の import は不可
+- EntryPoint.tsx すべてまとめる
 
 ## 参照
 

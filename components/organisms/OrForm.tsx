@@ -1,6 +1,6 @@
 import React from "react";
 // component
-import { MoForm } from "@/components/molecules/MoForm";
+import { MoForm } from "@/components/molecules/EntryPoint";
 import { Card } from "@mui/material";
 
 // hook
@@ -25,7 +25,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-export const OrForm: React.FC<Props> = ({
+const OrForm: React.FC<Props> = ({
   // label
   title,
   focused,
@@ -64,3 +64,4 @@ export const OrForm: React.FC<Props> = ({
     </>
   );
 };
+export default OrForm;

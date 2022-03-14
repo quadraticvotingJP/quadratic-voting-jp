@@ -1,9 +1,10 @@
 import React from "react";
-import { useTranslation } from "next-i18next";
-import { useForm } from "react-hook-form";
+
 // component
-import { EcExplanation } from "@/components/ecosystems/EcExplanation";
-import { EcAdvertisement } from "@/components/ecosystems/EcAdvertisement";
+import {
+  EcExplanation,
+  EcAdvertisement,
+} from "@/components/ecosystems/EntryPoint";
 
 export const PaTop = () => {
   return (

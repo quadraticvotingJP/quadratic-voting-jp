@@ -13,12 +13,12 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-export const AtButton: React.FC<Props> = React.memo(
-  ({ title, disabled, size }) => {
-    return (
-      <Button variant="outlined" disabled={disabled} size={size}>
-        {title}
-      </Button>
-    );
-  }
-);
+const AtButton: React.FC<Props> = React.memo(({ title, disabled, size }) => {
+  return (
+    <Button variant="outlined" disabled={disabled} size={size}>
+      {title}
+    </Button>
+  );
+});
+
+export default AtButton;

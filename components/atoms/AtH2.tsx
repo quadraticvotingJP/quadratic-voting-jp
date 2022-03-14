@@ -5,6 +5,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-export const AtH2: React.FC<Props> = React.memo(({ title }) => {
+const AtH2: React.FC<Props> = React.memo(({ title }) => {
   return <h2>{title}</h2>;
 });
+export default AtH2;

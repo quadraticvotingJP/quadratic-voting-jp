@@ -1,11 +1,11 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 // component
-import { Box, Container } from "@mui/material";
-import { AtAtag } from "@/components/atoms/AtAtag";
+import { Container } from "@mui/material";
+import { AtAtag } from "@/components/atoms/EntryPoint";
 
 // eslint-disable-next-line react/display-name
-export const MoFooter = React.memo(({}) => {
+const MoFooter = React.memo(({}) => {
   const { t } = useTranslation("common");
   return (
     <Container
@@ -26,3 +26,4 @@ export const MoFooter = React.memo(({}) => {
     </Container>
   );
 });
+export default MoFooter;

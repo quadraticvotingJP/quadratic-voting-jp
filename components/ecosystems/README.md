@@ -5,6 +5,7 @@
 - ファイルの接頭語は「Ec」をつける
   - 例：EcForms.tsx
 - component の import は atoms, molecules, organisms のみ
+- EntryPoint.tsx すべてまとめる
 
 ## 参照
 

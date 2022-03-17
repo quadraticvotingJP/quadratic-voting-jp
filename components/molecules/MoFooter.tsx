@@ -8,7 +8,10 @@ import { AtAtag } from "@/components/atoms/EntryPoint";
 const MoFooter = React.memo(({}) => {
   const { t } = useTranslation("common");
   return (
-    <Container maxWidth="xl" className="bg-indigo-400 p-6 m-0 max-w-full">
+    <Container
+      maxWidth="xl"
+      className="bg-indigo-400 p-6 m-0 max-w-full absolute bottom-0"
+    >
       <ul>
         <li className="text-white">
           <AtAtag title={t("footer.terms")} link={t("header.link")} />

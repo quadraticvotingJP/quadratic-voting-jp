@@ -44,37 +44,6 @@ const EcExplanation: React.FC<Props> = ({ className }) => {
             />
           </li>
         </ul>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
-        <p>ppppppppp</p>
       </div>
       <div>
         <AtButton

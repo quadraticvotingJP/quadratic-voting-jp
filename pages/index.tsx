@@ -3,18 +3,23 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 // component
 import { MoHeader, MoFooter } from "@/components/molecules/EntryPoint";
 import { PaTop } from "@/pages/PaTop";
+import { EcAdvertisement } from "@/components/ecosystems/EntryPoint";
 
 /**
  * @description
  *  - Index.tsxファイルにはFooter,Routingを定義する
  * @todo
- *  - Footer, Routing 追加
+ *  - Routing 追加
  */
 const Home: NextPage = ({}) => {
   return (
     <>
       <MoHeader />
-      <PaTop />
+      <div className="flex">
+        <EcAdvertisement className="w-1/5 bg-gray-400" />
+        <PaTop />
+        <EcAdvertisement className="w-1/5 bg-gray-400" />
+      </div>
       <MoFooter />
     </>
   );

@@ -9,7 +9,7 @@ const MoHeader = React.memo(({}) => {
   const { t } = useTranslation("common");
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className="bg-indigo-400">
+      <AppBar position="fixed" className=" bg-indigo-400">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <AtAtag title={t("header.siteName")} link={t("header.link")} />

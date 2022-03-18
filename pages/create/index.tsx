@@ -1,11 +1,11 @@
-import type { NextPage } from "next";
-// component
-import { EcExplanation } from "@/components/ecosystems/EntryPoint";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-const Top: NextPage = ({}) => {
-  return <EcExplanation />;
+
+const Index = ({}) => {
+  const { t } = useTranslation("common");
+  return <>{t("header.siteName")}</>;
 };
-export default Top;
+export default Index;
 
 // i18n
 export const getStaticProps = async ({ locale = "ja" }) => ({

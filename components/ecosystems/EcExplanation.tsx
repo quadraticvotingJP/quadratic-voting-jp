@@ -3,14 +3,11 @@ import { useTranslation } from "next-i18next";
 // component
 import { AtAtag, AtButton } from "@/components/atoms/EntryPoint";
 
-type Props = {
-  className: string;
-};
 // eslint-disable-next-line react/display-name
-const EcExplanation: React.FC<Props> = ({ className }) => {
+const EcExplanation: React.FC = () => {
   const { t } = useTranslation("common");
   return (
-    <div className={className}>
+    <>
       <div className="mb-6">
         <div className="text-4xl mb-6">
           {t("unique.screen.top.pageTitle.title")}
@@ -52,7 +49,7 @@ const EcExplanation: React.FC<Props> = ({ className }) => {
           size={t("common.buttonSize.large")}
         />
       </div>
-    </div>
+    </>
   );
 };
 export default EcExplanation;

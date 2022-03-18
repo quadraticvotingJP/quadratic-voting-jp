@@ -10,7 +10,7 @@ const MoFooter = React.memo(({}) => {
   return (
     <Container
       maxWidth="xl"
-      className="bg-indigo-400 p-6 m-0 max-w-full absolute bottom-0"
+      className="bg-indigo-400 p-6 m-0 fixed bottom-0 max-w-full"
     >
       <ul>
         <li className="text-white">

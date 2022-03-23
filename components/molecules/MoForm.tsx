@@ -15,9 +15,9 @@ type Props = {
   register: UseFormRegisterReturn;
   placeholder: string;
   disabled: boolean;
-  disableUnderline: boolean;
+  disableUnderline?: boolean;
   type: FormType;
-  readOnly: boolean;
+  readOnly?: boolean;
   id: string;
   name: string;
   error: any;
@@ -60,7 +60,7 @@ const MoForm: React.FC<Props> = ({
         disableUnderline={disableUnderline}
         readOnly={readOnly}
       />
-      {error && <span>{error.message}</span>}
+      {error && <span className="text-red-600">{error.message}</span>}
     </>
   );
 };

@@ -1,9 +1,8 @@
-import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
+// component
+import { EcCreateForm } from "@/components/ecosystems/EntryPoint";
 const Index = ({}) => {
-  const { t } = useTranslation("common");
-  return <>{t("header.siteName")}</>;
+  return <EcCreateForm />;
 };
 export default Index;
 

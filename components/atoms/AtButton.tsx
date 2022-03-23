@@ -10,7 +10,7 @@ type Props = {
   title: string;
   disabled: boolean;
   size: "small" | "large" | "medium";
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 // eslint-disable-next-line react/display-name

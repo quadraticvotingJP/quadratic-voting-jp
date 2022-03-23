@@ -16,9 +16,9 @@ type Props = {
   register: UseFormRegisterReturn;
   placeholder: string;
   disabled: boolean;
-  disableUnderline: boolean;
+  disableUnderline?: boolean;
   type: FormType;
-  readOnly: boolean;
+  readOnly?: boolean;
   id: string;
   name: string;
   error: any;

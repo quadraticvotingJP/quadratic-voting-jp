@@ -1,6 +1,10 @@
 import React from "react";
 // component
-import { AtInputLabel, AtInput } from "@/components/atoms/EntryPoint";
+import {
+  AtInputLabel,
+  AtInput,
+  AtInputLabelNoMark,
+} from "@/components/atoms/EntryPoint";
 
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
@@ -21,6 +25,7 @@ type Props = {
   id: string;
   name: string;
   error: any;
+  labelMark?: boolean;
 };
 
 // eslint-disable-next-line react/display-name
@@ -40,12 +45,21 @@ const MoForm: React.FC<Props> = ({
   type,
   readOnly,
   error,
+  labelMark = true,
 }) => {
   return (
     <>
       <div className="mb-3">
         <div className="mb-1">
-          <AtInputLabel required={required} focused={focused} title={title} />
+          {labelMark ? (
+            <AtInputLabel required={required} focused={focused} title={title} />
+          ) : (
+            <AtInputLabelNoMark
+              required={required}
+              focused={focused}
+              title={title}
+            />
+          )}
         </div>
         {overView && <div>{overView}</div>}
       </div>

@@ -4,7 +4,7 @@ import { useForm, SubmitHandler, Validate } from "react-hook-form";
 import { utilsValidationRule } from "@/utils/validation";
 // component
 import { AtH2, AtButton } from "@/components/atoms/EntryPoint";
-import { OrForm } from "@/components/organisms/EntryPoint";
+import { OrForm, OrForms } from "@/components/organisms/EntryPoint";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 
@@ -16,6 +16,9 @@ type Inputs = {
   publicationEndDate: string;
   participant: number;
   votes: number;
+  optionsTitle: number;
+  optionsOverview: number;
+  optionsUrl: number;
 };
 
 const EcCreateForm: React.FC = () => {
@@ -93,6 +96,7 @@ const EcCreateForm: React.FC = () => {
           register={register("publicationEndDate", {
             required: utilsValidationRule.REQUIRED,
             validate: {
+              // 開始日と終了日の比較validation
               value: (
                 v:
                   | Validate<string>
@@ -144,6 +148,62 @@ const EcCreateForm: React.FC = () => {
           disabled={false}
           type="number"
           error={errors.votes}
+        />
+        <br />
+        <OrForms
+          label={{
+            required: true,
+            title: "選択肢",
+            overView: "選択肢を追加してください。最低２件必要です。",
+          }}
+          form1={{
+            title: "タイトル",
+            required: true,
+            placeholder: "新木場スタジオコースト",
+            register: {
+              ...register("optionsTitle", {
+                required: utilsValidationRule.REQUIRED,
+              }),
+            },
+            disabled: false,
+            type: "text",
+            id: "optionsTitle",
+            name: "optionsTitle",
+            labelMark: false,
+            error: errors.optionsTitle,
+          }}
+          form2={{
+            title: "概要",
+            required: false,
+            placeholder: "新木場駅にあるライブハウス",
+            register: {
+              ...register("optionsOverview", {
+                required: utilsValidationRule.REQUIRED,
+              }),
+            },
+            disabled: false,
+            type: "text",
+            id: "optionsOverview",
+            name: "optionsOverview",
+            labelMark: false,
+            error: errors.optionsOverview,
+          }}
+          form3={{
+            title: "リンク",
+            required: false,
+            placeholder: "https://www.studio-coast.com/",
+            register: {
+              ...register("optionsUrl", {
+                required: utilsValidationRule.REQUIRED,
+              }),
+            },
+            disabled: false,
+            type: "url",
+            id: "optionsUrl",
+            name: "optionsUrl",
+            labelMark: false,
+            error: errors.optionsUrl,
+          }}
         />
         <AtButton
           title={t("common.button.eventCreation")}

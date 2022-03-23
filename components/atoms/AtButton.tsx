@@ -9,8 +9,8 @@ import { Button } from "@mui/material";
 type Props = {
   title: string;
   disabled: boolean;
-  size: "small" | "large" | "medium";
-  onClick: () => void;
+  size: ButtonSize;
+  onClick?: () => void;
 };
 
 // eslint-disable-next-line react/display-name

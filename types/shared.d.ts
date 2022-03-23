@@ -22,3 +22,5 @@ type FormType =
   | "url"
   | "week"
   | "datetime";
+
+type ButtonSize = "small" | "large" | "medium";

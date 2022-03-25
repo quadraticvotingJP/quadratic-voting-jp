@@ -63,7 +63,6 @@ const MoForm: React.FC<Props> = ({
         </div>
         {overView && <div>{overView}</div>}
       </div>
-      <div></div>
       <AtInput
         register={register}
         id={id}

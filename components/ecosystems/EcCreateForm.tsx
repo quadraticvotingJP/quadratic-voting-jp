@@ -4,15 +4,14 @@ import { useForm, SubmitHandler, Validate } from "react-hook-form";
 import { utilsValidationRule } from "@/utils/validation";
 // component
 import { AtH2, AtButton } from "@/components/atoms/EntryPoint";
-import { OrForm, OrForms } from "@/components/organisms/EntryPoint";
+import {
+  OrForm,
+  OrForms,
+  OrAccordion,
+} from "@/components/organisms/EntryPoint";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 
-interface Option {
-  optionsTitle: number;
-  optionsOverview: number;
-  optionsUrl: number;
-}
 // type
 type Inputs = {
   title: string;
@@ -21,7 +20,7 @@ type Inputs = {
   publicationEndDate: string;
   participant: number;
   votes: number;
-  // options: Option[];
+  options: Option[];
   optionsTitle: number;
   optionsOverview: number;
   optionsUrl: number;
@@ -38,6 +37,11 @@ const EcCreateForm: React.FC = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
+    console.log(data);
+    // reset();
+    // routerPush("create");
+  };
+  const onSubmitOption: SubmitHandler<Option> = async (data: Option) => {
     console.log(data);
     // reset();
     // routerPush("create");
@@ -156,10 +160,28 @@ const EcCreateForm: React.FC = () => {
           error={errors.votes}
         />
         <br />
+        <OrAccordion
+          title="選択肢"
+          options={[
+            {
+              title: "ラーメン",
+              overview: "fei",
+              url: "https://tailwindcss.jp/docs/justify-content#app",
+            },
+            {
+              title: "ラーメン",
+              overview: "ほげほｈげおｈげおｈげごｇほえｈ",
+              url: "https://tailwindcss.jp/docs/justify-content#app",
+            },
+          ]}
+          required={false}
+          size="small"
+        />
+        <br />
         <OrForms
           label={{
             required: true,
-            title: "選択肢",
+            title: "選択肢作成",
             overView: "選択肢を追加してください。最低２件必要です。",
           }}
           form1={{
@@ -214,9 +236,11 @@ const EcCreateForm: React.FC = () => {
             title: t("common.button.add"),
             disabled: false,
             size: t("common.buttonSize.large"),
-            onClick: () => {},
+            onClick: handleSubmit(onSubmitOption),
           }}
         />
+        <br />
+
         <AtButton
           title={t("common.button.eventCreation")}
           disabled={false}

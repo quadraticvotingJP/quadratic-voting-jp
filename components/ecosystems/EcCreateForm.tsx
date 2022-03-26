@@ -126,7 +126,7 @@ const EcCreateForm: React.FC = () => {
                   | undefined
               ) =>
                 new Date(v) > new Date(getValues("publicationStartDate"))
-                  ? null
+                  ? true
                   : utilsValidationRule.DATE.message,
             },
           })}
@@ -172,7 +172,7 @@ const EcCreateForm: React.FC = () => {
           error={errors.votes}
         />
         <br />
-        {/* <OrAccordion
+        <OrAccordion
           title="選択肢"
           options={getValues("options")}
           required={false}
@@ -183,7 +183,7 @@ const EcCreateForm: React.FC = () => {
               value: () => {
                 return getValues("options") !== undefined &&
                   getValues("options").length >= 2
-                  ? false
+                  ? true
                   : utilsValidationRule.OPTIONS_LENGTH_2.message;
               },
             },
@@ -196,7 +196,7 @@ const EcCreateForm: React.FC = () => {
           readOnly={true}
           error={errors.options}
           className={"hidden"}
-        /> */}
+        />
         <br />
         <OrForms
           label={{

@@ -8,4 +8,5 @@ export const utilsValidationRule = {
   MIN_2: { value: 2, message: "2人以上にしてください。" },
   MIN_1: { value: 1, message: "1票以上にしてください。" },
   DATE: { message: "公開開始日より後ろに日付を設定してください。" },
+  OPTIONS_LENGTH_2: { message: "選択肢を２つ以上作成してください。" },
 };

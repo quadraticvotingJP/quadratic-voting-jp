@@ -5,20 +5,34 @@
 import React from "react";
 // mui
 import { IconButton } from "@mui/material";
+// icon
+// iconの種類はd.tsを参照@mui/icons-material/
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 type Props = {
   size: ButtonSize;
-  color: Color;
   onClick?: () => void;
+  showEdit?: boolean;
+  showDelete?: boolean;
 };
 
 // eslint-disable-next-line react/display-name
 const AtIconButton: React.FC<Props> = React.memo(
-  ({ children, onClick, color, size }) => {
+  ({ onClick, size, showEdit, showDelete }) => {
     return (
-      <IconButton color={color} onClick={onClick} size={size}>
-        {children}
-      </IconButton>
+      <>
+        {showDelete && (
+          <IconButton color="error" onClick={onClick} size={size}>
+            <DeleteIcon />
+          </IconButton>
+        )}
+        {showEdit && (
+          <IconButton color="primary" onClick={onClick} size={size}>
+            <EditIcon />
+          </IconButton>
+        )}
+      </>
     );
   }
 );

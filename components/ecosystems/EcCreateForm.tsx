@@ -32,20 +32,32 @@ const EcCreateForm: React.FC = () => {
     register,
     handleSubmit,
     getValues,
+    clearErrors,
+    unregister,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<Inputs>();
+
+  setValue("options", [
+    {
+      title: "ラーメン",
+      overview: "fei",
+      url: "https://tailwindcss.jp/docs/justify-content#app",
+    },
+    {
+      title: "ラーメン",
+      overview: "ほげほｈげおｈげおｈげごｇほえｈ",
+      url: "https://tailwindcss.jp/docs/justify-content#app",
+    },
+  ]);
 
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     console.log(data);
     // reset();
     // routerPush("create");
   };
-  const onSubmitOption: SubmitHandler<Option> = async (data: Option) => {
-    console.log(data);
-    // reset();
-    // routerPush("create");
-  };
+
   return (
     <>
       <AtH2 title={t("pageTitle.creat")} />
@@ -160,23 +172,31 @@ const EcCreateForm: React.FC = () => {
           error={errors.votes}
         />
         <br />
-        <OrAccordion
+        {/* <OrAccordion
           title="選択肢"
-          options={[
-            {
-              title: "ラーメン",
-              overview: "fei",
-              url: "https://tailwindcss.jp/docs/justify-content#app",
-            },
-            {
-              title: "ラーメン",
-              overview: "ほげほｈげおｈげおｈげごｇほえｈ",
-              url: "https://tailwindcss.jp/docs/justify-content#app",
-            },
-          ]}
+          options={getValues("options")}
           required={false}
           size="small"
-        />
+          register={register("options", {
+            validate: {
+              // optionsが２つ以上あるかチェック
+              value: () => {
+                return getValues("options") !== undefined &&
+                  getValues("options").length >= 2
+                  ? false
+                  : utilsValidationRule.OPTIONS_LENGTH_2.message;
+              },
+            },
+          })}
+          id={"options"}
+          name={"options"}
+          type={"hidden"}
+          placeholder={""}
+          disabled={true}
+          readOnly={true}
+          error={errors.options}
+          className={"hidden"}
+        /> */}
         <br />
         <OrForms
           label={{
@@ -236,7 +256,7 @@ const EcCreateForm: React.FC = () => {
             title: t("common.button.add"),
             disabled: false,
             size: t("common.buttonSize.large"),
-            onClick: handleSubmit(onSubmitOption),
+            onClick: handleSubmit(() => {}),
           }}
         />
         <br />

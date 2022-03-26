@@ -1,7 +1,7 @@
 import React from "react";
 // component
 import { AtInputLabel, AtButton } from "@/components/atoms/EntryPoint";
-import { MoForm } from "@/components/molecules/EntryPoint";
+import { MoLabelForm } from "@/components/molecules/EntryPoint";
 import { Card } from "@mui/material";
 
 // hook
@@ -61,7 +61,7 @@ const OrForms: React.FC<Props> = ({ label, form1, form2, form3, button }) => {
           {label.overView && <div>{label.overView}</div>}
         </div>
         <div className="mb-6">
-          <MoForm
+          <MoLabelForm
             title={form1.title}
             required={form1.required}
             register={form1.register}
@@ -75,7 +75,7 @@ const OrForms: React.FC<Props> = ({ label, form1, form2, form3, button }) => {
           />
         </div>
         <div className="mb-6">
-          <MoForm
+          <MoLabelForm
             title={form2.title}
             required={form2.required}
             register={form2.register}
@@ -89,7 +89,7 @@ const OrForms: React.FC<Props> = ({ label, form1, form2, form3, button }) => {
           />
         </div>
         <div className="mb-6">
-          <MoForm
+          <MoLabelForm
             title={form3.title}
             required={form3.required}
             register={form3.register}

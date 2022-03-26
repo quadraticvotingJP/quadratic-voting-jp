@@ -1,6 +1,6 @@
 import React from "react";
 // component
-import { MoForm } from "@/components/molecules/EntryPoint";
+import { MoLabelForm } from "@/components/molecules/EntryPoint";
 import { Card } from "@mui/material";
 
 // hook
@@ -45,7 +45,7 @@ const OrForm: React.FC<Props> = ({
   return (
     <>
       <Card className="p-6">
-        <MoForm
+        <MoLabelForm
           focused={focused}
           title={title}
           required={required}

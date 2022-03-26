@@ -21,9 +21,9 @@ type Inputs = {
   participant: number;
   votes: number;
   options: Option[];
-  optionsTitle: number;
-  optionsOverview: number;
-  optionsUrl: number;
+  optionsTitle: string;
+  optionsOverview: string;
+  optionsUrl: string;
 };
 
 const EcCreateForm: React.FC = () => {
@@ -37,25 +37,35 @@ const EcCreateForm: React.FC = () => {
     reset,
     setValue,
     formState: { errors },
-  } = useForm<Inputs>();
-
-  setValue("options", [
-    {
-      title: "ラーメン",
-      overview: "fei",
-      url: "https://tailwindcss.jp/docs/justify-content#app",
-    },
-    {
-      title: "ラーメン",
-      overview: "ほげほｈげおｈげおｈげごｇほえｈ",
-      url: "https://tailwindcss.jp/docs/justify-content#app",
-    },
-  ]);
+  } = useForm<Inputs>({ defaultValues: { options: [] } });
 
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
+    // todo: "選択肢作成をvalidationから省く"
     console.log(data);
     // reset();
     // routerPush("create");
+  };
+
+  const setOptions = (): void => {
+    // setValueの更新では画面が再描画されないため値が変わらない
+    // todo: validationをかける
+    console.log(getValues(["optionsTitle", "optionsOverview", "optionsUrl"]));
+    const option = getValues(["optionsTitle", "optionsOverview", "optionsUrl"]);
+    const title = option[0];
+    const overview = option[1];
+    const url = option[2];
+    setValue("options", [
+      ...getValues("options"),
+      {
+        title: title,
+        overview: overview,
+        url: url,
+      },
+    ]);
+    // unregister(["optionsTitle", "optionsOverview", "optionsUrl"]);
+    // reset({ optionsTitle: "", optionsOverview: "", optionsUrl: "" });
+    // todo: 画面更新
+    // todo: 値リセット
   };
 
   return (
@@ -256,7 +266,7 @@ const EcCreateForm: React.FC = () => {
             title: t("common.button.add"),
             disabled: false,
             size: t("common.buttonSize.large"),
-            onClick: handleSubmit(() => {}),
+            onClick: setOptions,
           }}
         />
         <br />

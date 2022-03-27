@@ -32,24 +32,20 @@ const EcCreateForm: React.FC = () => {
     register,
     handleSubmit,
     getValues,
-    clearErrors,
     unregister,
+    watch,
     reset,
     setValue,
     formState: { errors },
   } = useForm<Inputs>({ defaultValues: { options: [] } });
 
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
-    // todo: "選択肢作成をvalidationから省く"
     console.log(data);
     // reset();
     // routerPush("create");
   };
 
   const setOptions = (): void => {
-    // setValueの更新では画面が再描画されないため値が変わらない
-    // todo: validationをかける
-    console.log(getValues(["optionsTitle", "optionsOverview", "optionsUrl"]));
     const option = getValues(["optionsTitle", "optionsOverview", "optionsUrl"]);
     const title = option[0];
     const overview = option[1];
@@ -62,9 +58,7 @@ const EcCreateForm: React.FC = () => {
         url: url,
       },
     ]);
-    // unregister(["optionsTitle", "optionsOverview", "optionsUrl"]);
-    // reset({ optionsTitle: "", optionsOverview: "", optionsUrl: "" });
-    // todo: 画面更新
+    unregister(["optionsTitle", "optionsOverview", "optionsUrl"]); // 画面更新
     // todo: 値リセット
   };
 
@@ -219,9 +213,7 @@ const EcCreateForm: React.FC = () => {
             required: true,
             placeholder: "新木場スタジオコースト",
             register: {
-              ...register("optionsTitle", {
-                required: utilsValidationRule.REQUIRED,
-              }),
+              ...register("optionsTitle"),
             },
             disabled: false,
             type: "text",
@@ -235,9 +227,7 @@ const EcCreateForm: React.FC = () => {
             required: false,
             placeholder: "新木場駅にあるライブハウス",
             register: {
-              ...register("optionsOverview", {
-                required: utilsValidationRule.REQUIRED,
-              }),
+              ...register("optionsOverview"),
             },
             disabled: false,
             type: "text",
@@ -251,9 +241,7 @@ const EcCreateForm: React.FC = () => {
             required: false,
             placeholder: "https://www.studio-coast.com/",
             register: {
-              ...register("optionsUrl", {
-                required: utilsValidationRule.REQUIRED,
-              }),
+              ...register("optionsUrl"),
             },
             disabled: false,
             type: "url",
@@ -264,7 +252,7 @@ const EcCreateForm: React.FC = () => {
           }}
           button={{
             title: t("common.button.add"),
-            disabled: false,
+            disabled: watch("optionsTitle") === "",
             size: t("common.buttonSize.large"),
             onClick: setOptions,
           }}
@@ -272,10 +260,10 @@ const EcCreateForm: React.FC = () => {
         <br />
 
         <AtButton
+          type="submit"
           title={t("common.button.eventCreation")}
           disabled={false}
           size={t("common.buttonSize.large")}
-          onClick={handleSubmit(onSubmit)}
         />
       </form>
     </>

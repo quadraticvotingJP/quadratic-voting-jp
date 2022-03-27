@@ -22,8 +22,13 @@ type FormType =
   | "url"
   | "week"
   | "datetime";
+
 // muiのButtonサイズ
 type ButtonSize = "small" | "large" | "medium";
+
+// muiのButtonタイプ
+type ButtonType = "button" | "submit" | "reset" | undefined;
+
 // muiの色
 type Color =
   | "inherit"

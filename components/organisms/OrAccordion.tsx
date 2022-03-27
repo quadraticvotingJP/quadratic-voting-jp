@@ -5,6 +5,7 @@ import { MoAccordion, MoForm } from "@/components/molecules/EntryPoint";
 import { AtInputLabel } from "@/components/atoms/EntryPoint";
 // mui
 import { Card } from "@mui/material";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 type Props = {
   size: ButtonSize;
@@ -15,7 +16,7 @@ type Props = {
   onClickEdit?: () => void;
   onClickDelete?: () => void;
   // Options
-  register: any;
+  register: UseFormRegisterReturn;
   placeholder: string;
   disabled: boolean;
   type: FormType;

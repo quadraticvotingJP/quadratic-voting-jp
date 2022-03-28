@@ -34,10 +34,16 @@ const EcCreateForm: React.FC = () => {
     getValues,
     unregister,
     watch,
-    reset,
     setValue,
     formState: { errors },
-  } = useForm<Inputs>({ defaultValues: { options: [] } });
+  } = useForm<Inputs>({
+    defaultValues: {
+      options: [],
+      optionsTitle: "",
+      optionsOverview: "",
+      optionsUrl: "",
+    },
+  });
 
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     console.log(data);
@@ -58,8 +64,12 @@ const EcCreateForm: React.FC = () => {
         url: url,
       },
     ]);
-    unregister(["optionsTitle", "optionsOverview", "optionsUrl"]); // 画面更新
-    // todo: 値リセット
+    // 画面更新
+    unregister(["optionsTitle", "optionsOverview", "optionsUrl"]);
+    // 値リセット todo：なぜかreset関数を使うとoptionsだけundefinedになる
+    setValue("optionsTitle", "");
+    setValue("optionsOverview", "");
+    setValue("optionsUrl", "");
   };
 
   return (

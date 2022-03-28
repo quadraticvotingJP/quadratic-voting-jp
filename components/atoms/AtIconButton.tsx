@@ -12,7 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 type Props = {
   size: ButtonSize;
-  onClick?: () => void;
+  onClick?: (arg?: any) => void;
   showEdit?: boolean;
   showDelete?: boolean;
 };

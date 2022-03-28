@@ -9,8 +9,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 type Props = {
   size: ButtonSize;
   option: Option;
-  onClickEdit?: () => void;
-  onClickDelete?: () => void;
+  onClickEdit?: (arg?: any) => void;
+  onClickDelete?: (arg?: any) => void;
 };
 
 // eslint-disable-next-line react/display-name

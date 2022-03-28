@@ -13,8 +13,8 @@ type Props = {
   required: boolean;
   focused?: boolean;
   options: Option[];
-  onClickEdit?: () => void;
-  onClickDelete?: () => void;
+  onClickEdit?: (arg?: any) => void;
+  onClickDelete?: (arg?: any) => void;
   // Options
   register: UseFormRegisterReturn;
   placeholder: string;
@@ -61,7 +61,7 @@ const OrAccordion: React.FC<Props> = React.memo(
             </div>
           </div>
           {options &&
-            options.map((option, index: number) => {
+            options.map((option: Option, index: number) => {
               return (
                 <MoAccordion
                   key={index}

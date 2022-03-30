@@ -1,4 +1,5 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, apps, app } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -8,4 +9,8 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGE_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_SENDER_ID,
 };
-initializeApp(firebaseConfig);
+
+// initialize
+export const firebase = !apps ? initializeApp(firebaseConfig) : app();
+// authentication
+export const auth = getAuth();

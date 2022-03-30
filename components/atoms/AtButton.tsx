@@ -12,15 +12,24 @@ type Props = {
   size: ButtonSize;
   onClick?: () => void;
   type?: ButtonType;
+  className?: string;
 };
 
 // eslint-disable-next-line react/display-name
 const AtButton: React.FC<Props> = React.memo(
-  ({ title, disabled, size, onClick, type = "button" }) => {
+  ({
+    title,
+    disabled,
+    size,
+    onClick,
+    type = "button",
+    className = "bg-indigo-400	text-white",
+  }) => {
     return (
       <Button
+        className={className}
         type={type}
-        variant="outlined"
+        variant="contained"
         disabled={disabled}
         size={size}
         onClick={onClick}

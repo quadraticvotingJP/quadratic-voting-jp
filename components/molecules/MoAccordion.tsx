@@ -1,7 +1,7 @@
 // https://mui.com/components/buttons/#icon-button
 import React from "react";
 // component
-import { AtIconButton } from "@/components/atoms/EntryPoint";
+import { AtIconButton, AtHref } from "@/components/atoms/EntryPoint";
 // mui
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -55,14 +55,12 @@ const MoAccordion: React.FC<Props> = React.memo(
             {option.url && (
               <div>
                 <p className="font-bold">リンク</p>
-                <a
+                <AtHref
+                  blank={true}
+                  title={option.url}
+                  link={option.url}
                   className="text-blue-500"
-                  href={option.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {option.url}
-                </a>
+                />
               </div>
             )}
             {!option.url && !option.overview && (

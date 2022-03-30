@@ -1,21 +1,20 @@
 // https://mui.com/components/buttons/#icon-button
 import React from "react";
 // component
-import { MoAccordion, MoForm } from "@/components/molecules/EntryPoint";
+import { MoForm, MoAccordion } from "@/components/molecules/EntryPoint";
 import { AtInputLabel } from "@/components/atoms/EntryPoint";
 // mui
 import { Card } from "@mui/material";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 type Props = {
-  size: ButtonSize;
   title: string;
   required: boolean;
   focused?: boolean;
-  options: Option[];
-  onClickEdit?: (arg?: any) => void;
-  onClickDelete?: (arg?: any) => void;
   // Options
+  options: Option[];
+  onClickEdit: (index: number) => void;
+  onClickDelete: (index: number) => void;
   register: UseFormRegisterReturn;
   placeholder: string;
   disabled: boolean;
@@ -30,14 +29,13 @@ type Props = {
 // eslint-disable-next-line react/display-name
 const OrAccordion: React.FC<Props> = React.memo(
   ({
-    options,
     required,
     focused,
     title,
-    size,
-    onClickEdit,
-    onClickDelete,
     // Options
+    options,
+    onClickDelete,
+    onClickEdit,
     register,
     placeholder,
     disabled,
@@ -60,15 +58,17 @@ const OrAccordion: React.FC<Props> = React.memo(
               />
             </div>
           </div>
+
           {options &&
             options.map((option: Option, index: number) => {
               return (
                 <MoAccordion
                   key={index}
                   option={option}
-                  size={size}
-                  onClickEdit={onClickEdit}
-                  onClickDelete={onClickDelete}
+                  size="small"
+                  onClickDelete={() => onClickDelete(index)}
+                  onClickEdit={() => onClickEdit(index)}
+                  disabled={disabled}
                 />
               );
             })}

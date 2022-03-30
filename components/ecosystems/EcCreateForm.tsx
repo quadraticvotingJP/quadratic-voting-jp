@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler, Validate } from "react-hook-form";
 import { utilsValidationRule } from "@/utils/validation";
@@ -12,46 +12,33 @@ import {
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 
-// type
-type Inputs = {
-  title: string;
-  overview: string;
-  publicationStartDate: string;
-  publicationEndDate: string;
-  participant: number;
-  votes: number;
-  options: Option[];
-  optionsTitle: string;
-  optionsOverview: string;
-  optionsUrl: string;
-};
-
 const EcCreateForm: React.FC = () => {
   const { t } = useTranslation("common");
+  const [isEdit, setIsEdit] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
     getValues,
-    unregister,
     watch,
     setValue,
+    reset,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<EventValues>({
     defaultValues: {
       options: [],
-      optionsTitle: "",
-      optionsOverview: "",
-      optionsUrl: "",
     },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
+  const onSubmit: SubmitHandler<EventValues> = async (data: EventValues) => {
     console.log(data);
-    // reset();
-    // routerPush("create");
+    routerPush("/");
+    reset();
   };
 
+  // 選択肢追加・編集
   const setOptions = (): void => {
+    // 編集モードであれば解除
+    if (isEdit) setIsEdit(false);
     const option = getValues(["optionsTitle", "optionsOverview", "optionsUrl"]);
     const title = option[0];
     const overview = option[1];
@@ -64,12 +51,39 @@ const EcCreateForm: React.FC = () => {
         url: url,
       },
     ]);
-    // 画面更新
-    unregister(["optionsTitle", "optionsOverview", "optionsUrl"]);
-    // 値リセット todo：なぜかreset関数を使うとoptionsだけundefinedになる
+    // 値リセット
     setValue("optionsTitle", "");
     setValue("optionsOverview", "");
     setValue("optionsUrl", "");
+  };
+
+  // 選択肢削除
+  const onClickDelete = (index: number): void => {
+    const newOptions = getValues("options").filter(
+      (option, idx) => idx !== index
+    );
+    // 値のセット
+    setValue("options", newOptions);
+    // リストの更新
+    watch("options");
+  };
+
+  // 選択肢編集
+  const onClickEdit = (index: number): void => {
+    setIsEdit(true);
+    // 編集dataをフォームにセット
+    const editValues: any = getValues("options").find(
+      (option, idx) => idx === index
+    );
+    setValue("optionsTitle", editValues.title);
+    setValue("optionsOverview", editValues.overview);
+    setValue("optionsUrl", editValues.url);
+    // 編集するため選択したリストを一度削除
+    const newOptions = getValues("options").filter(
+      (option, idx) => idx !== index
+    );
+    // リストの更新
+    setValue("options", newOptions);
   };
 
   return (
@@ -187,10 +201,9 @@ const EcCreateForm: React.FC = () => {
         />
         <br />
         <OrAccordion
-          title="選択肢"
-          options={getValues("options")}
+          title={t("common.event.options.title")}
           required={false}
-          size="small"
+          options={getValues("options")}
           register={register("options", {
             validate: {
               // optionsが２つ以上あるかチェック
@@ -206,22 +219,24 @@ const EcCreateForm: React.FC = () => {
           name={"options"}
           type={"hidden"}
           placeholder={""}
-          disabled={true}
+          disabled={isEdit}
           readOnly={true}
           error={errors.options}
           className={"hidden"}
+          onClickDelete={(index: number) => onClickDelete(index)}
+          onClickEdit={(index: number) => onClickEdit(index)}
         />
         <br />
         <OrForms
           label={{
             required: true,
-            title: "選択肢作成",
-            overView: "選択肢を追加してください。最低２件必要です。",
+            title: t("common.event.createOption.formTitle"),
+            overView: t("common.event.createOption.formDetail"),
           }}
           form1={{
-            title: "タイトル",
+            title: t("common.event.createOption.optionTitle"),
             required: true,
-            placeholder: "新木場スタジオコースト",
+            placeholder: t("common.event.createOption.titlePlaceholder"),
             register: {
               ...register("optionsTitle"),
             },
@@ -233,9 +248,9 @@ const EcCreateForm: React.FC = () => {
             error: errors.optionsTitle,
           }}
           form2={{
-            title: "概要",
+            title: t("common.event.createOption.optionDetail"),
             required: false,
-            placeholder: "新木場駅にあるライブハウス",
+            placeholder: t("common.event.createOption.detailPlaceholder"),
             register: {
               ...register("optionsOverview"),
             },
@@ -247,9 +262,9 @@ const EcCreateForm: React.FC = () => {
             error: errors.optionsOverview,
           }}
           form3={{
-            title: "リンク",
+            title: t("common.event.createOption.optionLink"),
             required: false,
-            placeholder: "https://www.studio-coast.com/",
+            placeholder: t("common.event.createOption.linkPlaceholder"),
             register: {
               ...register("optionsUrl"),
             },
@@ -261,14 +276,13 @@ const EcCreateForm: React.FC = () => {
             error: errors.optionsUrl,
           }}
           button={{
-            title: t("common.button.add"),
+            title: isEdit ? t("common.button.edit") : t("common.button.add"),
             disabled: watch("optionsTitle") === "",
             size: t("common.buttonSize.large"),
             onClick: setOptions,
           }}
         />
         <br />
-
         <AtButton
           type="submit"
           title={t("common.button.eventCreation")}

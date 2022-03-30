@@ -9,13 +9,14 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 type Props = {
   size: ButtonSize;
   option: Option;
-  onClickEdit?: (arg?: any) => void;
-  onClickDelete?: (arg?: any) => void;
+  onClickEdit?: () => void;
+  onClickDelete?: () => void;
+  disabled: boolean;
 };
 
 // eslint-disable-next-line react/display-name
 const MoAccordion: React.FC<Props> = React.memo(
-  ({ option, size, onClickEdit, onClickDelete }) => {
+  ({ option, size, onClickEdit, onClickDelete, disabled }) => {
     return (
       <>
         <Accordion>
@@ -29,27 +30,46 @@ const MoAccordion: React.FC<Props> = React.memo(
                 <p className="text-lg font-bold">{option.title}</p>
               </div>
               <div className="mr-4">
-                <AtIconButton showEdit onClick={onClickEdit} size={size} />
-                <AtIconButton showDelete onClick={onClickDelete} size={size} />
+                <AtIconButton
+                  showEdit
+                  onClick={onClickEdit}
+                  size={size}
+                  disabled={disabled}
+                />
+                <AtIconButton
+                  showDelete
+                  onClick={onClickDelete}
+                  size={size}
+                  disabled={disabled}
+                />
               </div>
             </div>
           </AccordionSummary>
           <AccordionDetails>
-            <div className="mb-4 break-words">
-              <p className="font-bold">概要</p>
-              {option.overview}
-            </div>
-            <div>
-              <p className="font-bold">リンク</p>
-              <a
-                className="text-blue-500"
-                href={option.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {option.url}
-              </a>
-            </div>
+            {option.overview && (
+              <div className="mb-4 break-words">
+                <p className="font-bold">概要</p>
+                {option.overview}
+              </div>
+            )}
+            {option.url && (
+              <div>
+                <p className="font-bold">リンク</p>
+                <a
+                  className="text-blue-500"
+                  href={option.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {option.url}
+                </a>
+              </div>
+            )}
+            {!option.url && !option.overview && (
+              <div>
+                <p className="font-bold">概要とリンクは登録されていません。</p>
+              </div>
+            )}
           </AccordionDetails>
         </Accordion>
       </>

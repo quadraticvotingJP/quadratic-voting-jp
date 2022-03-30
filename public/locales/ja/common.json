@@ -20,18 +20,19 @@
     },
     "button": {
       "eventCreation": "イベント作成",
-      "add": "追加"
+      "add": "追加",
+      "edit": "編集"
     },
     "event": {
       "eventTitle": {
         "title": "タイトル",
         "detail": "イベントタイトルを40文字で入力してください。",
-        "placeholder": "どのライブに行きますか？"
+        "placeholder": "次の都知事は誰？"
       },
       "overview": {
         "title": "概要",
         "detail": "イベント概要を240文字で入力してください。",
-        "placeholder": "ツアー日程の中でどこに参戦するか決めたいです！"
+        "placeholder": "都知事を決めるため選挙を開催致します。"
       },
       "publicationStartDate": {
         "title": "公開開始日",
@@ -53,13 +54,18 @@
         "detail": "一人あたりの投票数を入力してください。(最大:100票)",
         "placeholder": "2"
       },
-      "choices": {},
-      "createChoices": {
+      "options": {
+        "title": "選択肢"
+      },
+      "createOption": {
         "formTitle": "選択肢作成",
-        "formDetail": "選択肢を追加してください。\\n最低2件必要です。",
-        "choiceTitle": "タイトル",
-        "choiceDetail": "概要",
-        "choiceLink": "リンク"
+        "formDetail": "選択肢を追加してください。最低2件必要です。",
+        "optionTitle": "タイトル",
+        "titlePlaceholder": "山田太郎",
+        "optionDetail": "概要",
+        "detailPlaceholder": "マニュフェスト:ベーシックインカム月20万円",
+        "optionLink": "リンク",
+        "linkPlaceholder": "https://github.com/quadraticvotingJP/quadratic-voting-jp"
       }
     },
     "validation": {

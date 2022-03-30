@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { routerPush } from "@/architecture/application/routing";
 
 // component
-import { AtAtag, AtButton } from "@/components/atoms/EntryPoint";
+import { AtHref, AtButton } from "@/components/atoms/EntryPoint";
 
 // eslint-disable-next-line react/display-name
 const EcExplanation: React.FC = () => {
@@ -32,18 +32,20 @@ const EcExplanation: React.FC = () => {
         <ul>
           <li>
             参考文献：
-            <AtAtag
+            <AtHref
               blank={true}
               title={t("unique.screen.top.referencesOne")}
               link={t("unique.screen.top.referencesLinkOne")}
+              className="text-blue-500"
             />
           </li>
           <li>
             参考文献：
-            <AtAtag
+            <AtHref
               blank={true}
               title={t("unique.screen.top.referencesTwo")}
               link={t("unique.screen.top.referencesLinkTwo")}
+              className="text-blue-500"
             />
           </li>
         </ul>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
-import { useForm, SubmitHandler, Validate } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { utilsValidationRule } from "@/utils/validation";
 // component
 import { AtH2, AtButton } from "@/components/atoms/EntryPoint";
@@ -26,6 +26,7 @@ const EcCreateForm: React.FC = () => {
   } = useForm<EventValues>({
     defaultValues: {
       options: [],
+      optionsTitle: "",
     },
   });
 

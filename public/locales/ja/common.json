@@ -4,9 +4,14 @@
     "link": "http://quadraticvoting.jp/"
   },
   "footer": {
+    "gitHub": "GitHub",
+    "gitHubLink": "https://github.com/quadraticvotingJP/quadratic-voting-jp",
     "terms": "利用規約",
+    "termsLink": "http://quadraticvoting.jp/",
     "policy": "プライバシーポリシー",
-    "siteName": "QuadraticVoting.jp"
+    "policyLink": "http://quadraticvoting.jp/",
+    "siteName": "QuadraticVoting.jp",
+    "siteNameLink": "http://quadraticvoting.jp/"
   },
   "pageTitle": {
     "creat": "イベント作成"

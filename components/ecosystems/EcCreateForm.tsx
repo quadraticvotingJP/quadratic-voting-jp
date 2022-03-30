@@ -149,12 +149,7 @@ const EcCreateForm: React.FC = () => {
             required: utilsValidationRule.REQUIRED,
             validate: {
               // 開始日と終了日の比較validation
-              value: (
-                v:
-                  | Validate<string>
-                  | Record<string, Validate<string>>
-                  | undefined
-              ) =>
+              value: (v) =>
                 new Date(v) > new Date(getValues("publicationStartDate"))
                   ? true
                   : utilsValidationRule.DATE.message,

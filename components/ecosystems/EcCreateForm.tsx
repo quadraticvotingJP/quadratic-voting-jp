@@ -59,6 +59,7 @@ const EcCreateForm: React.FC = () => {
 
   // 選択肢削除
   const onClickDelete = (index: number): void => {
+    // 削除対象以外の選択肢リストを作成
     const newOptions = getValues("options").filter(
       (option, idx) => idx !== index
     );
@@ -71,10 +72,11 @@ const EcCreateForm: React.FC = () => {
   // 選択肢編集
   const onClickEdit = (index: number): void => {
     setIsEdit(true);
-    // 編集dataをフォームにセット
+    // 編集対象を見つける
     const editValues: any = getValues("options").find(
       (option, idx) => idx === index
     );
+    // 編集dataをフォームにセット
     setValue("optionsTitle", editValues.title);
     setValue("optionsOverview", editValues.overview);
     setValue("optionsUrl", editValues.url);

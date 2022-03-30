@@ -9,15 +9,17 @@ import { Button } from "@mui/material";
 type Props = {
   title: string;
   disabled: boolean;
-  size: "small" | "large" | "medium";
-  onClick: () => void;
+  size: ButtonSize;
+  onClick?: () => void;
+  type?: ButtonType;
 };
 
 // eslint-disable-next-line react/display-name
 const AtButton: React.FC<Props> = React.memo(
-  ({ title, disabled, size, onClick }) => {
+  ({ title, disabled, size, onClick, type = "button" }) => {
     return (
       <Button
+        type={type}
         variant="outlined"
         disabled={disabled}
         size={size}

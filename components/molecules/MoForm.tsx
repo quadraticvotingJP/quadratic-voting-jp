@@ -1,35 +1,26 @@
 import React from "react";
 // component
-import { AtInputLabel, AtInput } from "@/components/atoms/EntryPoint";
+import { AtInput } from "@/components/atoms/EntryPoint";
 
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
 
 type Props = {
-  // label
-  title: string;
-  required: boolean;
-  focused?: boolean;
-  overView?: string;
   // form
   register: UseFormRegisterReturn;
   placeholder: string;
   disabled: boolean;
-  disableUnderline: boolean;
+  disableUnderline?: boolean;
   type: FormType;
-  readOnly: boolean;
+  readOnly?: boolean;
   id: string;
   name: string;
   error: any;
+  className: string;
 };
 
 // eslint-disable-next-line react/display-name
 const MoForm: React.FC<Props> = ({
-  // label
-  title,
-  focused,
-  required,
-  overView,
   // form
   register,
   id,
@@ -40,27 +31,23 @@ const MoForm: React.FC<Props> = ({
   type,
   readOnly,
   error,
+  className,
 }) => {
   return (
     <>
-      <div className="mb-3">
-        <div className="mb-1">
-          <AtInputLabel required={required} focused={focused} title={title} />
-        </div>
-        {overView && <div>{overView}</div>}
+      <div className={className}>
+        <AtInput
+          register={register}
+          id={id}
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          disabled={disabled}
+          disableUnderline={disableUnderline}
+          readOnly={readOnly}
+        />
       </div>
-      <div></div>
-      <AtInput
-        register={register}
-        id={id}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        disableUnderline={disableUnderline}
-        readOnly={readOnly}
-      />
-      {error && <span>{error.message}</span>}
+      {error && <span className="text-red-600">{error.message}</span>}
     </>
   );
 };

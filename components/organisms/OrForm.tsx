@@ -1,6 +1,6 @@
 import React from "react";
 // component
-import { MoForm } from "@/components/molecules/EntryPoint";
+import { MoLabelForm } from "@/components/molecules/EntryPoint";
 import { Card } from "@mui/material";
 
 // hook
@@ -16,9 +16,9 @@ type Props = {
   register: UseFormRegisterReturn;
   placeholder: string;
   disabled: boolean;
-  disableUnderline: boolean;
+  disableUnderline?: boolean;
   type: FormType;
-  readOnly: boolean;
+  readOnly?: boolean;
   id: string;
   name: string;
   error: any;
@@ -45,7 +45,7 @@ const OrForm: React.FC<Props> = ({
   return (
     <>
       <Card className="p-6">
-        <MoForm
+        <MoLabelForm
           focused={focused}
           title={title}
           required={required}

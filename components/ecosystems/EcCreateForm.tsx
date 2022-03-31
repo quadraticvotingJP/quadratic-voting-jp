@@ -11,8 +11,10 @@ import {
 } from "@/components/organisms/EntryPoint";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
+import { postEvent } from "@/architecture/application/postEvent";
 
 const EcCreateForm: React.FC = () => {
+  const { createEvent } = postEvent();
   const { t } = useTranslation("common");
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const {
@@ -30,8 +32,9 @@ const EcCreateForm: React.FC = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<EventValues> = async (data: EventValues) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<EventValues> = (data: EventValues) => {
+    // apiを叩く
+    createEvent(data, "event");
     routerPush("/");
     reset();
   };

@@ -61,3 +61,15 @@ interface EventValues {
   optionsOverview: string;
   optionsUrl: string;
 }
+
+// 新規作成時のイベント
+interface EventPostType {
+  title: string;
+  overview: string;
+  publicationStartDate: string;
+  publicationEndDate: string;
+  participant: number;
+  votes: number;
+  options: Option[];
+  createAt: FieldValue;
+}

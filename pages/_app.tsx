@@ -9,7 +9,7 @@ import "../styles/tailwind.css";
 import "tailwindcss/tailwind.css";
 import type { AppProps } from "next/app";
 // firebase
-import { auth } from "@/firebase/initialize";
+import { authentication } from "@/firebase/initialize";
 import { signInAnonymously } from "firebase/auth";
 // component
 import { MoHeader, MoFooter } from "@/components/molecules/EntryPoint";
@@ -20,7 +20,7 @@ import { routerPush } from "@/architecture/application/routing";
 function MyApp({ Component, pageProps, router }: AppProps) {
   // 匿名ログイン
   useEffect(() => {
-    signInAnonymously(auth);
+    signInAnonymously(authentication);
   }, []);
 
   // 該当しないpathであれば/に飛ばす

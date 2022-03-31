@@ -1,10 +1,9 @@
 import { GetStaticPaths } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { EcDashboard } from "@/components/ecosystems/EntryPoint";
 
 const Id = ({}) => {
-  return (
-    <>dashboard🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥</>
-  );
+  return <EcDashboard />;
 };
 export default Id;
 

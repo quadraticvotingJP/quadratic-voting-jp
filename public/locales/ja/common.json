@@ -80,6 +80,12 @@
       },
       "votes": {
         "title": "投票数"
+      },
+      "participantDashboard": {
+        "title": "ダッシュボード（参加者用）"
+      },
+      "adminDashboard": {
+        "title": "ダッシュボード（管理者用）"
       }
     },
     "validation": {

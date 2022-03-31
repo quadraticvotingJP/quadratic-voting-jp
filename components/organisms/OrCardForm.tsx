@@ -13,15 +13,16 @@ type Props = {
   focused?: boolean;
   overView?: string;
   // form
-  register: UseFormRegisterReturn;
   placeholder: string;
   disabled: boolean;
-  disableUnderline?: boolean;
   type: FormType;
-  readOnly?: boolean;
   id: string;
   name: string;
-  error: any;
+  register?: UseFormRegisterReturn;
+  error?: any;
+  disableUnderline?: boolean;
+  defaultValue?: string;
+  readOnly?: boolean;
 };
 
 // eslint-disable-next-line react/display-name
@@ -38,6 +39,7 @@ const OrCardForm: React.FC<Props> = ({
   placeholder,
   disabled,
   disableUnderline,
+  defaultValue,
   type,
   readOnly,
   error,
@@ -51,6 +53,7 @@ const OrCardForm: React.FC<Props> = ({
           required={required}
           overView={overView}
           register={register}
+          defaultValue={defaultValue}
           id={id}
           name={name}
           type={type}

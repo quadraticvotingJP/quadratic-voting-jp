@@ -3,7 +3,11 @@ import { useTranslation } from "next-i18next";
 // component
 import { AtH2 } from "@/components/atoms/EntryPoint";
 import { MoButtons } from "@/components/molecules/EntryPoint";
-import { OrCardText, OrCardProcess } from "@/components/organisms/EntryPoint";
+import {
+  OrCardText,
+  OrCardProcess,
+  OrCardForm,
+} from "@/components/organisms/EntryPoint";
 
 const EcDashboard: React.FC = () => {
   const { t } = useTranslation("common");
@@ -53,6 +57,30 @@ const EcDashboard: React.FC = () => {
         disabled={false}
       />
       <br />
+      <OrCardForm
+        readOnly={true}
+        title={t("common.dashboard.participantDashboard.title")}
+        defaultValue="https://github.com/quadraticvotingJP/quadratic-voting-jp/projects/1"
+        required={false}
+        placeholder=""
+        disabled={false}
+        type="text"
+        id="participantDashboard"
+        name="participantDashboard"
+      />
+      <br />
+      <OrCardForm
+        readOnly={true}
+        title={t("common.dashboard.adminDashboard.title")}
+        defaultValue="https://github.com/quadraticvotingJP/quadratic-voting-jp/projects/1"
+        required={false}
+        placeholder=""
+        disabled={false}
+        type="text"
+        id="adminDashboard"
+        name="adminDashboard"
+      />
+      <br />
       <MoButtons
         leftTitle="-"
         leftOnClick={() => {}}
@@ -61,6 +89,7 @@ const EcDashboard: React.FC = () => {
         rightOnClick={() => {}}
         rightDisabled={false}
       />
+      <br />
     </>
   );
 };

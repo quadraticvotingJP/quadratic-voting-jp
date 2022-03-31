@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 // component
 import { AtH2 } from "@/components/atoms/EntryPoint";
+import { MoButtons } from "@/components/molecules/EntryPoint";
 import { OrCardText } from "@/components/organisms/EntryPoint";
 
 const EcDashboard: React.FC = () => {
@@ -40,6 +41,15 @@ const EcDashboard: React.FC = () => {
         contents={"2022月4月1日"}
         showEdit
         disabled={false}
+      />
+      <br />
+      <MoButtons
+        leftTitle="-"
+        leftOnClick={() => {}}
+        leftDisabled={false}
+        rightTitle="+"
+        rightOnClick={() => {}}
+        rightDisabled={false}
       />
     </>
   );

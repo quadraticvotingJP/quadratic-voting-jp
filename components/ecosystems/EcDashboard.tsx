@@ -13,13 +13,33 @@ const EcDashboard: React.FC = () => {
       <OrCardText
         title={t("common.event.eventTitle.title")}
         required={false}
-        contents={"次の都知事を選挙で決定致します。"}
+        contents={"次の都知事は誰？"}
+        showEdit={false}
+        disabled={false}
       />
       <br />
       <OrCardText
         title={t("common.event.overview.title")}
         required={false}
-        contents={"hogefuga"}
+        contents={"都知事を決めるための選挙を行います"}
+        showEdit={false}
+        disabled={false}
+      />
+      <br />
+      <OrCardText
+        title={t("common.event.publicationStartDate.title")}
+        required={false}
+        contents={"2020月4月1日"}
+        showEdit
+        disabled={false}
+      />
+      <br />
+      <OrCardText
+        title={t("common.event.publicationEndDate.title")}
+        required={false}
+        contents={"2022月4月1日"}
+        showEdit
+        disabled={false}
       />
     </>
   );

@@ -3,6 +3,7 @@ import React from "react";
 import {
   AtInputLabel,
   AtInputLabelNoMark,
+  AtIconButton,
 } from "@/components/atoms/EntryPoint";
 
 type Props = {
@@ -11,6 +12,10 @@ type Props = {
   required: boolean;
   contents: string;
   focused?: boolean;
+  // button
+  showEdit: boolean;
+  disabled: boolean;
+  onClick?: () => void;
   labelMark?: boolean;
 };
 
@@ -21,6 +26,10 @@ const MoLabelText: React.FC<Props> = ({
   focused,
   required,
   contents,
+  // button
+  showEdit,
+  disabled,
+  onClick,
   labelMark = true,
 }) => {
   return (
@@ -38,7 +47,17 @@ const MoLabelText: React.FC<Props> = ({
           )}
         </div>
       </div>
-      <p className="font-bold">{contents}</p>
+      <div className="flex justify-between items-center">
+        <p className="font-bold">{contents}</p>
+        {showEdit && (
+          <AtIconButton
+            size="small"
+            showEdit={showEdit}
+            disabled={disabled}
+            onClick={onClick}
+          />
+        )}
+      </div>
     </>
   );
 };

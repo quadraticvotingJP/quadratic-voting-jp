@@ -1,0 +1,26 @@
+name: Pretter
+
+on: # トリガー
+  pull_request:
+
+env: # どのファイルをPrettierで整形するのか
+  FILE_PATTERN: "{src,__tests__}/**/*.{ts,tsx,js,jsx}"
+
+jobs: # 実行する処理内容や実行環境
+  lint: # ジョブ名
+    runs-on: ubuntu-latest # ジョブが実行されるマシンの種類
+    steps: # Jobが実行する処理の集合
+      - uses: actions/checkout@v2 # 別途定義された処理をusesを使って実行。actions/checkout@v2のv2を参照して実行
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Run Prettier # タスクの名前（省略可
+        run: |
+          yarn install
+          yarn prettier --write ${FILE_PATTERN}
+      - uses: stefanzweifel/git-auto-commit-action@v3.0.0
+        with:
+          commit_message: Apply Prettier Change
+          ref: ${{ github.head_ref }}

@@ -74,6 +74,14 @@
         "linkPlaceholder": "https://github.com/quadraticvotingJP/quadratic-voting-jp"
       }
     },
+    "dashboard": {
+      "participant": {
+        "title": "参加者数"
+      },
+      "votes": {
+        "title": "投票数"
+      }
+    },
     "validation": {
       "message": {
         "40": "40文字以上にしてください"

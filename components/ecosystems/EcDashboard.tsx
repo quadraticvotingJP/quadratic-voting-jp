@@ -2,11 +2,11 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 // component
 import { AtH2 } from "@/components/atoms/EntryPoint";
-import { MoButtons } from "@/components/molecules/EntryPoint";
 import {
   OrCardText,
   OrCardProcess,
   OrCardForm,
+  OrCardTextField,
 } from "@/components/organisms/EntryPoint";
 
 const EcDashboard: React.FC = () => {
@@ -17,12 +17,16 @@ const EcDashboard: React.FC = () => {
       <br />
       <OrCardProcess
         labelTitle={t("common.dashboard.participant.title")}
-        leftTitle={t("common.dashboard.participant.title")}
-        leftMolecule={"21"}
-        leftDenominator={"39"}
-        rightTitle={t("common.dashboard.votes.title")}
-        rightMolecule={"3900"}
-        rightDenominator={"1500"}
+        leftForm={{
+          title: t("common.dashboard.participant.title"),
+          molecule: "21",
+          denominator: "39",
+        }}
+        rightForm={{
+          title: t("common.dashboard.votes.title"),
+          molecule: "3900",
+          denominator: "1500",
+        }}
       />
       <br />
       <OrCardText
@@ -81,15 +85,26 @@ const EcDashboard: React.FC = () => {
         name="adminDashboard"
       />
       <br />
-      <MoButtons
-        leftTitle="-"
-        leftOnClick={() => {}}
-        leftDisabled={false}
-        rightTitle="+"
-        rightOnClick={() => {}}
-        rightDisabled={false}
+      <OrCardTextField
+        title={t("common.dashboard.votersLink.title")}
+        required={false}
+        overView={t("common.dashboard.votersLink.detail")}
+        defaultValue={
+          "aaaaaaaaaaaaaaaaa\n1111111111\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee"
+        }
+        id={"votersLink"}
+        name={"votersLink"}
+        type="text"
+        rows={10}
+        maxRows={10}
+        inputProps={{ readOnly: true }}
+        button={{
+          title: t("common.button.download"),
+          disabled: false,
+          size: "large",
+          onClick: () => {},
+        }}
       />
-      <br />
     </>
   );
 };

@@ -1,9 +1,34 @@
 import { GetStaticPaths } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
+import { useTranslation } from "next-i18next";
+// component
+import { MoButtons } from "@/components/molecules/EntryPoint";
+import { OrCardText } from "@/components/organisms/EntryPoint";
 const Id = ({}) => {
+  const { t } = useTranslation("common");
   return (
-    <>vote🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥</>
+    <>
+      <OrCardText
+        title={t("common.event.eventTitle.title")}
+        required={false}
+        contents={"次の都知事は誰？"}
+        showEdit={false}
+        disabled={false}
+      />
+      <br />
+      <OrCardText
+        title={t("common.event.overview.title")}
+        required={false}
+        contents={"都知事を決めるための選挙を行います"}
+        showEdit={false}
+        disabled={false}
+      />
+      <br />
+      <MoButtons
+        left={{ title: "-", disabled: false, onClick: () => {} }}
+        right={{ title: "+", disabled: false, onClick: () => {} }}
+      />
+    </>
   );
 };
 

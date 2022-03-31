@@ -16,15 +16,16 @@ type Props = {
   focused?: boolean;
   overView?: string;
   // form
-  register: UseFormRegisterReturn;
   placeholder: string;
   disabled: boolean;
   disableUnderline?: boolean;
   type: FormType;
-  readOnly?: boolean;
   id: string;
   name: string;
-  error: any;
+  error?: any;
+  register?: UseFormRegisterReturn;
+  defaultValue?: string;
+  readOnly?: boolean;
   labelMark?: boolean;
 };
 
@@ -44,6 +45,7 @@ const MoLabelForm: React.FC<Props> = ({
   disableUnderline,
   type,
   readOnly,
+  defaultValue,
   error,
   labelMark = true,
 }) => {
@@ -64,6 +66,7 @@ const MoLabelForm: React.FC<Props> = ({
         {overView && <div>{overView}</div>}
       </div>
       <AtInput
+        defaultValue={defaultValue}
         register={register}
         id={id}
         name={name}

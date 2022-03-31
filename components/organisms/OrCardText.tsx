@@ -9,6 +9,11 @@ type Props = {
   contents: string;
   required: boolean;
   focused?: boolean;
+  // button
+  showEdit: boolean;
+  disabled: boolean;
+  onClick?: () => void;
+  labelMark?: boolean;
 };
 
 // eslint-disable-next-line react/display-name
@@ -19,6 +24,10 @@ const OrCardText: React.FC<Props> = ({
   required,
   // Text
   contents,
+  // button
+  showEdit,
+  disabled,
+  onClick,
 }) => {
   return (
     <>
@@ -28,6 +37,9 @@ const OrCardText: React.FC<Props> = ({
           title={title}
           required={required}
           contents={contents}
+          showEdit={showEdit}
+          disabled={disabled}
+          onClick={onClick}
         />
       </Card>
     </>

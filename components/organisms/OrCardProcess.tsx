@@ -4,27 +4,24 @@ import { AtInputLabel } from "@/components/atoms/EntryPoint";
 import { MoProcess } from "@/components/molecules/EntryPoint";
 import { Card } from "@mui/material";
 
+interface Process {
+  title: string;
+  molecule: string;
+  denominator: string;
+}
+
 type Props = {
   // label
   labelTitle: string;
-  // left
-  leftTitle: string;
-  leftMolecule: string;
-  leftDenominator: string;
-  // right
-  rightTitle: string;
-  rightMolecule: string;
-  rightDenominator: string;
+  // form
+  leftForm: Process;
+  rightForm: Process;
 };
 
 const OrCardProcess: React.FC<Props> = ({
   labelTitle,
-  leftTitle,
-  leftMolecule,
-  leftDenominator,
-  rightTitle,
-  rightMolecule,
-  rightDenominator,
+  leftForm,
+  rightForm,
 }) => {
   return (
     <Card className="p-6">
@@ -35,18 +32,18 @@ const OrCardProcess: React.FC<Props> = ({
         <div className="mr-6 w-full">
           <Card className="p-3">
             <MoProcess
-              title={leftTitle}
-              molecule={leftMolecule}
-              denominator={leftDenominator}
+              title={leftForm.title}
+              molecule={leftForm.molecule}
+              denominator={leftForm.denominator}
             />
           </Card>
         </div>
         <div className="w-full">
           <Card className="p-3">
             <MoProcess
-              title={rightTitle}
-              molecule={rightMolecule}
-              denominator={rightDenominator}
+              title={rightForm.title}
+              molecule={rightForm.molecule}
+              denominator={rightForm.denominator}
             />
           </Card>
         </div>

@@ -27,7 +27,8 @@
     "button": {
       "eventCreation": "イベント作成",
       "add": "追加",
-      "edit": "編集"
+      "edit": "編集",
+      "download": "ダウンロード"
     },
     "event": {
       "eventTitle": {
@@ -86,6 +87,10 @@
       },
       "adminDashboard": {
         "title": "ダッシュボード（管理者用）"
+      },
+      "votersLink": {
+        "title": "投票者リンク",
+        "detail": "参加人数分の投票者リンクです。"
       }
     },
     "validation": {

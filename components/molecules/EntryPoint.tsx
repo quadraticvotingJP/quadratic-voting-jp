@@ -7,3 +7,4 @@ export { default as MoAccordion } from "@/components/molecules/MoAccordion";
 export { default as MoLabelText } from "@/components/molecules/MoLabelText";
 export { default as MoButtons } from "@/components/molecules/MoButtons";
 export { default as MoProcess } from "@/components/molecules/MoProcess";
+export { default as MoLabelTextField } from "@/components/molecules/MoLabelTextField";

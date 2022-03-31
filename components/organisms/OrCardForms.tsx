@@ -46,7 +46,13 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const OrForms: React.FC<Props> = ({ label, form1, form2, form3, button }) => {
+const OrCardForms: React.FC<Props> = ({
+  label,
+  form1,
+  form2,
+  form3,
+  button,
+}) => {
   return (
     <>
       <Card className="p-6">
@@ -112,4 +118,4 @@ const OrForms: React.FC<Props> = ({ label, form1, form2, form3, button }) => {
     </>
   );
 };
-export default OrForms;
+export default OrCardForms;

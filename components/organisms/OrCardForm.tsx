@@ -25,7 +25,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const OrForm: React.FC<Props> = ({
+const OrCardForm: React.FC<Props> = ({
   // label
   title,
   focused,
@@ -64,4 +64,4 @@ const OrForm: React.FC<Props> = ({
     </>
   );
 };
-export default OrForm;
+export default OrCardForm;

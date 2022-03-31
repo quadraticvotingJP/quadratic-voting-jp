@@ -5,8 +5,8 @@ import { utilsValidationRule } from "@/utils/validation";
 // component
 import { AtH2, AtButton } from "@/components/atoms/EntryPoint";
 import {
-  OrForm,
-  OrForms,
+  OrCardForm,
+  OrCardForms,
   OrAccordion,
 } from "@/components/organisms/EntryPoint";
 // architecture
@@ -96,7 +96,7 @@ const EcCreateForm: React.FC = () => {
     <>
       <AtH2 title={t("pageTitle.creat")} />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <OrForm
+        <OrCardForm
           title={t("common.event.eventTitle.title")}
           overView={t("common.event.eventTitle.detail")}
           required={true}
@@ -113,7 +113,7 @@ const EcCreateForm: React.FC = () => {
           error={errors.title}
         />
         <br />
-        <OrForm
+        <OrCardForm
           title={t("common.event.overview.title")}
           overView={t("common.event.overview.detail")}
           required={true}
@@ -130,7 +130,7 @@ const EcCreateForm: React.FC = () => {
           error={errors.overview}
         />
         <br />
-        <OrForm
+        <OrCardForm
           title={t("common.event.publicationStartDate.title")}
           overView={t("common.event.publicationStartDate.detail")}
           required={true}
@@ -145,7 +145,7 @@ const EcCreateForm: React.FC = () => {
           error={errors.publicationStartDate}
         />
         <br />
-        <OrForm
+        <OrCardForm
           title={t("common.event.publicationEndDate.title")}
           overView={t("common.event.publicationEndDate.detail")}
           required={true}
@@ -167,7 +167,7 @@ const EcCreateForm: React.FC = () => {
           error={errors.publicationEndDate}
         />
         <br />
-        <OrForm
+        <OrCardForm
           title={t("common.event.participant.title")}
           overView={t("common.event.participant.detail")}
           required={true}
@@ -184,7 +184,7 @@ const EcCreateForm: React.FC = () => {
           error={errors.participant}
         />
         <br />
-        <OrForm
+        <OrCardForm
           title={t("common.event.votes.title")}
           overView={t("common.event.votes.detail")}
           required={true}
@@ -228,7 +228,7 @@ const EcCreateForm: React.FC = () => {
           onClickEdit={(index: number) => onClickEdit(index)}
         />
         <br />
-        <OrForms
+        <OrCardForms
           label={{
             required: true,
             title: t("common.event.createOption.formTitle"),

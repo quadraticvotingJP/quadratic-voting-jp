@@ -10,11 +10,10 @@ import {
   OrCardTextField,
   OrCardBar,
 } from "@/components/organisms/EntryPoint";
-// architecture
-import { setGraf } from "@/architecture/application/setGraf";
+// domain
+import { chartData } from "@/architecture/domain/chart";
 
 const EcDashboard: React.FC = () => {
-  const { createData } = setGraf();
   const { t } = useTranslation("common");
   const labels = [
     "有村架純",
@@ -25,9 +24,13 @@ const EcDashboard: React.FC = () => {
     "与田祐希",
     "橋本奈々未",
   ];
-  const data = [20, 30, 100, 40, 41, 66, 55, 40];
-  const graf = createData(labels, data);
-  const grafData: ChartData<"bar", number[], string> = graf;
+  const numberOfVotes = [2, 3, 10, 4, 4, 6, 5, 4];
+  const voterTurnout = [20, 30, 100, 40, 41, 66, 55, 40];
+  const grafData: ChartData<"bar", number[], string> = chartData(
+    labels,
+    numberOfVotes,
+    voterTurnout
+  );
 
   return (
     <>
@@ -48,7 +51,7 @@ const EcDashboard: React.FC = () => {
       />
       <br />
       <OrCardBar
-        title={t("common.dashboard.voterTurnout.title")}
+        title={t("common.dashboard.numberOfVotesAndVoterTurnout.title")}
         required={false}
         data={grafData}
       />

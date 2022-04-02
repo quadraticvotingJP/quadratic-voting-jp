@@ -85,8 +85,8 @@
       "votes": {
         "title": "投票数"
       },
-      "voterTurnout": {
-        "title": "投票率"
+      "numberOfVotesAndVoterTurnout": {
+        "title": "投票数・投票率"
       },
 
       "participantDashboard": {

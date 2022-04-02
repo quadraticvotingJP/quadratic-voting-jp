@@ -73,3 +73,18 @@ interface EventPostType {
   options: Option[];
   createAt: FieldValue;
 }
+
+// ダッシュボードのグラフ
+interface Datasets {
+  indexAxis: string;
+  label: string;
+  data: number[];
+  backgroundColor: string[];
+  borderColor: string[];
+  borderWidth: number;
+}
+// ダッシュボードのグラフ
+interface ChartData {
+  labels: string[];
+  datasets: Datasets[];
+}

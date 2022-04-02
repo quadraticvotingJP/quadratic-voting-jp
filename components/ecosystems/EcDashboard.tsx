@@ -11,10 +11,10 @@ import {
   OrCardBar,
 } from "@/components/organisms/EntryPoint";
 // architecture
-import { setGrafColorPattern } from "@/architecture/application/setGrafColorPattern";
+import { setGraf } from "@/architecture/application/setGraf";
 
 const EcDashboard: React.FC = () => {
-  const { setColor } = setGrafColorPattern();
+  const { createData } = setGraf();
   const { t } = useTranslation("common");
   const labels = [
     "有村架純",
@@ -25,27 +25,9 @@ const EcDashboard: React.FC = () => {
     "与田祐希",
     "橋本奈々未",
   ];
-  const color = setColor(labels.length);
-  const data: ChartData<"bar", number[], string> = {
-    // x 軸のラベル
-    labels: labels,
-    datasets: [
-      {
-        // 横軸
-        indexAxis: "y",
-        // ラベル名
-        label: "選択肢",
-        // データの値
-        data: [35, 100, 40, 41, 66, 55, 40],
-        // グラフの背景色
-        backgroundColor: color.background,
-        // グラフの枠線の色
-        borderColor: color.border,
-        // グラフの枠線の太さ
-        borderWidth: 1,
-      },
-    ],
-  };
+  const data = [20, 30, 100, 40, 41, 66, 55, 40];
+  const graf = createData(labels, data);
+  const grafData: ChartData<"bar", number[], string> = graf;
 
   return (
     <>
@@ -68,7 +50,7 @@ const EcDashboard: React.FC = () => {
       <OrCardBar
         title={t("common.dashboard.voterTurnout.title")}
         required={false}
-        data={data}
+        data={grafData}
       />
       <br />
       <OrCardText

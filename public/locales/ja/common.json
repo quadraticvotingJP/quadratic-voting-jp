@@ -28,7 +28,8 @@
       "eventCreation": "イベント作成",
       "add": "追加",
       "edit": "編集",
-      "download": "ダウンロード"
+      "download": "ダウンロード",
+      "downloadXlsx": "ダウンロード(.xlsx)"
     },
     "event": {
       "eventTitle": {
@@ -76,16 +77,16 @@
       }
     },
     "dashboard": {
-      "participantAndVotes": {
+      "participantAndEffectiveVotes": {
         "title": "参加者数・投票数"
       },
       "participant": {
         "title": "参加者数"
       },
-      "votes": {
+      "effectiveVotes": {
         "title": "投票数"
       },
-      "numberOfVotesAndVoterTurnout": {
+      "effectiveVotesAndPercentCredits": {
         "title": "投票数・投票率"
       },
 

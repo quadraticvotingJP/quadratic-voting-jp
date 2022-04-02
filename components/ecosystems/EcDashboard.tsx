@@ -12,10 +12,13 @@ import {
 } from "@/components/organisms/EntryPoint";
 // domain
 import { chartData } from "@/architecture/domain/chart";
+// application
+import { downloadXlsx } from "@/architecture/application/downloadXlsx";
 
 const EcDashboard: React.FC = () => {
   const { t } = useTranslation("common");
-  const labels = [
+  const { download } = downloadXlsx();
+  const options = [
     "有村架純",
     "宇垣美里",
     "田中みな実",
@@ -24,36 +27,43 @@ const EcDashboard: React.FC = () => {
     "与田祐希",
     "橋本奈々未",
   ];
-  const numberOfVotes = [2, 3, 10, 4, 4, 6, 5, 4];
-  const voterTurnout = [20, 30, 100, 40, 41, 66, 55, 40];
+  const effectiveVotes = [2, 3, 10, 4, 4, 6, 5, 4];
+  const percentCredits = [20, 30, 100, 40, 41, 66, 55, 40];
   const grafData: ChartData<"bar", number[], string> = chartData(
-    labels,
-    numberOfVotes,
-    voterTurnout
+    options,
+    effectiveVotes,
+    percentCredits
   );
+  const downloadXLSX = () => download(options, effectiveVotes, percentCredits);
 
   return (
     <>
       <AtH2 title={t("pageTitle.dashboard")} />
       <br />
       <OrCardProcess
-        labelTitle={t("common.dashboard.participantAndVotes.title")}
+        labelTitle={t("common.dashboard.participantAndEffectiveVotes.title")}
         leftForm={{
           title: t("common.dashboard.participant.title"),
           molecule: "21",
           denominator: "39",
         }}
         rightForm={{
-          title: t("common.dashboard.votes.title"),
+          title: t("common.dashboard.effectiveVotes.title"),
           molecule: "3900",
           denominator: "1500",
         }}
       />
       <br />
       <OrCardBar
-        title={t("common.dashboard.numberOfVotesAndVoterTurnout.title")}
+        title={t("common.dashboard.effectiveVotesAndPercentCredits.title")}
         required={false}
         data={grafData}
+        button={{
+          title: t("common.button.downloadXlsx"),
+          disabled: false,
+          size: "large",
+          onClick: downloadXLSX,
+        }}
       />
       <br />
       <OrCardText

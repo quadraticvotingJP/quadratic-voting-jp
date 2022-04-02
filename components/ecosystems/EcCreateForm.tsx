@@ -35,7 +35,7 @@ const EcCreateForm: React.FC = () => {
   const onSubmit: SubmitHandler<EventValues> = (data: EventValues) => {
     // apiを叩く
     createEvent(data, "event");
-    routerPush("/");
+    routerPush("/dashboard/1");
     reset();
   };
 

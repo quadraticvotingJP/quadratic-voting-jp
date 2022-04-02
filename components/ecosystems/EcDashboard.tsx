@@ -1,22 +1,40 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-// component
+import { ChartData } from "chart.js";
+// Component
 import { AtH2 } from "@/components/atoms/EntryPoint";
 import {
   OrCardText,
   OrCardProcess,
   OrCardForm,
   OrCardTextField,
+  OrCardBar,
 } from "@/components/organisms/EntryPoint";
+// architecture
+import { setGraf } from "@/architecture/application/setGraf";
 
 const EcDashboard: React.FC = () => {
+  const { createData } = setGraf();
   const { t } = useTranslation("common");
+  const labels = [
+    "有村架純",
+    "宇垣美里",
+    "田中みな実",
+    "夏菜",
+    "西内まりあ",
+    "与田祐希",
+    "橋本奈々未",
+  ];
+  const data = [20, 30, 100, 40, 41, 66, 55, 40];
+  const graf = createData(labels, data);
+  const grafData: ChartData<"bar", number[], string> = graf;
+
   return (
     <>
       <AtH2 title={t("pageTitle.dashboard")} />
       <br />
       <OrCardProcess
-        labelTitle={t("common.dashboard.participant.title")}
+        labelTitle={t("common.dashboard.participantAndVotes.title")}
         leftForm={{
           title: t("common.dashboard.participant.title"),
           molecule: "21",
@@ -27,6 +45,12 @@ const EcDashboard: React.FC = () => {
           molecule: "3900",
           denominator: "1500",
         }}
+      />
+      <br />
+      <OrCardBar
+        title={t("common.dashboard.voterTurnout.title")}
+        required={false}
+        data={grafData}
       />
       <br />
       <OrCardText

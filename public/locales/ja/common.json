@@ -76,12 +76,19 @@
       }
     },
     "dashboard": {
+      "participantAndVotes": {
+        "title": "参加者数・投票数"
+      },
       "participant": {
         "title": "参加者数"
       },
       "votes": {
         "title": "投票数"
       },
+      "voterTurnout": {
+        "title": "投票率"
+      },
+
       "participantDashboard": {
         "title": "ダッシュボード（参加者用）"
       },

@@ -1,22 +1,58 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-// component
+import { ChartData } from "chart.js";
+// Component
 import { AtH2 } from "@/components/atoms/EntryPoint";
 import {
   OrCardText,
   OrCardProcess,
   OrCardForm,
   OrCardTextField,
+  OrCardBar,
 } from "@/components/organisms/EntryPoint";
+// architecture
+import { setGrafColorPattern } from "@/architecture/application/setGrafColorPattern";
 
 const EcDashboard: React.FC = () => {
+  const { setColor } = setGrafColorPattern();
   const { t } = useTranslation("common");
+  const labels = [
+    "有村架純",
+    "宇垣美里",
+    "田中みな実",
+    "夏菜",
+    "西内まりあ",
+    "与田祐希",
+    "橋本奈々未",
+  ];
+  const color = setColor(labels.length);
+  const data: ChartData<"bar", number[], string> = {
+    // x 軸のラベル
+    labels: labels,
+    datasets: [
+      {
+        // 横軸
+        indexAxis: "y",
+        // ラベル名
+        label: "選択肢",
+        // データの値
+        data: [35, 100, 40, 41, 66, 55, 40],
+        // グラフの背景色
+        backgroundColor: color.background,
+        // グラフの枠線の色
+        borderColor: color.border,
+        // グラフの枠線の太さ
+        borderWidth: 1,
+      },
+    ],
+  };
+
   return (
     <>
       <AtH2 title={t("pageTitle.dashboard")} />
       <br />
       <OrCardProcess
-        labelTitle={t("common.dashboard.participant.title")}
+        labelTitle={t("common.dashboard.participantAndVotes.title")}
         leftForm={{
           title: t("common.dashboard.participant.title"),
           molecule: "21",
@@ -27,6 +63,12 @@ const EcDashboard: React.FC = () => {
           molecule: "3900",
           denominator: "1500",
         }}
+      />
+      <br />
+      <OrCardBar
+        title={t("common.dashboard.voterTurnout.title")}
+        required={false}
+        data={data}
       />
       <br />
       <OrCardText

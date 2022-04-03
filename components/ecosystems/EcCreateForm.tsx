@@ -10,15 +10,18 @@ import {
   OrCardForms,
   OrAccordion,
 } from "@/components/organisms/EntryPoint";
+// context
+import { useLoadingContext } from "@/context/LoadingContext";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 import { postEvent } from "@/architecture/application/postEvent";
 
 const EcCreateForm: React.FC = () => {
-  const { createEvent } = postEvent();
   const { t } = useTranslation("common");
-  const [isEdit, setIsEdit] = useState<boolean>(false); // 編集モードかどうか
+  const { setLoading } = useLoadingContext(); // loading
+  const { createEvent } = postEvent(); // api
   const secretKey = UUID.generate(); // secretKeyの生成
+  const [isEdit, setIsEdit] = useState<boolean>(false); // 編集モードかどうか
   const [id, setId] = useState<number>(1); // optionsのid
   const {
     register,
@@ -44,7 +47,9 @@ const EcCreateForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<EventValues> = async (data: EventValues) => {
     // apiを叩く
+    setLoading(true);
     const document = await createEvent(data, "event", secretKey);
+    setLoading(false);
     routerPush(`/dashboard/${document.id}&secret=${secretKey}`);
     reset();
   };

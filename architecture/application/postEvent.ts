@@ -9,8 +9,9 @@ import { getFirestore, collection, serverTimestamp } from "firebase/firestore";
 export function postEvent() {
   async function createEvent(
     data: EventValues,
-    collectionName: string
-  ): Promise<void> {
+    collectionName: string,
+    secretKey: string
+  ) {
     const fireStore = getFirestore();
     const api = setCollection();
     // fireStoreの保存先指定
@@ -33,10 +34,11 @@ export function postEvent() {
       participant,
       votes,
       options,
+      secretKey,
       serverTimestamp()
     );
     // apiを叩くメソッドを走らせる
-    await api.set(usersCollectionRef, eventData);
+    return await api.set(usersCollectionRef, eventData);
   }
   return { createEvent };
 }

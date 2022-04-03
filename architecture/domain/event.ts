@@ -9,6 +9,7 @@ export function event(
   participant: number,
   votes: number,
   options: Option[],
+  secretKey: string,
   createAt: FieldValue
 ): EventPostType {
   return {
@@ -19,6 +20,7 @@ export function event(
     participant: participant,
     votes: votes,
     options: options,
+    secretKey: secretKey,
     createAt: createAt,
   };
 }

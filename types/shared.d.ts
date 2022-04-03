@@ -43,6 +43,7 @@ type Color =
 
 // 選択肢の型
 interface Option {
+  id: number;
   title: string;
   overview: string;
   url: string;
@@ -71,5 +72,6 @@ interface EventPostType {
   participant: number;
   votes: number;
   options: Option[];
+  secretKey: string;
   createAt: FieldValue;
 }

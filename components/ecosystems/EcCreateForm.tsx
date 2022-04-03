@@ -32,6 +32,13 @@ const EcCreateForm: React.FC = () => {
     },
   });
 
+  // 日付制御用に本日の日付を取得
+  const newDate = new Date();
+  const today = `${newDate.getFullYear()}-${(
+    "0" +
+    (newDate.getMonth() + 1)
+  ).slice(-2)}-${("0" + newDate.getDate()).slice(-2)}T00:00`;
+
   const onSubmit: SubmitHandler<EventValues> = (data: EventValues) => {
     // apiを叩く
     createEvent(data, "event");
@@ -141,7 +148,8 @@ const EcCreateForm: React.FC = () => {
           name="publicationStartDate"
           placeholder={t("common.event.publicationStartDate.title")}
           disabled={false}
-          type="date"
+          type="datetime-local"
+          min={today}
           error={errors.publicationStartDate}
         />
         <br />
@@ -163,7 +171,8 @@ const EcCreateForm: React.FC = () => {
           name="publicationEndDate"
           placeholder={t("common.event.publicationEndDate.title")}
           disabled={false}
-          type="date"
+          type="datetime-local"
+          min={today}
           error={errors.publicationEndDate}
         />
         <br />

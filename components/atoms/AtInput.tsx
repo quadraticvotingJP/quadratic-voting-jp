@@ -14,6 +14,8 @@ type Props = {
   register?: UseFormRegisterReturn;
   readOnly?: boolean;
   disableUnderline?: boolean;
+  min?: string;
+  max?: string;
 };
 
 // eslint-disable-next-line react/display-name
@@ -26,6 +28,8 @@ const AtInput: React.FC<Props> = React.memo(
     disabled,
     type,
     defaultValue,
+    min,
+    max,
     disableUnderline = false,
     readOnly = false,
   }) => {
@@ -37,6 +41,7 @@ const AtInput: React.FC<Props> = React.memo(
         id={id}
         name={name}
         type={type}
+        inputProps={{ min: min, max: max }}
         placeholder={placeholder}
         disabled={disabled}
         disableUnderline={disableUnderline}

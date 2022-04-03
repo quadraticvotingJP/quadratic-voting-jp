@@ -22,6 +22,7 @@ type Props = {
   error?: any;
   disableUnderline?: boolean;
   defaultValue?: string;
+  min?: string;
   readOnly?: boolean;
 };
 
@@ -42,6 +43,7 @@ const OrCardForm: React.FC<Props> = ({
   defaultValue,
   type,
   readOnly,
+  min,
   error,
 }) => {
   return (
@@ -61,6 +63,7 @@ const OrCardForm: React.FC<Props> = ({
           disabled={disabled}
           disableUnderline={disableUnderline}
           readOnly={readOnly}
+          min={min}
           error={error}
         />
       </Card>

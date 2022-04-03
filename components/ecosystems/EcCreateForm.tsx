@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { utilsValidationRule } from "@/utils/validation";
+import UUID from "uuidjs";
 // component
 import { AtH2, AtButton } from "@/components/atoms/EntryPoint";
 import {
@@ -16,7 +17,9 @@ import { postEvent } from "@/architecture/application/postEvent";
 const EcCreateForm: React.FC = () => {
   const { createEvent } = postEvent();
   const { t } = useTranslation("common");
-  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [isEdit, setIsEdit] = useState<boolean>(false); // 編集モードかどうか
+  const secretKey = UUID.generate(); // secretKeyの生成
+  const [id, setId] = useState<number>(1); // optionsのid
   const {
     register,
     handleSubmit,
@@ -39,10 +42,10 @@ const EcCreateForm: React.FC = () => {
     (newDate.getMonth() + 1)
   ).slice(-2)}-${("0" + newDate.getDate()).slice(-2)}T00:00`;
 
-  const onSubmit: SubmitHandler<EventValues> = (data: EventValues) => {
+  const onSubmit: SubmitHandler<EventValues> = async (data: EventValues) => {
     // apiを叩く
-    createEvent(data, "event");
-    routerPush("/dashboard/1");
+    const document = await createEvent(data, "event", secretKey);
+    routerPush(`/dashboard/${document.id}&secret=${secretKey}`);
     reset();
   };
 
@@ -57,6 +60,7 @@ const EcCreateForm: React.FC = () => {
     setValue("options", [
       ...getValues("options"),
       {
+        id: id,
         title: title,
         overview: overview,
         url: url,
@@ -66,6 +70,7 @@ const EcCreateForm: React.FC = () => {
     setValue("optionsTitle", "");
     setValue("optionsOverview", "");
     setValue("optionsUrl", "");
+    setId(id + 1);
   };
 
   // 選択肢削除
@@ -293,12 +298,14 @@ const EcCreateForm: React.FC = () => {
           }}
         />
         <br />
-        <AtButton
-          type="submit"
-          title={t("common.button.eventCreation")}
-          disabled={false}
-          size={t("common.buttonSize.large")}
-        />
+        <div className="flex justify-center">
+          <AtButton
+            type="submit"
+            title={t("common.button.eventCreation")}
+            disabled={false}
+            size={t("common.buttonSize.large")}
+          />
+        </div>
       </form>
     </>
   );

@@ -94,7 +94,7 @@ const OrCardForms: React.FC<Props> = ({
             labelMark={form2.labelMark}
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-12">
           <MoLabelForm
             title={form3.title}
             required={form3.required}
@@ -108,12 +108,14 @@ const OrCardForms: React.FC<Props> = ({
             labelMark={form3.labelMark}
           />
         </div>
-        <AtButton
-          title={button.title}
-          disabled={button.disabled}
-          size={button.size}
-          onClick={button.onClick}
-        />
+        <div className="flex justify-center">
+          <AtButton
+            title={button.title}
+            disabled={button.disabled}
+            size={button.size}
+            onClick={button.onClick}
+          />
+        </div>
       </Card>
     </>
   );

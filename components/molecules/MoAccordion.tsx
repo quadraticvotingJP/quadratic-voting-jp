@@ -7,8 +7,8 @@ import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 type Props = {
-  readonly size: ButtonSize;
-  readonly option: Option;
+  readonly size: Readonly<ButtonSize>;
+  readonly option: Readonly<Option>;
   readonly onClickEdit?: () => void;
   readonly onClickDelete?: () => void;
   readonly disabled: boolean;

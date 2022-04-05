@@ -8,7 +8,7 @@ import { Card } from "@mui/material";
 interface Button {
   readonly disabled: boolean;
   readonly title: string;
-  readonly size: ButtonSize;
+  readonly size: Readonly<ButtonSize>;
   readonly onClick?: () => void;
 }
 

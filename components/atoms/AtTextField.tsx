@@ -3,7 +3,7 @@ import React from "react";
 import { TextField } from "@mui/material";
 
 type Props = {
-  readonly type: FormType;
+  readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
   readonly maxRows?: number;

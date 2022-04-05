@@ -11,7 +11,7 @@ type Props = {
   readonly placeholder: string;
   readonly disabled: boolean;
   readonly disableUnderline?: boolean;
-  readonly type: FormType;
+  readonly type: Readonly<FormType>;
   readonly readOnly?: boolean;
   readonly id: string;
   readonly name: string;

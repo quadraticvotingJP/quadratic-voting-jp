@@ -11,7 +11,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
 type Props = {
-  readonly size: ButtonSize;
+  readonly size: Readonly<ButtonSize>;
   readonly disabled: boolean;
   readonly onClick?: () => void;
   readonly showEdit?: boolean;

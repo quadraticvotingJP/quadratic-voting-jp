@@ -18,7 +18,7 @@ interface FormLabel {
 interface Button {
   readonly disabled: boolean;
   readonly title: string;
-  readonly size: ButtonSize;
+  readonly size: Readonly<ButtonSize>;
   readonly onClick?: () => void;
 }
 

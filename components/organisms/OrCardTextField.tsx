@@ -7,7 +7,7 @@ import { Card } from "@mui/material";
 interface Button {
   readonly title: string;
   readonly disabled: boolean;
-  readonly size: ButtonSize;
+  readonly size: Readonly<ButtonSize>;
   readonly onClick: () => void;
 }
 
@@ -19,7 +19,7 @@ type Props = {
   readonly overView: string;
   readonly labelMark?: boolean;
   // textField
-  readonly type: FormType;
+  readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
   readonly rows?: number;

@@ -7,7 +7,7 @@ import { UseFormRegisterReturn } from "react-hook-form";
 type Props = {
   readonly placeholder: string;
   readonly disabled: boolean;
-  readonly type: FormType;
+  readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
   readonly defaultValue?: string;

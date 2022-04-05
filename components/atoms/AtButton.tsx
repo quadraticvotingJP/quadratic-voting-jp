@@ -9,9 +9,9 @@ import { Button } from "@mui/material";
 type Props = {
   readonly title: string;
   readonly disabled: boolean;
-  readonly size: ButtonSize;
+  readonly size: Readonly<ButtonSize>;
   readonly onClick?: () => void;
-  readonly type?: ButtonType;
+  readonly type?: Readonly<ButtonType>;
   readonly className?: string;
 };
 

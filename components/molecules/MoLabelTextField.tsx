@@ -14,7 +14,7 @@ type Props = {
   readonly labelMark?: boolean;
   readonly overView: string;
   // textField
-  readonly type: FormType;
+  readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
   readonly rows?: number;

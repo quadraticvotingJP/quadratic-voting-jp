@@ -15,7 +15,7 @@ type Props = {
   // form
   readonly placeholder: string;
   readonly disabled: boolean;
-  readonly type: FormType;
+  readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
   readonly register?: UseFormRegisterReturn;

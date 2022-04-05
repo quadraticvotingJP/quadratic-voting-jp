@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-  title: string;
+  readonly title: string;
 };
 
 // eslint-disable-next-line react/display-name

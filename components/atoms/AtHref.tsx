@@ -1,10 +1,10 @@
 import React from "react";
 
 type Props = {
-  blank?: boolean;
-  title: string;
-  link: string;
-  className?: string;
+  readonly blank?: boolean;
+  readonly title: string;
+  readonly link: string;
+  readonly className?: string;
 };
 
 // eslint-disable-next-line react/display-name

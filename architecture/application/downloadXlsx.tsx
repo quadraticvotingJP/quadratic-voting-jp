@@ -2,9 +2,9 @@
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
 type Option = {
-  title: string;
-  effective_votes: number;
-  percent_credits: number;
+  readonly title: string;
+  readonly effective_votes: number;
+  readonly percent_credits: number;
 };
 
 export function downloadXlsx() {

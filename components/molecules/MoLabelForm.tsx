@@ -11,23 +11,23 @@ import { UseFormRegisterReturn } from "react-hook-form";
 
 type Props = {
   // label
-  title: string;
-  required: boolean;
-  focused?: boolean;
-  overView?: string;
+  readonly title: string;
+  readonly required: boolean;
+  readonly focused?: boolean;
+  readonly overView?: string;
   // form
-  placeholder: string;
-  disabled: boolean;
-  disableUnderline?: boolean;
-  type: FormType;
-  id: string;
-  name: string;
-  error?: any;
-  register?: UseFormRegisterReturn;
-  defaultValue?: string;
-  readOnly?: boolean;
-  labelMark?: boolean;
-  min?: string;
+  readonly placeholder: string;
+  readonly disabled: boolean;
+  readonly disableUnderline?: boolean;
+  readonly type: Readonly<FormType>;
+  readonly id: string;
+  readonly name: string;
+  readonly error?: any;
+  readonly register?: UseFormRegisterReturn;
+  readonly defaultValue?: string;
+  readonly readOnly?: boolean;
+  readonly labelMark?: boolean;
+  readonly min?: string;
 };
 
 // eslint-disable-next-line react/display-name

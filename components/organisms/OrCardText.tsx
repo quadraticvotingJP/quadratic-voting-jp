@@ -5,15 +5,15 @@ import { Card } from "@mui/material";
 
 type Props = {
   // label
-  title: string;
-  contents: string;
-  required: boolean;
-  focused?: boolean;
+  readonly title: string;
+  readonly contents: string;
+  readonly required: boolean;
+  readonly focused?: boolean;
   // button
-  showEdit: boolean;
-  disabled: boolean;
-  onClick?: () => void;
-  labelMark?: boolean;
+  readonly showEdit: boolean;
+  readonly disabled: boolean;
+  readonly onClick?: () => void;
+  readonly labelMark?: boolean;
 };
 
 // eslint-disable-next-line react/display-name

@@ -1,6 +1,6 @@
 import React from "react";
 type Props = {
-  className: string;
+  readonly className: string;
 };
 // eslint-disable-next-line react/display-name
 const EcAdvertisement: React.FC<Props> = ({ className }) => {

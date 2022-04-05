@@ -3,9 +3,9 @@ import React from "react";
 import { AtH2 } from "@/components/atoms/EntryPoint";
 
 type Props = {
-  title: string;
-  molecule: string;
-  denominator: string;
+  readonly title: string;
+  readonly molecule: string;
+  readonly denominator: string;
 };
 
 const MoProcess: React.FC<Props> = ({ title, molecule, denominator }) => {

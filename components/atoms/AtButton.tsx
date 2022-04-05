@@ -7,12 +7,12 @@ import React from "react";
 import { Button } from "@mui/material";
 
 type Props = {
-  title: string;
-  disabled: boolean;
-  size: ButtonSize;
-  onClick?: () => void;
-  type?: ButtonType;
-  className?: string;
+  readonly title: string;
+  readonly disabled: boolean;
+  readonly size: Readonly<ButtonSize>;
+  readonly onClick?: () => void;
+  readonly type?: Readonly<ButtonType>;
+  readonly className?: string;
 };
 
 // eslint-disable-next-line react/display-name

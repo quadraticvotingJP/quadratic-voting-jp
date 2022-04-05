@@ -7,11 +7,11 @@ import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 type Props = {
-  size: ButtonSize;
-  option: Option;
-  onClickEdit?: () => void;
-  onClickDelete?: () => void;
-  disabled: boolean;
+  readonly size: Readonly<ButtonSize>;
+  readonly option: Readonly<Option>;
+  readonly onClickEdit?: () => void;
+  readonly onClickDelete?: () => void;
+  readonly disabled: boolean;
 };
 
 // eslint-disable-next-line react/display-name

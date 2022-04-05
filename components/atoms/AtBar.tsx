@@ -8,7 +8,7 @@ import Chart from "chart.js/auto";
 Chart.register(CategoryScale);
 
 type Props = {
-  data: ChartData<"bar", number[], string>;
+  readonly data: ChartData<"bar", number[], string>;
 };
 
 // eslint-disable-next-line react/display-name

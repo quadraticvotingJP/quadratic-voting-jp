@@ -8,15 +8,15 @@ import {
 
 type Props = {
   // label
-  title: string;
-  required: boolean;
-  contents: string;
-  focused?: boolean;
+  readonly title: string;
+  readonly required: boolean;
+  readonly contents: string;
+  readonly focused?: boolean;
   // button
-  showEdit: boolean;
-  disabled: boolean;
-  onClick?: () => void;
-  labelMark?: boolean;
+  readonly showEdit: boolean;
+  readonly disabled: boolean;
+  readonly onClick?: () => void;
+  readonly labelMark?: boolean;
 };
 
 // eslint-disable-next-line react/display-name

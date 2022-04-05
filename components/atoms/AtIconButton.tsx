@@ -11,11 +11,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
 type Props = {
-  size: ButtonSize;
-  disabled: boolean;
-  onClick?: () => void;
-  showEdit?: boolean;
-  showDelete?: boolean;
+  readonly size: ButtonSize;
+  readonly disabled: boolean;
+  readonly onClick?: () => void;
+  readonly showEdit?: boolean;
+  readonly showDelete?: boolean;
 };
 
 // eslint-disable-next-line react/display-name

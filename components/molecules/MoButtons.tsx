@@ -4,14 +4,14 @@ import { useTranslation } from "next-i18next";
 import { AtButton } from "@/components/atoms/EntryPoint";
 
 interface Button {
-  title: string;
-  disabled: boolean;
-  onClick: () => void;
+  readonly title: string;
+  readonly disabled: boolean;
+  readonly onClick: () => void;
 }
 
 type Props = {
-  left: Button;
-  right: Button;
+  readonly left: Button;
+  readonly right: Button;
 };
 
 // eslint-disable-next-line react/display-name

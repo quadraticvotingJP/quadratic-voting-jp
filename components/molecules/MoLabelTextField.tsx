@@ -8,21 +8,21 @@ import {
 
 type Props = {
   // label
-  title: string;
-  required: boolean;
-  focused?: boolean;
-  labelMark?: boolean;
-  overView: string;
+  readonly title: string;
+  readonly required: boolean;
+  readonly focused?: boolean;
+  readonly labelMark?: boolean;
+  readonly overView: string;
   // textField
-  type: FormType;
-  id: string;
-  name: string;
-  rows?: number;
-  maxRows?: number;
-  inputProps?: object;
-  disabled?: boolean;
-  defaultValue?: string;
-  readOnly?: boolean;
+  readonly type: FormType;
+  readonly id: string;
+  readonly name: string;
+  readonly rows?: number;
+  readonly maxRows?: number;
+  readonly inputProps?: object;
+  readonly disabled?: boolean;
+  readonly defaultValue?: string;
+  readonly readOnly?: boolean;
 };
 
 // eslint-disable-next-line react/display-name

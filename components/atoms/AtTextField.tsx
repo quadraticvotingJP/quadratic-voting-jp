@@ -3,15 +3,15 @@ import React from "react";
 import { TextField } from "@mui/material";
 
 type Props = {
-  type: FormType;
-  id: string;
-  name: string;
-  maxRows?: number;
-  rows?: number;
-  inputProps?: object;
-  disabled?: boolean;
-  defaultValue?: string;
-  readOnly?: boolean;
+  readonly type: FormType;
+  readonly id: string;
+  readonly name: string;
+  readonly maxRows?: number;
+  readonly rows?: number;
+  readonly inputProps?: object;
+  readonly disabled?: boolean;
+  readonly defaultValue?: string;
+  readonly readOnly?: boolean;
 };
 
 // eslint-disable-next-line react/display-name

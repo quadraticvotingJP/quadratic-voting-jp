@@ -5,17 +5,17 @@ import { Input } from "@mui/material";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 type Props = {
-  placeholder: string;
-  disabled: boolean;
-  type: FormType;
-  id: string;
-  name: string;
-  defaultValue?: string;
-  register?: UseFormRegisterReturn;
-  readOnly?: boolean;
-  disableUnderline?: boolean;
-  min?: string;
-  max?: string;
+  readonly placeholder: string;
+  readonly disabled: boolean;
+  readonly type: FormType;
+  readonly id: string;
+  readonly name: string;
+  readonly defaultValue?: string;
+  readonly register?: UseFormRegisterReturn;
+  readonly readOnly?: boolean;
+  readonly disableUnderline?: boolean;
+  readonly min?: string;
+  readonly max?: string;
 };
 
 // eslint-disable-next-line react/display-name

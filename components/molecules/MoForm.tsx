@@ -7,16 +7,16 @@ import { UseFormRegisterReturn } from "react-hook-form";
 
 type Props = {
   // form
-  register: UseFormRegisterReturn;
-  placeholder: string;
-  disabled: boolean;
-  disableUnderline?: boolean;
-  type: FormType;
-  readOnly?: boolean;
-  id: string;
-  name: string;
-  error: any;
-  className: string;
+  readonly register: UseFormRegisterReturn;
+  readonly placeholder: string;
+  readonly disabled: boolean;
+  readonly disableUnderline?: boolean;
+  readonly type: FormType;
+  readonly readOnly?: boolean;
+  readonly id: string;
+  readonly name: string;
+  readonly error: any;
+  readonly className: string;
 };
 
 // eslint-disable-next-line react/display-name

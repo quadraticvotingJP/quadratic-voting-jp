@@ -6,21 +6,21 @@ import { AtButton } from "@/components/atoms/EntryPoint";
 import { Card } from "@mui/material";
 
 interface Button {
-  disabled: boolean;
-  title: string;
-  size: ButtonSize;
-  onClick?: () => void;
+  readonly disabled: boolean;
+  readonly title: string;
+  readonly size: ButtonSize;
+  readonly onClick?: () => void;
 }
 
 type Props = {
   // label
-  title: string;
-  required: boolean;
-  focused?: boolean;
+  readonly title: string;
+  readonly required: boolean;
+  readonly focused?: boolean;
   // bar
-  data: ChartData<"bar", number[], string>;
+  readonly data: ChartData<"bar", number[], string>;
   // button
-  button: Button;
+  readonly button: Button;
 };
 
 // eslint-disable-next-line react/display-name

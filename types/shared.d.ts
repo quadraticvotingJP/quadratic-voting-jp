@@ -43,35 +43,35 @@ type Color =
 
 // 選択肢の型
 interface Option {
-  id: number;
-  title: string;
-  overview: string;
-  url: string;
+  readonly id: number;
+  readonly title: string;
+  readonly overview: string;
+  readonly url: string;
 }
 
 // イベント作成時の型
 interface EventValues {
-  title: string;
-  overview: string;
-  publicationStartDate: string;
-  publicationEndDate: string;
-  participant: number;
-  votes: number;
-  options: Option[];
-  optionsTitle: string;
-  optionsOverview: string;
-  optionsUrl: string;
+  readonly title: string;
+  readonly overview: string;
+  readonly publicationStartDate: string;
+  readonly publicationEndDate: string;
+  readonly participant: number;
+  readonly votes: number;
+  readonly options: Option[];
+  readonly optionsTitle: string;
+  readonly optionsOverview: string;
+  readonly optionsUrl: string;
 }
 
 // 新規作成時のイベント
 interface EventPostType {
-  title: string;
-  overview: string;
-  publicationStartDate: string;
-  publicationEndDate: string;
-  participant: number;
-  votes: number;
-  options: Option[];
-  secretKey: string;
-  createAt: FieldValue;
+  readonly title: string;
+  readonly overview: string;
+  readonly publicationStartDate: string;
+  readonly publicationEndDate: string;
+  readonly participant: number;
+  readonly votes: number;
+  readonly options: Option[];
+  readonly secretKey: string;
+  readonly createAt: FieldValue;
 }

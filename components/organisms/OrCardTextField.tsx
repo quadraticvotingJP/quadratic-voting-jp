@@ -5,30 +5,30 @@ import { AtButton } from "@/components/atoms/EntryPoint";
 import { Card } from "@mui/material";
 
 interface Button {
-  title: string;
-  disabled: boolean;
-  size: ButtonSize;
-  onClick: () => void;
+  readonly title: string;
+  readonly disabled: boolean;
+  readonly size: ButtonSize;
+  readonly onClick: () => void;
 }
 
 type Props = {
   // label
-  title: string;
-  required: boolean;
-  focused?: boolean;
-  overView: string;
-  labelMark?: boolean;
+  readonly title: string;
+  readonly required: boolean;
+  readonly focused?: boolean;
+  readonly overView: string;
+  readonly labelMark?: boolean;
   // textField
-  type: FormType;
-  id: string;
-  name: string;
-  rows?: number;
-  maxRows?: number;
-  inputProps?: object;
-  disabled?: boolean;
-  defaultValue?: string;
-  readOnly?: boolean;
-  button: Button;
+  readonly type: FormType;
+  readonly id: string;
+  readonly name: string;
+  readonly rows?: number;
+  readonly maxRows?: number;
+  readonly inputProps?: object;
+  readonly disabled?: boolean;
+  readonly defaultValue?: string;
+  readonly readOnly?: boolean;
+  readonly button: Button;
 };
 
 // eslint-disable-next-line react/display-name

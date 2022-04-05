@@ -5,11 +5,11 @@ import { AtInputLabel, AtBar } from "@/components/atoms/EntryPoint";
 
 type Props = {
   // label
-  title: string;
-  required: boolean;
-  focused?: boolean;
+  readonly title: string;
+  readonly required: boolean;
+  readonly focused?: boolean;
   // bar
-  data: ChartData<"bar", number[], string>;
+  readonly data: ChartData<"bar", number[], string>;
 };
 
 // eslint-disable-next-line react/display-name

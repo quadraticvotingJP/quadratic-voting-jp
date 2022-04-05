@@ -9,40 +9,40 @@ import { UseFormRegisterReturn } from "react-hook-form";
 
 // interface
 interface FormLabel {
-  required: boolean;
-  title: string;
-  overView: string;
-  focused?: boolean;
+  readonly required: boolean;
+  readonly title: string;
+  readonly overView: string;
+  readonly focused?: boolean;
 }
 
 interface Button {
-  disabled: boolean;
-  title: string;
-  size: ButtonSize;
-  onClick?: () => void;
+  readonly disabled: boolean;
+  readonly title: string;
+  readonly size: ButtonSize;
+  readonly onClick?: () => void;
 }
 
 interface Form {
   // label
-  title: string;
-  required: boolean;
+  readonly title: string;
+  readonly required: boolean;
   // form
-  register: UseFormRegisterReturn;
-  placeholder: string;
-  disabled: boolean;
-  type: FormType;
-  id: string;
-  name: string;
-  error: any;
-  labelMark: boolean;
+  readonly register: UseFormRegisterReturn;
+  readonly placeholder: string;
+  readonly disabled: boolean;
+  readonly type: FormType;
+  readonly id: string;
+  readonly name: string;
+  readonly error: any;
+  readonly labelMark: boolean;
 }
 
 type Props = {
-  label: FormLabel;
-  form1: Form;
-  form2: Form;
-  form3: Form;
-  button: Button;
+  readonly label: FormLabel;
+  readonly form1: Form;
+  readonly form2: Form;
+  readonly form3: Form;
+  readonly button: Button;
 };
 
 // eslint-disable-next-line react/display-name

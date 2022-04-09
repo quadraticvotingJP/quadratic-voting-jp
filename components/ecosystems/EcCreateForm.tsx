@@ -46,6 +46,8 @@ const EcCreateForm: React.FC = () => {
   ).slice(-2)}-${("0" + newDate.getDate()).slice(-2)}T00:00`;
 
   const onSubmit: SubmitHandler<EventValues> = async (data: EventValues) => {
+    console.log(data);
+
     // apiを叩く
     setLoading(true);
     const document = await createEvent(data, "event", secretKey);

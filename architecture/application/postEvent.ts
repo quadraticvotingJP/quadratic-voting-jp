@@ -4,7 +4,13 @@ import { event } from "@/architecture/domain/event";
 // adapter
 import { setCollection } from "@/architecture/adapter/setCollection";
 // firebase
-import { getFirestore, collection, serverTimestamp } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  serverTimestamp,
+  CollectionReference,
+  DocumentData,
+} from "firebase/firestore";
 
 export function postEvent() {
   async function createEvent(
@@ -15,7 +21,10 @@ export function postEvent() {
     const fireStore = getFirestore();
     const api = setCollection();
     // fireStoreの保存先指定
-    const usersCollectionRef = collection(fireStore, collectionName);
+    const usersCollectionRef: CollectionReference<DocumentData> = collection(
+      fireStore,
+      collectionName
+    );
     const {
       title,
       overview,

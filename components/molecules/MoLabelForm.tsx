@@ -4,6 +4,7 @@ import {
   AtInputLabel,
   AtInput,
   AtInputLabelNoMark,
+  AtIconButton,
 } from "@/components/atoms/EntryPoint";
 
 // hook
@@ -28,6 +29,8 @@ type Props = {
   readonly readOnly?: boolean;
   readonly labelMark?: boolean;
   readonly min?: string;
+  readonly showSave?: boolean;
+  readonly onClick?: () => void;
 };
 
 // eslint-disable-next-line react/display-name
@@ -49,6 +52,8 @@ const MoLabelForm: React.FC<Props> = ({
   defaultValue,
   error,
   min,
+  showSave,
+  onClick,
   labelMark = true,
 }) => {
   return (
@@ -67,19 +72,26 @@ const MoLabelForm: React.FC<Props> = ({
         </div>
         {overView && <div>{overView}</div>}
       </div>
-      <AtInput
-        defaultValue={defaultValue}
-        register={register}
-        id={id}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        disableUnderline={disableUnderline}
-        readOnly={readOnly}
-        min={min}
-      />
-      {error && <span className="text-red-600">{error.message}</span>}
+      <div className={showSave ? "flex justify-between" : ""}>
+        <div>
+          <AtInput
+            defaultValue={defaultValue}
+            register={register}
+            id={id}
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            disabled={disabled}
+            disableUnderline={disableUnderline}
+            readOnly={readOnly}
+            min={min}
+          />
+          {error && <span className="text-red-600">{error.message}</span>}
+        </div>
+        {showSave && (
+          <AtIconButton size="small" showSave={showSave} onClick={onClick} />
+        )}
+      </div>
     </>
   );
 };

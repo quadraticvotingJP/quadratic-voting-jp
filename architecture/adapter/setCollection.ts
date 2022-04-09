@@ -1,11 +1,20 @@
 // 実際にAPIを叩く箇所
-import { doc, setDoc } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  DocumentReference,
+  CollectionReference,
+  DocumentData,
+} from "firebase/firestore";
 export function setCollection() {
   return {
-    set(usersCollectionRef: any, eventData: EventPostType) {
+    set(
+      usersCollectionRef: CollectionReference<DocumentData>,
+      data: EventPostType
+    ): DocumentReference<DocumentData> {
       const documentInfo = doc(usersCollectionRef);
       setDoc(documentInfo, {
-        eventData,
+        data,
       });
       // 登録するdocument情報を返す
       return documentInfo;

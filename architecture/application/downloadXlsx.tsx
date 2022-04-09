@@ -17,7 +17,7 @@ export function downloadXlsx() {
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
     const fileExtension = ".xlsx";
     const rows: Option[] = [];
-    for (var i = 0; i < options.length; i++) {
+    for (var i: number = 0; i < options.length; i++) {
       const option: Option = {
         title: options[i],
         effective_votes: effectiveVotes[i],
@@ -25,7 +25,7 @@ export function downloadXlsx() {
       };
       rows.push(option);
     }
-    const ws = XLSX.utils.json_to_sheet(rows);
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(rows);
     const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
     const excelBuffer = XLSX.write(wb, {
       bookType: "xlsx",

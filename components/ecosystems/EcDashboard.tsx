@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { ChartData } from "chart.js";
 // Component
@@ -15,8 +15,40 @@ import { chartData } from "@/architecture/domain/chart";
 // application
 import { downloadXlsx } from "@/architecture/application/downloadXlsx";
 
+type PublicationStartDate = "publicationStartDate";
+type PublicationEndDate = "publicationEndDate";
+type Edit = "Edit";
+type Save = "Save";
+
 const EcDashboard: React.FC = () => {
   const { t } = useTranslation("common");
+  const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
+    useState<boolean>(false);
+  const [isPublicationEndDateEdit, setIsPublicationEndDateEdit] =
+    useState<boolean>(false);
+
+  const changeEditMode = (
+    form: PublicationStartDate | PublicationEndDate,
+    type: Edit | Save
+  ): void => {
+    const select = {
+      publicationStartDate: form === "publicationStartDate",
+      publicationEndDate: form === "publicationEndDate",
+      edit: type === "Edit",
+      save: type === "Save",
+    };
+    const is = {
+      publicationStartDateEdit: select.publicationStartDate && select.edit,
+      publicationStartDateSave: select.publicationStartDate && select.save,
+      publicationEndDateEdit: select.publicationEndDate && select.edit,
+      publicationEndDateSave: select.publicationEndDate && select.save,
+    };
+    is.publicationStartDateEdit && setIsPublicationStartDateEdit(true); // 開始日の編集開始
+    is.publicationStartDateSave && setIsPublicationStartDateEdit(false); // 開始日の編集終了
+    is.publicationEndDateEdit && setIsPublicationEndDateEdit(true); // 終了日の編集開始
+    is.publicationEndDateSave && setIsPublicationEndDateEdit(false); // 終了日の編集終了
+  };
+
   const { download } = downloadXlsx();
   const options = [
     "有村架純",
@@ -82,21 +114,53 @@ const EcDashboard: React.FC = () => {
         disabled={false}
       />
       <br />
-      <OrCardText
-        title={t("common.event.publicationStartDate.title")}
-        required={false}
-        contents={"2020月4月1日"}
-        showEdit
-        disabled={false}
-      />
+      {isPublicationStartDateEdit ? (
+        <OrCardForm
+          showSave
+          title={t("common.event.publicationStartDate.title")}
+          defaultValue="2022-04-14T21:27"
+          required={true}
+          placeholder=""
+          disabled={false}
+          type="datetime-local"
+          id="publicationStartDate"
+          name="publicationStartDate"
+          onClick={() => changeEditMode("publicationStartDate", "Save")}
+        />
+      ) : (
+        <OrCardText
+          title={t("common.event.publicationStartDate.title")}
+          required={false}
+          contents={"2020月4月1日"}
+          showEdit
+          disabled={isPublicationEndDateEdit}
+          onClick={() => changeEditMode("publicationStartDate", "Edit")}
+        />
+      )}
       <br />
-      <OrCardText
-        title={t("common.event.publicationEndDate.title")}
-        required={false}
-        contents={"2022月4月1日"}
-        showEdit
-        disabled={false}
-      />
+      {isPublicationEndDateEdit ? (
+        <OrCardForm
+          showSave
+          title={t("common.event.publicationEndDate.title")}
+          defaultValue="2022-05-06T21:27"
+          required={true}
+          placeholder=""
+          disabled={false}
+          type="datetime-local"
+          id="publicationEndDate"
+          name="publicationEndDate"
+          onClick={() => changeEditMode("publicationEndDate", "Save")}
+        />
+      ) : (
+        <OrCardText
+          title={t("common.event.publicationEndDate.title")}
+          required={false}
+          contents={"2022月4月1日"}
+          showEdit
+          disabled={isPublicationStartDateEdit}
+          onClick={() => changeEditMode("publicationEndDate", "Edit")}
+        />
+      )}
       <br />
       <OrCardForm
         readOnly={true}

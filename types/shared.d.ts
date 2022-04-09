@@ -73,3 +73,15 @@ interface EventPostType {
   options: Option[];
   createAt: FieldValue;
 }
+
+// イベント投票時の型
+interface EventVoteType {
+  id: string;
+  eventTitle: string;
+  overview: string;
+  publicationStartDate: string;
+  publicationEndDate: string;
+  votes: number;
+  options: Option[];
+  createAt: FieldValue;
+}

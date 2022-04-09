@@ -4,18 +4,15 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { EcVoteForm } from "@/components/ecosystems/EntryPoint";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ParsedUrlQuery } from "querystring";
+import React from "react";
 
-const Id = ({}) => {
-  return <EcVoteForm />;
+const Id: React.VFC<Props> = ({ item }) => {
+  return <EcVoteForm item={item} />;
 };
 export default Id;
 
-export interface Item {
-  id: string;
-}
-
 interface Props {
-  item: Item;
+  item: EventVoteType;
 }
 
 // 1. Paramsの型を定義し、ParsedUrlQueryをextendsする
@@ -28,9 +25,26 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   locale = "ja",
   params,
 }) => {
-  const itemf = params?.id;
-  const item = {
+  const item: EventVoteType = {
     id: "a",
+    eventTitle: "次の都知事は誰？",
+    overview: "都知事を決めるための選挙を行います",
+    publicationStartDate: "2022-04-04T14:17",
+    publicationEndDate: "2022-10-28T14:17",
+    votes: 99,
+    options: [
+      {
+        title: "舎鈴",
+        overview: "つけ麺",
+        url: "https://www.tsukemen-sharin.com/",
+      },
+      {
+        title: "舎鈴",
+        overview: "つけ麺",
+        url: "https://www.tsukemen-sharin.com/",
+      },
+    ],
+    createAt: "2022年4月3日 14:25:01 UTC+9",
   };
   return {
     props: {

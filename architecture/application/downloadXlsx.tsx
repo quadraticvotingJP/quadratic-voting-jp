@@ -8,6 +8,14 @@ type Option = {
 };
 
 export function downloadXlsx() {
+  /**
+   * @description
+   * 投票dataをエクセルで吐き出す
+   * @param options @type {string[]}
+   * @param effectiveVotes @type {number[]}
+   * @param percentCredits @type {number[]}
+   * @returns @type {void}
+   */
   function download(
     options: string[],
     effectiveVotes: number[],

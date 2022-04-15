@@ -75,3 +75,37 @@ interface EventPostType {
   readonly secretKey: string;
   readonly createAt: FieldValue;
 }
+
+// 回答者
+interface AnswerOption {
+  readonly id: string;
+  readonly vote: string;
+}
+
+// 回答者
+interface Answer {
+  readonly id: string;
+  readonly options: AnswerOption[];
+}
+
+// ダッシュボード情報取得時
+interface AcquiredInformation {
+  readonly collectionName: string;
+  readonly documentId: string;
+  readonly subCollectionName: string;
+}
+
+// ダッシュボード情報
+interface DashboardData {
+  readonly createAt: FieldValue;
+  readonly options: Option[];
+  readonly overview: string;
+  readonly participant: string;
+  readonly participantLinks: string[];
+  readonly publicationStartDate: string;
+  readonly publicationEndDate: string;
+  readonly secretKey: string;
+  readonly documentId: string;
+  readonly title: string;
+  readonly votes: string;
+}

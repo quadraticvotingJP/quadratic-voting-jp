@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+// react
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "next-i18next";
+import { useRouter, NextRouter } from "next/router";
+// library
 import { ChartData } from "chart.js";
 // Component
 import { AtH2 } from "@/components/atoms/EntryPoint";
@@ -14,6 +17,9 @@ import {
 import { chartData } from "@/architecture/domain/chart";
 // application
 import { downloadXlsx } from "@/architecture/application/downloadXlsx";
+import { getDashboard } from "@/architecture/application/getDashboard";
+import { dashboardData } from "@/architecture/application/dashboardData";
+import { routerPush } from "@/architecture/application/routing";
 
 type PublicationStartDate = "publicationStartDate";
 type PublicationEndDate = "publicationEndDate";
@@ -22,6 +28,33 @@ type Save = "Save";
 
 const EcDashboard: React.FC = () => {
   const { t } = useTranslation("common");
+  const { download } = downloadXlsx();
+  const { createAcquiredInformation } = getDashboard(); // api
+  const { conversion } = dashboardData(); // dashboardData整形
+  const router: NextRouter = useRouter();
+  const [dashboardValues, setDashboardValues] = useState<any>({
+    // overview: "",
+    // options: [
+    //   {
+    //     url: "",
+    //     title: "",
+    //     overview: "",
+    //     id: 0,
+    //   },
+    // ],
+    // publicationEndDate: "",
+    // participant: "",
+    // participantLinks: [],
+    // title: "",
+    // votes: "",
+    // documentId: "",
+    // secretKey: "",
+    // createAt: {
+    //   seconds: 0,
+    //   nanoseconds: 0,
+    // },
+    // publicationStartDate: "",
+  });
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false);
   const [isPublicationEndDateEdit, setIsPublicationEndDateEdit] =
@@ -49,24 +82,37 @@ const EcDashboard: React.FC = () => {
     is.publicationEndDateSave && setIsPublicationEndDateEdit(false); // 終了日の編集終了
   };
 
-  const { download } = downloadXlsx();
-  const options = [
-    "有村架純",
-    "宇垣美里",
-    "田中みな実",
-    "夏菜",
-    "西内まりあ",
-    "与田祐希",
-    "橋本奈々未",
-  ];
-  const effectiveVotes = [2, 3, 10, 4, 4, 6, 5, 4];
-  const percentCredits = [20, 30, 100, 40, 41, 66, 55, 40];
   const grafData: ChartData<"bar", number[], string> = chartData(
-    options,
-    effectiveVotes,
-    percentCredits
+    dashboardValues.grafOptions,
+    dashboardValues.grafEffectiveVotes,
+    dashboardValues.grafPercentCredits
   );
-  const downloadXLSX = () => download(options, effectiveVotes, percentCredits);
+  const downloadXLSX = () =>
+    download(
+      dashboardValues.grafOptions,
+      dashboardValues.grafEffectiveVotes,
+      dashboardValues.grafPercentCredits
+    );
+
+  // ダッシュボード情報の取得
+  useEffect(() => {
+    (async () => {
+      const path = router.query.id?.toString();
+      if (path) {
+        const documentId = path.substring(0, path.indexOf("&secret="));
+        const eventData = await createAcquiredInformation(
+          "event",
+          documentId,
+          "answer"
+        );
+        // todoりんくのundefind治す
+        if (eventData !== undefined) setDashboardValues(conversion(eventData));
+      } else {
+        // エラーの場合はtopに遷移
+        routerPush("/");
+      }
+    })();
+  }, []);
 
   return (
     <>
@@ -76,13 +122,13 @@ const EcDashboard: React.FC = () => {
         labelTitle={t("common.dashboard.participantAndEffectiveVotes.title")}
         leftForm={{
           title: t("common.dashboard.participant.title"),
-          molecule: "21",
-          denominator: "39",
+          molecule: dashboardValues.participantAndEffectiveVotesMolecule,
+          denominator: dashboardValues.participant,
         }}
         rightForm={{
           title: t("common.dashboard.effectiveVotes.title"),
-          molecule: "3900",
-          denominator: "1500",
+          molecule: dashboardValues.effectiveVotesMolecule,
+          denominator: dashboardValues.effectiveVotesDenominator,
         }}
       />
       <br />
@@ -101,7 +147,7 @@ const EcDashboard: React.FC = () => {
       <OrCardText
         title={t("common.event.eventTitle.title")}
         required={false}
-        contents={"次の都知事は誰？"}
+        contents={dashboardValues.title}
         showEdit={false}
         disabled={false}
       />
@@ -109,7 +155,7 @@ const EcDashboard: React.FC = () => {
       <OrCardText
         title={t("common.event.overview.title")}
         required={false}
-        contents={"都知事を決めるための選挙を行います"}
+        contents={dashboardValues.overview}
         showEdit={false}
         disabled={false}
       />
@@ -118,7 +164,7 @@ const EcDashboard: React.FC = () => {
         <OrCardForm
           showSave
           title={t("common.event.publicationStartDate.title")}
-          defaultValue="2022-04-14T21:27"
+          defaultValue={dashboardValues.publicationStartDate}
           required={true}
           placeholder=""
           disabled={false}
@@ -131,7 +177,7 @@ const EcDashboard: React.FC = () => {
         <OrCardText
           title={t("common.event.publicationStartDate.title")}
           required={false}
-          contents={"2020月4月1日"}
+          contents={dashboardValues.detailPublicationStartDate}
           showEdit
           disabled={isPublicationEndDateEdit}
           onClick={() => changeEditMode("publicationStartDate", "Edit")}
@@ -142,7 +188,7 @@ const EcDashboard: React.FC = () => {
         <OrCardForm
           showSave
           title={t("common.event.publicationEndDate.title")}
-          defaultValue="2022-05-06T21:27"
+          defaultValue={dashboardValues.publicationEndDate}
           required={true}
           placeholder=""
           disabled={false}
@@ -155,7 +201,7 @@ const EcDashboard: React.FC = () => {
         <OrCardText
           title={t("common.event.publicationEndDate.title")}
           required={false}
-          contents={"2022月4月1日"}
+          contents={dashboardValues.detailPublicationEndDate}
           showEdit
           disabled={isPublicationStartDateEdit}
           onClick={() => changeEditMode("publicationEndDate", "Edit")}
@@ -165,7 +211,7 @@ const EcDashboard: React.FC = () => {
       <OrCardForm
         readOnly={true}
         title={t("common.dashboard.participantDashboard.title")}
-        defaultValue="https://github.com/quadraticvotingJP/quadratic-voting-jp/projects/1"
+        defaultValue={`http://localhost:4000/dashboard/${dashboardValues.participantPath}`}
         required={false}
         placeholder=""
         disabled={false}
@@ -177,7 +223,7 @@ const EcDashboard: React.FC = () => {
       <OrCardForm
         readOnly={true}
         title={t("common.dashboard.adminDashboard.title")}
-        defaultValue="https://github.com/quadraticvotingJP/quadratic-voting-jp/projects/1"
+        defaultValue={`http://localhost:4000/dashboard/${dashboardValues.adminPath}`}
         required={false}
         placeholder=""
         disabled={false}
@@ -190,9 +236,7 @@ const EcDashboard: React.FC = () => {
         title={t("common.dashboard.votersLink.title")}
         required={false}
         overView={t("common.dashboard.votersLink.detail")}
-        defaultValue={
-          "aaaaaaaaaaaaaaaaa\n1111111111\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee\neeeee"
-        }
+        defaultValue={""}
         id={"votersLink"}
         name={"votersLink"}
         type="text"

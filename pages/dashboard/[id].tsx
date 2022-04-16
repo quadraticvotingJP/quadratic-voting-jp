@@ -1,30 +1,44 @@
-import { GetStaticPaths } from "next";
+import {
+  GetServerSideProps,
+  InferGetServerSidePropsType,
+  GetStaticPaths,
+} from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { EcDashboard } from "@/components/ecosystems/EntryPoint";
+// application
+import { getDashboard } from "@/architecture/application/getDashboard";
+import { dashboardData } from "@/architecture/application/dashboardData";
 
-const Id = ({}) => {
+const Id = ({
+  locale,
+  eventData,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return <EcDashboard />;
 };
 export default Id;
 
-// i18n
-export const getStaticProps = async ({ locale = "ja" }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ["common"])),
-  },
-});
+// getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { createAcquiredInformation } = getDashboard(); // api
+  const { conversion } = dashboardData(); // dashboardData整形
 
-// getStaticPaths:動的なルーティングを（ダイナミックルーティング）Next.jsで設定する際に使用
-// ビルド時に実行
-// https://y-hiroyuki.xyz/next-js/getstaticpaths
-export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+  const language: string = context.locale!;
+  const prams: string = context.query.id!.toLocaleString();
+  const documentId: string = prams.substring(0, prams.indexOf("&secret="));
+
+  const response = await createAcquiredInformation(
+    "event",
+    documentId,
+    "answer"
+  );
+  // これをサーバー側で処理する？？？
+  console.log(conversion(response!));
+  const conversionEventData = conversion(response!);
+
   return {
-    // pathsは、どのパスをPre-renderingsするか指定
-    paths: [], //ビルド時にページを作成する必要がないことを示す
-
-    // fallbackは、指定されたパスがtrueかfalseかで返す値を決定するもの
-    // true:返されるのは事前に生成されたHTML
-    // false: 生成されていないパスは全て「404」
-    fallback: "blocking", //フォールバックの種類
+    props: {
+      ...(await serverSideTranslations(language, ["common"])), // i18n
+      // conversionEventData,
+    },
   };
 };

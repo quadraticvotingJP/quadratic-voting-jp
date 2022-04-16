@@ -1,7 +1,6 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
-import { useRouter, NextRouter } from "next/router";
 // library
 import { ChartData } from "chart.js";
 // Component
@@ -17,9 +16,6 @@ import {
 import { chartData } from "@/architecture/domain/chart";
 // application
 import { downloadXlsx } from "@/architecture/application/downloadXlsx";
-import { getDashboard } from "@/architecture/application/getDashboard";
-import { dashboardData } from "@/architecture/application/dashboardData";
-import { routerPush } from "@/architecture/application/routing";
 
 type PublicationStartDate = "publicationStartDate";
 type PublicationEndDate = "publicationEndDate";
@@ -29,32 +25,7 @@ type Save = "Save";
 const EcDashboard: React.FC = () => {
   const { t } = useTranslation("common");
   const { download } = downloadXlsx();
-  const { createAcquiredInformation } = getDashboard(); // api
-  const { conversion } = dashboardData(); // dashboardData整形
-  const router: NextRouter = useRouter();
-  const [dashboardValues, setDashboardValues] = useState<any>({
-    // overview: "",
-    // options: [
-    //   {
-    //     url: "",
-    //     title: "",
-    //     overview: "",
-    //     id: 0,
-    //   },
-    // ],
-    // publicationEndDate: "",
-    // participant: "",
-    // participantLinks: [],
-    // title: "",
-    // votes: "",
-    // documentId: "",
-    // secretKey: "",
-    // createAt: {
-    //   seconds: 0,
-    //   nanoseconds: 0,
-    // },
-    // publicationStartDate: "",
-  });
+
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false);
   const [isPublicationEndDateEdit, setIsPublicationEndDateEdit] =
@@ -83,36 +54,11 @@ const EcDashboard: React.FC = () => {
   };
 
   const grafData: ChartData<"bar", number[], string> = chartData(
-    dashboardValues.grafOptions,
-    dashboardValues.grafEffectiveVotes,
-    dashboardValues.grafPercentCredits
+    ["A", "B", "C"],
+    [1, 2, 3],
+    [11, 21, 31]
   );
-  const downloadXLSX = () =>
-    download(
-      dashboardValues.grafOptions,
-      dashboardValues.grafEffectiveVotes,
-      dashboardValues.grafPercentCredits
-    );
-
-  // ダッシュボード情報の取得
-  useEffect(() => {
-    (async () => {
-      const path = router.query.id?.toString();
-      if (path) {
-        const documentId = path.substring(0, path.indexOf("&secret="));
-        const eventData = await createAcquiredInformation(
-          "event",
-          documentId,
-          "answer"
-        );
-        // todoりんくのundefind治す
-        if (eventData !== undefined) setDashboardValues(conversion(eventData));
-      } else {
-        // エラーの場合はtopに遷移
-        routerPush("/");
-      }
-    })();
-  }, []);
+  const downloadXLSX = () => download(["A", "B", "C"], [1, 2, 3], [11, 21, 31]);
 
   return (
     <>
@@ -122,13 +68,13 @@ const EcDashboard: React.FC = () => {
         labelTitle={t("common.dashboard.participantAndEffectiveVotes.title")}
         leftForm={{
           title: t("common.dashboard.participant.title"),
-          molecule: dashboardValues.participantAndEffectiveVotesMolecule,
-          denominator: dashboardValues.participant,
+          molecule: "",
+          denominator: "",
         }}
         rightForm={{
           title: t("common.dashboard.effectiveVotes.title"),
-          molecule: dashboardValues.effectiveVotesMolecule,
-          denominator: dashboardValues.effectiveVotesDenominator,
+          molecule: "",
+          denominator: "",
         }}
       />
       <br />
@@ -147,7 +93,7 @@ const EcDashboard: React.FC = () => {
       <OrCardText
         title={t("common.event.eventTitle.title")}
         required={false}
-        contents={dashboardValues.title}
+        contents={""}
         showEdit={false}
         disabled={false}
       />
@@ -155,7 +101,7 @@ const EcDashboard: React.FC = () => {
       <OrCardText
         title={t("common.event.overview.title")}
         required={false}
-        contents={dashboardValues.overview}
+        contents={""}
         showEdit={false}
         disabled={false}
       />
@@ -164,7 +110,7 @@ const EcDashboard: React.FC = () => {
         <OrCardForm
           showSave
           title={t("common.event.publicationStartDate.title")}
-          defaultValue={dashboardValues.publicationStartDate}
+          defaultValue={""}
           required={true}
           placeholder=""
           disabled={false}
@@ -177,7 +123,7 @@ const EcDashboard: React.FC = () => {
         <OrCardText
           title={t("common.event.publicationStartDate.title")}
           required={false}
-          contents={dashboardValues.detailPublicationStartDate}
+          contents={""}
           showEdit
           disabled={isPublicationEndDateEdit}
           onClick={() => changeEditMode("publicationStartDate", "Edit")}
@@ -188,7 +134,7 @@ const EcDashboard: React.FC = () => {
         <OrCardForm
           showSave
           title={t("common.event.publicationEndDate.title")}
-          defaultValue={dashboardValues.publicationEndDate}
+          defaultValue={""}
           required={true}
           placeholder=""
           disabled={false}
@@ -201,7 +147,7 @@ const EcDashboard: React.FC = () => {
         <OrCardText
           title={t("common.event.publicationEndDate.title")}
           required={false}
-          contents={dashboardValues.detailPublicationEndDate}
+          contents={""}
           showEdit
           disabled={isPublicationStartDateEdit}
           onClick={() => changeEditMode("publicationEndDate", "Edit")}
@@ -211,7 +157,7 @@ const EcDashboard: React.FC = () => {
       <OrCardForm
         readOnly={true}
         title={t("common.dashboard.participantDashboard.title")}
-        defaultValue={`http://localhost:4000/dashboard/${dashboardValues.participantPath}`}
+        defaultValue={`http://localhost:4000/dashboard/${""}`}
         required={false}
         placeholder=""
         disabled={false}
@@ -223,7 +169,7 @@ const EcDashboard: React.FC = () => {
       <OrCardForm
         readOnly={true}
         title={t("common.dashboard.adminDashboard.title")}
-        defaultValue={`http://localhost:4000/dashboard/${dashboardValues.adminPath}`}
+        defaultValue={`http://localhost:4000/dashboard/${""}`}
         required={false}
         placeholder=""
         disabled={false}

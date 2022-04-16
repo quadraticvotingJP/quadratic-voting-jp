@@ -12,7 +12,7 @@ const Id: React.VFC<Props> = ({ item }) => {
 export default Id;
 
 interface Props {
-  item: EventVoteType;
+  item: any;
 }
 
 // 1. Paramsの型を定義し、ParsedUrlQueryをextendsする
@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   locale = "ja",
   params,
 }) => {
-  const item: EventVoteType = {
+  const item = {
     id: "a",
     eventTitle: "次の都知事は誰？",
     overview: "都知事を決めるための選挙を行います",
@@ -37,15 +37,23 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
         title: "舎鈴",
         overview: "つけ麺",
         url: "https://www.tsukemen-sharin.com/",
+        id: 2,
       },
       {
         title: "舎鈴",
         overview: "つけ麺",
         url: "https://www.tsukemen-sharin.com/",
+        id: 4,
       },
     ],
     createAt: "2022年4月3日 14:25:01 UTC+9",
   };
+  item.options.map((option) => {
+    return Object.assign(option, {
+      vote: 0,
+      ...option,
+    });
+  });
   return {
     props: {
       item,

@@ -49,6 +49,11 @@ interface Option {
   readonly url: string;
 }
 
+// イベント投票時の型
+interface VoteOption extends Option {
+  readonly vote: number;
+}
+
 // イベント作成時の型
 interface EventValues {
   readonly title: string;
@@ -84,6 +89,6 @@ interface EventVoteType {
   publicationStartDate: string;
   publicationEndDate: string;
   votes: number;
-  options: Option[];
+  options: VoteOption[];
   createAt: FieldValue;
 }

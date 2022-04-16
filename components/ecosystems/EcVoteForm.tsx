@@ -46,9 +46,11 @@ const EcVoteForm: React.VFC<Props> = ({ item }) => {
         disabled={false}
       />
       <br />
+      <br />
       <OrVoteOptionCardForm
         title={t("common.event.options.title")}
         options={item.options}
+        votes={item.votes}
       />
       <br />
     </>

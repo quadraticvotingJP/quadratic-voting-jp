@@ -7,9 +7,9 @@ import React from "react";
 import { InputLabel } from "@mui/material";
 
 type Props = {
-  title: string;
-  required: boolean;
-  focused?: boolean; // trueになるとlabelにフォーカスが当たっているよなcssが当たる
+  readonly title: string;
+  readonly required: boolean;
+  readonly focused?: boolean; // trueになるとlabelにフォーカスが当たっているよなcssが当たる
 };
 
 // eslint-disable-next-line react/display-name

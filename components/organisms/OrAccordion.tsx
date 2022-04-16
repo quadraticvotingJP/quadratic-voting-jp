@@ -8,22 +8,22 @@ import { Card } from "@mui/material";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 type Props = {
-  title: string;
-  required: boolean;
-  focused?: boolean;
+  readonly title: string;
+  readonly required: boolean;
+  readonly focused?: boolean;
   // Options
-  options: Option[];
-  onClickEdit: (index: number) => void;
-  onClickDelete: (index: number) => void;
-  register: UseFormRegisterReturn;
-  placeholder: string;
-  disabled: boolean;
-  type: FormType;
-  readOnly?: boolean;
-  id: string;
-  name: string;
-  error: any;
-  className: string;
+  readonly options: Option[];
+  readonly onClickEdit: (index: number) => void;
+  readonly onClickDelete: (index: number) => void;
+  readonly register: UseFormRegisterReturn;
+  readonly placeholder: string;
+  readonly disabled: boolean;
+  readonly type: FormType;
+  readonly readOnly?: boolean;
+  readonly id: string;
+  readonly name: string;
+  readonly error: any;
+  readonly className: string;
 };
 
 // eslint-disable-next-line react/display-name

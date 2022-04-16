@@ -5,15 +5,17 @@ import { Input } from "@mui/material";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 type Props = {
-  placeholder: string;
-  disabled: boolean;
-  type: FormType;
-  id: string;
-  name: string;
-  defaultValue?: string;
-  register?: UseFormRegisterReturn;
-  readOnly?: boolean;
-  disableUnderline?: boolean;
+  readonly placeholder: string;
+  readonly disabled: boolean;
+  readonly type: Readonly<FormType>;
+  readonly id: string;
+  readonly name: string;
+  readonly defaultValue?: string;
+  readonly register?: UseFormRegisterReturn;
+  readonly readOnly?: boolean;
+  readonly disableUnderline?: boolean;
+  readonly min?: string;
+  readonly max?: string;
 };
 
 // eslint-disable-next-line react/display-name
@@ -26,6 +28,8 @@ const AtInput: React.FC<Props> = React.memo(
     disabled,
     type,
     defaultValue,
+    min,
+    max,
     disableUnderline = false,
     readOnly = false,
   }) => {
@@ -37,6 +41,7 @@ const AtInput: React.FC<Props> = React.memo(
         id={id}
         name={name}
         type={type}
+        inputProps={{ min: min, max: max }}
         placeholder={placeholder}
         disabled={disabled}
         disableUnderline={disableUnderline}

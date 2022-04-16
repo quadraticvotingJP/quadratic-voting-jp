@@ -7,12 +7,12 @@ import React from "react";
 import { Button } from "@mui/material";
 
 type Props = {
-  title: string;
-  disabled: boolean;
-  size: ButtonSize;
-  onClick?: () => void;
-  type?: ButtonType;
-  className?: string;
+  readonly title: string;
+  readonly disabled: boolean;
+  readonly size: Readonly<ButtonSize>;
+  readonly onClick?: () => void;
+  readonly type?: Readonly<ButtonType>;
+  readonly className?: string;
 };
 
 // eslint-disable-next-line react/display-name
@@ -23,7 +23,7 @@ const AtButton: React.FC<Props> = React.memo(
     size,
     onClick,
     type = "button",
-    className = "bg-indigo-400	text-white",
+    className = "bg-indigo-400 hover:bg-indigo-300	text-white",
   }) => {
     return (
       <Button

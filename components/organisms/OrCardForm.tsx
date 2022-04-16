@@ -8,21 +8,22 @@ import { UseFormRegisterReturn } from "react-hook-form";
 
 type Props = {
   // label
-  title: string;
-  required: boolean;
-  focused?: boolean;
-  overView?: string;
+  readonly title: string;
+  readonly required: boolean;
+  readonly focused?: boolean;
+  readonly overView?: string;
   // form
-  placeholder: string;
-  disabled: boolean;
-  type: FormType;
-  id: string;
-  name: string;
-  register?: UseFormRegisterReturn;
-  error?: any;
-  disableUnderline?: boolean;
-  defaultValue?: string;
-  readOnly?: boolean;
+  readonly placeholder: string;
+  readonly disabled: boolean;
+  readonly type: Readonly<FormType>;
+  readonly id: string;
+  readonly name: string;
+  readonly register?: UseFormRegisterReturn;
+  readonly error?: any;
+  readonly disableUnderline?: boolean;
+  readonly defaultValue?: string;
+  readonly min?: string;
+  readonly readOnly?: boolean;
 };
 
 // eslint-disable-next-line react/display-name
@@ -42,6 +43,7 @@ const OrCardForm: React.FC<Props> = ({
   defaultValue,
   type,
   readOnly,
+  min,
   error,
 }) => {
   return (
@@ -61,6 +63,7 @@ const OrCardForm: React.FC<Props> = ({
           disabled={disabled}
           disableUnderline={disableUnderline}
           readOnly={readOnly}
+          min={min}
           error={error}
         />
       </Card>

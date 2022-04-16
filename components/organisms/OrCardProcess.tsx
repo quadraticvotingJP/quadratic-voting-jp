@@ -5,17 +5,17 @@ import { MoProcess } from "@/components/molecules/EntryPoint";
 import { Card } from "@mui/material";
 
 interface Process {
-  title: string;
-  molecule: string;
-  denominator: string;
+  readonly title: string;
+  readonly molecule: string;
+  readonly denominator: string;
 }
 
 type Props = {
   // label
-  labelTitle: string;
+  readonly labelTitle: string;
   // form
-  leftForm: Process;
-  rightForm: Process;
+  readonly leftForm: Process;
+  readonly rightForm: Process;
 };
 
 const OrCardProcess: React.FC<Props> = ({

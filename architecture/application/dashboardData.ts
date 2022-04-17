@@ -31,6 +31,7 @@ export function dashboardData() {
     const grafOptions: string[] = options.map((item: Option) => item.title); // [投票数・投票率]選択肢
     let grafEffectiveVotes: number[] = []; // [投票数・投票率]投票数
     let grafPercentCredits: number[] = []; // [投票数・投票率]投票率
+
     // 回答が一つでもあるかないか
     if (answer.length !== 0) {
       participantVotesMolecule = answer.length.toString();
@@ -44,7 +45,7 @@ export function dashboardData() {
        * @returns 全合計値 @type {number}
        */
       effectiveVotesMolecule = answer
-        .reduce((prev: number, current: any): number => {
+        .reduce((prev: number, current: Answer): number => {
           let vote = current.votes.reduce(
             (prev: number, current: AnswerOption): number =>
               prev + current.vote,
@@ -54,6 +55,10 @@ export function dashboardData() {
         }, 0) // 初期値0を設定することにより最初のprevに0が入る
         .toString();
 
+      /**
+       * @description
+       * [投票数・投票率]の算出
+       */
       grafEffectiveVotes = [20, 10, 33]; // todo計算する
       grafPercentCredits = [100, 20, 48]; // todo計算する
     } else {

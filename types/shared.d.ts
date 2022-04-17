@@ -86,8 +86,7 @@ interface AnswerOption {
 
 // 回答者
 interface Answer {
-  readonly id: string;
-  readonly options: AnswerOption[];
+  readonly votes: AnswerOption[];
 }
 
 // ダッシュボード情報取得時

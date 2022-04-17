@@ -27,7 +27,6 @@ interface Props {
 }
 
 const EcDashboard: React.FC<Props> = ({ dashboardData }) => {
-  // todo：回答があった場合の値を入れる処理
   // todo：公開日終了日の更新
   // todo：参加者、管理者による閲覧権限
   const { t } = useTranslation("common");

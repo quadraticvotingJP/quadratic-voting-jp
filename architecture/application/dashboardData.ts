@@ -38,7 +38,7 @@ export function dashboardData() {
       /**
        * @description
        * [参加者数・投票数]参加者数の分子の計算
-       * 1回目のreduceで回答者数分回して全回答の合計を足す
+       * 1回目のreduceで回答者数分回して前回回答者の合計と足す
        * 2回目のreduceで1回答者の投票数の合計を出す
        * @param prev 前回の値が入る　初期値は第2引数に指定している0
        * @param current 次の値が入る

@@ -34,7 +34,26 @@ export function dashboardData() {
     // 回答が一つでもあるかないか
     if (answer.length !== 0) {
       participantVotesMolecule = answer.length.toString();
-      effectiveVotesMolecule = "0"; // todo計算する
+      /**
+       * @description
+       * [参加者数・投票数]参加者数の分子の計算
+       * 1回目のreduceで回答者数分回して全回答の合計を足す
+       * 2回目のreduceで1回答者の投票数の合計を出す
+       * @param prev 前回の値が入る　初期値は第2引数に指定している0
+       * @param current 次の値が入る
+       * @returns 全合計値 @type {number}
+       */
+      effectiveVotesMolecule = answer
+        .reduce((prev: number, current: any): number => {
+          let vote = current.votes.reduce(
+            (prev: number, current: AnswerOption): number =>
+              prev + current.vote,
+            0
+          );
+          return prev + vote; // returnすると次のprevに入る
+        }, 0) // 初期値0を設定することにより最初のprevに0が入る
+        .toString();
+
       grafEffectiveVotes = [20, 10, 33]; // todo計算する
       grafPercentCredits = [100, 20, 48]; // todo計算する
     } else {

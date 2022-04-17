@@ -81,7 +81,7 @@ interface EventPostType {
 // 回答者
 interface AnswerOption {
   readonly id: string;
-  readonly vote: string;
+  readonly vote: number;
 }
 
 // 回答者

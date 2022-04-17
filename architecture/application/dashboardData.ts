@@ -22,29 +22,29 @@ export function dashboardData() {
       secretKey,
     } = response; // responseDataの展開
 
-    const grafOptions: string[] = options.map((item: Option) => item.title); // [投票数・投票率]選択肢
     let participantVotesMolecule: string = ""; // [参加者数・投票数]参加者数の分子
-    let participantVotesDenominator: string = ""; // [参加者数・投票数]参加者数の分母
+    const participantVotesDenominator: string = participant; // [参加者数・投票数]参加者数の分母
     let effectiveVotesMolecule: string = ""; // [参加者数・投票数]投票数の分子
     const effectiveVotesDenominator: string = (
       Number(participant) * Number(votes)
     ).toString(); // [参加者数・投票数]投票数の分母
+    const grafOptions: string[] = options.map((item: Option) => item.title); // [投票数・投票率]選択肢
     let grafEffectiveVotes: number[] = []; // [投票数・投票率]投票数
     let grafPercentCredits: number[] = []; // [投票数・投票率]投票率
-
-    // 回答があるかないか
+    // 回答が一つでもあるかないか
     if (answer.length !== 0) {
       participantVotesMolecule = answer.length.toString();
-      participantVotesDenominator = participant;
       effectiveVotesMolecule = "0"; // todo計算する
       grafEffectiveVotes = [20, 10, 33]; // todo計算する
       grafPercentCredits = [100, 20, 48]; // todo計算する
     } else {
       participantVotesMolecule = "0";
-      participantVotesDenominator = "0";
       effectiveVotesMolecule = "0";
-      grafEffectiveVotes = [];
-      grafPercentCredits = [];
+      // 回答が一つもなければoptionsのlength分0をpushする
+      for (let index: number = 0; index < options.length; index++) {
+        grafEffectiveVotes.push(0);
+        grafPercentCredits.push(0);
+      }
     }
 
     const detailPublicationStartDate: string = publicationStartDate.replace(

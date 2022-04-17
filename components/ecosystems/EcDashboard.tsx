@@ -190,7 +190,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData }) => {
         title={t("common.dashboard.votersLink.title")}
         required={false}
         overView={t("common.dashboard.votersLink.detail")}
-        defaultValue={""}
+        defaultValue={dashboardData.voterLinks}
         id={"votersLink"}
         name={"votersLink"}
         type="text"

@@ -72,6 +72,7 @@ interface EventPostType {
   readonly participant: number;
   readonly votes: number;
   readonly options: Option[];
+  readonly participantLinks: string[];
   readonly secretKey: string;
   readonly createAt: FieldValue;
 }
@@ -112,5 +113,5 @@ interface DashboardData {
   readonly formPublicationEndDate: string; // [公開終了日]フォーム用のData
   readonly participantDashboardLink: string; // [ダッシュボード（参加者用）]
   readonly adminDashboardLink: string; // [ダッシュボード（管理者用）]
-  // readonly voterLinks: string; //  [投票者リンク]
+  readonly voterLinks: string; //  [投票者リンク]
 }

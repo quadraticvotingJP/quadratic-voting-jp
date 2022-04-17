@@ -1,4 +1,5 @@
 // Event作成のAPI処理
+import UUID from "uuidjs";
 // domain
 import { event } from "@/architecture/domain/event";
 // adapter
@@ -34,6 +35,13 @@ export function postEvent() {
       votes,
       options,
     } = data;
+    let participantLinks: string[] = [];
+    // 参加者分の投票者リンクの作成
+    for (let index: number = 0; index < participant; index++) {
+      participantLinks.push(
+        `http://localhost:4000/vote/id?=${UUID.generate()}`
+      );
+    }
     // parameter作成
     const eventData = event(
       title,
@@ -43,6 +51,7 @@ export function postEvent() {
       participant,
       votes,
       options,
+      participantLinks,
       secretKey,
       serverTimestamp()
     );

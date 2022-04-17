@@ -1,8 +1,4 @@
-import {
-  GetServerSideProps,
-  InferGetServerSidePropsType,
-  GetStaticPaths,
-} from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { EcDashboard } from "@/components/ecosystems/EntryPoint";
 // application
@@ -11,9 +7,9 @@ import { dashboardData } from "@/architecture/application/dashboardData";
 
 const Id = ({
   locale,
-  eventData,
+  conversionEventData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  return <EcDashboard />;
+  return <EcDashboard dashboardData={conversionEventData} />;
 };
 export default Id;
 
@@ -21,24 +17,19 @@ export default Id;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { createAcquiredInformation } = getDashboard(); // api
   const { conversion } = dashboardData(); // dashboardData整形
-
   const language: string = context.locale!;
-  const prams: string = context.query.id!.toLocaleString();
-  const documentId: string = prams.substring(0, prams.indexOf("&secret="));
-
+  const documentId: string = context.query[""]!.toLocaleString();
+  // サーバーサイドでAPIを叩いてresponseを整形する
   const response = await createAcquiredInformation(
     "event",
     documentId,
     "answer"
   );
-  // これをサーバー側で処理する？？？
-  console.log(conversion(response!));
   const conversionEventData = conversion(response!);
-
   return {
     props: {
       ...(await serverSideTranslations(language, ["common"])), // i18n
-      // conversionEventData,
+      conversionEventData,
     },
   };
 };

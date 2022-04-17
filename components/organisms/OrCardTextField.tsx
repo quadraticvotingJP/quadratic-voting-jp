@@ -69,12 +69,14 @@ const OrCardTextField: React.FC<Props> = ({
             inputProps={inputProps}
           />
         </div>
-        <AtButton
-          title={button.title}
-          disabled={button.disabled}
-          size={button.size}
-          onClick={button.onClick}
-        />
+        <div className="flex justify-center">
+          <AtButton
+            title={button.title}
+            disabled={button.disabled}
+            size={button.size}
+            onClick={button.onClick}
+          />
+        </div>
       </Card>
     </>
   );

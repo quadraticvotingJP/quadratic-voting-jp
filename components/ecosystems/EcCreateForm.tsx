@@ -50,7 +50,7 @@ const EcCreateForm: React.FC = () => {
     setLoading(true);
     const document = await createEvent(data, "event", secretKey);
     setLoading(false);
-    routerPush(`/dashboard/${document.id}&secret=${secretKey}`);
+    routerPush(`/dashboard/id?=${document.id}&secret=${secretKey}`);
     reset();
   };
 
@@ -222,7 +222,7 @@ const EcCreateForm: React.FC = () => {
         <br />
         <OrAccordion
           title={t("common.event.options.title")}
-          required={false}
+          required={true}
           options={getValues("options")}
           register={register("options", {
             validate: {
@@ -249,7 +249,7 @@ const EcCreateForm: React.FC = () => {
         <br />
         <OrCardForms
           label={{
-            required: true,
+            required: false,
             title: t("common.event.createOption.formTitle"),
             overView: t("common.event.createOption.formDetail"),
           }}

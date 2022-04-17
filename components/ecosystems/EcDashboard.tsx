@@ -16,6 +16,7 @@ import {
 import { chartData } from "@/architecture/domain/chart";
 // application
 import { downloadXlsx } from "@/architecture/application/downloadXlsx";
+import { downloadTxt } from "@/architecture/application/downloadTxt";
 
 type PublicationStartDate = "publicationStartDate";
 type PublicationEndDate = "publicationEndDate";
@@ -26,8 +27,12 @@ interface Props {
 }
 
 const EcDashboard: React.FC<Props> = ({ dashboardData }) => {
+  // todo：回答があった場合の値を入れる処理
+  // todo：公開日終了日の更新
+  // todo：参加者、管理者による閲覧権限
   const { t } = useTranslation("common");
-  const { download } = downloadXlsx();
+  const { excelFile } = downloadXlsx();
+  const { textFile } = downloadTxt();
 
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false);
@@ -56,17 +61,19 @@ const EcDashboard: React.FC<Props> = ({ dashboardData }) => {
     is.publicationEndDateSave && setIsPublicationEndDateEdit(false); // 終了日の編集終了
   };
 
+  // グラフデータの生成
   const grafData: ChartData<"bar", number[], string> = chartData(
     dashboardData.grafOptions,
     dashboardData.grafEffectiveVotes,
     dashboardData.grafPercentCredits
   );
   const downloadXLSX = () =>
-    download(
+    excelFile(
       dashboardData.grafOptions,
       dashboardData.grafEffectiveVotes,
       dashboardData.grafPercentCredits
     );
+  const downloadTXT = () => textFile(dashboardData.voterLinks);
 
   return (
     <>
@@ -198,10 +205,10 @@ const EcDashboard: React.FC<Props> = ({ dashboardData }) => {
         maxRows={10}
         inputProps={{ readOnly: true }}
         button={{
-          title: t("common.button.download"),
+          title: t("common.button.downloadTxt"),
           disabled: false,
           size: "large",
-          onClick: () => {},
+          onClick: downloadTXT,
         }}
       />
     </>

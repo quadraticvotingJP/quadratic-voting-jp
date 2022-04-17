@@ -16,7 +16,7 @@ export function downloadXlsx() {
    * @param percentCredits @type {number[]}
    * @returns @type {void}
    */
-  function download(
+  function excelFile(
     options: string[],
     effectiveVotes: number[],
     percentCredits: number[]
@@ -45,5 +45,5 @@ export function downloadXlsx() {
       `投票数・投票率 - QuadraticVoting.jp${fileExtension}`
     );
   }
-  return { download };
+  return { excelFile };
 }

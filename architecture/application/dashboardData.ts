@@ -58,10 +58,32 @@ export function dashboardData() {
       /**
        * @description
        * [投票数・投票率]の算出
+       * 1回目のreduceで回答者数分回して同じ選択肢を足す
+       * for分で選択肢（Id）分だけ回して同じIDであれば足す
        */
-      grafEffectiveVotes = [20, 10, 33]; // todo計算する
+      const ids: number[] = options.map((answer: Option): number => answer.id); // 選択肢のIdを抽出
+      grafEffectiveVotes = answer.reduce(
+        (prev: number[], current: Answer): number[] => {
+          let answers: number[] = [];
+          for (let index: number = 0; index < ids.length; index++) {
+            const matchId = ids[index].toString() === current.votes[index].id;
+            if (matchId) {
+              // 同じIDであれば
+              if (prev.length !== 0) {
+                //初回が入れるのlengthが0のためif文を設けないとprev[index]でエラーになる
+                answers.push(prev[index] + current.votes[index].vote); //2回目以降に走り前回の値とIdが一致しているもの通しを足す
+              } else {
+                answers.push(current.votes[index].vote); // 初回のみ走りIdのvoteがpushされれる
+              }
+            }
+          }
+          return answers;
+        },
+        []
+      );
       grafPercentCredits = [100, 20, 48]; // todo計算する
     } else {
+      // 回答が一つもなければ
       participantVotesMolecule = "0";
       effectiveVotesMolecule = "0";
       // 回答が一つもなければoptionsのlength分0をpushする

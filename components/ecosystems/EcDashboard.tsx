@@ -34,7 +34,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
   const { t } = useTranslation("common");
   const { excelFile } = downloadXlsx();
   const { textFile } = downloadTxt();
-  const adminUser: boolean = query.secret !== undefined;
+  const adminUser: boolean = query.secret !== undefined && query.secret !== "";
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false);
   const [isPublicationEndDateEdit, setIsPublicationEndDateEdit] =

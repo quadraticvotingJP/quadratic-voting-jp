@@ -39,8 +39,8 @@ export function getDocument() {
           documentInformation.collectionName,
           documentInformation.documentId,
           documentInformation.subCollectionName
-        ),
-        orderBy("createAt")
+        )
+        // orderBy("createAt")
         // 第2引数で昇順、降順指定
       );
       const querySnapshot = await getDocs(usersCollectionRef);
@@ -49,9 +49,9 @@ export function getDocument() {
       });
 
       return docSnap.exists()
-        ? subDocument.length !== 0 // subDocumentがある場合
-          ? { ...docSnap.data(), answer: subDocument }
-          : { ...docSnap.data(), answer: [] }
+        ? subDocument.length !== 0
+          ? { ...docSnap.data(), answer: subDocument } // 回答(answer)がある場合回答一覧を返す
+          : { ...docSnap.data(), answer: [] } // 回答(answer)がない場合空配列を返す
         : undefined;
     },
   };

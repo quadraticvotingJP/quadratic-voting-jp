@@ -73,6 +73,7 @@ interface EventPostType {
   readonly votes: number;
   readonly options: Option[];
   readonly participantLinks: string[];
+  readonly documentId: string;
   readonly secretKey: string;
   readonly createAt: FieldValue;
 }

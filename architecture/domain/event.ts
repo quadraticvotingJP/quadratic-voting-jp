@@ -14,6 +14,7 @@ import { FieldValue } from "firebase/firestore";
  * @param votes @type {number}
  * @param options @type {Option[]}
  * @param participantLinks @type {string[]}
+ * @param documentId @type {string}
  * @param secretKey @type {string}
  * @param createAt @type {FieldValue}
  * @returns @type {EventPostType}
@@ -27,6 +28,7 @@ export function event(
   votes: number,
   options: Option[],
   participantLinks: string[],
+  documentId: string,
   secretKey: string,
   createAt: FieldValue
 ): EventPostType {
@@ -39,6 +41,7 @@ export function event(
     votes: votes,
     options: options,
     participantLinks: participantLinks,
+    documentId: documentId,
     secretKey: secretKey,
     createAt: createAt,
   };

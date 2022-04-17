@@ -13,7 +13,7 @@ export function downloadTxt() {
     const file = new Blob([text], { type: "text/plain" });
     // ダウンロード可能なリンクコンポーネントを非表示にする設定
     element.href = URL.createObjectURL(file);
-    element.download = "voter_links.txt";
+    element.download = "投票者リンク一覧.txt";
     element.style.display = "none";
     // // リンクコンポーネントを追加
     document.body.appendChild(element);

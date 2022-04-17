@@ -1,4 +1,5 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { ParsedUrlQuery } from "querystring";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { EcDashboard } from "@/components/ecosystems/EntryPoint";
 // application
@@ -8,8 +9,9 @@ import { dashboardData } from "@/architecture/application/dashboardData";
 const Id = ({
   locale,
   conversionEventData,
+  query,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  return <EcDashboard dashboardData={conversionEventData} />;
+  return <EcDashboard dashboardData={conversionEventData} query={query} />;
 };
 export default Id;
 
@@ -19,6 +21,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { conversion } = dashboardData(); // dashboardData整形
   const language: string = context.locale!;
   const documentId: string = context.query[""]!.toLocaleString();
+  const query: ParsedUrlQuery = context.query;
   // サーバーサイドでAPIを叩いてresponseを整形する
   const response = await createAcquiredInformation(
     "event",
@@ -30,6 +33,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       ...(await serverSideTranslations(language, ["common"])), // i18n
       conversionEventData,
+      query,
     },
   };
 };

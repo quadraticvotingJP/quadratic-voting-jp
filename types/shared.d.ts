@@ -115,3 +115,9 @@ interface DashboardData {
   readonly adminDashboardLink: string; // [ダッシュボード（管理者用）]
   readonly voterLinks: string; //  [投票者リンク]
 }
+
+// ダッシュボード更新
+interface DashboardFormVales {
+  readonly publicationStartDate: string;
+  readonly publicationEndDate: string;
+}

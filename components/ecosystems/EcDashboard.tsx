@@ -1,6 +1,9 @@
 // react
 import React, { useState } from "react";
+import { ParsedUrlQuery } from "querystring";
 import { useTranslation } from "next-i18next";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { utilsValidationRule } from "@/utils/validation";
 // library
 import { ChartData } from "chart.js";
 // Component
@@ -24,19 +27,27 @@ type Edit = "Edit";
 type Save = "Save";
 interface Props {
   dashboardData: DashboardData;
+  query: ParsedUrlQuery;
 }
 
-const EcDashboard: React.FC<Props> = ({ dashboardData }) => {
-  // todo：公開日終了日の更新
-  // todo：参加者、管理者による閲覧権限
+const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
   const { t } = useTranslation("common");
   const { excelFile } = downloadXlsx();
   const { textFile } = downloadTxt();
-
+  const adminUser: boolean = query.secret !== undefined;
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false);
   const [isPublicationEndDateEdit, setIsPublicationEndDateEdit] =
     useState<boolean>(false);
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    watch,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm<DashboardFormVales>();
 
   const changeEditMode = (
     form: PublicationStartDate | PublicationEndDate,
@@ -139,7 +150,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData }) => {
           required={false}
           contents={dashboardData.detailPublicationStartDate}
           showEdit
-          disabled={isPublicationEndDateEdit}
+          disabled={isPublicationEndDateEdit || !adminUser}
           onClick={() => changeEditMode("publicationStartDate", "Edit")}
         />
       )}
@@ -163,7 +174,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData }) => {
           required={false}
           contents={dashboardData.detailPublicationEndDate}
           showEdit
-          disabled={isPublicationStartDateEdit}
+          disabled={isPublicationStartDateEdit || !adminUser}
           onClick={() => changeEditMode("publicationEndDate", "Edit")}
         />
       )}
@@ -180,36 +191,40 @@ const EcDashboard: React.FC<Props> = ({ dashboardData }) => {
         name="participantDashboard"
       />
       <br />
-      <OrCardForm
-        readOnly={true}
-        title={t("common.dashboard.adminDashboard.title")}
-        defaultValue={`http://localhost:4000/dashboard/id?=${dashboardData.adminDashboardLink}`}
-        required={false}
-        placeholder=""
-        disabled={false}
-        type="text"
-        id="adminDashboard"
-        name="adminDashboard"
-      />
+      {adminUser && (
+        <OrCardForm
+          readOnly={true}
+          title={t("common.dashboard.adminDashboard.title")}
+          defaultValue={`http://localhost:4000/dashboard/id?=${dashboardData.adminDashboardLink}`}
+          required={false}
+          placeholder=""
+          disabled={false}
+          type="text"
+          id="adminDashboard"
+          name="adminDashboard"
+        />
+      )}
       <br />
-      <OrCardTextField
-        title={t("common.dashboard.votersLink.title")}
-        required={false}
-        overView={t("common.dashboard.votersLink.detail")}
-        defaultValue={dashboardData.voterLinks}
-        id={"votersLink"}
-        name={"votersLink"}
-        type="text"
-        rows={10}
-        maxRows={10}
-        inputProps={{ readOnly: true }}
-        button={{
-          title: t("common.button.downloadTxt"),
-          disabled: false,
-          size: "large",
-          onClick: downloadTXT,
-        }}
-      />
+      {adminUser && (
+        <OrCardTextField
+          title={t("common.dashboard.votersLink.title")}
+          required={false}
+          overView={t("common.dashboard.votersLink.detail")}
+          defaultValue={dashboardData.voterLinks}
+          id={"votersLink"}
+          name={"votersLink"}
+          type="text"
+          rows={10}
+          maxRows={10}
+          inputProps={{ readOnly: true }}
+          button={{
+            title: t("common.button.downloadTxt"),
+            disabled: false,
+            size: "large",
+            onClick: downloadTXT,
+          }}
+        />
+      )}
     </>
   );
 };

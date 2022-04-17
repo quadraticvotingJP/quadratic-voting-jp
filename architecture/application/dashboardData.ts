@@ -53,7 +53,7 @@ export function dashboardData() {
           );
           return prev + vote; // returnすると次のprevに入る
         }, 0) // 初期値0を設定することにより最初のprevに0が入る
-        .toString();
+        .toString(); // 最後に数値から文字列に変換
 
       /**
        * @description

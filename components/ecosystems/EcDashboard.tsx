@@ -15,6 +15,8 @@ import {
   OrCardTextField,
   OrCardBar,
 } from "@/components/organisms/EntryPoint";
+// context
+import { useLoadingContext } from "@/context/LoadingContext";
 // domain
 import { chartData } from "@/architecture/domain/chart";
 // application
@@ -34,6 +36,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
   const { t } = useTranslation("common");
   const { excelFile } = downloadXlsx(); // ダウンロード
   const { textFile } = downloadTxt(); // ダウンロード
+  const { setLoading } = useLoadingContext(); // loading
   const adminUser: boolean = query.secret === dashboardData.secretKey; // 閲覧権限
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false); // 編集ボタン制御
@@ -71,15 +74,15 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
     is.publicationEndDateEdit && setIsPublicationEndDateEdit(true); // 終了日の編集開始
     // 開始日の編集終了
     if (is.publicationStartDateSave) {
-      if (errors.publicationStartDate) return;
-      setIsPublicationStartDateEdit(false);
-      handleSubmit(onSubmit)();
+      if (errors.publicationStartDate) return; // フォームにエラーがあれば弾く
+      setIsPublicationStartDateEdit(false); // 編集ボタンの制御を切り替える
+      handleSubmit(onSubmit)(); // 送信
     }
     // 終了日の編集終了
     if (is.publicationEndDateSave) {
-      if (errors.publicationEndDate) return;
-      setIsPublicationEndDateEdit(false);
-      handleSubmit(onSubmit)();
+      if (errors.publicationEndDate) return; // フォームにエラーがあれば弾く
+      setIsPublicationEndDateEdit(false); // 編集ボタンの制御を切り替える
+      handleSubmit(onSubmit)(); // 送信
     }
   };
 
@@ -103,6 +106,10 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
     data: DashboardFormVales
   ) => {
     console.log(data);
+    // apiを叩く
+    setLoading(true);
+
+    setLoading(false);
   };
 
   return (

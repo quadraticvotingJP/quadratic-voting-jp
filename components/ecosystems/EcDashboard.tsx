@@ -22,6 +22,7 @@ import { chartData } from "@/architecture/domain/chart";
 // application
 import { downloadXlsx } from "@/architecture/application/downloadXlsx";
 import { downloadTxt } from "@/architecture/application/downloadTxt";
+import { putEvent } from "@/architecture/application/putEvent";
 
 type PublicationStartDate = "publicationStartDate";
 type PublicationEndDate = "publicationEndDate";
@@ -37,6 +38,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
   const { excelFile } = downloadXlsx(); // ダウンロード
   const { textFile } = downloadTxt(); // ダウンロード
   const { setLoading } = useLoadingContext(); // loading
+  const { updateEvent } = putEvent(); // api
   const adminUser: boolean = query.secret === dashboardData.secretKey; // 閲覧権限
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false); // 編集ボタン制御
@@ -105,10 +107,10 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
   const onSubmit: SubmitHandler<DashboardFormVales> = async (
     data: DashboardFormVales
   ) => {
-    console.log(data);
+    const documentId = query[""]!;
     // apiを叩く
     setLoading(true);
-
+    await updateEvent(data, "event", documentId);
     setLoading(false);
   };
 

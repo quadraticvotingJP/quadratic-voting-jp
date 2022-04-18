@@ -114,4 +114,11 @@ interface DashboardData {
   readonly participantDashboardLink: string; // [ダッシュボード（参加者用）]
   readonly adminDashboardLink: string; // [ダッシュボード（管理者用）]
   readonly voterLinks: string; //  [投票者リンク]
+  readonly secretKey: string; //  シークレットキー
+}
+
+// ダッシュボード更新
+interface DashboardFormVales {
+  readonly publicationStartDate: string;
+  readonly publicationEndDate: string;
 }

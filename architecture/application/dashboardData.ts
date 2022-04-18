@@ -127,6 +127,7 @@ export function dashboardData() {
       participantDashboardLink, // [ダッシュボード（参加者用）]
       adminDashboardLink, // [ダッシュボード（管理者用）]
       voterLinks, //  [投票者リンク]
+      secretKey, // シークレットキー
     };
   }
   return { conversion };

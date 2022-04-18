@@ -103,6 +103,14 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
     );
   // 投票者リンクダウンロード
   const downloadTXT = () => textFile(dashboardData.voterLinks);
+
+  // 日付制御用に本日の日付を取得
+  const newDate = new Date();
+  const today = `${newDate.getFullYear()}-${(
+    "0" +
+    (newDate.getMonth() + 1)
+  ).slice(-2)}-${("0" + newDate.getDate()).slice(-2)}T00:00`;
+
   // 公開開始日・公開終了日の更新
   const onSubmit: SubmitHandler<DashboardFormVales> = async (
     data: DashboardFormVales
@@ -177,6 +185,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
                   : utilsValidationRule.START_DATE.message,
             },
           })}
+          min={today}
           error={errors.publicationStartDate}
           placeholder=""
           disabled={false}
@@ -212,6 +221,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
                   : utilsValidationRule.END_DATE.message,
             },
           })}
+          min={today}
           placeholder=""
           disabled={false}
           type="datetime-local"

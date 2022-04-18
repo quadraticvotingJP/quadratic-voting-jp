@@ -112,7 +112,7 @@ const EcCreateForm: React.FC = () => {
   return (
     <>
       <AtH2 title={t("pageTitle.creat")} />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <OrCardForm
           title={t("common.event.eventTitle.title")}
           overView={t("common.event.eventTitle.detail")}
@@ -305,10 +305,10 @@ const EcCreateForm: React.FC = () => {
         <br />
         <div className="flex justify-center">
           <AtButton
-            type="submit"
             title={t("common.button.eventCreation")}
             disabled={false}
             size={t("common.buttonSize.large")}
+            onClick={() => handleSubmit(onSubmit)()}
           />
         </div>
       </form>

@@ -32,22 +32,24 @@ interface Props {
 
 const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
   const { t } = useTranslation("common");
-  const { excelFile } = downloadXlsx();
-  const { textFile } = downloadTxt();
-  const adminUser: boolean = query.secret !== undefined && query.secret !== "";
+  const { excelFile } = downloadXlsx(); // ダウンロード
+  const { textFile } = downloadTxt(); // ダウンロード
+  const adminUser: boolean = query.secret === dashboardData.secretKey; // 閲覧権限
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
-    useState<boolean>(false);
+    useState<boolean>(false); // 編集ボタン制御
   const [isPublicationEndDateEdit, setIsPublicationEndDateEdit] =
-    useState<boolean>(false);
+    useState<boolean>(false); // 編集ボタン制御
   const {
     register,
     handleSubmit,
     getValues,
-    watch,
-    setValue,
-    reset,
     formState: { errors },
-  } = useForm<DashboardFormVales>();
+  } = useForm<DashboardFormVales>({
+    defaultValues: {
+      publicationStartDate: dashboardData.formPublicationStartDate,
+      publicationEndDate: dashboardData.formPublicationEndDate,
+    },
+  });
 
   const changeEditMode = (
     form: PublicationStartDate | PublicationEndDate,
@@ -66,9 +68,19 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
       publicationEndDateSave: select.publicationEndDate && select.save,
     };
     is.publicationStartDateEdit && setIsPublicationStartDateEdit(true); // 開始日の編集開始
-    is.publicationStartDateSave && setIsPublicationStartDateEdit(false); // 開始日の編集終了
     is.publicationEndDateEdit && setIsPublicationEndDateEdit(true); // 終了日の編集開始
-    is.publicationEndDateSave && setIsPublicationEndDateEdit(false); // 終了日の編集終了
+    // 開始日の編集終了
+    if (is.publicationStartDateSave) {
+      if (errors.publicationStartDate) return;
+      setIsPublicationStartDateEdit(false);
+      handleSubmit(onSubmit)();
+    }
+    // 終了日の編集終了
+    if (is.publicationEndDateSave) {
+      if (errors.publicationEndDate) return;
+      setIsPublicationEndDateEdit(false);
+      handleSubmit(onSubmit)();
+    }
   };
 
   // グラフデータの生成
@@ -77,13 +89,21 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
     dashboardData.grafEffectiveVotes,
     dashboardData.grafPercentCredits
   );
+  // 投票数・投票率ダウンロード
   const downloadXLSX = () =>
     excelFile(
       dashboardData.grafOptions,
       dashboardData.grafEffectiveVotes,
       dashboardData.grafPercentCredits
     );
+  // 投票者リンクダウンロード
   const downloadTXT = () => textFile(dashboardData.voterLinks);
+  // 公開開始日・公開終了日の更新
+  const onSubmit: SubmitHandler<DashboardFormVales> = async (
+    data: DashboardFormVales
+  ) => {
+    console.log(data);
+  };
 
   return (
     <>
@@ -131,12 +151,24 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
         disabled={false}
       />
       <br />
+
       {isPublicationStartDateEdit ? (
         <OrCardForm
           showSave
           title={t("common.event.publicationStartDate.title")}
           defaultValue={dashboardData.formPublicationStartDate}
           required={true}
+          register={register("publicationStartDate", {
+            required: utilsValidationRule.REQUIRED,
+            validate: {
+              // 開始日と終了日の比較validation
+              value: (v) =>
+                new Date(v) < new Date(getValues("publicationEndDate"))
+                  ? true
+                  : utilsValidationRule.START_DATE.message,
+            },
+          })}
+          error={errors.publicationStartDate}
           placeholder=""
           disabled={false}
           type="datetime-local"
@@ -161,12 +193,23 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
           title={t("common.event.publicationEndDate.title")}
           defaultValue={dashboardData.formPublicationEndDate}
           required={true}
+          register={register("publicationEndDate", {
+            required: utilsValidationRule.REQUIRED,
+            validate: {
+              // 開始日と終了日の比較validation
+              value: (v) =>
+                new Date(v) > new Date(getValues("publicationStartDate"))
+                  ? true
+                  : utilsValidationRule.END_DATE.message,
+            },
+          })}
           placeholder=""
           disabled={false}
           type="datetime-local"
           id="publicationEndDate"
           name="publicationEndDate"
           onClick={() => changeEditMode("publicationEndDate", "Save")}
+          error={errors.publicationEndDate}
         />
       ) : (
         <OrCardText
@@ -215,7 +258,6 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
           name={"votersLink"}
           type="text"
           rows={10}
-          maxRows={10}
           inputProps={{ readOnly: true }}
           button={{
             title: t("common.button.downloadTxt"),

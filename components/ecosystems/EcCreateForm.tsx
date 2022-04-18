@@ -174,7 +174,7 @@ const EcCreateForm: React.FC = () => {
               value: (v) =>
                 new Date(v) > new Date(getValues("publicationStartDate"))
                   ? true
-                  : utilsValidationRule.DATE.message,
+                  : utilsValidationRule.END_DATE.message,
             },
           })}
           id="publicationEndDate"

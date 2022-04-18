@@ -1,7 +1,5 @@
-// Event作成のAPI処理
-import UUID from "uuidjs";
 // domain
-import { put } from "@/architecture/domain/putEvent";
+import { create } from "@/architecture/domain/putEvent";
 // adapter
 import { putDocuments } from "@/architecture/adapter/updateDocument";
 // firebase
@@ -31,7 +29,7 @@ export function putEvent() {
     const { publicationStartDate, publicationEndDate } = data;
 
     // parameter作成
-    const updateData = put(publicationStartDate, publicationEndDate);
+    const updateData = create(publicationStartDate, publicationEndDate);
 
     // apiを叩くメソッドを走らせる
     return await api.put(documentInfo, updateData);

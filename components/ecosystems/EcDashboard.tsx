@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ParsedUrlQuery } from "querystring";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -15,26 +15,39 @@ import {
   OrCardTextField,
   OrCardBar,
 } from "@/components/organisms/EntryPoint";
+// context
+import { useLoadingContext } from "@/context/LoadingContext";
 // domain
 import { chartData } from "@/architecture/domain/chart";
 // application
 import { downloadXlsx } from "@/architecture/application/downloadXlsx";
 import { downloadTxt } from "@/architecture/application/downloadTxt";
+import { putEvent } from "@/architecture/application/putEvent";
+import { getToday } from "@/architecture/application/getToday";
+import { getDashboard } from "@/architecture/application/getDashboard";
+import { dashboardData } from "@/architecture/application/dashboardData";
 
 type PublicationStartDate = "publicationStartDate";
 type PublicationEndDate = "publicationEndDate";
 type Edit = "Edit";
 type Save = "Save";
 interface Props {
-  dashboardData: DashboardData;
+  dashboard: Dashboard;
   query: ParsedUrlQuery;
 }
 
-const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
+const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   const { t } = useTranslation("common");
   const { excelFile } = downloadXlsx(); // ダウンロード
   const { textFile } = downloadTxt(); // ダウンロード
-  const adminUser: boolean = query.secret === dashboardData.secretKey; // 閲覧権限
+  const { setLoading } = useLoadingContext(); // loading
+  const { updateEvent } = putEvent(); // api
+  const { createDate } = getToday(); // 本日の日付
+  const { createAcquiredInformation } = getDashboard(); // api
+  const { conversion } = dashboardData(); // dashboardData整形
+  const adminUser: boolean = query.secret === dashboard.secretKey; // 閲覧権限
+  const documentId = query[""]!.toLocaleString();
+  const today = createDate();
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false); // 編集ボタン制御
   const [isPublicationEndDateEdit, setIsPublicationEndDateEdit] =
@@ -46,8 +59,8 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
     formState: { errors },
   } = useForm<DashboardFormVales>({
     defaultValues: {
-      publicationStartDate: dashboardData.formPublicationStartDate,
-      publicationEndDate: dashboardData.formPublicationEndDate,
+      publicationStartDate: dashboard.formPublicationStartDate,
+      publicationEndDate: dashboard.formPublicationEndDate,
     },
   });
 
@@ -71,38 +84,58 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
     is.publicationEndDateEdit && setIsPublicationEndDateEdit(true); // 終了日の編集開始
     // 開始日の編集終了
     if (is.publicationStartDateSave) {
-      if (errors.publicationStartDate) return;
-      setIsPublicationStartDateEdit(false);
-      handleSubmit(onSubmit)();
+      if (errors.publicationStartDate) return; // フォームにエラーがあれば弾く
+      setIsPublicationStartDateEdit(false); // 編集ボタンの制御を切り替える
+      handleSubmit(onSubmit)(); // 送信
     }
     // 終了日の編集終了
     if (is.publicationEndDateSave) {
-      if (errors.publicationEndDate) return;
-      setIsPublicationEndDateEdit(false);
-      handleSubmit(onSubmit)();
+      if (errors.publicationEndDate) return; // フォームにエラーがあれば弾く
+      setIsPublicationEndDateEdit(false); // 編集ボタンの制御を切り替える
+      handleSubmit(onSubmit)(); // 送信
     }
   };
 
   // グラフデータの生成
   const grafData: ChartData<"bar", number[], string> = chartData(
-    dashboardData.grafOptions,
-    dashboardData.grafEffectiveVotes,
-    dashboardData.grafPercentCredits
+    dashboard.grafOptions,
+    dashboard.grafEffectiveVotes,
+    dashboard.grafPercentCredits
   );
   // 投票数・投票率ダウンロード
   const downloadXLSX = () =>
     excelFile(
-      dashboardData.grafOptions,
-      dashboardData.grafEffectiveVotes,
-      dashboardData.grafPercentCredits
+      dashboard.grafOptions,
+      dashboard.grafEffectiveVotes,
+      dashboard.grafPercentCredits
     );
   // 投票者リンクダウンロード
-  const downloadTXT = () => textFile(dashboardData.voterLinks);
+  const downloadTXT = () => textFile(dashboard.voterLinks);
+
   // 公開開始日・公開終了日の更新
   const onSubmit: SubmitHandler<DashboardFormVales> = async (
     data: DashboardFormVales
   ) => {
-    console.log(data);
+    // apiを叩く
+    setLoading(true);
+    await updateEvent(data, "event", documentId);
+    const response = await createAcquiredInformation(
+      "event",
+      documentId,
+      "answer"
+    );
+    const conversionEventData = conversion(response!);
+    const {
+      detailPublicationStartDate,
+      detailPublicationEndDate,
+      formPublicationEndDate,
+      formPublicationStartDate,
+    } = conversionEventData;
+    dashboard.formPublicationStartDate = formPublicationStartDate;
+    dashboard.detailPublicationStartDate = detailPublicationStartDate;
+    dashboard.formPublicationEndDate = formPublicationEndDate;
+    dashboard.detailPublicationEndDate = detailPublicationEndDate;
+    setLoading(false);
   };
 
   return (
@@ -113,13 +146,13 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
         labelTitle={t("common.dashboard.participantAndEffectiveVotes.title")}
         leftForm={{
           title: t("common.dashboard.participant.title"),
-          molecule: dashboardData.participantVotesMolecule,
-          denominator: dashboardData.participantVotesDenominator,
+          molecule: dashboard.participantVotesMolecule,
+          denominator: dashboard.participantVotesDenominator,
         }}
         rightForm={{
           title: t("common.dashboard.effectiveVotes.title"),
-          molecule: dashboardData.effectiveVotesMolecule,
-          denominator: dashboardData.effectiveVotesDenominator,
+          molecule: dashboard.effectiveVotesMolecule,
+          denominator: dashboard.effectiveVotesDenominator,
         }}
       />
       <br />
@@ -138,7 +171,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
       <OrCardText
         title={t("common.event.eventTitle.title")}
         required={false}
-        contents={dashboardData.title}
+        contents={dashboard.title}
         showEdit={false}
         disabled={false}
       />
@@ -146,7 +179,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
       <OrCardText
         title={t("common.event.overview.title")}
         required={false}
-        contents={dashboardData.overview}
+        contents={dashboard.overview}
         showEdit={false}
         disabled={false}
       />
@@ -156,7 +189,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
         <OrCardForm
           showSave
           title={t("common.event.publicationStartDate.title")}
-          defaultValue={dashboardData.formPublicationStartDate}
+          defaultValue={dashboard.formPublicationStartDate}
           required={true}
           register={register("publicationStartDate", {
             required: utilsValidationRule.REQUIRED,
@@ -168,6 +201,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
                   : utilsValidationRule.START_DATE.message,
             },
           })}
+          min={today}
           error={errors.publicationStartDate}
           placeholder=""
           disabled={false}
@@ -180,7 +214,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
         <OrCardText
           title={t("common.event.publicationStartDate.title")}
           required={false}
-          contents={dashboardData.detailPublicationStartDate}
+          contents={dashboard.detailPublicationStartDate}
           showEdit
           disabled={isPublicationEndDateEdit || !adminUser}
           onClick={() => changeEditMode("publicationStartDate", "Edit")}
@@ -191,7 +225,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
         <OrCardForm
           showSave
           title={t("common.event.publicationEndDate.title")}
-          defaultValue={dashboardData.formPublicationEndDate}
+          defaultValue={dashboard.formPublicationEndDate}
           required={true}
           register={register("publicationEndDate", {
             required: utilsValidationRule.REQUIRED,
@@ -203,6 +237,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
                   : utilsValidationRule.END_DATE.message,
             },
           })}
+          min={today}
           placeholder=""
           disabled={false}
           type="datetime-local"
@@ -215,7 +250,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
         <OrCardText
           title={t("common.event.publicationEndDate.title")}
           required={false}
-          contents={dashboardData.detailPublicationEndDate}
+          contents={dashboard.detailPublicationEndDate}
           showEdit
           disabled={isPublicationStartDateEdit || !adminUser}
           onClick={() => changeEditMode("publicationEndDate", "Edit")}
@@ -225,7 +260,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
       <OrCardForm
         readOnly={true}
         title={t("common.dashboard.participantDashboard.title")}
-        defaultValue={`http://localhost:4000/dashboard/id?=${dashboardData.participantDashboardLink}`}
+        defaultValue={`http://localhost:4000/dashboard/id?=${dashboard.participantDashboardLink}`}
         required={false}
         placeholder=""
         disabled={false}
@@ -238,7 +273,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
         <OrCardForm
           readOnly={true}
           title={t("common.dashboard.adminDashboard.title")}
-          defaultValue={`http://localhost:4000/dashboard/id?=${dashboardData.adminDashboardLink}`}
+          defaultValue={`http://localhost:4000/dashboard/id?=${dashboard.adminDashboardLink}`}
           required={false}
           placeholder=""
           disabled={false}
@@ -253,7 +288,7 @@ const EcDashboard: React.FC<Props> = ({ dashboardData, query }) => {
           title={t("common.dashboard.votersLink.title")}
           required={false}
           overView={t("common.dashboard.votersLink.detail")}
-          defaultValue={dashboardData.voterLinks}
+          defaultValue={dashboard.voterLinks}
           id={"votersLink"}
           name={"votersLink"}
           type="text"

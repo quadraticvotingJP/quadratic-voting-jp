@@ -11,7 +11,7 @@ const Id = ({
   conversionEventData,
   query,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  return <EcDashboard dashboardData={conversionEventData} query={query} />;
+  return <EcDashboard dashboard={conversionEventData} query={query} />;
 };
 export default Id;
 

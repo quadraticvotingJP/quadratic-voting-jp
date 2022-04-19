@@ -97,7 +97,7 @@ interface AcquiredInformation {
 }
 
 // ダッシュボード情報
-interface DashboardData {
+interface Dashboard {
   readonly participantVotesMolecule: string; // [参加者数・投票数]参加者数の分子
   readonly participantVotesDenominator: string; // [参加者数・投票数]参加者数の分母
   readonly effectiveVotesMolecule: string; // [参加者数・投票数]投票数の分子

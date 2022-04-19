@@ -3,11 +3,11 @@ import { DocumentData } from "firebase/firestore";
 export function dashboardData() {
   /**
    * @description
-   * レスポンスデータをもとにDashboardDataを整形する
+   * レスポンスデータをもとにDashboardを整形する
    * @param response @type {DocumentData}
-   * @returns @type {DashboardData}
+   * @returns @type {Dashboard}
    */
-  function conversion(response: DocumentData): DashboardData {
+  function conversion(response: DocumentData): Dashboard {
     const {
       title,
       overview,

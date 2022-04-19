@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ParsedUrlQuery } from "querystring";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -46,6 +46,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   const { createAcquiredInformation } = getDashboard(); // api
   const { conversion } = dashboardData(); // dashboardData整形
   const adminUser: boolean = query.secret === dashboard.secretKey; // 閲覧権限
+  const documentId = query[""]!.toLocaleString();
   const today = createDate();
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false); // 編集ボタン制御
@@ -115,7 +116,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   const onSubmit: SubmitHandler<DashboardFormVales> = async (
     data: DashboardFormVales
   ) => {
-    const documentId = query[""]!.toLocaleString();
     // apiを叩く
     setLoading(true);
     await updateEvent(data, "event", documentId);

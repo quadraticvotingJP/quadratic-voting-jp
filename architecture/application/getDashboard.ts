@@ -7,7 +7,7 @@ import { getDocument } from "@/architecture/adapter/getDocument";
 import { getFirestore, DocumentData } from "firebase/firestore";
 
 export function getDashboard() {
-  function createAcquiredInformation(
+  async function createAcquiredInformation(
     collectionName: string,
     documentId: string,
     subCollectionName: string
@@ -19,7 +19,7 @@ export function getDashboard() {
       documentId,
       subCollectionName
     );
-    return api.get(fireStore, documentInformation);
+    return await api.get(fireStore, documentInformation);
   }
   return { createAcquiredInformation };
 }

@@ -47,7 +47,6 @@ export function getDocument() {
       await querySnapshot.forEach((doc: any): void => {
         subDocument.push(doc.data());
       });
-
       return docSnap.exists()
         ? subDocument.length !== 0
           ? { ...docSnap.data(), answer: subDocument } // 回答(answer)がある場合回答一覧を返す

@@ -107,10 +107,10 @@ interface Dashboard {
   readonly grafPercentCredits: number[]; // [投票数・投票率]投票率
   readonly title: string; // [タイトル]
   readonly overview: string; // [概要]
-  readonly detailPublicationStartDate: string; // [公開開始日]確認用Data
-  readonly formPublicationStartDate: string; // [公開開始日]フォーム用Data
-  readonly detailPublicationEndDate: string; // [公開終了日]確認用Data
-  readonly formPublicationEndDate: string; // [公開終了日]フォーム用のData
+  detailPublicationStartDate: string; // [公開開始日]確認用Data  Dashboardの更新するためreadonlyを外す
+  formPublicationStartDate: string; // [公開開始日]フォーム用Data  Dashboardの更新するためreadonlyを外す
+  detailPublicationEndDate: string; // [公開終了日]確認用Data  Dashboardの更新するためreadonlyを外す
+  formPublicationEndDate: string; // [公開終了日]フォーム用のData  Dashboardの更新するためreadonlyを外す
   readonly participantDashboardLink: string; // [ダッシュボード（参加者用）]
   readonly adminDashboardLink: string; // [ダッシュボード（管理者用）]
   readonly voterLinks: string; //  [投票者リンク]

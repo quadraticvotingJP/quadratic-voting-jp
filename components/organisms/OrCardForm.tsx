@@ -24,6 +24,8 @@ type Props = {
   readonly defaultValue?: string;
   readonly min?: string;
   readonly readOnly?: boolean;
+  readonly showSave?: boolean;
+  readonly onClick?: () => void;
 };
 
 // eslint-disable-next-line react/display-name
@@ -45,6 +47,8 @@ const OrCardForm: React.FC<Props> = ({
   readOnly,
   min,
   error,
+  showSave,
+  onClick,
 }) => {
   return (
     <>
@@ -65,6 +69,8 @@ const OrCardForm: React.FC<Props> = ({
           readOnly={readOnly}
           min={min}
           error={error}
+          showSave={showSave}
+          onClick={onClick}
         />
       </Card>
     </>

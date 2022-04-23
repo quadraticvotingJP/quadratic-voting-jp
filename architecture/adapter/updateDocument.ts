@@ -1,21 +1,21 @@
-import { setDoc, DocumentReference, DocumentData } from "firebase/firestore";
-export function setCollection() {
+import { updateDoc, DocumentReference, DocumentData } from "firebase/firestore";
+export function putDocuments() {
   return {
     /**
      * @description
      * 実際にAPIを叩く箇所
-     * fireStoreにイベント情報をsetする
+     * イベントの公開日、公開終了日を更新する
      * @param documentInfo
      * 　@type {DocumentReference<DocumentData>}
      * @param data
-     * 　@type {EventPostType}
+     * 　@type {DashboardFormVales}
      * @returns @type {void}
      */
-    set(
+    put(
       documentInfo: DocumentReference<DocumentData>,
-      data: EventPostType
+      data: DashboardFormVales
     ): void {
-      setDoc(documentInfo, {
+      updateDoc(documentInfo, {
         ...data,
       });
     },

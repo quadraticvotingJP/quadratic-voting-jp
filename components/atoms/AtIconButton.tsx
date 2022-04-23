@@ -9,18 +9,20 @@ import { IconButton } from "@mui/material";
 // iconの種類はd.tsを参照@mui/icons-material/
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import Save from "@mui/icons-material/save";
 
 type Props = {
   readonly size: Readonly<ButtonSize>;
-  readonly disabled: boolean;
+  readonly disabled?: boolean;
   readonly onClick?: () => void;
   readonly showEdit?: boolean;
   readonly showDelete?: boolean;
+  readonly showSave?: boolean;
 };
 
 // eslint-disable-next-line react/display-name
 const AtIconButton: React.FC<Props> = React.memo(
-  ({ onClick, size, showEdit, showDelete, disabled }) => {
+  ({ onClick, size, showSave, showEdit, showDelete, disabled }) => {
     return (
       <>
         {showDelete && (
@@ -41,6 +43,16 @@ const AtIconButton: React.FC<Props> = React.memo(
             disabled={disabled}
           >
             <EditIcon />
+          </IconButton>
+        )}
+        {showSave && (
+          <IconButton
+            color="primary"
+            onClick={onClick}
+            size={size}
+            disabled={disabled}
+          >
+            <Save />
           </IconButton>
         )}
       </>

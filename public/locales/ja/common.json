@@ -30,7 +30,8 @@
       "add": "追加",
       "edit": "編集",
       "download": "ダウンロード",
-      "downloadXlsx": "ダウンロード(.xlsx)"
+      "downloadXlsx": "ダウンロード(.xlsx)",
+      "downloadTxt": "ダウンロード(.txt)"
     },
     "event": {
       "eventTitle": {

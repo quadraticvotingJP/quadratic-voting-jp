@@ -77,6 +77,8 @@ interface EventPostType {
   readonly participant: number;
   readonly votes: number;
   readonly options: Option[];
+  readonly participantLinks: string[];
+  readonly documentId: string;
   readonly secretKey: string;
   readonly createAt: FieldValue;
 }
@@ -91,4 +93,48 @@ interface EventVoteType {
   votes: number;
   options: VoteOption[];
   createAt: FieldValue;
+}
+// 回答者
+interface AnswerOption {
+  readonly id: string;
+  readonly vote: number;
+}
+
+// 回答者
+interface Answer {
+  readonly votes: AnswerOption[];
+}
+
+// ダッシュボード情報取得時
+interface AcquiredInformation {
+  readonly collectionName: string;
+  readonly documentId: string;
+  readonly subCollectionName: string;
+}
+
+// ダッシュボード情報
+interface Dashboard {
+  readonly participantVotesMolecule: string; // [参加者数・投票数]参加者数の分子
+  readonly participantVotesDenominator: string; // [参加者数・投票数]参加者数の分母
+  readonly effectiveVotesMolecule: string; // [参加者数・投票数]投票数の分子
+  readonly effectiveVotesDenominator: string; // [参加者数・投票数]投票数の分母
+  readonly grafOptions: string[]; // [投票数・投票率]選択肢
+  readonly grafEffectiveVotes: number[]; // [投票数・投票率]投票数
+  readonly grafPercentCredits: number[]; // [投票数・投票率]投票率
+  readonly title: string; // [タイトル]
+  readonly overview: string; // [概要]
+  detailPublicationStartDate: string; // [公開開始日]確認用Data  Dashboardの更新するためreadonlyを外す
+  formPublicationStartDate: string; // [公開開始日]フォーム用Data  Dashboardの更新するためreadonlyを外す
+  detailPublicationEndDate: string; // [公開終了日]確認用Data  Dashboardの更新するためreadonlyを外す
+  formPublicationEndDate: string; // [公開終了日]フォーム用のData  Dashboardの更新するためreadonlyを外す
+  readonly participantDashboardLink: string; // [ダッシュボード（参加者用）]
+  readonly adminDashboardLink: string; // [ダッシュボード（管理者用）]
+  readonly voterLinks: string; //  [投票者リンク]
+  readonly secretKey: string; //  シークレットキー
+}
+
+// ダッシュボード更新
+interface DashboardFormVales {
+  readonly publicationStartDate: string;
+  readonly publicationEndDate: string;
 }

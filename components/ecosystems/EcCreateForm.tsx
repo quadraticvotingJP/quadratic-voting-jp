@@ -15,14 +15,17 @@ import { useLoadingContext } from "@/context/LoadingContext";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 import { postEvent } from "@/architecture/application/postEvent";
+import { getToday } from "@/architecture/application/getToday";
 
 const EcCreateForm: React.FC = () => {
   const { t } = useTranslation("common");
   const { setLoading } = useLoadingContext(); // loading
   const { createEvent } = postEvent(); // api
+  const { createDate } = getToday(); // 本日の日付
   const secretKey = UUID.generate(); // secretKeyの生成
   const [isEdit, setIsEdit] = useState<boolean>(false); // 編集モードかどうか
   const [id, setId] = useState<number>(1); // optionsのid
+  const today = createDate();
   const {
     register,
     handleSubmit,
@@ -38,19 +41,12 @@ const EcCreateForm: React.FC = () => {
     },
   });
 
-  // 日付制御用に本日の日付を取得
-  const newDate = new Date();
-  const today = `${newDate.getFullYear()}-${(
-    "0" +
-    (newDate.getMonth() + 1)
-  ).slice(-2)}-${("0" + newDate.getDate()).slice(-2)}T00:00`;
-
   const onSubmit: SubmitHandler<EventValues> = async (data: EventValues) => {
     // apiを叩く
     setLoading(true);
     const document = await createEvent(data, "event", secretKey);
     setLoading(false);
-    routerPush(`/dashboard/${document.id}&secret=${secretKey}`);
+    routerPush(`/dashboard/id?=${document.id}&secret=${secretKey}`);
     reset();
   };
 
@@ -112,7 +108,7 @@ const EcCreateForm: React.FC = () => {
   return (
     <>
       <AtH2 title={t("pageTitle.creat")} />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <OrCardForm
           title={t("common.event.eventTitle.title")}
           overView={t("common.event.eventTitle.detail")}
@@ -174,7 +170,7 @@ const EcCreateForm: React.FC = () => {
               value: (v) =>
                 new Date(v) > new Date(getValues("publicationStartDate"))
                   ? true
-                  : utilsValidationRule.DATE.message,
+                  : utilsValidationRule.END_DATE.message,
             },
           })}
           id="publicationEndDate"
@@ -222,7 +218,7 @@ const EcCreateForm: React.FC = () => {
         <br />
         <OrAccordion
           title={t("common.event.options.title")}
-          required={false}
+          required={true}
           options={getValues("options")}
           register={register("options", {
             validate: {
@@ -249,7 +245,7 @@ const EcCreateForm: React.FC = () => {
         <br />
         <OrCardForms
           label={{
-            required: true,
+            required: false,
             title: t("common.event.createOption.formTitle"),
             overView: t("common.event.createOption.formDetail"),
           }}
@@ -305,10 +301,10 @@ const EcCreateForm: React.FC = () => {
         <br />
         <div className="flex justify-center">
           <AtButton
-            type="submit"
             title={t("common.button.eventCreation")}
             disabled={false}
             size={t("common.buttonSize.large")}
+            onClick={() => handleSubmit(onSubmit)()}
           />
         </div>
       </form>

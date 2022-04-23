@@ -7,6 +7,7 @@ export const utilsValidationRule = {
   MAX_100: { value: 100, message: "100票以下にしてください。" },
   MIN_2: { value: 2, message: "2人以上にしてください。" },
   MIN_1: { value: 1, message: "1票以上にしてください。" },
-  DATE: { message: "公開開始日より後ろに日付を設定してください。" },
+  END_DATE: { message: "公開開始日より後ろに日付を設定してください。" },
+  START_DATE: { message: "公開終了日より前に日付を設定してください。" },
   OPTIONS_LENGTH_2: { message: "選択肢を２つ以上作成してください。" },
 };

@@ -21,6 +21,7 @@ const EcVoteForm: React.VFC<Props> = ({ item }) => {
   const { setLoading } = useLoadingContext(); // loading
   const [voteOptions, setVoteOptions] = useState(item.options); // 選択肢
   const [credits, setCredits] = useState(item.votes); // 手持ち投票ポイント
+  console.log(item);
 
   const onSubmit: () => void = () => {
     setLoading(true);

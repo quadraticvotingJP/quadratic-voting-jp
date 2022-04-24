@@ -85,14 +85,14 @@ interface EventPostType {
 
 // イベント投票時の型
 interface EventVoteType {
-  id: string;
-  eventTitle: string;
-  overview: string;
-  publicationStartDate: string;
-  publicationEndDate: string;
-  votes: number;
-  options: VoteOption[];
-  createAt: FieldValue;
+  readonly id: string;
+  readonly eventTitle: string;
+  readonly overview: string;
+  readonly publicationStartDate: string;
+  readonly publicationEndDate: string;
+  readonly votes: number;
+  readonly options: VoteOption[];
+  // readonly createAt: FieldValue;
 }
 // 回答者
 interface AnswerOption {

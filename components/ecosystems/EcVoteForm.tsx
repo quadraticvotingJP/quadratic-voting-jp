@@ -24,30 +24,41 @@ const EcVoteForm: React.VFC<Props> = ({ item }) => {
 
   const onSubmit: () => void = () => {
     setLoading(true);
-    console.log(item);
+    console.log(voteOptions);
     setLoading(false);
   };
 
   /**
    * 選択肢毎の投票を実施する
    * @param option 選択肢
-   * @param code プラスかマイナスか
    * @retuen void
    */
-  const incrementDecrementVote = (option: VoteOption, code: "+" | "-") => {
+  const incrementVote = (option: VoteOption) => {
     setVoteOptions((oldOptions) => {
-      const newVoteOptions = oldOptions.map((oldOption) => {
-        if (oldOption.id === option.id) {
-          return {
-            ...oldOption,
-            vote: code === "+" ? oldOption.vote + 1 : oldOption.vote - 1,
-          };
-        }
-        return oldOption;
-      });
-      updateCredits(newVoteOptions);
-      return newVoteOptions;
+      return setNewVoteOptions(oldOptions, option, "+");
     });
+  };
+  const decrementVote = (option: VoteOption) => {
+    setVoteOptions((oldOptions) => {
+      return setNewVoteOptions(oldOptions, option, "-");
+    });
+  };
+  const setNewVoteOptions = (
+    oldOptions: VoteOption[],
+    option: VoteOption,
+    code: "+" | "-"
+  ) => {
+    const newVoteOptions = oldOptions.map((oldOption) => {
+      if (oldOption.id === option.id) {
+        return {
+          ...oldOption,
+          vote: code === "+" ? oldOption.vote + 1 : oldOption.vote - 1,
+        };
+      }
+      return oldOption;
+    });
+    updateCredits(newVoteOptions);
+    return newVoteOptions;
   };
 
   /**
@@ -104,7 +115,8 @@ const EcVoteForm: React.VFC<Props> = ({ item }) => {
               title={t("common.event.options.title")}
               option={option}
               votes={item.votes}
-              onClick={() => incrementDecrementVote(option, "+")}
+              incrementVote={() => incrementVote(option)}
+              decrementVote={() => decrementVote(option)}
             />
           </>
         );

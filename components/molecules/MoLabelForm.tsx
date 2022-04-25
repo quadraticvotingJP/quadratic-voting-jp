@@ -31,6 +31,7 @@ type Props = {
   readonly min?: string;
   readonly showSave?: boolean;
   readonly onClick?: () => void;
+  readonly onWheel?: <T>(arg: T) => void;
 };
 
 // eslint-disable-next-line react/display-name
@@ -54,6 +55,7 @@ const MoLabelForm: React.FC<Props> = ({
   min,
   showSave,
   onClick,
+  onWheel,
   labelMark = true,
 }) => {
   return (
@@ -85,6 +87,7 @@ const MoLabelForm: React.FC<Props> = ({
             disableUnderline={disableUnderline}
             readOnly={readOnly}
             min={min}
+            onWheel={onWheel}
           />
           {error && <span className="text-red-600">{error.message}</span>}
         </div>

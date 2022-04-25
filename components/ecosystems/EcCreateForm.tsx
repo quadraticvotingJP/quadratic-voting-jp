@@ -104,6 +104,10 @@ const EcCreateForm: React.FC = () => {
     // リストの更新
     setValue("options", newOptions);
   };
+  // scrollによる値変更禁止
+  // https://github.com/mui/material-ui/issues/7960#issuecomment-1076959490
+  const noScrolling = (event: any): void =>
+    event.target instanceof HTMLElement && event.target.blur();
 
   return (
     <>
@@ -197,6 +201,7 @@ const EcCreateForm: React.FC = () => {
           disabled={false}
           type="number"
           error={errors.participant}
+          onWheel={noScrolling}
         />
         <br />
         <OrCardForm
@@ -214,6 +219,7 @@ const EcCreateForm: React.FC = () => {
           disabled={false}
           type="number"
           error={errors.votes}
+          onWheel={noScrolling}
         />
         <br />
         <OrAccordion

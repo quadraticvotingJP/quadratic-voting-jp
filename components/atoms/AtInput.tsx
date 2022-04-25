@@ -16,6 +16,7 @@ type Props = {
   readonly disableUnderline?: boolean;
   readonly min?: string;
   readonly max?: string;
+  readonly onWheel?: <T>(arg: T) => void;
 };
 
 // eslint-disable-next-line react/display-name
@@ -32,6 +33,7 @@ const AtInput: React.FC<Props> = React.memo(
     max,
     disableUnderline = false,
     readOnly = false,
+    onWheel,
   }) => {
     return (
       <Input
@@ -46,6 +48,7 @@ const AtInput: React.FC<Props> = React.memo(
         disabled={disabled}
         disableUnderline={disableUnderline}
         readOnly={readOnly}
+        onWheel={onWheel}
       />
     );
   }

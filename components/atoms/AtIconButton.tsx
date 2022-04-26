@@ -27,7 +27,7 @@ const AtIconButton: React.FC<Props> = React.memo(
       <>
         {showDelete && (
           <IconButton
-            color="error"
+            className="text-red-900 hover:text-red-800"
             onClick={onClick}
             size={size}
             disabled={disabled}
@@ -37,7 +37,7 @@ const AtIconButton: React.FC<Props> = React.memo(
         )}
         {showEdit && (
           <IconButton
-            color="primary"
+            className="text-blue-900 hover:text-blue-800"
             onClick={onClick}
             size={size}
             disabled={disabled}
@@ -47,7 +47,7 @@ const AtIconButton: React.FC<Props> = React.memo(
         )}
         {showSave && (
           <IconButton
-            color="primary"
+            className="text-blue-900 hover:text-blue-800"
             onClick={onClick}
             size={size}
             disabled={disabled}

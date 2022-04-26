@@ -1,9 +1,13 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ParsedUrlQuery } from "querystring";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { utilsValidationRule } from "@/utils/validation";
+import {
+  utilsValidationRule,
+  inputDateMaxCheck,
+  inputDateMinCheck,
+} from "@/utils/validation";
 // library
 import { ChartData } from "chart.js";
 // Component
@@ -195,10 +199,11 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
             required: utilsValidationRule.REQUIRED,
             validate: {
               // 開始日と終了日の比較validation
-              value: (v) =>
-                new Date(v) < new Date(getValues("publicationEndDate"))
-                  ? true
-                  : utilsValidationRule.START_DATE.message,
+              value: (publicationStartDate) =>
+                inputDateMinCheck(
+                  publicationStartDate,
+                  getValues("publicationEndDate")
+                ),
             },
           })}
           min={today}
@@ -231,10 +236,11 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
             required: utilsValidationRule.REQUIRED,
             validate: {
               // 開始日と終了日の比較validation
-              value: (v) =>
-                new Date(v) > new Date(getValues("publicationStartDate"))
-                  ? true
-                  : utilsValidationRule.END_DATE.message,
+              value: (publicationEndDate) =>
+                inputDateMaxCheck(
+                  publicationEndDate,
+                  getValues("publicationStartDate")
+                ),
             },
           })}
           min={today}

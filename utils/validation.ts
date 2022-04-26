@@ -11,3 +11,44 @@ export const utilsValidationRule = {
   START_DATE: { message: "公開終了日より前に日付を設定してください。" },
   OPTIONS_LENGTH_2: { message: "選択肢を２つ以上作成してください。" },
 };
+
+/**
+ * @description 入力された日付が比較対象より小さいか比較
+ * @param inputDate @type {string} 入力された日付　startDate
+ * @param evaluationTarget @type {string}　比較する日付 endDate
+ * @returns @type {string | true}　true or エラーメッセージ
+ */
+export function inputDateMinCheck(
+  inputDate: string,
+  evaluationTarget: string
+): string | true {
+  return new Date(inputDate) < new Date(evaluationTarget)
+    ? true
+    : utilsValidationRule.START_DATE.message;
+}
+
+/**
+ * @description 入力された日付が比較対象より大きいか比較
+ * @param inputDate @type {string} 入力された日付 endDate
+ * @param evaluationTarget @type {string}　比較する日付 startDate
+ * @returns @type {string | true}　true or エラーメッセージ
+ */
+export function inputDateMaxCheck(
+  inputDate: string,
+  evaluationTarget: string
+): string | true {
+  return new Date(inputDate) > new Date(evaluationTarget)
+    ? true
+    : utilsValidationRule.END_DATE.message;
+}
+
+/**
+ * @description optionsが２つ以上あるかチェック
+ * @param options @type {Option[]} 現在作成されている選択肢
+ * @returns @type {string | true}　true or エラーメッセージ
+ */
+export function optionCheck(options: Option[]): string | true {
+  return options !== undefined && options.length >= 2
+    ? true
+    : utilsValidationRule.OPTIONS_LENGTH_2.message;
+}

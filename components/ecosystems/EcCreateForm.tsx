@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { utilsValidationRule } from "@/utils/validation";
+import {
+  utilsValidationRule,
+  inputDateMaxCheck,
+  inputDateMinCheck,
+  optionCheck,
+} from "@/utils/validation";
 import UUID from "uuidjs";
 // component
 import { AtH2, AtButton } from "@/components/atoms/EntryPoint";
@@ -153,6 +158,13 @@ const EcCreateForm: React.FC = () => {
           required={true}
           register={register("publicationStartDate", {
             required: utilsValidationRule.REQUIRED,
+            validate: {
+              value: (publicationStartDate) =>
+                inputDateMinCheck(
+                  publicationStartDate,
+                  getValues("publicationEndDate")
+                ),
+            },
           })}
           id="publicationStartDate"
           name="publicationStartDate"
@@ -170,11 +182,11 @@ const EcCreateForm: React.FC = () => {
           register={register("publicationEndDate", {
             required: utilsValidationRule.REQUIRED,
             validate: {
-              // 開始日と終了日の比較validation
-              value: (v) =>
-                new Date(v) > new Date(getValues("publicationStartDate"))
-                  ? true
-                  : utilsValidationRule.END_DATE.message,
+              value: (publicationEndDate) =>
+                inputDateMaxCheck(
+                  publicationEndDate,
+                  getValues("publicationStartDate")
+                ),
             },
           })}
           id="publicationEndDate"
@@ -228,13 +240,7 @@ const EcCreateForm: React.FC = () => {
           options={getValues("options")}
           register={register("options", {
             validate: {
-              // optionsが２つ以上あるかチェック
-              value: () => {
-                return getValues("options") !== undefined &&
-                  getValues("options").length >= 2
-                  ? true
-                  : utilsValidationRule.OPTIONS_LENGTH_2.message;
-              },
+              value: () => optionCheck(getValues("options")),
             },
           })}
           id={"options"}

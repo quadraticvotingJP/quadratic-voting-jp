@@ -4,7 +4,17 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "dist/_next/static/chunks/pages",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    "public": "dist",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "/",
+        "destination": "dist/_next/static/chunks/pages/"
+      },
+      {
+        "source": "**",
+        "destination": ".next/server/pages/ja.html"
+      }
+    ]
   }
 }

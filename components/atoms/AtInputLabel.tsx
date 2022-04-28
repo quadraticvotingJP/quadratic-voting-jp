@@ -17,7 +17,7 @@ const AtInputLabel: React.FC<Props> = React.memo(
   ({ title, required, focused }) => {
     return (
       <div className="flex h-6">
-        <div className="bg-indigo-400 w-2 mr-2"></div>
+        <div className="bg-blue-900 w-2 mr-2"></div>
         <InputLabel
           className="flex items-center font-bold"
           required={required}

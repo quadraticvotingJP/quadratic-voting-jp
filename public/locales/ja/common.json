@@ -6,10 +6,8 @@
   "footer": {
     "gitHub": "GitHub",
     "gitHubLink": "https://github.com/quadraticvotingJP/quadratic-voting-jp",
-    "terms": "利用規約",
-    "termsLink": "http://quadraticvoting.jp/",
-    "policy": "プライバシーポリシー",
-    "policyLink": "http://quadraticvoting.jp/",
+    "contact": "お問い合わせ",
+    "contactLink": "https://forms.gle/eBvDiCBEsFHRu4556",
     "siteName": "QuadraticVoting.jp",
     "siteNameLink": "http://quadraticvoting.jp/"
   },

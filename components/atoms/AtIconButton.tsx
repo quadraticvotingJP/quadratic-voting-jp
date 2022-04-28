@@ -7,9 +7,7 @@ import React from "react";
 import { IconButton } from "@mui/material";
 // icon
 // iconの種類はd.tsを参照@mui/icons-material/
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import Save from "@mui/icons-material/save";
+import { Save, Edit, Delete } from "@mui/icons-material";
 
 type Props = {
   readonly size: Readonly<ButtonSize>;
@@ -32,7 +30,7 @@ const AtIconButton: React.FC<Props> = React.memo(
             size={size}
             disabled={disabled}
           >
-            <DeleteIcon />
+            <Delete />
           </IconButton>
         )}
         {showEdit && (
@@ -42,7 +40,7 @@ const AtIconButton: React.FC<Props> = React.memo(
             size={size}
             disabled={disabled}
           >
-            <EditIcon />
+            <Edit />
           </IconButton>
         )}
         {showSave && (

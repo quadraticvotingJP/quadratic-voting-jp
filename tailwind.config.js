@@ -4,14 +4,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        red: { 800: "", 900: "" },
+        red: { 900: "#FA0E0E" }, // colorのカスタム
         blue: {
-          800: "",
-          900: "#2F9BFF",
+          900: "#2F9BFF", // colorのカスタム
         },
         black: {
-          800: "",
-          900: "#002134",
+          900: "#002134", // colorのカスタム
         },
       },
     },

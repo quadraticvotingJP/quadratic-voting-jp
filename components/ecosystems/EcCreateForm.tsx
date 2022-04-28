@@ -38,6 +38,7 @@ const EcCreateForm: React.FC = () => {
     watch,
     setValue,
     reset,
+    trigger,
     formState: { errors },
   } = useForm<EventValues>({
     defaultValues: {
@@ -88,7 +89,7 @@ const EcCreateForm: React.FC = () => {
     // 値のセット
     setValue("options", newOptions);
     // リストの更新
-    watch("options");
+    trigger("options");
   };
 
   // 選択肢編集

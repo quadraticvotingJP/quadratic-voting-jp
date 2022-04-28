@@ -21,17 +21,30 @@ export function LoadingProvider({ children }: any) {
     setLoading,
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center">
-        <CircularProgress color="info" size={80} />
-      </div>
-    );
-  } else {
-    return (
-      <LoadingContext.Provider value={provideValues}>
-        {!loading && children}
-      </LoadingContext.Provider>
-    );
-  }
+  return (
+    <LoadingContext.Provider value={provideValues}>
+      {loading && (
+        <>
+          {/* todo:heightがなぜか当たらないので空要素を置く、、、、 */}
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <div className="flex justify-center items-center">
+            <CircularProgress color="info" size={80} />
+          </div>
+        </>
+      )}
+      {!loading && children}
+    </LoadingContext.Provider>
+  );
 }

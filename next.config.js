@@ -7,4 +7,8 @@ const nextConfig = {
   i18n,
 };
 
+module.exports = {
+  distDir: "../.next",
+};
+
 module.exports = nextConfig;

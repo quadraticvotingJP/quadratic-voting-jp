@@ -6,6 +6,7 @@
     "paths": {
       "@/*": ["./*"] //エイリアス
     },
+    "noUnusedLocals": false, // 使われていない変数を禁止する
     "noImplicitAny": true, //暗黙的にanyになる値をエラーにする
     "allowJs": true, // .jsと.jsxもコンパイル対象に含めるか
     "skipLibCheck": true, // *.d.ts ファイルに対する型チェックをスキップするか

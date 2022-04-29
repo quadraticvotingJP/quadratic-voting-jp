@@ -5,50 +5,75 @@ import { EcVoteForm } from "@/components/ecosystems/EntryPoint";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
+import { getAnswerData } from "@/architecture/application/getAnswer";
 import { getEventData } from "@/architecture/application/getEvent";
-import { dashboardData } from "@/architecture/application/dashboardData";
 
 const Id = ({
-  item,
+  event,
   documentId,
   query,
+  answer,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  return <EcVoteForm query={query} documentId={documentId} item={item} />;
+  return answer ? (
+    ""
+  ) : (
+    <EcVoteForm query={query} documentId={documentId} event={event} />
+  );
 };
 export default Id;
 
 // i18n
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { answerInformation } = getAnswerData(); // api
   const { createAcquiredInformation } = getEventData(); // api
-  const { conversion } = dashboardData(); // dashboardData整形
   const language: string = context.locale!;
   const documentId: string = context.query[""]!.toLocaleString();
-  const query: ParsedUrlQuery = context.query;
-  const item = await createAcquiredInformation("event", documentId, "answer");
+  const query: { user?: string } = context.query;
 
-  if (item === undefined) {
+  const event = await createAcquiredInformation("event", documentId, "answer");
+
+  if (query.user) {
+    const userId = query.user;
+    const answer = await answerInformation(
+      "event",
+      documentId,
+      "answer",
+      userId
+    );
+
+    if (answer !== undefined) {
+      return {
+        props: {
+          answer: true,
+          ...(await serverSideTranslations(language, ["common"])),
+        },
+      };
+    }
+  }
+
+  if (event === undefined) {
     return {
       props: {
-        item,
-        query,
+        answer: true,
         ...(await serverSideTranslations(language, ["common"])),
       },
     };
   }
-  delete item.createAt;
-  item.options.map((option: any) => {
+  delete event.createAt;
+  event.options.map((option: any) => {
     return Object.assign(option, {
       vote: 0,
       ...option,
     });
   });
-  // console.log(item);
+  // console.log(event);
 
   return {
     props: {
-      item,
+      event,
       documentId,
       query,
+      answer: false,
       ...(await serverSideTranslations(language, ["common"])),
     },
   };

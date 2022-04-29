@@ -3,9 +3,22 @@
 /**
  * @description
  */
-export function vote(votes: AnswerOption[], isVote: boolean): Answer {
+export function vote(votes: AnswerOption[]): Answer {
   return {
     votes: votes,
-    isVote: isVote,
+  };
+}
+
+export function answerStatus(
+  collectionName: string,
+  documentId: string,
+  subCollectionName: string,
+  userId: string
+) {
+  return {
+    collectionName: collectionName,
+    documentId: documentId,
+    subCollectionName: subCollectionName,
+    userId: userId,
   };
 }

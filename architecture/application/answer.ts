@@ -30,9 +30,9 @@ export function answer() {
     );
     // fireStoreの登録情報生成
     const documentInfo = doc(usersCollectionRef, userId);
-    const { votes, isVote } = data;
+    const { votes } = data;
     // parameter作成
-    const eventData = vote(votes, isVote);
+    const eventData = vote(votes);
     // apiを叩くメソッドを走らせる
     await api.set(documentInfo, eventData);
     return documentInfo;

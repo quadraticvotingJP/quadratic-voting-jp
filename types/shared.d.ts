@@ -103,7 +103,14 @@ interface AnswerOption {
 // 回答者
 interface Answer {
   readonly votes: AnswerOption[];
-  readonly isVote: boolean;
+}
+
+// 回答済み情報
+interface AnswerInformation {
+  readonly collectionName: string;
+  readonly documentId: string;
+  readonly subCollectionName: string;
+  readonly userId: string;
 }
 
 // ダッシュボード情報取得時

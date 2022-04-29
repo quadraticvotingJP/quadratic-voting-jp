@@ -11,8 +11,9 @@ import { dashboardData } from "@/architecture/application/dashboardData";
 const Id = ({
   item,
   documentId,
+  query,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  return <EcVoteForm documentId={documentId} item={item} />;
+  return <EcVoteForm query={query} documentId={documentId} item={item} />;
 };
 export default Id;
 
@@ -24,6 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const documentId: string = context.query[""]!.toLocaleString();
   const query: ParsedUrlQuery = context.query;
   const item = await createAcquiredInformation("event", documentId, "answer");
+
   if (item === undefined) {
     return {
       props: {
@@ -40,12 +42,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       ...option,
     });
   });
-  console.log(item);
+  // console.log(item);
 
   return {
     props: {
       item,
       documentId,
+      query,
       ...(await serverSideTranslations(language, ["common"])),
     },
   };

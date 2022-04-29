@@ -14,19 +14,22 @@ import { useLoadingContext } from "@/context/LoadingContext";
 
 // architecture
 import { answer } from "@/architecture/application/answer";
-import { ParsedUrlQuery } from "querystring";
 
 interface Props {
   item: EventVoteType;
   documentId: string;
+  query: {
+    user: string;
+  };
 }
 
-const EcVoteForm: React.VFC<Props> = ({ item, documentId }) => {
+const EcVoteForm: React.VFC<Props> = ({ item, documentId, query }) => {
   const { t } = useTranslation("common");
   const { voteEvent } = answer();
   const { setLoading } = useLoadingContext(); // loading
   const [voteOptions, setVoteOptions] = useState(item.options); // 選択肢
   const [credits, setCredits] = useState(item.votes); // 手持ち投票ポイント
+  const userId = query.user;
 
   const onSubmit: (data: VoteOption[]) => void = async (data: VoteOption[]) => {
     setLoading(true);
@@ -38,8 +41,9 @@ const EcVoteForm: React.VFC<Props> = ({ item, documentId }) => {
         };
         return votes;
       }),
+      isVote: true,
     };
-    await voteEvent(redata, "event", documentId, "answer");
+    await voteEvent(redata, "event", documentId, "answer", userId);
     setLoading(false);
   };
 

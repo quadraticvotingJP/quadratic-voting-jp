@@ -16,7 +16,8 @@ export function answer() {
     data: Answer,
     collectionName: string,
     targetDocument: string,
-    subCollectionName: string
+    subCollectionName: string,
+    userId: string
   ) {
     const fireStore = getFirestore();
     const api = setSubCollection();
@@ -28,10 +29,10 @@ export function answer() {
       subCollectionName
     );
     // fireStoreの登録情報生成
-    const documentInfo = doc(usersCollectionRef);
-    const { votes } = data;
+    const documentInfo = doc(usersCollectionRef, userId);
+    const { votes, isVote } = data;
     // parameter作成
-    const eventData = vote(votes);
+    const eventData = vote(votes, isVote);
     // apiを叩くメソッドを走らせる
     await api.set(documentInfo, eventData);
     return documentInfo;

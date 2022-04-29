@@ -103,6 +103,7 @@ interface AnswerOption {
 // 回答者
 interface Answer {
   readonly votes: AnswerOption[];
+  readonly isVote: boolean;
 }
 
 // ダッシュボード情報取得時

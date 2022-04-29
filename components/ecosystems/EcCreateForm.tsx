@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { utilsValidationRule } from "@/utils/validation";
+import {
+  utilsValidationRule,
+  inputDateMaxCheck,
+  inputDateMinCheck,
+  optionCheck,
+} from "@/utils/validation";
 import UUID from "uuidjs";
 // component
 import { AtH2, AtButton } from "@/components/atoms/EntryPoint";
@@ -33,6 +38,7 @@ const EcCreateForm: React.FC = () => {
     watch,
     setValue,
     reset,
+    trigger,
     formState: { errors },
   } = useForm<EventValues>({
     defaultValues: {
@@ -83,7 +89,7 @@ const EcCreateForm: React.FC = () => {
     // 値のセット
     setValue("options", newOptions);
     // リストの更新
-    watch("options");
+    trigger("options");
   };
 
   // 選択肢編集
@@ -104,6 +110,10 @@ const EcCreateForm: React.FC = () => {
     // リストの更新
     setValue("options", newOptions);
   };
+  // scrollによる値変更禁止
+  // https://github.com/mui/material-ui/issues/7960#issuecomment-1076959490
+  const noScrolling = (event: any): void =>
+    event.target instanceof HTMLElement && event.target.blur();
 
   return (
     <>
@@ -149,6 +159,13 @@ const EcCreateForm: React.FC = () => {
           required={true}
           register={register("publicationStartDate", {
             required: utilsValidationRule.REQUIRED,
+            validate: {
+              value: (publicationStartDate) =>
+                inputDateMinCheck(
+                  publicationStartDate,
+                  getValues("publicationEndDate")
+                ),
+            },
           })}
           id="publicationStartDate"
           name="publicationStartDate"
@@ -166,11 +183,11 @@ const EcCreateForm: React.FC = () => {
           register={register("publicationEndDate", {
             required: utilsValidationRule.REQUIRED,
             validate: {
-              // 開始日と終了日の比較validation
-              value: (v) =>
-                new Date(v) > new Date(getValues("publicationStartDate"))
-                  ? true
-                  : utilsValidationRule.END_DATE.message,
+              value: (publicationEndDate) =>
+                inputDateMaxCheck(
+                  publicationEndDate,
+                  getValues("publicationStartDate")
+                ),
             },
           })}
           id="publicationEndDate"
@@ -197,6 +214,7 @@ const EcCreateForm: React.FC = () => {
           disabled={false}
           type="number"
           error={errors.participant}
+          onWheel={noScrolling}
         />
         <br />
         <OrCardForm
@@ -214,6 +232,7 @@ const EcCreateForm: React.FC = () => {
           disabled={false}
           type="number"
           error={errors.votes}
+          onWheel={noScrolling}
         />
         <br />
         <OrAccordion
@@ -222,13 +241,7 @@ const EcCreateForm: React.FC = () => {
           options={getValues("options")}
           register={register("options", {
             validate: {
-              // optionsが２つ以上あるかチェック
-              value: () => {
-                return getValues("options") !== undefined &&
-                  getValues("options").length >= 2
-                  ? true
-                  : utilsValidationRule.OPTIONS_LENGTH_2.message;
-              },
+              value: () => optionCheck(getValues("options")),
             },
           })}
           id={"options"}

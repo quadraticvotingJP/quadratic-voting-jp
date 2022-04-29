@@ -86,7 +86,7 @@ interface EventPostType {
 // イベント投票時の型
 interface EventVoteType {
   readonly id: string;
-  readonly eventTitle: string;
+  readonly title: string;
   readonly overview: string;
   readonly publicationStartDate: string;
   readonly publicationEndDate: string;

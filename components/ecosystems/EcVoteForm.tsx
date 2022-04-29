@@ -12,20 +12,34 @@ import { OrProposalBlocks } from "@/components/organisms/EntryPoint";
 // context
 import { useLoadingContext } from "@/context/LoadingContext";
 
+// architecture
+import { answer } from "@/architecture/application/answer";
+import { ParsedUrlQuery } from "querystring";
+
 interface Props {
   item: EventVoteType;
+  documentId: string;
 }
 
-const EcVoteForm: React.VFC<Props> = ({ item }) => {
+const EcVoteForm: React.VFC<Props> = ({ item, documentId }) => {
   const { t } = useTranslation("common");
+  const { voteEvent } = answer();
   const { setLoading } = useLoadingContext(); // loading
   const [voteOptions, setVoteOptions] = useState(item.options); // 選択肢
   const [credits, setCredits] = useState(item.votes); // 手持ち投票ポイント
-  console.log(item);
 
-  const onSubmit: () => void = () => {
+  const onSubmit: (data: VoteOption[]) => void = async (data: VoteOption[]) => {
     setLoading(true);
-    console.log(voteOptions);
+    const redata: Answer = {
+      votes: data.map((option: VoteOption) => {
+        const votes: AnswerOption = {
+          id: String(option.id),
+          vote: option.vote,
+        };
+        return votes;
+      }),
+    };
+    await voteEvent(redata, "event", documentId, "answer");
     setLoading(false);
   };
 
@@ -82,7 +96,7 @@ const EcVoteForm: React.VFC<Props> = ({ item }) => {
       <OrCardText
         title={t("common.event.eventTitle.title")}
         required={false}
-        contents={item.eventTitle}
+        contents={item.title}
         showEdit={false}
         disabled={false}
       />
@@ -103,12 +117,9 @@ const EcVoteForm: React.VFC<Props> = ({ item }) => {
         disabled={false}
       />
       <br />
+      <br />
+      <AtH2 title={t("common.event.options.title")} />
       <OrProposalBlocks cost={credits} />
-      <AtInputLabel
-        required={false}
-        focused={false}
-        title={t("common.event.options.title")}
-      />
       {voteOptions.map((option: VoteOption, index: number) => {
         return (
           <>
@@ -128,7 +139,7 @@ const EcVoteForm: React.VFC<Props> = ({ item }) => {
           title={t("common.button.vote")}
           disabled={false}
           size={t("common.buttonSize.large")}
-          onClick={() => onSubmit()}
+          onClick={() => onSubmit(voteOptions)}
         />
       </div>
     </>

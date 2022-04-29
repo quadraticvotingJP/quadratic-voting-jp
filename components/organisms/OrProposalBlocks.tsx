@@ -10,7 +10,7 @@ const OrProposalBlocks: React.FC<Props> = React.memo(({ cost }) => {
 
   return (
     <>
-      <Card className="bg-indigo-400 top-64 py-12 px-12 right-10 text-white fixed text-center">
+      <Card className="bg-blue-900 top-64 py-12 px-12 right-10 text-white fixed text-center">
         <p className="m-0">{cost}</p>
       </Card>
     </>

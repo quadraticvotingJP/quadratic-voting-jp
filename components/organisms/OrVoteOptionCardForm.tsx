@@ -1,5 +1,5 @@
 import { Card } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 
 // components
 import { AtInputLabel } from "@/components/atoms/EntryPoint";
@@ -7,7 +7,6 @@ import { MoButtons } from "@/components/molecules/EntryPoint";
 import { useTranslation } from "next-i18next";
 
 interface Props {
-  readonly title: string;
   readonly votes?: number;
   readonly option: VoteOption;
   readonly incrementVote: (option: VoteOption) => void;
@@ -15,7 +14,6 @@ interface Props {
 }
 
 const OrVoteOptionCardForm: React.FC<Props> = ({
-  title,
   option,
   incrementVote,
   decrementVote,

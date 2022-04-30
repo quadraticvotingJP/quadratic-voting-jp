@@ -1,8 +1,10 @@
 /** @description Ecosystem Vote Form */
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { routerPush } from "@/architecture/application/routing";
+// i18n
 import { useTranslation } from "next-i18next";
 // component
-import { AtH2, AtButton, AtInputLabel } from "@/components/atoms/EntryPoint";
+import { AtH2, AtButton } from "@/components/atoms/EntryPoint";
 import {
   OrCardText,
   OrVoteOptionCardForm,
@@ -31,8 +33,10 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
   const [credits, setCredits] = useState(event.votes); // 手持ち投票ポイント
   const userId = query.user;
 
+  // 回答イベント
   const onSubmit: (data: VoteOption[]) => void = async (data: VoteOption[]) => {
-    setLoading(true);
+    await setLoading(true);
+    // 回答ようにデータを加工
     const redata: Answer = {
       votes: data.map((option: VoteOption) => {
         const votes: AnswerOption = {
@@ -42,8 +46,10 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
         return votes;
       }),
     };
+    // answerAPI
     await voteEvent(redata, "event", documentId, "answer", userId);
-    setLoading(false);
+    routerPush(`/dashboard/id?=${documentId}`);
+    await setLoading(false);
   };
 
   /**
@@ -61,6 +67,17 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
       return setNewVoteOptions(oldOptions, option, "-");
     });
   };
+
+  // ボタンの活性・非活性制御
+  const isActive: boolean = useMemo(() => {
+    return credits <= 0;
+  }, [credits]);
+  // 投票数のカラーを投票数に応じて変化させる
+  const creditsColor: string = useMemo(() => {
+    return credits > 0 ? "bg-blue-900" : "bg-red-900";
+  }, [credits]);
+
+  // オブジェクトの値刷新
   const setNewVoteOptions = (
     oldOptions: VoteOption[],
     option: VoteOption,
@@ -122,25 +139,24 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
       <br />
       <br />
       <AtH2 title={t("common.event.options.title")} />
-      <OrProposalBlocks cost={credits} />
+      <OrProposalBlocks color={creditsColor} cost={credits} />
       {voteOptions.map((option: VoteOption, index: number) => {
         return (
-          <>
+          <div key={`${index}-${option.id}`}>
             <OrVoteOptionCardForm
-              title={t("common.event.options.title")}
               option={option}
               votes={event.votes}
               incrementVote={() => incrementVote(option)}
               decrementVote={() => decrementVote(option)}
             />
-          </>
+          </div>
         );
       })}
       <br />
       <div className="text-center mt-8">
         <AtButton
           title={t("common.button.vote")}
-          disabled={false}
+          disabled={isActive}
           size={t("common.buttonSize.large")}
           onClick={() => onSubmit(voteOptions)}
         />

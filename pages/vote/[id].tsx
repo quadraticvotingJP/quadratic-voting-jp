@@ -1,57 +1,100 @@
-import { GetStaticPaths } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
-// component
-import { MoButtons } from "@/components/molecules/EntryPoint";
-import { OrCardText } from "@/components/organisms/EntryPoint";
-const Id = ({}) => {
-  const { t } = useTranslation("common");
-  return (
-    <>
-      <OrCardText
-        title={t("common.event.eventTitle.title")}
-        required={false}
-        contents={"次の都知事は誰？"}
-        showEdit={false}
-        disabled={false}
-      />
-      <br />
-      <OrCardText
-        title={t("common.event.overview.title")}
-        required={false}
-        contents={"都知事を決めるための選挙を行います"}
-        showEdit={false}
-        disabled={false}
-      />
-      <br />
-      <MoButtons
-        left={{ title: "-", disabled: false, onClick: () => {} }}
-        right={{ title: "+", disabled: false, onClick: () => {} }}
-      />
-    </>
-  );
-};
+/**
+ * @todo コンポーネントの出し分け処理
+ * @todo データ加工処理
+ * @todo 日付による画面出し分け制御
+ */
 
-export default Id;
+import React, { useEffect } from "react";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 // i18n
-export const getStaticProps = async ({ locale = "ja" }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ["common"])),
-  },
-});
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-// getStaticPaths:動的なルーティングを（ダイナミックルーティング）Next.jsで設定する際に使用
-// ビルド時に実行
-// https://y-hiroyuki.xyz/next-js/getstaticpaths
-export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+// component
+import { EcVoteForm } from "@/components/ecosystems/EntryPoint";
+
+//application
+import { getAnswerData } from "@/architecture/application/getAnswer";
+import { getEventData } from "@/architecture/application/getEvent";
+import { routerPush } from "@/architecture/application/routing";
+
+const Id = ({
+  event,
+  documentId,
+  query,
+  isAnswer,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  useEffect(() => {
+    if (isAnswer) routerPush(`/dashboard/id?=${documentId}`);
+  }, []);
+  return isAnswer ? (
+    <></>
+  ) : (
+    <EcVoteForm query={query} documentId={documentId} event={event} />
+  );
+};
+export default Id;
+
+// getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { answerInformation } = getAnswerData(); // api
+  const { createAcquiredInformation } = getEventData(); // api
+  const language: string = context.locale!;
+  const documentId: string = context.query[""]!.toLocaleString();
+  const query: { user?: string } = context.query;
+
+  const event = await createAcquiredInformation("event", documentId, "answer");
+
+  // Queryにユーザーデータが存在するか確認
+  if (query.user) {
+    const userId = query.user;
+    // //回答したデータが存在するかチェックするAPI
+    const answer = await answerInformation(
+      "event",
+      documentId,
+      "answer",
+      userId
+    );
+
+    // 回答者がいた場合
+    if (answer !== undefined) {
+      return {
+        props: {
+          documentId,
+          isAnswer: true,
+          ...(await serverSideTranslations(language, ["common"])),
+        },
+      };
+    }
+  }
+
+  // 該当するイベントが存在するか確認
+  if (event === undefined) {
+    return {
+      props: {
+        isAnswer: true,
+        documentId,
+        ...(await serverSideTranslations(language, ["common"])),
+      },
+    };
+  }
+  delete event.createAt;
+  // 投票用のKeyを取得した選択肢毎に追加する
+  event.options.map((option: any) => {
+    return Object.assign(option, {
+      vote: 0,
+      ...option,
+    });
+  });
+
+  // イベントが存在し、未回答の場合のリターン
   return {
-    // pathsは、どのパスをPre-renderingsするか指定
-    paths: [], //ビルド時にページを作成する必要がないことを示す
-
-    // fallbackは、指定されたパスがtrueかfalseかで返す値を決定するもの
-    // true:返されるのは事前に生成されたHTML
-    // false: 生成されていないパスは全て「404」
-    fallback: "blocking", //フォールバックの種類
+    props: {
+      event,
+      documentId,
+      query,
+      isAnswer: false,
+      ...(await serverSideTranslations(language, ["common"])),
+    },
   };
 };

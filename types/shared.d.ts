@@ -49,6 +49,11 @@ interface Option {
   readonly url: string;
 }
 
+// イベント投票時の型
+interface VoteOption extends Option {
+  readonly vote: number;
+}
+
 // イベント作成時の型
 interface EventValues {
   readonly title: string;
@@ -78,6 +83,17 @@ interface EventPostType {
   readonly createAt: FieldValue;
 }
 
+// イベント投票時の型
+interface EventVoteType {
+  readonly id: string;
+  readonly title: string;
+  readonly overview: string;
+  readonly publicationStartDate: string;
+  readonly publicationEndDate: string;
+  readonly votes: number;
+  readonly options: VoteOption[];
+  // readonly createAt: FieldValue;
+}
 // 回答者
 interface AnswerOption {
   readonly id: string;
@@ -87,6 +103,14 @@ interface AnswerOption {
 // 回答者
 interface Answer {
   readonly votes: AnswerOption[];
+}
+
+// 回答済み情報
+interface AnswerInformation {
+  readonly collectionName: string;
+  readonly documentId: string;
+  readonly subCollectionName: string;
+  readonly userId: string;
 }
 
 // ダッシュボード情報取得時

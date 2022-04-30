@@ -13,7 +13,8 @@
   },
   "pageTitle": {
     "creat": "イベント作成",
-    "dashboard": "ダッシュボード"
+    "dashboard": "ダッシュボード",
+    "vote": "投票"
   },
   "common": {
     "link": "http://localhost:4000/",
@@ -26,6 +27,7 @@
       "eventCreation": "イベント作成",
       "add": "追加",
       "edit": "編集",
+      "vote": "投票",
       "download": "ダウンロード",
       "downloadXlsx": "ダウンロード(.xlsx)",
       "downloadTxt": "ダウンロード(.txt)"
@@ -50,6 +52,9 @@
         "title": "公開終了日",
         "detail": "公開終了日を入力してください。",
         "placeholder": ""
+      },
+      "eventDeadline": {
+        "title": "投票期間"
       },
       "participant": {
         "title": "参加者",

@@ -34,12 +34,12 @@
       "eventTitle": {
         "title": "タイトル",
         "detail": "イベントタイトルを40文字で入力してください。",
-        "placeholder": "次の都知事は誰？"
+        "placeholder": "定期旅行の行き先決め"
       },
       "overview": {
         "title": "概要",
         "detail": "イベント概要を240文字で入力してください。",
-        "placeholder": "都知事を決めるため選挙を開催致します。"
+        "placeholder": "QuadraticVoting.jpを利用し、次回の旅行先を決めます。"
       },
       "publicationStartDate": {
         "title": "公開開始日",
@@ -54,12 +54,12 @@
       "participant": {
         "title": "参加者",
         "detail": "参加人数を入力してください。(最大:250人)",
-        "placeholder": "6"
+        "placeholder": "9"
       },
       "votes": {
         "title": "投票数",
         "detail": "一人あたりの投票数を入力してください。(最大:100票)",
-        "placeholder": "2"
+        "placeholder": "100"
       },
       "options": {
         "title": "選択肢"
@@ -68,11 +68,11 @@
         "formTitle": "選択肢作成",
         "formDetail": "選択肢を追加してください。最低2件必要です。",
         "optionTitle": "タイトル",
-        "titlePlaceholder": "山田太郎",
+        "titlePlaceholder": "尾瀬ヶ原",
         "optionDetail": "概要",
-        "detailPlaceholder": "マニュフェスト:ベーシックインカム月20万円",
+        "detailPlaceholder": "福島・群馬・新潟３県境の尾瀬地域にある日本最大の湿原。",
         "optionLink": "リンク",
-        "linkPlaceholder": "https://github.com/quadraticvotingJP/quadratic-voting-jp"
+        "linkPlaceholder": "https://www.oze-fnd.or.jp/"
       }
     },
     "dashboard": {

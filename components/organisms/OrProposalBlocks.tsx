@@ -6,6 +6,7 @@ interface Props {
   color: string;
 }
 
+// eslint-disable-next-line react/display-name
 const OrProposalBlocks: React.FC<Props> = React.memo(
   ({ cost, color = "bg-blue-900" }) => {
     useEffect(() => {}, [cost]);

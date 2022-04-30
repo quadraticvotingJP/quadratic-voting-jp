@@ -1,3 +1,9 @@
+/**
+ * @todo コンポーネントの出し分け処理
+ * @todo データ加工処理
+ * @todo 日付による画面出し分け制御
+ */
+
 import React, { useEffect } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 

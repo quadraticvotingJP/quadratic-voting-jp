@@ -40,3 +40,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# fireabse
+.firebase
+function/src/ui-debug.log

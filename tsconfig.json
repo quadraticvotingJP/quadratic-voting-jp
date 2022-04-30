@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".", // import時root参照ができる
     "paths": {
@@ -29,6 +29,6 @@
     "jsx": "preserve", // tsxファイルをjsxやjsにコンパイルする際の出力の形式を指定
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"], // コンパイルする対象ファイルを記述
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "functions/src/index.js"], // コンパイルする対象ファイルを記述 指定しない場合自動でワイルドカードになる
   "exclude": ["node_modules"]
 }

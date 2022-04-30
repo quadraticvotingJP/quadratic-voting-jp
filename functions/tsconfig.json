@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "target": "es5",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "esModuleInterop": true, // コンパイル時にヘルパーメソッドを作成するか
+    "allowJs": true, // .jsと.jsxもコンパイル対象に含めるか
+    "skipLibCheck": true // *.d.ts ファイルに対する型チェックをスキップするか
   },
   "compileOnSave": true,
   "include": ["src"],

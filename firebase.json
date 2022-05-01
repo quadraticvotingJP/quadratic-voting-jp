@@ -12,6 +12,12 @@
   },
   "hosting": {
     "public": "dist",
+    "rewrites": [
+      {
+        "source": "**/**",
+        "function": "nextApp"
+      }
+    ],
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }

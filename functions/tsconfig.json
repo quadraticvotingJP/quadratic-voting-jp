@@ -8,7 +8,9 @@
     "strict": true,
     "esModuleInterop": true, // コンパイル時にヘルパーメソッドを作成するか
     "allowJs": true, // .jsと.jsxもコンパイル対象に含めるか
-    "skipLibCheck": true // *.d.ts ファイルに対する型チェックをスキップするか
+    "typeRoots": [
+      "./functions/node_modules/@types" // ← functions内のnode_modules/@typesを指定する
+    ]
   },
   "compileOnSave": true,
   "include": ["src"],

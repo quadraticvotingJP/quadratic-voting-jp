@@ -20,19 +20,30 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { createAcquiredInformation } = getDashboard(); // api
   const { conversion } = dashboardData(); // dashboardData整形
   const language: string = context.locale!;
-  const documentId: string = context.query[""]!.toLocaleString();
-  const query: ParsedUrlQuery = context.query;
+  const query: { data?: string } = context.query;
   // サーバーサイドでAPIを叩いてresponseを整形する
-  const response = await createAcquiredInformation(
-    "event",
-    documentId,
-    "answer"
-  );
-  const conversionEventData = conversion(response!);
+
+  console.log(query);
+  if (query.data) {
+    const documentId: string = query.data;
+    const response = await createAcquiredInformation(
+      "event",
+      documentId,
+      "answer"
+    );
+    const conversionEventData = conversion(response!);
+    return {
+      props: {
+        ...(await serverSideTranslations(language, ["common"])), // i18n
+        conversionEventData,
+        query,
+      },
+    };
+  }
+  console.log("☆☆not id☆☆");
   return {
     props: {
       ...(await serverSideTranslations(language, ["common"])), // i18n
-      conversionEventData,
       query,
     },
   };

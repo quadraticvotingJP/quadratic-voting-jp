@@ -37,7 +37,7 @@ type Edit = "Edit";
 type Save = "Save";
 interface Props {
   dashboard: Dashboard;
-  query: ParsedUrlQuery;
+  query: { data: string; secret: string };
 }
 
 const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
@@ -50,7 +50,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   const { createAcquiredInformation } = getDashboard(); // api
   const { conversion } = dashboardData(); // dashboardData整形
   const adminUser: boolean = query.secret === dashboard.secretKey; // 閲覧権限
-  const documentId = query[""]!.toLocaleString();
+  const documentId = query.data;
   const today = createDate();
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false); // 編集ボタン制御

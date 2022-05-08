@@ -52,7 +52,7 @@ const EcCreateForm: React.FC = () => {
     setLoading(true);
     const document = await createEvent(data, "event", secretKey);
     setLoading(false);
-    routerPush(`/dashboard/id?=${document.id}&secret=${secretKey}`);
+    routerPush(`/dashboard/${document.id}&secret=${secretKey}`);
     reset();
   };
 

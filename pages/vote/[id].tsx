@@ -7,9 +7,6 @@
 import React, { useEffect } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
-// i18n
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
 // component
 import { EcVoteForm } from "@/components/ecosystems/EntryPoint";
 
@@ -25,7 +22,7 @@ const Id = ({
   isAnswer,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   useEffect(() => {
-    if (isAnswer) routerPush(`/dashboard/id?=${documentId}`);
+    if (isAnswer) routerPush(`/dashboard/id?data=${documentId}`);
   }, []);
   return isAnswer ? (
     <></>
@@ -39,33 +36,30 @@ export default Id;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { answerInformation } = getAnswerData(); // api
   const { createAcquiredInformation } = getEventData(); // api
-  const language: string = context.locale!;
-  const documentId: string = context.query[""]!.toLocaleString();
-  const query: { user?: string } = context.query;
-
-  const event = await createAcquiredInformation("event", documentId, "answer");
+  const query: { user?: string; data?: string } = context.query;
 
   // Queryにユーザーデータが存在するか確認
-  if (query.user) {
-    const userId = query.user;
-    // //回答したデータが存在するかチェックするAPI
-    const answer = await answerInformation(
-      "event",
-      documentId,
-      "answer",
-      userId
-    );
+  if (!query.data || !query.user) {
+    return {
+      props: {
+        isAnswer: true,
+      },
+    };
+  }
+  const documentId: string = query.data;
+  const userId = query.user;
+  const event = await createAcquiredInformation("event", documentId, "answer");
 
-    // 回答者がいた場合
-    if (answer !== undefined) {
-      return {
-        props: {
-          documentId,
-          isAnswer: true,
-          ...(await serverSideTranslations(language, ["common"])),
-        },
-      };
-    }
+  // //回答したデータが存在するかチェックするAPI
+  const answer = await answerInformation("event", documentId, "answer", userId);
+  // 回答者がいた場合
+  if (answer !== undefined) {
+    return {
+      props: {
+        documentId,
+        isAnswer: true,
+      },
+    };
   }
 
   // 該当するイベントが存在するか確認
@@ -74,7 +68,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: {
         isAnswer: true,
         documentId,
-        ...(await serverSideTranslations(language, ["common"])),
       },
     };
   }
@@ -94,7 +87,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       documentId,
       query,
       isAnswer: false,
-      ...(await serverSideTranslations(language, ["common"])),
     },
   };
 };

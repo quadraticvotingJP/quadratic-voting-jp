@@ -21,7 +21,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const query: { data?: string } = context.query;
   // サーバーサイドでAPIを叩いてresponseを整形する
 
-  console.log(query);
   if (query.data) {
     const documentId: string = query.data;
     const response = await createAcquiredInformation(

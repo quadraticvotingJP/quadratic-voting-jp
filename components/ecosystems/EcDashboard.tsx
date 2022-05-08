@@ -8,6 +8,8 @@ import {
   inputDateMaxCheck,
   inputDateMinCheck,
 } from "@/utils/validation";
+// i18n
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 // library
 import { ChartData } from "chart.js";
 // Component

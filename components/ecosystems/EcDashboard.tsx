@@ -50,7 +50,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   const { createAcquiredInformation } = getDashboard(); // api
   const { conversion } = dashboardData(); // dashboardData整形
   const adminUser: boolean = query.secret === dashboard.secretKey; // 閲覧権限
-  const documentId: any = query[""];
+  const documentId: any = query[""]!;
   const today = createDate();
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false); // 編集ボタン制御

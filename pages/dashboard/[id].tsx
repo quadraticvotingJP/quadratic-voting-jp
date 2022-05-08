@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { createAcquiredInformation } = getDashboard(); // api
   const { conversion } = dashboardData(); // dashboardData整形
   const language: string = context.locale!;
-  const documentId: string = context.query[""]!.toLocaleString();
+  const documentId: any = context.query[""]!;
   const query: ParsedUrlQuery = context.query;
   // サーバーサイドでAPIを叩いてresponseを整形する
   const response = await createAcquiredInformation(

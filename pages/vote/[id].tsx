@@ -36,17 +36,17 @@ export default Id;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { answerInformation } = getAnswerData(); // api
   const { createAcquiredInformation } = getEventData(); // api
-  const query: { user?: string; data?: string } = context.query;
+  const query: { user?: string; id?: string } = context.query;
 
   // Queryにユーザーデータが存在するか確認
-  if (!query.data || !query.user) {
+  if (!query.id || !query.user) {
     return {
       props: {
         isAnswer: true,
       },
     };
   }
-  const documentId: string = query.data;
+  const documentId: string = query.id;
   const userId = query.user;
   const event = await createAcquiredInformation("event", documentId, "answer");
 

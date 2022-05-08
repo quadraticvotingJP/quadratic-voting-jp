@@ -8,3 +8,8 @@ import Router from "next/router";
 export function routerPush(path: string): void {
   Router.push(path);
 }
+
+export function getParams(): string {
+  const id: string = Router.pathname;
+  return id;
+}

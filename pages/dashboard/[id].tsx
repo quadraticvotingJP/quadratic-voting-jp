@@ -1,6 +1,4 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { ParsedUrlQuery } from "querystring";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { EcDashboard } from "@/components/ecosystems/EntryPoint";
 // application
 import { getDashboard } from "@/architecture/application/getDashboard";
@@ -18,27 +16,27 @@ export default Id;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { createAcquiredInformation } = getDashboard(); // api
   const { conversion } = dashboardData(); // dashboardData整形
-  const query: { data?: string } = context.query;
+  const query: { id?: string } = context.query;
   // サーバーサイドでAPIを叩いてresponseを整形する
 
-  if (query.data) {
-    const documentId: string = query.data;
-    const response = await createAcquiredInformation(
-      "event",
-      documentId,
-      "answer"
-    );
-    const conversionEventData = conversion(response!);
+  if (!query.id) {
     return {
-      props: {
-        conversionEventData,
-        query,
-      },
+      props: {},
     };
   }
-  console.log("☆☆not id☆☆");
+
+  const documentId: string = query.id;
+  const response = await createAcquiredInformation(
+    "event",
+    documentId,
+    "answer"
+  );
+  console.log(response);
+
+  const conversionEventData = conversion(response!);
   return {
     props: {
+      conversionEventData,
       query,
     },
   };

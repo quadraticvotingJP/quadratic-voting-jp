@@ -31,7 +31,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     documentId,
     "answer"
   );
-  console.log(response);
 
   const conversionEventData = conversion(response!);
   return {

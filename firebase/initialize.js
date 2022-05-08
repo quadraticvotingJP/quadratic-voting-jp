@@ -10,6 +10,9 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_SENDER_ID,
 };
 
+if (!apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 // initialize
 export const firebase = !apps ? initializeApp(firebaseConfig) : app();
 // authentication

@@ -7,7 +7,6 @@ import { getDashboard } from "@/architecture/application/getDashboard";
 import { dashboardData } from "@/architecture/application/dashboardData";
 
 const Id = ({
-  locale,
   conversionEventData,
   query,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
@@ -19,7 +18,6 @@ export default Id;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { createAcquiredInformation } = getDashboard(); // api
   const { conversion } = dashboardData(); // dashboardData整形
-  const language: string = context.locale!;
   const query: { data?: string } = context.query;
   // サーバーサイドでAPIを叩いてresponseを整形する
 
@@ -34,7 +32,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const conversionEventData = conversion(response!);
     return {
       props: {
-        ...(await serverSideTranslations(language, ["common"])), // i18n
         conversionEventData,
         query,
       },
@@ -43,7 +40,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   console.log("☆☆not id☆☆");
   return {
     props: {
-      ...(await serverSideTranslations(language, ["common"])), // i18n
       query,
     },
   };

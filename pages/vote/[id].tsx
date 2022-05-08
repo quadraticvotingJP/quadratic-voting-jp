@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { answerInformation } = getAnswerData(); // api
   const { createAcquiredInformation } = getEventData(); // api
   const language: string = context.locale!;
-  const documentId: string = context.query[""]!.toLocaleString();
+  const documentId: any = context.query[""];
   const query: { user?: string } = context.query;
 
   const event = await createAcquiredInformation("event", documentId, "answer");

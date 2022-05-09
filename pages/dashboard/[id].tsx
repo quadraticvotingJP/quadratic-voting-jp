@@ -6,6 +6,7 @@ import { getDashboard } from "@/architecture/application/getDashboard";
 import { dashboardData } from "@/architecture/application/dashboardData";
 
 const Id = ({
+  local,
   conversionEventData,
   query,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
@@ -36,9 +37,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const conversionEventData = conversion(response!);
   return {
     props: {
+      ...(await serverSideTranslations(context.locale!, ["common"])),
       conversionEventData,
       query,
-      ...(await serverSideTranslations(context.locale!, ["common"])),
     },
   };
 };

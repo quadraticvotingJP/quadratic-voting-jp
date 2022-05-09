@@ -17,6 +17,7 @@ import { getEventData } from "@/architecture/application/getEvent";
 import { routerPush } from "@/architecture/application/routing";
 
 const Id = ({
+  local,
   event,
   documentId,
   query,
@@ -84,11 +85,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // イベントが存在し、未回答の場合のリターン
   return {
     props: {
+      ...(await serverSideTranslations(context.locale!, ["common"])),
       event,
       documentId,
       query,
       isAnswer: false,
-      ...(await serverSideTranslations(context.locale!, ["common"])),
     },
   };
 };

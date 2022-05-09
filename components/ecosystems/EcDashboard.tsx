@@ -268,7 +268,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       <OrCardForm
         readOnly={true}
         title={t("common.dashboard.participantDashboard.title")}
-        defaultValue={`http://localhost:4000/dashboard/id?=${dashboard.participantDashboardLink}`}
+        defaultValue={`http://localhost:4000/dashboard/${dashboard.participantDashboardLink}`}
         required={false}
         placeholder=""
         disabled={false}
@@ -281,7 +281,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
         <OrCardForm
           readOnly={true}
           title={t("common.dashboard.adminDashboard.title")}
-          defaultValue={`http://localhost:4000/dashboard/id?=${dashboard.adminDashboardLink}`}
+          defaultValue={`http://localhost:4000/dashboard/${dashboard.adminDashboardLink}`}
           required={false}
           placeholder=""
           disabled={false}

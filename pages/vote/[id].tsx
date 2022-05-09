@@ -23,7 +23,7 @@ const Id = ({
   isAnswer,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   useEffect(() => {
-    if (isAnswer) routerPush(`/dashboard/id?data=${documentId}`);
+    if (isAnswer) routerPush(`/dashboard/${documentId}`);
   }, []);
   return isAnswer ? (
     <></>

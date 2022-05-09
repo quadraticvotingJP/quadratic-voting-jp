@@ -107,7 +107,7 @@ export function dashboardData() {
     ); // [公開終了日]確認用Data
     const formPublicationEndDate: string = publicationEndDate; // [公開終了日]フォーム用のData
     const participantDashboardLink: string = `${documentId}`; // [ダッシュボード（参加者用）]
-    const adminDashboardLink: string = `${documentId}&secret=${secretKey}`; // [ダッシュボード（管理者用）]管理者用URL
+    const adminDashboardLink: string = `${documentId}?secret=${secretKey}`; // [ダッシュボード（管理者用）]管理者用URL
     const voterLinks: string = participantLinks.join("\n"); // 参加者用投票リンク
 
     return {

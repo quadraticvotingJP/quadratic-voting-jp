@@ -53,7 +53,7 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
     };
     // answerAPI
     await voteEvent(redata, "event", documentId, "answer", userId);
-    routerPush(`/dashboard/id?=${documentId}`);
+    routerPush(`/dashboard/${documentId}`);
     await setLoading(false);
   };
 

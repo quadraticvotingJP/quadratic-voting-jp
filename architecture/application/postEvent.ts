@@ -42,9 +42,7 @@ export function postEvent() {
     // 参加者分の投票者リンクの作成
     for (let index: number = 0; index < participant; index++) {
       participantLinks.push(
-        `http://localhost:4000/vote/id?=${
-          documentInfo.id
-        }&user=${UUID.generate()}`
+        `http://localhost:4000/vote/${documentInfo.id}?user=${UUID.generate()}`
       );
     }
     // parameter作成

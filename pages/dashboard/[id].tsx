@@ -1,4 +1,5 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { EcDashboard } from "@/components/ecosystems/EntryPoint";
 // application
 import { getDashboard } from "@/architecture/application/getDashboard";
@@ -37,6 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       conversionEventData,
       query,
+      ...(await serverSideTranslations("ja", ["common"])),
     },
   };
 };

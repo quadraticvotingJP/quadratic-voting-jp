@@ -6,6 +6,7 @@
 
 import React, { useEffect } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // component
 import { EcVoteForm } from "@/components/ecosystems/EntryPoint";
@@ -87,6 +88,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       documentId,
       query,
       isAnswer: false,
+      ...(await serverSideTranslations("ja", ["common"])),
     },
   };
 };

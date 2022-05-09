@@ -29,7 +29,6 @@ import { putEvent } from "@/architecture/application/putEvent";
 import { getToday } from "@/architecture/application/getToday";
 import { getDashboard } from "@/architecture/application/getDashboard";
 import { dashboardData } from "@/architecture/application/dashboardData";
-import { getURL } from "@/architecture/application/routing";
 
 type PublicationStartDate = "publicationStartDate";
 type PublicationEndDate = "publicationEndDate";

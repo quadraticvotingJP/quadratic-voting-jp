@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       conversionEventData,
       query,
-      ...(await serverSideTranslations(context.locale!, ["common"])),
+      // ...(await serverSideTranslations(context.locale!, ["common"])),
     },
   };
 };

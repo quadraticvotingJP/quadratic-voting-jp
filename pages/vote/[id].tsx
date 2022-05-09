@@ -88,7 +88,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       documentId,
       query,
       isAnswer: false,
-      ...(await serverSideTranslations(context.locale!, ["common"])),
+      // ...(await serverSideTranslations(context.locale!, ["common"])),
     },
   };
 };

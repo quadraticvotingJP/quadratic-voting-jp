@@ -51,8 +51,8 @@ const EcCreateForm: React.FC = () => {
     // apiを叩く
     setLoading(true);
     const document = await createEvent(data, "event", secretKey);
-    setLoading(false);
     routerPush(`/dashboard/${document.id}?secret=${secretKey}`);
+    setLoading(false);
     reset();
   };
 

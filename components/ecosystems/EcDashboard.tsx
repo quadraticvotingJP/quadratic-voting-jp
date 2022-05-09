@@ -1,6 +1,5 @@
 // react
 import React, { useState } from "react";
-import { ParsedUrlQuery } from "querystring";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
@@ -8,8 +7,6 @@ import {
   inputDateMaxCheck,
   inputDateMinCheck,
 } from "@/utils/validation";
-// i18n
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 // library
 import { ChartData } from "chart.js";
 // Component
@@ -32,6 +29,7 @@ import { putEvent } from "@/architecture/application/putEvent";
 import { getToday } from "@/architecture/application/getToday";
 import { getDashboard } from "@/architecture/application/getDashboard";
 import { dashboardData } from "@/architecture/application/dashboardData";
+import { getURL } from "@/architecture/application/routing";
 
 type PublicationStartDate = "publicationStartDate";
 type PublicationEndDate = "publicationEndDate";
@@ -268,7 +266,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       <OrCardForm
         readOnly={true}
         title={t("common.dashboard.participantDashboard.title")}
-        defaultValue={`http://localhost:4000/dashboard/${dashboard.participantDashboardLink}`}
+        defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.participantDashboardLink}`}
         required={false}
         placeholder=""
         disabled={false}
@@ -281,7 +279,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
         <OrCardForm
           readOnly={true}
           title={t("common.dashboard.adminDashboard.title")}
-          defaultValue={`http://localhost:4000/dashboard/${dashboard.adminDashboardLink}`}
+          defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.adminDashboardLink}`}
           required={false}
           placeholder=""
           disabled={false}

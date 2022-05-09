@@ -6,7 +6,6 @@ import nextI18NextConfig from "../next-i18next.config.js";
 // tailwind or css
 import "../styles/globals.css";
 import "../styles/tailwind.css";
-import "tailwindcss/tailwind.css";
 import type { AppProps } from "next/app";
 // firebase
 import { authentication } from "@/firebase/initialize";

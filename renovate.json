@@ -1,5 +1,10 @@
 {
-  "extends": [
-    "config:base"
+  "": "renoveteに関する全体的な設定",
+  "extends": ["config:base"],
+  "labels": ["packageUpdate"],
+  "packageRules": [
+    {
+      "": "各パッケージの細かい設定"
+    }
   ]
 }

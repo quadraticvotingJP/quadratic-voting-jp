@@ -75,11 +75,11 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
 
   // ボタンの活性・非活性制御
   const isActive: boolean = useMemo(() => {
-    return credits <= 0;
+    return credits < 0;
   }, [credits]);
   // 投票数のカラーを投票数に応じて変化させる
   const creditsColor: string = useMemo(() => {
-    return credits > 0 ? "bg-blue-900" : "bg-red-900";
+    return credits >= 0 ? "bg-blue-900" : "bg-red-900";
   }, [credits]);
 
   // オブジェクトの値刷新
@@ -90,15 +90,16 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
   ) => {
     const newVoteOptions = oldOptions.map((oldOption) => {
       if (oldOption.id === option.id) {
+        const newVote = code === "+" ? oldOption.vote + 1 : oldOption.vote - 1;
         return {
           ...oldOption,
-          vote: code === "+" ? oldOption.vote + 1 : oldOption.vote - 1,
+          vote: newVote,
         };
       }
       return oldOption;
     });
-    updateCredits(newVoteOptions);
-    return newVoteOptions;
+    const newCredits = updateCredits(newVoteOptions);
+    return setNewButtonStatus(newVoteOptions, newCredits);
   };
 
   /**
@@ -111,7 +112,30 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
       .map((option, _) => option.vote * option.vote)
       .reduce((a, b) => a + b, 0);
 
-    setCredits(event.votes - sumVotes);
+    const newCredits = event.votes - sumVotes;
+    setCredits(newCredits);
+    return newCredits;
+  };
+
+  /**
+   * @description 増減ボタンの活性非活性制御
+   * @param newVoteOptions 更新された投票オプション
+   * @param newCredits 更新されたクレジット情報
+   * @returns
+   */
+  const setNewButtonStatus = (
+    newVoteOptions: VoteOption[],
+    newCredits: number
+  ) => {
+    return newVoteOptions.map((oldOption, _) => {
+      const incrementButtonDisable = newCredits > 0 || oldOption.vote < 0;
+      const decrementButtonDisable = newCredits > 0 || oldOption.vote > 0;
+      return {
+        ...oldOption,
+        left: !decrementButtonDisable,
+        right: !incrementButtonDisable,
+      };
+    });
   };
 
   return (
@@ -151,6 +175,8 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
             <OrVoteOptionCardForm
               option={option}
               votes={event.votes}
+              incrementButtonDisable={option.left}
+              decrementButtonDisable={option.right}
               incrementVote={() => incrementVote(option)}
               decrementVote={() => decrementVote(option)}
             />

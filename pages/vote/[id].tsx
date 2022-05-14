@@ -77,6 +77,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   event.options.map((option: any) => {
     return Object.assign(option, {
       vote: 0,
+      left: false,
+      right: false,
       ...option,
     });
   });

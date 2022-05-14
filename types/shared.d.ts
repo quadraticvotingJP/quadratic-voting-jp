@@ -52,6 +52,8 @@ interface Option {
 // イベント投票時の型
 interface VoteOption extends Option {
   readonly vote: number;
+  readonly left: boolean;
+  readonly right: boolean;
 }
 
 // イベント作成時の型

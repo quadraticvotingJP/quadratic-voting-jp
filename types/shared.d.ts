@@ -56,6 +56,15 @@ interface VoteOption extends Option {
   readonly right: boolean;
 }
 
+interface VoteData {
+  readonly title: string;
+  readonly overview: string;
+  readonly publicationStartDate: string;
+  readonly publicationEndDate: string;
+  readonly votes: number;
+  readonly voteOptions: VoteOption[];
+}
+
 // イベント作成時の型
 interface EventValues {
   readonly title: string;
@@ -147,4 +156,10 @@ interface Dashboard {
 interface DashboardFormVales {
   readonly publicationStartDate: string;
   readonly publicationEndDate: string;
+}
+
+// 投票画面のquery
+interface VotePageQuery {
+  readonly user?: string;
+  readonly id?: string;
 }

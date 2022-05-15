@@ -23,19 +23,25 @@ import { useLoadingContext } from "@/context/LoadingContext";
 import { answer } from "@/architecture/application/answer";
 
 interface Props {
-  event: EventVoteType;
+  conversionVoteData: VoteData;
   documentId: string;
   query: {
     user: string;
   };
 }
 
-const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
+const EcVoteForm: React.VFC<Props> = ({
+  conversionVoteData,
+  documentId,
+  query,
+}) => {
   const { t } = useTranslation("common");
   const { voteEvent } = answer();
   const { setLoading } = useLoadingContext(); // loading
-  const [voteOptions, setVoteOptions] = useState(event.options); // 選択肢
-  const [credits, setCredits] = useState(event.votes); // 手持ち投票ポイント
+  const [voteOptions, setVoteOptions] = useState(
+    conversionVoteData.voteOptions
+  ); // 選択肢
+  const [credits, setCredits] = useState(conversionVoteData.votes); // 手持ち投票ポイント
   const userId = query.user;
 
   // 回答イベント
@@ -112,7 +118,7 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
       .map((option, _) => option.vote * option.vote)
       .reduce((a, b) => a + b, 0);
 
-    const newCredits = event.votes - sumVotes;
+    const newCredits = conversionVoteData.votes - sumVotes;
     setCredits(newCredits);
     return newCredits;
   };
@@ -145,7 +151,7 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
       <OrCardText
         title={t("common.event.eventTitle.title")}
         required={false}
-        contents={event.title}
+        contents={conversionVoteData.title}
         showEdit={false}
         disabled={false}
       />
@@ -153,7 +159,7 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
       <OrCardText
         title={t("common.event.overview.title")}
         required={false}
-        contents={event.overview}
+        contents={conversionVoteData.overview}
         showEdit={false}
         disabled={false}
       />
@@ -161,7 +167,7 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
       <OrCardText
         title={t("common.event.eventDeadline.title")}
         required={false}
-        contents={`${event.publicationStartDate} ~ ${event.publicationEndDate}`}
+        contents={`${conversionVoteData.publicationStartDate} ~ ${conversionVoteData.publicationEndDate}`}
         showEdit={false}
         disabled={false}
       />
@@ -174,7 +180,7 @@ const EcVoteForm: React.VFC<Props> = ({ event, documentId, query }) => {
           <div key={`${index}-${option.id}`}>
             <OrVoteOptionCardForm
               option={option}
-              votes={event.votes}
+              votes={conversionVoteData.votes}
               incrementButtonDisable={option.left}
               decrementButtonDisable={option.right}
               incrementVote={() => incrementVote(option)}

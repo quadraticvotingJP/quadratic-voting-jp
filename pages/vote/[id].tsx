@@ -1,12 +1,9 @@
-/**
- * @todo コンポーネントの出し分け処理
- * @todo データ加工処理
- * @todo 日付による画面出し分け制御
- */
+/** 投票画面  */
 
 import React, { useEffect, useState } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
 
 // component
 import { EcVoteForm } from "@/components/ecosystems/EntryPoint";
@@ -16,14 +13,14 @@ import { getAnswerData } from "@/architecture/application/getAnswer";
 import { getEventData } from "@/architecture/application/getEvent";
 import { routerPush } from "@/architecture/application/routing";
 import { eventDateAuthorize } from "@/architecture/application/getToday";
-import { useRouter } from "next/router";
+import { voteData } from "@/architecture/application/voteData";
 
 // context
 import { useLoadingContext } from "@/context/LoadingContext";
 
 const Id = ({
-  event = null,
-  documentId,
+  conversionVoteData = null,
+  documentId = null,
   query,
   isAnswer = true,
   cantVote = false,
@@ -33,39 +30,76 @@ const Id = ({
   const [routeLoading, setrouteLoading] = useState<boolean>(false); // routing中に画面に描画させるコンポーネント
   useEffect(() => {
     if (isReady) {
-      if (isAnswer || cantVote) routerPush(`/dashboard/${documentId}`);
+      if (documentId === null) routerPush(`/`);
+      else if (isAnswer || cantVote) routerPush(`/dashboard/${documentId}`);
       setrouteLoading(true);
       setLoading(false);
     }
-  }, [isReady, event]);
-  if (!routeLoading || event === null) {
+  }, [isReady, conversionVoteData]);
+  if (!routeLoading || conversionVoteData === null) {
     setLoading(true);
     return <></>;
   }
-  return <EcVoteForm query={query} documentId={documentId} event={event} />;
+  return (
+    <EcVoteForm
+      query={query}
+      documentId={documentId}
+      conversionVoteData={conversionVoteData}
+    />
+  );
 };
 export default Id;
 
-// getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
+/**
+ * getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
+ *
+ * @description 処理概要
+ * - QueryにドキュメントIDが存在しない → トップ画面へ遷移
+ * - 該当するイベントが存在しない → トップページ画面へ遷移
+ * - Queryにユーザーデータが存在するか確認 → ダッシュボードへ遷移
+ * - 回答者がすでに回答済みの場合 → ダッシュボードへ遷移
+ * - 開始日と終了日内か確認 → ダッシュボードへ遷移
+ *
+ * @param context
+ * @returns GetServerSideProps
+ */
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { answerInformation } = getAnswerData(); // api
   const { createAcquiredInformation } = getEventData(); // api
   const { beforePublicationStartDate, afterPublicationEndDate } =
-    eventDateAuthorize();
-  const query: { user?: string; id?: string } = context.query;
+    eventDateAuthorize(); // 日にちチェック
+  const { conversion } = voteData(); // 投票データ変換
 
-  // Queryにユーザーデータが存在するか確認
-  if (!query.id || !query.user) {
+  const query: VotePageQuery = context.query; // クエリーパラメーター
+  const documentId: string | undefined = query.id;
+  const userId: string | undefined = query.user;
+
+  // QueryにドキュメントIDが存在しない場合
+  if (!documentId) {
     return {
       props: {},
     };
   }
-  const documentId: string = query.id;
-  const userId = query.user;
-  const event = await createAcquiredInformation("event", documentId, "answer");
 
-  // //回答したデータが存在するかチェックするAPI
-  const answer = await answerInformation("event", documentId, "answer", userId);
+  const event = await createAcquiredInformation("event", documentId, "answer"); // event取得API
+
+  // 該当するイベントが存在するか確認
+  if (event === undefined) {
+    return {
+      props: {},
+    };
+  }
+  // Queryにユーザーデータが存在するか確認
+  if (!userId) {
+    return {
+      props: {
+        documentId,
+      },
+    };
+  }
+
+  const answer = await answerInformation("event", documentId, "answer", userId); // //回答したデータが存在するかチェックするAPI
+
   // 回答者がいた場合
   if (answer !== undefined) {
     return {
@@ -74,23 +108,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-
-  // 該当するイベントが存在するか確認
-  if (event === undefined) {
-    return {
-      props: {
-        documentId,
-      },
-    };
-  }
   delete event.createAt;
 
-  // 開始日と終了日内か確認
-  const now = new Date();
   const dateBefore: boolean = beforePublicationStartDate(
     event.publicationStartDate
-  );
-  const dateAfter: boolean = afterPublicationEndDate(event.publicationEndDate);
+  ); // 開始前か確認
+  const dateAfter: boolean = afterPublicationEndDate(event.publicationEndDate); // 終了後か確認
+
+  // 開始日と終了日内か確認
   if (dateBefore || dateAfter) {
     return {
       props: {
@@ -101,19 +126,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   // 投票用のKeyを取得した選択肢毎に追加する
-  event.options.map((option: any) => {
-    return Object.assign(option, {
-      vote: 0,
-      left: false,
-      right: false,
-      ...option,
-    });
-  });
+  const conversionVoteData = conversion(event);
 
   // イベントが存在し、未回答の場合のリターン
   return {
     props: {
-      event,
+      conversionVoteData,
       documentId,
       query,
       isAnswer: false,

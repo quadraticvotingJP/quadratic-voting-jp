@@ -20,10 +20,11 @@ const Id = ({
   event,
   documentId,
   query,
-  isAnswer,
+  isAnswer = true,
+  cantVote = false,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   useEffect(() => {
-    if (isAnswer) routerPush(`/dashboard/${documentId}`);
+    if (isAnswer || cantVote) routerPush(`/dashboard/${documentId}`);
   }, []);
   return isAnswer ? (
     <></>
@@ -42,9 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // Queryにユーザーデータが存在するか確認
   if (!query.id || !query.user) {
     return {
-      props: {
-        isAnswer: true,
-      },
+      props: {},
     };
   }
   const documentId: string = query.id;
@@ -58,7 +57,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         documentId,
-        isAnswer: true,
       },
     };
   }
@@ -67,12 +65,27 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (event === undefined) {
     return {
       props: {
-        isAnswer: true,
         documentId,
       },
     };
   }
   delete event.createAt;
+
+  // 開始日と終了日内か確認
+  const now = new Date();
+  const beforePublicationStartDate: boolean =
+    new Date(event.publicationStartDate) > now;
+  const afterPublicationEndDate: boolean =
+    new Date(event.publicationEndDate) < now;
+  if (beforePublicationStartDate || afterPublicationEndDate) {
+    return {
+      props: {
+        cantVote: true,
+        documentId,
+      },
+    };
+  }
+
   // 投票用のKeyを取得した選択肢毎に追加する
   event.options.map((option: any) => {
     return Object.assign(option, {

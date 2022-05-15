@@ -4,7 +4,7 @@
  * @todo 日付による画面出し分け制御
  */
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -16,22 +16,33 @@ import { getAnswerData } from "@/architecture/application/getAnswer";
 import { getEventData } from "@/architecture/application/getEvent";
 import { routerPush } from "@/architecture/application/routing";
 import { eventDateAuthorize } from "@/architecture/application/getToday";
+import { useRouter } from "next/router";
+
+// context
+import { useLoadingContext } from "@/context/LoadingContext";
 
 const Id = ({
-  event,
+  event = null,
   documentId,
   query,
   isAnswer = true,
   cantVote = false,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const isReady: boolean = useRouter().isReady; // routingが完了したかどうか
+  const { setLoading } = useLoadingContext(); // loading
+  const [routeLoading, setrouteLoading] = useState<boolean>(false); // routing中に画面に描画させるコンポーネント
   useEffect(() => {
-    if (isAnswer || cantVote) routerPush(`/dashboard/${documentId}`);
-  }, []);
-  return isAnswer ? (
-    <></>
-  ) : (
-    <EcVoteForm query={query} documentId={documentId} event={event} />
-  );
+    if (isReady) {
+      if (isAnswer || cantVote) routerPush(`/dashboard/${documentId}`);
+      setrouteLoading(true);
+      setLoading(false);
+    }
+  }, [isReady, event]);
+  if (!routeLoading || event === null) {
+    setLoading(true);
+    return <></>;
+  }
+  return <EcVoteForm query={query} documentId={documentId} event={event} />;
 };
 export default Id;
 

@@ -15,15 +15,17 @@ import { EcVoteForm } from "@/components/ecosystems/EntryPoint";
 import { getAnswerData } from "@/architecture/application/getAnswer";
 import { getEventData } from "@/architecture/application/getEvent";
 import { routerPush } from "@/architecture/application/routing";
+import { eventDateAuthorize } from "@/architecture/application/getToday";
 
 const Id = ({
   event,
   documentId,
   query,
-  isAnswer,
+  isAnswer = true,
+  cantVote = false,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   useEffect(() => {
-    if (isAnswer) routerPush(`/dashboard/${documentId}`);
+    if (isAnswer || cantVote) routerPush(`/dashboard/${documentId}`);
   }, []);
   return isAnswer ? (
     <></>
@@ -37,14 +39,14 @@ export default Id;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { answerInformation } = getAnswerData(); // api
   const { createAcquiredInformation } = getEventData(); // api
+  const { beforePublicationStartDate, afterPublicationEndDate } =
+    eventDateAuthorize();
   const query: { user?: string; id?: string } = context.query;
 
   // Queryにユーザーデータが存在するか確認
   if (!query.id || !query.user) {
     return {
-      props: {
-        isAnswer: true,
-      },
+      props: {},
     };
   }
   const documentId: string = query.id;
@@ -58,7 +60,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         documentId,
-        isAnswer: true,
       },
     };
   }
@@ -67,12 +68,27 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (event === undefined) {
     return {
       props: {
-        isAnswer: true,
         documentId,
       },
     };
   }
   delete event.createAt;
+
+  // 開始日と終了日内か確認
+  const now = new Date();
+  const dateBefore: boolean = beforePublicationStartDate(
+    event.publicationStartDate
+  );
+  const dateAfter: boolean = afterPublicationEndDate(event.publicationEndDate);
+  if (dateBefore || dateAfter) {
+    return {
+      props: {
+        cantVote: true,
+        documentId,
+      },
+    };
+  }
+
   // 投票用のKeyを取得した選択肢毎に追加する
   event.options.map((option: any) => {
     return Object.assign(option, {

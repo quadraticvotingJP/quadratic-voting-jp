@@ -14,3 +14,30 @@ export function getToday() {
   }
   return { createDate };
 }
+
+export function eventDateAuthorize() {
+  /**
+   * @description 開始前かどうかの確認
+   * @param publicationStartDate 開始日
+   * @returns boolean
+   */
+  function beforePublicationStartDate(publicationStartDate: string): boolean {
+    const now = new Date();
+    return new Date(publicationStartDate) > now;
+  }
+
+  /**
+   * @description 終了後かどうか確認
+   * @param publicationEndDate 終了日
+   * @returns boolean
+   */
+  function afterPublicationEndDate(publicationEndDate: string): boolean {
+    const now = new Date();
+    return new Date(publicationEndDate) < now;
+  }
+
+  return {
+    beforePublicationStartDate,
+    afterPublicationEndDate,
+  };
+}

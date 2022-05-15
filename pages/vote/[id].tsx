@@ -15,6 +15,7 @@ import { EcVoteForm } from "@/components/ecosystems/EntryPoint";
 import { getAnswerData } from "@/architecture/application/getAnswer";
 import { getEventData } from "@/architecture/application/getEvent";
 import { routerPush } from "@/architecture/application/routing";
+import { eventDateAuthorize } from "@/architecture/application/getToday";
 
 const Id = ({
   event,
@@ -38,6 +39,8 @@ export default Id;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { answerInformation } = getAnswerData(); // api
   const { createAcquiredInformation } = getEventData(); // api
+  const { beforePublicationStartDate, afterPublicationEndDate } =
+    eventDateAuthorize();
   const query: { user?: string; id?: string } = context.query;
 
   // Queryにユーザーデータが存在するか確認
@@ -73,11 +76,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   // 開始日と終了日内か確認
   const now = new Date();
-  const beforePublicationStartDate: boolean =
-    new Date(event.publicationStartDate) > now;
-  const afterPublicationEndDate: boolean =
-    new Date(event.publicationEndDate) < now;
-  if (beforePublicationStartDate || afterPublicationEndDate) {
+  const dateBefore: boolean = beforePublicationStartDate(
+    event.publicationStartDate
+  );
+  const dateAfter: boolean = afterPublicationEndDate(event.publicationEndDate);
+  if (dateBefore || dateAfter) {
     return {
       props: {
         cantVote: true,

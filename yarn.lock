@@ -2115,12 +2115,12 @@ http-parser-js@>=0.5.1:
   resolved "https://registry.npmjs.org/http-parser-js/-/http-parser-js-0.5.6.tgz"
   integrity sha512-vDlkRPDJn93swjcjqMSaGSPABbIarsr1TLAui/gLDXzV5VsJNdXNzMYDyNBLQkjWQCJ1uizu8T2oDMhmGt0PRA==
 
-i18next-fs-backend@^1.0.7:
+i18next-fs-backend@^1.1.4:
   version "1.1.4"
   resolved "https://registry.npmjs.org/i18next-fs-backend/-/i18next-fs-backend-1.1.4.tgz"
   integrity sha512-/MfAGMP0jHonV966uFf9PkWWuDjPYLIcsipnSO3NxpNtAgRUKLTwvm85fEmsF6hGeu0zbZiCQ3W74jwO6K9uXA==
 
-i18next@^21.6.12:
+i18next@^21.6.14:
   version "21.6.14"
   resolved "https://registry.npmjs.org/i18next/-/i18next-21.6.14.tgz"
   integrity sha512-XL6WyD+xlwQwbieXRlXhKWoLb/rkch50/rA+vl6untHnJ+aYnkQ0YDZciTWE78PPhOpbi2gR0LTJCJpiAhA+uQ==
@@ -2487,18 +2487,18 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-next-i18next@10.5.0:
-  version "10.5.0"
-  resolved "https://registry.npmjs.org/next-i18next/-/next-i18next-10.5.0.tgz"
-  integrity sha512-+Xj/v5gqpEUBKKAaFCZ76+Ps6OGAaIgGowJTF67wTcmIQbHrcHMPjHwPTbnpXy7uHrH8os7i4eAfRENAv/6xwg==
+next-i18next@11.0.0:
+  version "11.0.0"
+  resolved "https://registry.npmjs.org/next-i18next/-/next-i18next-11.0.0.tgz"
+  integrity sha512-phxbQiZGSJTTBE2FI4+BnqFZl88AI2V+6MrEQnT9aPFAXq/fATQ/F0pOUM3J7kU4nEeCfn3hjISq+ygGHlEz0g==
   dependencies:
     "@babel/runtime" "^7.13.17"
     "@types/hoist-non-react-statics" "^3.3.1"
     core-js "^3"
     hoist-non-react-statics "^3.2.0"
-    i18next "^21.6.12"
-    i18next-fs-backend "^1.0.7"
-    react-i18next "^11.15.5"
+    i18next "^21.6.14"
+    i18next-fs-backend "^1.1.4"
+    react-i18next "^11.16.2"
 
 next@12.1.0:
   version "12.1.0"
@@ -2840,10 +2840,10 @@ react-hook-form@7.28.1:
   resolved "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.28.1.tgz"
   integrity sha512-mgwxvXuvt3FMY/mdnWbPc++Zf1U5xYzkhOaL05mtFMLvXc9MvUhMUlKtUVuO12sOrgT3nPXBgVFawtiJ4ONrgg==
 
-react-i18next@^11.15.5:
-  version "11.15.6"
-  resolved "https://registry.npmjs.org/react-i18next/-/react-i18next-11.15.6.tgz"
-  integrity sha512-OUWcFdNgIA9swVx3JGIreuquglAinpRwB/HYrCprTN+s9BQDt9LSiY7x5DGc2JzVpwqtpoTV7oRUTOxEPNyUPw==
+react-i18next@^11.16.2:
+  version "11.16.9"
+  resolved "https://registry.npmjs.org/react-i18next/-/react-i18next-11.16.9.tgz"
+  integrity sha512-euXxWvcEAvsY7ZVkwx9ztCq4butqtsGHEkpkuo0RMj8Ru09IF9o2KxCyN+zyv51Nr0aBh/elaTIiR6fMb8YfVg==
   dependencies:
     "@babel/runtime" "^7.14.5"
     html-escaper "^2.0.2"

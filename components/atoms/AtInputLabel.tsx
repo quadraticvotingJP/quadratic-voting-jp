@@ -19,7 +19,7 @@ const AtInputLabel: React.FC<Props> = React.memo(
       <div className="flex h-6">
         <div className="bg-blue-900 w-2 mr-2"></div>
         <InputLabel
-          className="flex items-center font-bold"
+          sx={{ display: "flex", alignItems: "center", fontWeight: "bold" }}
           required={required}
           focused={focused}
         >

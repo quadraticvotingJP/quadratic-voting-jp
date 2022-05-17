@@ -18,7 +18,7 @@ const AtInputLabelNoMark: React.FC<Props> = React.memo(
     return (
       <div className="flex h-6">
         <InputLabel
-          className="flex items-center font-bold"
+          sx={{ display: "flex", alignItems: "center", fontWeight: "bold" }}
           required={required}
           focused={focused}
         >

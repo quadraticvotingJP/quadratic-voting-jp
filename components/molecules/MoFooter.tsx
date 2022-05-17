@@ -8,7 +8,7 @@ import { AtHref } from "@/components/atoms/EntryPoint";
 const MoFooter = React.memo(({}) => {
   const { t } = useTranslation("common");
   return (
-    <Container maxWidth="xl" className="bg-blue-900 p-6 m-0 max-w-full">
+    <Container maxWidth="xl" className="max-w-full bg-blue-900 p-6 m-0">
       <ul>
         <li className="text-white">
           <AtHref

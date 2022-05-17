@@ -1,7 +1,7 @@
 /* @tailwind各種スタイルをCSSに挿入 */
+@tailwind utilities;
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 /* フォームのrequiredの色 */
 .MuiInputLabel-asterisk {

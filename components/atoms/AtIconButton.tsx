@@ -8,6 +8,23 @@ import { IconButton } from "@mui/material";
 // icon
 // iconの種類はd.tsを参照@mui/icons-material/
 import { Save, Edit, Delete } from "@mui/icons-material";
+import styled from "styled-components";
+
+const ButtonElement = styled(IconButton)`
+  color: black;
+`;
+
+const DeleteButton = styled(ButtonElement)`
+  &:hover {
+    color: red;
+  }
+`;
+
+const Button = styled(ButtonElement)`
+  &:hover {
+    color: #2f9bff;
+  }
+`;
 
 type Props = {
   readonly size: Readonly<ButtonSize>;
@@ -24,34 +41,19 @@ const AtIconButton: React.FC<Props> = React.memo(
     return (
       <>
         {showDelete && (
-          <IconButton
-            className="text-black-900 hover:text-red-900"
-            onClick={onClick}
-            size={size}
-            disabled={disabled}
-          >
+          <DeleteButton onClick={onClick} size={size} disabled={disabled}>
             <Delete />
-          </IconButton>
+          </DeleteButton>
         )}
         {showEdit && (
-          <IconButton
-            className="text-black-900 hover:text-blue-900"
-            onClick={onClick}
-            size={size}
-            disabled={disabled}
-          >
+          <Button onClick={onClick} size={size} disabled={disabled}>
             <Edit />
-          </IconButton>
+          </Button>
         )}
         {showSave && (
-          <IconButton
-            className="text-black-900 hover:text-blue-900"
-            onClick={onClick}
-            size={size}
-            disabled={disabled}
-          >
+          <Button onClick={onClick} size={size} disabled={disabled}>
             <Save />
-          </IconButton>
+          </Button>
         )}
       </>
     );

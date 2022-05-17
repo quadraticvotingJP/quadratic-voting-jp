@@ -3,6 +3,14 @@ import React from "react";
 import { Input } from "@mui/material";
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
+import styled from "styled-components";
+
+const Form = styled(Input)`
+  width: 100%;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: white;
+`;
 
 type Props = {
   readonly placeholder: string;
@@ -36,8 +44,7 @@ const AtInput: React.FC<Props> = React.memo(
     onWheel,
   }) => {
     return (
-      <Input
-        className="w-full px-0.5 py-0.5 rounded-l-lg rounded-r-lg bg-white"
+      <Form
         {...register}
         defaultValue={defaultValue}
         id={id}

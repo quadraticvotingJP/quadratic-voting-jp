@@ -5,6 +5,18 @@
 import React from "react";
 // mui
 import { InputLabel } from "@mui/material";
+import styled from "styled-components";
+
+const LabelElement = styled.div`
+  display: flex;
+  height: 1.5rem;
+`;
+
+const Title = styled(InputLabel)`
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+`;
 
 type Props = {
   readonly title: string;
@@ -16,15 +28,11 @@ type Props = {
 const AtInputLabelNoMark: React.FC<Props> = React.memo(
   ({ title, required, focused }) => {
     return (
-      <div className="flex h-6">
-        <InputLabel
-          className="flex items-center font-bold"
-          required={required}
-          focused={focused}
-        >
+      <LabelElement>
+        <Title required={required} focused={focused}>
           {title}
-        </InputLabel>
-      </div>
+        </Title>
+      </LabelElement>
     );
   }
 );

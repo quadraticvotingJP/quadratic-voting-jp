@@ -1,10 +1,19 @@
 // document
 // component https://mui.com/components/buttons/
 // api https://mui.com/api/button/
-
 import React from "react";
 // mui
 import { Button } from "@mui/material";
+import styled from "styled-components";
+
+const ButtonElement = styled(Button)`
+  color: white;
+  background-color: #002134;
+  &:hover {
+    background-color: #002134;
+    opacity: 80%;
+  }
+`;
 
 type Props = {
   readonly title: string;
@@ -17,17 +26,9 @@ type Props = {
 
 // eslint-disable-next-line react/display-name
 const AtButton: React.FC<Props> = React.memo(
-  ({
-    title,
-    disabled,
-    size,
-    onClick,
-    type = "button",
-    className = "bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white",
-  }) => {
+  ({ title, disabled, size, onClick, type = "button" }) => {
     return (
-      <Button
-        className={className}
+      <ButtonElement
         type={type}
         variant="contained"
         disabled={disabled}
@@ -35,7 +36,7 @@ const AtButton: React.FC<Props> = React.memo(
         onClick={onClick}
       >
         {title}
-      </Button>
+      </ButtonElement>
     );
   }
 );

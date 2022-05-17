@@ -55,12 +55,7 @@ const MoAccordion: React.FC<Props> = React.memo(
             {option.url && (
               <div>
                 <p className="font-bold">リンク</p>
-                <AtHref
-                  blank={true}
-                  title={option.url}
-                  link={option.url}
-                  className="text-blue-500"
-                />
+                <AtHref blank={true} title={option.url} link={option.url} />
               </div>
             )}
             {!option.url && !option.overview && (

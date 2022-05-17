@@ -36,7 +36,6 @@ const EcExplanation: React.FC = () => {
               blank={true}
               title={t("unique.screen.top.referencesOne")}
               link={t("unique.screen.top.referencesLinkOne")}
-              className="text-blue-500"
             />
           </li>
           <li>
@@ -45,7 +44,6 @@ const EcExplanation: React.FC = () => {
               blank={true}
               title={t("unique.screen.top.referencesTwo")}
               link={t("unique.screen.top.referencesLinkTwo")}
-              className="text-blue-500"
             />
           </li>
         </ul>

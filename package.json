@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.0",
     "@mui/styled-engine-sc": "^5.4.2",
+    "@types/styled-components": "^5.1.25",
     "file-saver": "^2.0.5",
     "firebase": "^9.6.10",
     "next": "12.1.0",
@@ -22,7 +23,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.28.1",
-    "styled-components": "^5.3.3",
+    "styled-components": "^5.3.5",
     "uuidjs": "^4.2.11",
     "xlsx": "^0.18.5"
   },

@@ -1,6 +1,14 @@
 import React from "react";
 // component
 import { TextField } from "@mui/material";
+import styled from "styled-components";
+
+const Form = styled(TextField)`
+  width: 100%;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: white;
+`;
 
 type Props = {
   readonly type: Readonly<FormType>;
@@ -18,8 +26,7 @@ type Props = {
 const AtTextField: React.FC<Props> = React.memo(
   ({ id, name, disabled, type, defaultValue, rows, maxRows, inputProps }) => {
     return (
-      <TextField
-        className="w-full px-0.5 py-0.5 rounded-l-lg rounded-r-lg bg-white"
+      <Form
         defaultValue={defaultValue}
         id={id}
         name={name}

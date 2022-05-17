@@ -1,4 +1,11 @@
 import React from "react";
+import styled from "styled-components";
+
+const Title = styled.h2`
+  font-weight: bold;
+  font-size: 35px;
+  text-align: center;
+`;
 
 type Props = {
   readonly title: string;
@@ -6,6 +13,6 @@ type Props = {
 
 // eslint-disable-next-line react/display-name
 const AtH2: React.FC<Props> = React.memo(({ title }) => {
-  return <h2 className="font-bold">{title}</h2>;
+  return <Title>{title}</Title>;
 });
 export default AtH2;

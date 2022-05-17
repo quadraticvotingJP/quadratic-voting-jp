@@ -37,11 +37,11 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       <LoadingProvider>
         <MoHeader />
         <div className="flex mb-32 mt-14 sm:mt-16">
-          <EcAdvertisement className="w-1/5 bg-gray-400" />
+          {/* <EcAdvertisement className="w-1/5 bg-gray-400" /> */}
           <div className="w-full p-6 sm:p-40">
             <Component {...pageProps} />
           </div>
-          <EcAdvertisement className="w-1/5 bg-gray-400" />
+          {/* <EcAdvertisement className="w-1/5 bg-gray-400" /> */}
         </div>
         <MoFooter />
       </LoadingProvider>

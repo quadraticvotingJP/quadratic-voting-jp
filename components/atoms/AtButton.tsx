@@ -17,7 +17,14 @@ type Props = {
 
 // eslint-disable-next-line react/display-name
 const AtButton: React.FC<Props> = React.memo(
-  ({ title, disabled, size, onClick, type = "button", className }) => {
+  ({
+    title,
+    disabled,
+    size,
+    onClick,
+    type = "button",
+    className = "bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white",
+  }) => {
     return (
       <Button
         className={className}

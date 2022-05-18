@@ -22,9 +22,9 @@ const AtButton: React.FC<Props> = React.memo(
       <Button
         sx={{
           color: "white",
-          backgroundColor: "#002134 !important",
+          backgroundColor: "#002134",
           "&:hover": {
-            backgroundColor: "#002134 !important",
+            backgroundColor: "#002134",
             opacity: "80%",
             color: "white",
           },

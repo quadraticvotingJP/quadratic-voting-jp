@@ -52,7 +52,7 @@ const EcExplanation: React.FC = () => {
       </div>
       <div className="flex justify-center">
         <AtButton
-          className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white"
+          className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-red-600"
           title={t("common.button.eventCreation")}
           disabled={false}
           size={t("common.buttonSize.large")}

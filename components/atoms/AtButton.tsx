@@ -24,7 +24,7 @@ const AtButton: React.FC<Props> = React.memo(
           color: "white",
           backgroundColor: "#002134 !important",
           "&:hover": {
-            backgroundColor: "#002134",
+            backgroundColor: "#002134 !important",
             opacity: "80%",
             color: "white",
           },

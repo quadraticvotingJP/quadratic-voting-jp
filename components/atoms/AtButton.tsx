@@ -20,7 +20,13 @@ const AtButton: React.FC<Props> = React.memo(
   ({ title, disabled, size, onClick, type = "button", className }) => {
     return (
       <Button
-        sx={{ color: "red" }}
+        sx={{
+          color: "red",
+          backgroundColor: "red",
+          "&:hover": {
+            color: "white",
+          },
+        }}
         type={type}
         variant="contained"
         disabled={disabled}

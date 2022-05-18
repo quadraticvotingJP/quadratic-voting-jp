@@ -12,7 +12,7 @@ type Props = {
   readonly size: Readonly<ButtonSize>;
   readonly onClick?: () => void;
   readonly type?: Readonly<ButtonType>;
-  readonly className?: string;
+  readonly className?: Object;
 };
 
 // eslint-disable-next-line react/display-name
@@ -20,15 +20,7 @@ const AtButton: React.FC<Props> = React.memo(
   ({ title, disabled, size, onClick, type = "button", className }) => {
     return (
       <Button
-        sx={{
-          color: "white",
-          backgroundColor: "#002134",
-          "&:hover": {
-            backgroundColor: "#002134",
-            opacity: "80%",
-            color: "white",
-          },
-        }}
+        sx={className}
         type={type}
         variant="contained"
         disabled={disabled}

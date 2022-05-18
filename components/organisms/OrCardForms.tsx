@@ -110,6 +110,15 @@ const OrCardForms: React.FC<Props> = ({
         </div>
         <div className="flex justify-center">
           <AtButton
+            className={{
+              color: "white",
+              backgroundColor: "#002134 !important",
+              "&:hover": {
+                backgroundColor: "#002134",
+                opacity: "80%",
+                color: "white",
+              },
+            }}
             title={button.title}
             disabled={button.disabled}
             size={button.size}

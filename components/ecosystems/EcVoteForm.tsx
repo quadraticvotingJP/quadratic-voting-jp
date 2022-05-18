@@ -192,6 +192,15 @@ const EcVoteForm: React.VFC<Props> = ({
       <br />
       <div className="text-center mt-8">
         <AtButton
+          className={{
+            color: "white",
+            backgroundColor: "#002134 !important",
+            "&:hover": {
+              backgroundColor: "#002134",
+              opacity: "80%",
+              color: "white",
+            },
+          }}
           title={t("common.button.vote")}
           disabled={isActive}
           size={t("common.buttonSize.large")}

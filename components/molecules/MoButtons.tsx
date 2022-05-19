@@ -24,7 +24,6 @@ const MoButtons: React.FC<Props> = ({ left, right }) => {
         title={left.title}
         onClick={left.onClick}
         disabled={left.disabled}
-        size={t("common.buttonSize.large")}
       />
       {/* 2つのButtonのサイズ感がずれるためクラスで流す */}
       <AtButton
@@ -32,7 +31,6 @@ const MoButtons: React.FC<Props> = ({ left, right }) => {
         title={right.title}
         onClick={right.onClick}
         disabled={right.disabled}
-        size={t("common.buttonSize.large")}
       />
     </div>
   );

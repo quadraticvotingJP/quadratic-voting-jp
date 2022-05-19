@@ -166,7 +166,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
         button={{
           title: t("common.button.downloadXlsx"),
           disabled: false,
-          size: "large",
           onClick: downloadXLSX,
         }}
       />
@@ -302,7 +301,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
           button={{
             title: t("common.button.downloadTxt"),
             disabled: false,
-            size: "large",
             onClick: downloadTXT,
           }}
         />

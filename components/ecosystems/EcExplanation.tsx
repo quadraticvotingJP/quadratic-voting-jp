@@ -54,7 +54,6 @@ const EcExplanation: React.FC = () => {
         <AtButton
           title={t("common.button.eventCreation")}
           disabled={false}
-          size={t("common.buttonSize.large")}
           onClick={moveCreateEvent}
         />
       </div>

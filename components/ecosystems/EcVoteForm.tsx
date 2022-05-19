@@ -194,7 +194,6 @@ const EcVoteForm: React.VFC<Props> = ({
         <AtButton
           title={t("common.button.vote")}
           disabled={isActive}
-          size={t("common.buttonSize.large")}
           onClick={() => onSubmit(voteOptions)}
         />
       </div>

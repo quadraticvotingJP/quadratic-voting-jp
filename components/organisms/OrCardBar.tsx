@@ -8,7 +8,6 @@ import { Card } from "@mui/material";
 interface Button {
   readonly disabled: boolean;
   readonly title: string;
-  readonly size: Readonly<ButtonSize>;
   readonly onClick?: () => void;
 }
 
@@ -50,7 +49,6 @@ const OrCardBar: React.FC<Props> = ({
             className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-xs w-40 h-10 py-2 px-6 rounded"
             title={button.title}
             disabled={button.disabled}
-            size={button.size}
             onClick={button.onClick}
           />
         </div>

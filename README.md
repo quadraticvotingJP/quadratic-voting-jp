@@ -40,11 +40,18 @@ http://localhost:4000
 - Firebase - Authentication(認証)
 - Firebase - Cloud Firestore(DB)
 - Firebase - Hosting(デプロイ)
-- Firebase - Functions (サーバー)
 
 ### css
 
 [tailwind](https://tailwindcss.jp/)
+
+### deploy
+
+[vercel](https://vercel.com/)
+
+### バージョン管理
+
+[renovate](https://www.npmjs.com/package/renovate)
 
 ### その他
 
@@ -65,6 +72,12 @@ quadratic-voting-jp
 ```
 
 **※詳しくは各ディレクトリの README.md を参照してください**
+
+## 各種リンク
+
+[renovate](https://www.npmjs.com/package/renovate)
+[Figma](https://www.figma.com/file/IdmP8Caxdqb8NCG7BMrjRL/QuadraticVoarding.jp?node-id=159%3A206)
+[リンク](https://quadraticvoting.jp/)
 
 ## ルール
 

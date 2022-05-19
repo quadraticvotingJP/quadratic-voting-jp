@@ -9,7 +9,6 @@ import { Button } from "@mui/material";
 type Props = {
   readonly title: string;
   readonly disabled: boolean;
-  readonly size: Readonly<ButtonSize>;
   readonly onClick?: () => void;
   readonly type?: Readonly<ButtonType>;
   readonly className?: string;
@@ -20,7 +19,6 @@ const AtButton: React.FC<Props> = React.memo(
   ({
     title,
     disabled,
-    size,
     onClick,
     type = "button",
     className = "bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-10 py-2 px-6 rounded disabled:bg-slate-300	",

@@ -307,7 +307,6 @@ const EcCreateForm: React.FC = () => {
           button={{
             title: isEdit ? t("common.button.edit") : t("common.button.add"),
             disabled: watch("optionsTitle") === "",
-            size: t("common.buttonSize.large"),
             onClick: setOptions,
           }}
         />
@@ -316,7 +315,6 @@ const EcCreateForm: React.FC = () => {
           <AtButton
             title={t("common.button.eventCreation")}
             disabled={false}
-            size={t("common.buttonSize.large")}
             onClick={() => handleSubmit(onSubmit)()}
           />
         </div>

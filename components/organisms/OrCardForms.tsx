@@ -18,7 +18,6 @@ interface FormLabel {
 interface Button {
   readonly disabled: boolean;
   readonly title: string;
-  readonly size: Readonly<ButtonSize>;
   readonly onClick?: () => void;
 }
 
@@ -112,7 +111,6 @@ const OrCardForms: React.FC<Props> = ({
           <AtButton
             title={button.title}
             disabled={button.disabled}
-            size={button.size}
             onClick={button.onClick}
           />
         </div>

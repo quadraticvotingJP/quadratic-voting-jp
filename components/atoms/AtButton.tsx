@@ -1,10 +1,4 @@
-// document
-// component https://mui.com/components/buttons/
-// api https://mui.com/api/button/
-
 import React from "react";
-// mui
-import { Button } from "@mui/material";
 
 type Props = {
   readonly title: string;

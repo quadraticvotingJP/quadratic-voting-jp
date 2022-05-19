@@ -23,19 +23,17 @@ const AtButton: React.FC<Props> = React.memo(
     size,
     onClick,
     type = "button",
-    className = "bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white",
+    className = "bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-10 py-2 px-6 rounded",
   }) => {
     return (
-      <Button
+      <button
         className={className}
         type={type}
-        variant="contained"
         disabled={disabled}
-        size={size}
         onClick={onClick}
       >
         {title}
-      </Button>
+      </button>
     );
   }
 );

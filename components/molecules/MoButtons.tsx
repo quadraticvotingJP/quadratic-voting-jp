@@ -20,7 +20,7 @@ const MoButtons: React.FC<Props> = ({ left, right }) => {
   return (
     <div className="flex justify-between">
       <AtButton
-        className="bg-red-900	hover:bg-red-900 text-white w-full mr-5"
+        className="bg-red-900	hover:bg-red-900 text-white w-full mr-5 text-base w-40 h-10 py-2 px-6 rounded"
         title={left.title}
         onClick={left.onClick}
         disabled={left.disabled}
@@ -28,7 +28,7 @@ const MoButtons: React.FC<Props> = ({ left, right }) => {
       />
       {/* 2つのButtonのサイズ感がずれるためクラスで流す */}
       <AtButton
-        className="bg-blue-900 hover:bg-blue-900	text-white w-full "
+        className="bg-blue-900 hover:bg-blue-900	text-white w-full text-base w-40 h-10 py-2 px-6 rounded"
         title={right.title}
         onClick={right.onClick}
         disabled={right.disabled}

@@ -35,6 +35,7 @@ const Id = ({
       setrouteLoading(true);
       setLoading(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReady, conversionVoteData]);
   if (!routeLoading || conversionVoteData === null) {
     setLoading(true);

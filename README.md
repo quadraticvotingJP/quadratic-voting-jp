@@ -7,7 +7,7 @@
 1. clone
 
 ```
-git@github.com:quadraticvotingJP/quadratic-voting-jp.git
+git clone git@github.com:quadraticvotingJP/quadratic-voting-jp.git
 ```
 
 2. パッケージのインストール
@@ -38,20 +38,23 @@ http://localhost:4000
 ### バックエンド
 
 - Firebase - Authentication(認証)
-- Firebase - Cloud Firestore(DB)
 - Firebase - Hosting(デプロイ)
+
+### デプロイ
+
+[vercel](https://vercel.com/)
 
 ### css
 
 [tailwind](https://tailwindcss.jp/)
 
-### deploy
-
-[vercel](https://vercel.com/)
-
-### バージョン管理
+### パッケージ管理
 
 [renovate](https://www.npmjs.com/package/renovate)
+
+### 設計書
+
+- [API 定義書](https://docs.google.com/spreadsheets/d/100a4ZKqRJC49oHAY0b8O1SdKxKYRHL2-KrTa9D2pnFo/edit#gid=0)
 
 ### その他
 
@@ -73,11 +76,9 @@ quadratic-voting-jp
 
 **※詳しくは各ディレクトリの README.md を参照してください**
 
-## 各種リンク
+## デザイン
 
-[renovate](https://www.npmjs.com/package/renovate)
-[Figma](https://www.figma.com/file/IdmP8Caxdqb8NCG7BMrjRL/QuadraticVoarding.jp?node-id=159%3A206)
-[リンク](https://quadraticvoting.jp/)
+- [Figma](https://www.figma.com/file/IdmP8Caxdqb8NCG7BMrjRL/QuadraticVoarding.jp?node-id=159%3A206)
 
 ## ルール
 

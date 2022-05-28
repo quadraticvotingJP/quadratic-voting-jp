@@ -173,7 +173,10 @@ const EcVoteForm: React.VFC<Props> = ({
       />
       <br />
       <br />
-      <AtH2 title={t("common.event.options.title")} />
+      <AtH2
+        title={t("common.event.options.title")}
+        className="font-bold text-lg text-center"
+      />
       <OrProposalBlocks
         color={creditsColor}
         cost={credits}

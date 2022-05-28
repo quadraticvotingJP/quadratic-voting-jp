@@ -28,6 +28,9 @@ const MoFooter = React.memo(({}) => {
       <div className="text-white text-center">
         <AtHref title={t("footer.siteName")} link={t("footer.siteNameLink")} />
       </div>
+      <div className="text-white text-center">
+        <AtHref title={t("footer.license")} link={t("footer.licenseLink")} />
+      </div>
     </Container>
   );
 });

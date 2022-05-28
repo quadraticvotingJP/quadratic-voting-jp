@@ -1,21 +1,20 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-
+import Image from "next/image";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 
 // component
 import { AtHref, AtButton } from "@/components/atoms/EntryPoint";
-import { getStorage, ref } from "firebase/storage";
 
+type Props = {
+  images: string[];
+};
 // eslint-disable-next-line react/display-name
-const EcLp: React.FC = () => {
+const EcLp: React.FC<Props> = ({ images }) => {
   const { t } = useTranslation("common");
   const moveCreateEvent = (): void => routerPush("create");
-
-  const storage = getStorage();
-  const pathReference = ref(storage, "lp/isQuadraticVotingjp.jpg");
-  console.log(pathReference);
+  console.log(images);
 
   return (
     <>

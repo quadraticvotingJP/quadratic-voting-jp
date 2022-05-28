@@ -48,7 +48,6 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   // }, [router.pathname]);
   return (
     <>
-      <GoogleAnalytics />
       <LoadingProvider>
         <MoHeader />
         <div className="flex mt-14 sm:mt-16 min-h-screen">

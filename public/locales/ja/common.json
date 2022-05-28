@@ -8,8 +8,10 @@
     "gitHubLink": "https://github.com/quadraticvotingJP/quadratic-voting-jp",
     "contact": "お問い合わせ",
     "contactLink": "https://forms.gle/eBvDiCBEsFHRu4556",
-    "siteName": "QuadraticVoting.jp",
-    "siteNameLink": "http://quadraticvoting.jp/"
+    "siteName": "Copyright (c) 2022 QuadraticVoting.jp",
+    "siteNameLink": "http://quadraticvoting.jp/",
+    "license": "Released under the MIT license",
+    "licenseLink": "http://quadraticvoting.jp/"
   },
   "pageTitle": {
     "creat": "イベント作成",

@@ -1,8 +1,7 @@
-import { Card } from "@mui/material";
 import React from "react";
 
 // components
-import { AtInputLabelNoMark } from "@/components/atoms/EntryPoint";
+import { AtInputLabelNoMark, AtTextField } from "@/components/atoms/EntryPoint";
 import { MoButtons } from "@/components/molecules/EntryPoint";
 import { useTranslation } from "next-i18next";
 
@@ -53,9 +52,18 @@ const OrVoteOptionCardForm: React.FC<Props> = ({
               focused={false}
               title={t("common.event.createOption.optionLink")}
             />
-            <p className="border-2 p-3 rounded-xl overflow-clamp inputForm">
-              {option.url}
-            </p>
+            <AtTextField
+              type="url"
+              id={option.url}
+              defaultValue={option.url ? option.url : "-"}
+              InputProps={{
+                readOnly: true,
+                className: "rounded-xl",
+              }}
+              className={"w-full"}
+              name={option.url}
+              multiline={false}
+            />
           </div>
           {/* 投票数 */}
           <div className="mb-6">
@@ -64,9 +72,17 @@ const OrVoteOptionCardForm: React.FC<Props> = ({
               focused={false}
               title={t("common.event.votes.title")}
             />
-            <p className="border-2 p-3 rounded-xl overflow-clamp inputForm">
-              {option.vote}
-            </p>
+            <AtTextField
+              type="text"
+              id={`${option.vote}-vote`}
+              value={option.vote}
+              InputProps={{
+                readOnly: true,
+                className: "rounded-xl",
+              }}
+              className={"w-full"}
+              name={`${option.vote}-vote`}
+            />
           </div>
           <MoButtons
             left={{

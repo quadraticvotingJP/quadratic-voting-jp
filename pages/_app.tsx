@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     <>
       <LoadingProvider>
         <MoHeader />
-        <div className="flex mt-14 sm:mt-16">
+        <div className="flex mt-14 sm:mt-16 min-h-screen">
           <EcAdvertisement className="w-1/5 bg-gray-400" />
           <div className="w-full mx-10 mt-16 mb-32">
             <Component {...pageProps} />

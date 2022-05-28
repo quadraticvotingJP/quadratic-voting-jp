@@ -8,7 +8,7 @@ import { AtHref } from "@/components/atoms/EntryPoint";
 const MoFooter = React.memo(({}) => {
   const { t } = useTranslation("common");
   return (
-    <Toolbar className="bg-blue-900 p-6 m-0">
+    <Toolbar className="bg-blue-900 p-6 m-0 sticky">
       <ul className="w-full">
         <li className="text-white">
           <AtHref

@@ -145,7 +145,7 @@ const EcVoteForm: React.VFC<Props> = ({
   };
 
   return (
-    <>
+    <div className="mx-10 mt-16">
       <AtH2 title={t("pageTitle.vote")} />
       <br />
       <OrCardText
@@ -204,7 +204,7 @@ const EcVoteForm: React.VFC<Props> = ({
           onClick={() => onSubmit(voteOptions)}
         />
       </div>
-    </>
+    </div>
   );
 };
 

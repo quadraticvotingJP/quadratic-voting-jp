@@ -116,7 +116,7 @@ const EcCreateForm: React.FC = () => {
     event.target instanceof HTMLElement && event.target.blur();
 
   return (
-    <>
+    <div className="mx-10 mt-16">
       <AtH2 title={t("pageTitle.creat")} />
       <form>
         <OrCardForm
@@ -319,7 +319,7 @@ const EcCreateForm: React.FC = () => {
           />
         </div>
       </form>
-    </>
+    </div>
   );
 };
 export default EcCreateForm;

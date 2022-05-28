@@ -142,7 +142,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   };
 
   return (
-    <>
+    <div className="mx-10 mt-16">
       <AtH2 title={t("pageTitle.dashboard")} />
       <br />
       <OrCardProcess
@@ -305,7 +305,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
           }}
         />
       )}
-    </>
+    </div>
   );
 };
 export default EcDashboard;

@@ -22,23 +22,22 @@ import { LoadingProvider } from "@/context/LoadingContext";
 import { routerPush } from "@/architecture/application/routing";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
+  const Router = useRouter();
   // 匿名ログイン
   useEffect(() => {
     signInAnonymously(authentication);
   }, []);
 
+  // GoogleAnalytics4
+  // https://zenn.dev/keitakn/articles/nextjs-google-tag-manager
   // https://fwywd.com/tech/next-ga-pv
   useEffect(() => {
     // GA_TRACKING_ID が設定されていない場合は、処理終了
     if (!GA_TRACKING_ID) return;
-    const handleRouteChange = (url: string) => {
-      pageview(url);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
+    const handleRouteChange = (url: string) => pageview(url);
+    Router.events.on("routeChangeComplete", handleRouteChange);
+    return () => Router.events.off("routeChangeComplete", handleRouteChange);
+  }, [Router.events]);
 
   // 該当しないpathであれば/に飛ばす
   // useEffect(() => {
@@ -49,6 +48,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   // }, [router.pathname]);
   return (
     <>
+      <GoogleAnalytics />
       <LoadingProvider>
         <MoHeader />
         <div className="flex mt-14 sm:mt-16 min-h-screen">

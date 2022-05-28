@@ -2,7 +2,7 @@ import { Card } from "@mui/material";
 import React from "react";
 
 // components
-import { AtInputLabel } from "@/components/atoms/EntryPoint";
+import { AtInputLabelNoMark } from "@/components/atoms/EntryPoint";
 import { MoButtons } from "@/components/molecules/EntryPoint";
 import { useTranslation } from "next-i18next";
 
@@ -26,58 +26,60 @@ const OrVoteOptionCardForm: React.FC<Props> = ({
 
   return (
     <>
-      <div className="mb-3">
-        <div className="mb-1">
-          <Card key={option.id} className="p-6 my-6">
-            {/* タイトル */}
-            <div className="mb-3">
-              <AtInputLabel
-                required={false}
-                focused={false}
-                title={t("common.event.eventTitle.title")}
-              />
-              <p>{option.title}</p>
-            </div>
-            {/* 概要 */}
-            <div className="mb-3">
-              <AtInputLabel
-                required={false}
-                focused={false}
-                title={t("common.event.overview.title")}
-              />
-              <p>{option.overview}</p>
-            </div>
-            {/* リンク */}
-            <div className="mb-3">
-              <AtInputLabel
-                required={false}
-                focused={false}
-                title={t("common.event.createOption.optionLink")}
-              />
-              <p>{option.url}</p>
-            </div>
-            {/* 投票数 */}
-            <div className="mb-3">
-              <AtInputLabel
-                required={false}
-                focused={false}
-                title={t("common.event.votes.title")}
-              />
-              <p>{option.vote}</p>
-            </div>
-            <MoButtons
-              left={{
-                title: "-",
-                disabled: incrementButtonDisable,
-                onClick: () => decrementVote(option),
-              }}
-              right={{
-                title: "+",
-                disabled: decrementButtonDisable,
-                onClick: () => incrementVote(option),
-              }}
+      <div className="mb-3 border-2 p-6 mt-6 rounded-xl">
+        <div key={option.id} className="mb-1">
+          {/* タイトル */}
+          <div className="mb-3">
+            <AtInputLabelNoMark
+              required={false}
+              focused={false}
+              title={t("common.event.eventTitle.title")}
             />
-          </Card>
+            <p>{option.title}</p>
+          </div>
+          {/* 概要 */}
+          <div className="mb-3">
+            <AtInputLabelNoMark
+              required={false}
+              focused={false}
+              title={t("common.event.overview.title")}
+            />
+            <p>{option.overview}</p>
+          </div>
+          {/* リンク */}
+          <div className="mb-3">
+            <AtInputLabelNoMark
+              required={false}
+              focused={false}
+              title={t("common.event.createOption.optionLink")}
+            />
+            <p className="border-2 p-3 rounded-xl overflow-clamp inputForm">
+              {option.url}
+            </p>
+          </div>
+          {/* 投票数 */}
+          <div className="mb-6">
+            <AtInputLabelNoMark
+              required={false}
+              focused={false}
+              title={t("common.event.votes.title")}
+            />
+            <p className="border-2 p-3 rounded-xl overflow-clamp inputForm">
+              {option.vote}
+            </p>
+          </div>
+          <MoButtons
+            left={{
+              title: "-",
+              disabled: incrementButtonDisable,
+              onClick: () => decrementVote(option),
+            }}
+            right={{
+              title: "+",
+              disabled: decrementButtonDisable,
+              onClick: () => incrementVote(option),
+            }}
+          />
         </div>
       </div>
     </>

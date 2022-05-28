@@ -12,6 +12,7 @@
       "quadraticVoting": "quadraticVoting"
     },
     "feature": {
+      "title": "3つの特徴",
       "no1": "01",
       "no1Feature": "投票しやすい",
       "no1Explanation": "1つの案に絞れない際、\n自分の思考通りに分散投票できる。",
@@ -23,13 +24,14 @@
       "no3Explanation": "一人一人の真の意見が反映される。\nディスカッション時に役立つ。"
     },
     "rule": {
+      "title": "ルール説明",
       "rule1": "一人1票ではなく、\n複数選択肢に分散投票できる",
       "rule2": "一人の候補者に\n投票できるのは1回まで",
       "rule3": "票は出来る限り\nすべて使い切ることを推奨",
       "example1": "1人の所有ポイントは、100ポイント。\n1票投票するごとに、平方倍のポイント数が減っていく。",
       "example2": "1投票権=100pt\n1票の投票には、1の2乗=1ptが必要\n2票を投票するには、2の2乗=4pt\n3票を投票するには、3の2乗=9pt",
       "example3": "持ちポイントが100ptなので、1候補には最大でも9票=81pt \n残りの19票は、別の候補者にできる限り投票する",
-      "title": "参考URL:プレゼン審査の投票にクアドラティックボーティングを使ってみる",
+      "urlTitle": "参考URL:プレゼン審査の投票にクアドラティックボーティングを使ってみる",
       "url": "https://www.kotobato.jp/articles/technology/try-quadratic-voting-via-radicalxchange.html",
       "point1": "100pt所持",
       "point2": "8票=64pt",
@@ -44,6 +46,9 @@
       "scene3": "社内アンケート調査",
       "scene4": "旅行先決め",
       "scene5": "飲み会の居酒屋調整"
+    },
+    "startNow": {
+      "title": "新しい投票方式を試してみよう！"
     }
   },
   "header": {
@@ -80,7 +85,7 @@
       "download": "ダウンロード",
       "downloadXlsx": "ダウンロード(.xlsx)",
       "downloadTxt": "ダウンロード(.txt)",
-      "startNow": "今すぐ始める"
+      "startNow": "今すぐはじめる"
     },
     "event": {
       "eventTitle": {
@@ -163,20 +168,6 @@
   },
   "unique": {
     "screen": {
-      "top": {
-        "pageTitle": {
-          "title": "QuadraticVotingとは？",
-          "detail": "二次投票とは、個人が自分の好みの方向だけでなく、好みの程度を表すために表を割り当てる集団的意思決定方法である。\\nそうすることで、二次投票は投票のパラドックスや多数決の問題を解決しようとしているだ。"
-        },
-        "rule": "ルール",
-        "ruleOne": "一定量のCreditが全員に配布される。Creditは使わずに蓄積していくことも可能",
-        "ruleTwo": "そのCreditを消費して表を購入し、投票することができる",
-        "ruleThree": "ただし、x票を購入する際に要するCreditはx^2である",
-        "referencesOne": "Wikipedia",
-        "referencesLinkOne": "https://en.wikipedia.org/wiki/Quadratic_voting",
-        "referencesTwo": "Redical Democracy - 革命的な民主主義を実現するためのQuadratic Votingについて",
-        "referencesLinkTwo": "https://alis.to/AB2/articles/aoNXAZLjkY0q"
-      },
       "eventCreation": {
         "pageTitle": {
           "title": "イベント作成"

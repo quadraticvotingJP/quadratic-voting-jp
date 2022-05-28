@@ -174,7 +174,11 @@ const EcVoteForm: React.VFC<Props> = ({
       <br />
       <br />
       <AtH2 title={t("common.event.options.title")} />
-      <OrProposalBlocks color={creditsColor} cost={credits} />
+      <OrProposalBlocks
+        color={creditsColor}
+        cost={credits}
+        denominator={conversionVoteData.votes}
+      />
       {voteOptions.map((option: VoteOption, index: number) => {
         return (
           <div key={`${index}-${option.id}`}>

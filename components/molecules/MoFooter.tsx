@@ -1,15 +1,15 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 // component
-import { Container } from "@mui/material";
+import { Toolbar } from "@mui/material";
 import { AtHref } from "@/components/atoms/EntryPoint";
 
 // eslint-disable-next-line react/display-name
 const MoFooter = React.memo(({}) => {
   const { t } = useTranslation("common");
   return (
-    <Container className="bg-blue-900 p-6 m-0 max-w-full">
-      <ul>
+    <Toolbar className="bg-blue-900 p-6 m-0">
+      <ul className="w-full">
         <li className="text-white">
           <AtHref
             title={t("footer.gitHub")}
@@ -24,14 +24,17 @@ const MoFooter = React.memo(({}) => {
             blank
           />
         </li>
+        <li className="text-white flex justify-center">
+          <AtHref
+            title={t("footer.siteName")}
+            link={t("footer.siteNameLink")}
+          />
+        </li>
+        <li className="text-white flex justify-center">
+          <AtHref title={t("footer.license")} link={t("footer.licenseLink")} />
+        </li>
       </ul>
-      <div className="text-white text-center">
-        <AtHref title={t("footer.siteName")} link={t("footer.siteNameLink")} />
-      </div>
-      <div className="text-white text-center">
-        <AtHref title={t("footer.license")} link={t("footer.licenseLink")} />
-      </div>
-    </Container>
+    </Toolbar>
   );
 });
 export default MoFooter;

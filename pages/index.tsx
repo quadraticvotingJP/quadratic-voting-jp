@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 // component
-import { EcExplanation } from "@/components/ecosystems/EntryPoint";
+import { EcLp } from "@/components/ecosystems/EntryPoint";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 const Top: NextPage = ({}) => {
-  return <EcExplanation />;
+  return <EcLp />;
 };
 export default Top;
 

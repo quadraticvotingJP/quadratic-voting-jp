@@ -8,7 +8,7 @@ import { routerPush } from "@/architecture/application/routing";
 import { AtHref, AtButton } from "@/components/atoms/EntryPoint";
 
 // eslint-disable-next-line react/display-name
-const EcExplanation: React.FC = () => {
+const EcLp: React.FC = () => {
   const { t } = useTranslation("common");
   const moveCreateEvent = (): void => routerPush("create");
 
@@ -60,4 +60,4 @@ const EcExplanation: React.FC = () => {
     </>
   );
 };
-export default EcExplanation;
+export default EcLp;

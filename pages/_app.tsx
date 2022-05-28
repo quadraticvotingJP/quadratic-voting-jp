@@ -1,3 +1,5 @@
+import Script from "next/script";
+import { GA_TRACKING_ID } from "@/architecture/application/gtag";
 // hooks
 import { useEffect } from "react";
 // i18n
@@ -34,6 +36,18 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   // }, [router.pathname]);
   return (
     <>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_TRACKING_ID}');
+        `}
+      </Script>
       <LoadingProvider>
         <MoHeader />
         <div className="flex mt-14 sm:mt-16 min-h-screen">

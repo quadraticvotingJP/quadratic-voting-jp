@@ -27,13 +27,13 @@ const Id = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const isReady: boolean = useRouter().isReady; // routingが完了したかどうか
   const { setLoading } = useLoadingContext(); // loading
-  const [routeLoading, setrouteLoading] = useState<boolean>(false); // routing中に画面に描画させるコンポーネント
+  const [routeLoading, setRouteLoading] = useState<boolean>(false); // routing中に画面に描画させるコンポーネント
   useEffect(() => {
     if (isReady) {
+      setRouteLoading(true);
+      setLoading(false);
       if (documentId === null) routerPush(`/`);
       else if (isAnswer || cantVote) routerPush(`/dashboard/${documentId}`);
-      setrouteLoading(true);
-      setLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isReady, conversionVoteData]);

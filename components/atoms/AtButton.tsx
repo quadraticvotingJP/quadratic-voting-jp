@@ -19,7 +19,7 @@ const AtButton: React.FC<Props> = React.memo(
   }) => {
     return (
       <button
-        className={className}
+        className={`${className} rounded-full`}
         type={type}
         disabled={disabled}
         onClick={onClick}

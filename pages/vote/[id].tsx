@@ -18,23 +18,6 @@ import { voteData } from "@/architecture/application/voteData";
 // context
 import { useLoadingContext } from "@/context/LoadingContext";
 
-const Id = ({
-  conversionVoteData = null,
-  documentId = null,
-  query,
-  isAnswer = true,
-  cantVote = false,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  return (
-    <EcVoteForm
-      query={query}
-      documentId={documentId}
-      conversionVoteData={conversionVoteData}
-    />
-  );
-};
-export default Id;
-
 /**
  * getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
  *
@@ -75,40 +58,40 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
   // Queryにユーザーデータが存在するか確認
-  // if (!userId) {
-  //   return {
-  //     props: {
-  //       documentId,
-  //     },
-  //   };
-  // }
+  if (!userId) {
+    return {
+      props: {
+        documentId,
+      },
+    };
+  }
 
-  // const answer = await answerInformation("event", documentId, "answer", userId); // //回答したデータが存在するかチェックするAPI
+  const answer = await answerInformation("event", documentId, "answer", userId); // //回答したデータが存在するかチェックするAPI
 
   // 回答者がいた場合
-  // if (answer !== undefined) {
-  //   return {
-  //     props: {
-  //       documentId,
-  //     },
-  //   };
-  // }
-  // delete event.createAt;
+  if (answer !== undefined) {
+    return {
+      props: {
+        documentId,
+      },
+    };
+  }
+  delete event.createAt;
 
-  // const dateBefore: boolean = beforePublicationStartDate(
-  //   event.publicationStartDate
-  // ); // 開始前か確認
-  // const dateAfter: boolean = afterPublicationEndDate(event.publicationEndDate); // 終了後か確認
+  const dateBefore: boolean = beforePublicationStartDate(
+    event.publicationStartDate
+  ); // 開始前か確認
+  const dateAfter: boolean = afterPublicationEndDate(event.publicationEndDate); // 終了後か確認
 
   // 開始日と終了日内か確認
-  // if (dateBefore || dateAfter) {
-  //   return {
-  //     props: {
-  //       cantVote: true,
-  //       documentId,
-  //     },
-  //   };
-  // }
+  if (dateBefore || dateAfter) {
+    return {
+      props: {
+        cantVote: true,
+        documentId,
+      },
+    };
+  }
 
   // 投票用のKeyを取得した選択肢毎に追加する
   const conversionVoteData = conversion(event);
@@ -124,3 +107,27 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 };
+
+const Id = ({
+  conversionVoteData = null,
+  documentId = null,
+  query = null,
+  isAnswer = true,
+  cantVote = false,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  useEffect(() => {
+    if (documentId === null) routerPush(`/`);
+    else if (isAnswer || cantVote) routerPush(`/dashboard/${documentId}`);
+  }, []);
+  if (!documentId === null || isAnswer === true) {
+    return <></>;
+  }
+  return (
+    <EcVoteForm
+      query={query}
+      documentId={documentId}
+      conversionVoteData={conversionVoteData}
+    />
+  );
+};
+export default Id;

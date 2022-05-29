@@ -19,15 +19,16 @@ export function getImagesList() {
       storage: FirebaseStorage,
       listRef: StorageReference
     ): Promise<string[]> {
-      const imgList: string[] = [];
       // リストの一覧を取得する
       const list = await listAll(listRef);
+      // https://stackoverflow.com/questions/63947261/firebase-getdownloadurl-push-into-array
       // リストの中身一つ一つにgetDownloadURLを実行して画像のリンクを取得する
-      await list.items.forEach(async (itemRef: StorageReference) => {
-        await getDownloadURL(ref(storage, itemRef.fullPath)).then((url) => {
-          imgList.push(url);
-        });
-      });
+      const promises = list.items.map(
+        async (imgRef) => await getDownloadURL(ref(storage, imgRef.fullPath))
+      );
+      const imgList: string[] = await Promise.all(promises).then(
+        (imgNameArray) => Promise.resolve(imgNameArray)
+      );
       return imgList;
     },
   };

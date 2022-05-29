@@ -1,32 +1,30 @@
 /** 投票画面  */
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useRouter } from "next/router";
 
 // component
-import { EcVoteForm } from "@/components/ecosystems/EntryPoint";
+import { EcVoteForm, EcInvalidLink } from "@/components/ecosystems/EntryPoint";
 
 //application
 import { getAnswerData } from "@/architecture/application/getAnswer";
 import { getEventData } from "@/architecture/application/getEvent";
-import { routerPush } from "@/architecture/application/routing";
 import { eventDateAuthorize } from "@/architecture/application/getToday";
 import { voteData } from "@/architecture/application/voteData";
 
 // context
-import { useLoadingContext } from "@/context/LoadingContext";
+// import { useLoadingContext } from "@/context/LoadingContext";
 
 /**
  * getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
  *
  * @description 処理概要
- * - QueryにドキュメントIDが存在しない → トップ画面へ遷移
- * - 該当するイベントが存在しない → トップページ画面へ遷移
- * - Queryにユーザーデータが存在するか確認 → ダッシュボードへ遷移
- * - 回答者がすでに回答済みの場合 → ダッシュボードへ遷移
- * - 開始日と終了日内か確認 → ダッシュボードへ遷移
+ * - QueryにドキュメントIDが存在しない
+ * - 該当するイベントが存在しない
+ * - Queryにユーザーデータが存在するか確認
+ * - 回答者がすでに回答済みの場合
+ * - 開始日と終了日内か確認
  *
  * @param context
  * @returns GetServerSideProps
@@ -45,7 +43,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // QueryにドキュメントIDが存在しない場合
   if (!documentId) {
     return {
-      props: {},
+      props: {
+        ...(await serverSideTranslations(context.locale!, ["common"])),
+      },
     };
   }
 
@@ -54,7 +54,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // 該当するイベントが存在するか確認
   if (event === undefined) {
     return {
-      props: {},
+      props: {
+        ...(await serverSideTranslations(context.locale!, ["common"])),
+      },
     };
   }
   // Queryにユーザーデータが存在するか確認
@@ -62,6 +64,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         documentId,
+        ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
   }
@@ -73,6 +76,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         documentId,
+        ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
   }
@@ -89,6 +93,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: {
         cantVote: true,
         documentId,
+        ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
   }
@@ -115,12 +120,8 @@ const Id = ({
   isAnswer = true,
   cantVote = false,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  useEffect(() => {
-    if (documentId === null) routerPush(`/`);
-    else if (isAnswer || cantVote) routerPush(`/dashboard/${documentId}`);
-  }, []);
-  if (!documentId === null || isAnswer === true) {
-    return <></>;
+  if (!documentId === null || isAnswer || cantVote || query === null) {
+    return <EcInvalidLink />;
   }
   return (
     <EcVoteForm

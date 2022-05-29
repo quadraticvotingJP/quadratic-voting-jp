@@ -12,7 +12,7 @@ const MoProcess: React.FC<Props> = ({ title, molecule, denominator }) => {
   return (
     <>
       <div className="mb-4">
-        <AtH2 title={title} />
+        <AtH2 title={title} className="font-bold" />
       </div>
       <div className="flex justify-center">
         <p className="font-bold">{molecule}</p>

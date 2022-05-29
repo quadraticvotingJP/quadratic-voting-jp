@@ -147,7 +147,10 @@ const EcVoteForm: React.VFC<Props> = ({
 
   return (
     <>
-      <AtH2 title={t("pageTitle.vote")} />
+      <AtH2
+        title={t("pageTitle.vote")}
+        className={"text-center mb-16 text-4xl font-bold"}
+      />
       <br />
       <OrCardText
         title={t("common.event.eventTitle.title")}

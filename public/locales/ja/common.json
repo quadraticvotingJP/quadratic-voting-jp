@@ -1,0 +1,139 @@
+{
+  "header": {
+    "siteName": "QuadraticVoting.jp",
+    "link": "http://quadraticvoting.jp/"
+  },
+  "footer": {
+    "gitHub": "GitHub",
+    "gitHubLink": "https://github.com/quadraticvotingJP/quadratic-voting-jp",
+    "contact": "お問い合わせ",
+    "contactLink": "https://forms.gle/eBvDiCBEsFHRu4556",
+    "siteName": "Copyright (c) 2022 QuadraticVoting.jp",
+    "siteNameLink": "http://quadraticvoting.jp/",
+    "license": "Released under the MIT license",
+    "licenseLink": "https://github.com/quadraticvotingJP/quadratic-voting-jp/blob/main/LICENSE"
+  },
+  "pageTitle": {
+    "creat": "イベント作成",
+    "dashboard": "ダッシュボード",
+    "vote": "投票"
+  },
+  "common": {
+    "link": "http://localhost:4000/",
+    "buttonSize": {
+      "small": "small",
+      "large": "large",
+      "medium": "medium"
+    },
+    "button": {
+      "eventCreation": "イベント作成",
+      "add": "追加",
+      "edit": "編集",
+      "vote": "投票",
+      "download": "ダウンロード",
+      "downloadXlsx": "ダウンロード(.xlsx)",
+      "downloadTxt": "ダウンロード(.txt)"
+    },
+    "event": {
+      "eventTitle": {
+        "title": "タイトル",
+        "detail": "イベントタイトルを40文字で入力してください。",
+        "placeholder": "定期旅行の行き先決め"
+      },
+      "overview": {
+        "title": "概要",
+        "detail": "イベント概要を240文字で入力してください。",
+        "placeholder": "QuadraticVoting.jpを利用し、次回の旅行先を決めます。"
+      },
+      "publicationStartDate": {
+        "title": "公開開始日",
+        "detail": "公開開始日を入力してください。",
+        "placeholder": ""
+      },
+      "publicationEndDate": {
+        "title": "公開終了日",
+        "detail": "公開終了日を入力してください。",
+        "placeholder": ""
+      },
+      "eventDeadline": {
+        "title": "投票期間"
+      },
+      "participant": {
+        "title": "参加者",
+        "detail": "参加人数を入力してください。(最大:250人)",
+        "placeholder": "9"
+      },
+      "votes": {
+        "title": "投票数",
+        "detail": "一人あたりの投票数を入力してください。(最大:100票)",
+        "placeholder": "100"
+      },
+      "options": {
+        "title": "選択肢"
+      },
+      "createOption": {
+        "formTitle": "選択肢作成",
+        "formDetail": "選択肢を追加してください。最低2件必要です。",
+        "optionTitle": "タイトル",
+        "titlePlaceholder": "尾瀬ヶ原",
+        "optionDetail": "概要",
+        "detailPlaceholder": "福島・群馬・新潟３県境の尾瀬地域にある日本最大の湿原。",
+        "optionLink": "リンク",
+        "linkPlaceholder": "https://www.oze-fnd.or.jp/"
+      }
+    },
+    "dashboard": {
+      "participantAndEffectiveVotes": {
+        "title": "参加者数・投票数"
+      },
+      "participant": {
+        "title": "参加者数"
+      },
+      "effectiveVotes": {
+        "title": "投票数"
+      },
+      "effectiveVotesAndPercentCredits": {
+        "title": "投票数・投票率"
+      },
+
+      "participantDashboard": {
+        "title": "ダッシュボード（参加者用）"
+      },
+      "adminDashboard": {
+        "title": "ダッシュボード（管理者用）"
+      },
+      "votersLink": {
+        "title": "投票者リンク",
+        "detail": "参加人数分の投票者リンクです。"
+      }
+    },
+    "validation": {
+      "message": {
+        "40": "40文字以上にしてください"
+      }
+    }
+  },
+  "unique": {
+    "screen": {
+      "top": {
+        "pageTitle": {
+          "title": "QuadraticVotingとは？",
+          "detail": "二次投票とは、個人が自分の好みの方向だけでなく、好みの程度を表すために表を割り当てる集団的意思決定方法である。\\nそうすることで、二次投票は投票のパラドックスや多数決の問題を解決しようとしているだ。"
+        },
+        "rule": "ルール",
+        "ruleOne": "一定量のCreditが全員に配布される。Creditは使わずに蓄積していくことも可能",
+        "ruleTwo": "そのCreditを消費して表を購入し、投票することができる",
+        "ruleThree": "ただし、x票を購入する際に要するCreditはx^2である",
+        "referencesOne": "Wikipedia",
+        "referencesLinkOne": "https://en.wikipedia.org/wiki/Quadratic_voting",
+        "referencesTwo": "Redical Democracy - 革命的な民主主義を実現するためのQuadratic Votingについて",
+        "referencesLinkTwo": "https://alis.to/AB2/articles/aoNXAZLjkY0q"
+      },
+      "eventCreation": {
+        "pageTitle": {
+          "title": "イベント作成"
+        }
+      }
+    }
+  }
+}

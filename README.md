@@ -1,34 +1,135 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# quadratic-voting-jp Document
 
-## Getting Started
+## quadratic-voting-jp のインストールと立ち上げ
 
-First, run the development server:
+任意のディレクトリで下記を実行
 
-```bash
-npm run dev
-# or
+1. clone
+
+```
+git clone git@github.com:quadraticvotingJP/quadratic-voting-jp.git
+```
+
+2. パッケージのインストール
+
+```
+yarn install
+```
+
+3. local の立ち上げ
+
+```
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. localhost にアクセス
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:4000
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 使用技術
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### フロントエンド
 
-## Learn More
+- Next.js 12.1.0
+- TypeScript 4.6.2
 
-To learn more about Next.js, take a look at the following resources:
+### バックエンド
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Firebase - Authentication(認証)
+- Firebase - Hosting(デプロイ)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### デプロイ
 
-## Deploy on Vercel
+[vercel](https://vercel.com/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### css
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[tailwind](https://tailwindcss.jp/)
+
+### パッケージ管理
+
+[renovate](https://www.npmjs.com/package/renovate)
+
+### 設計書
+
+- [API 定義書](https://docs.google.com/spreadsheets/d/100a4ZKqRJC49oHAY0b8O1SdKxKYRHL2-KrTa9D2pnFo/edit#gid=0)
+
+### その他
+
+- axios
+- react-hook-form
+- Material UI
+
+## ディレクトリ構成
+
+```
+quadratic-voting-jp
+ ├── architecture 　　　　　　 ロジックを記述
+ │── components　　　　　　　　 AtomicDesignの画面componentを格納
+ ├── pages 　　　　　　　　　　　画面
+ ├── styles 　　　　　　　　　　 共通のCSSを格納
+ ├── types 　　　　　　　　　　　グローバルなtypescriptを定義
+
+```
+
+**※詳しくは各ディレクトリの README.md を参照してください**
+
+## デザイン
+
+- [Figma](https://www.figma.com/file/IdmP8Caxdqb8NCG7BMrjRL/QuadraticVoarding.jp?node-id=159%3A206)
+
+## ルール
+
+### ブランチ名
+
+feature-issue#[github の issue 番号]-[行う内容]
+
+例：feature-issue#52-update-readme
+
+### コミットメッセージ
+
+github の Code タブにて commit 内容と issue を紐付けるため下記ルールで commit する
+
+git commit -m "行ったことの内容 #issue 番号"
+
+※ コミットメッセージと#の間は**半角スペースをいれる**
+
+例：git commit -m "README.md の更新 #52"
+
+### GitHub
+
+#### プルリクスト作成
+
+1. [Create pull request]を押下
+1. Feature request 欄の[Get started]をクリック
+1. 右カラムの `Assignees`で作業者を指定（とりあえず起票する場合は未選択も可）
+1. 右カラムの `Labels`を選択
+   1. 新規製造なら`enhancement`
+   1. component 製造ならアトミックデザインの階層タグ (`Atom`など)
+   1. 複数付与可
+1. 右カラムの `Projects`で`quadratic-voting-jp`を選択
+1. 右カラムの `Development`で該当する`issue`を選択
+1. 例：<img width="346" alt="スクリーンショット 2022-04-19 21 26 59" src="https://user-images.githubusercontent.com/55649762/164003401-4ee628c1-8700-413a-8560-7b180ea94bc0.png">
+
+#### issue 起票
+
+1. [Issues](https://github.com/quadraticvotingJP/quadratic-voting-jp/issues)タブから[New issue]をクリック
+1. Feature request 欄の[Get started]をクリック
+1. 右カラムの `Assignees`で作業者を指定（とりあえず起票する場合は未選択も可）
+1. 右カラムの `Labels`を選択
+   1. 新規製造なら`enhancement`
+   1. component 製造ならアトミックデザインの階層タグ (`Atom`など)
+   1. 複数付与可
+1. 右カラムの `Projects`で`quadratic-voting-jp`を選択
+1. 左カラムの`Title`,`Write`を埋める
+1. [Submit new issue]をクリック
+1. 例：<img width="356" alt="スクリーンショット 2022-04-19 21 28 44" src="https://user-images.githubusercontent.com/55649762/164003624-3e8b45cb-58d1-4422-83e2-06c73dc8ceea.png">
+
+#### カンバン
+
+1. [カンバン](https://github.com/quadraticvotingJP/quadratic-voting-jp/projects/1)にアクセス
+1. To do から作業するタスクを In progress に移動させる
+1. `Assignees`がついてない場合は担当者をつける
+1. ※`Assignees`以降のタスク移動はマージなど自動で移動する

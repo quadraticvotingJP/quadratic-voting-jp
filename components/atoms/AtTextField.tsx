@@ -12,14 +12,31 @@ type Props = {
   readonly disabled?: boolean;
   readonly defaultValue?: string;
   readonly readOnly?: boolean;
+  readonly className?: string;
+  readonly value?: string | number;
+  readonly InputProps?: object;
+  readonly multiline?: boolean;
 };
 
 // eslint-disable-next-line react/display-name
 const AtTextField: React.FC<Props> = React.memo(
-  ({ id, name, disabled, type, defaultValue, rows, maxRows, inputProps }) => {
+  ({
+    id,
+    name,
+    disabled,
+    type,
+    defaultValue,
+    rows,
+    maxRows,
+    inputProps,
+    className = "w-full px-0.5 py-0.5 rounded-l-lg rounded-r-lg bg-white",
+    value,
+    InputProps,
+    multiline = true,
+  }) => {
     return (
       <TextField
-        className="w-full px-0.5 py-0.5 rounded-l-lg rounded-r-lg bg-white"
+        className={className}
         defaultValue={defaultValue}
         id={id}
         name={name}
@@ -28,7 +45,9 @@ const AtTextField: React.FC<Props> = React.memo(
         inputProps={inputProps}
         rows={rows}
         maxRows={maxRows}
-        multiline
+        multiline={multiline}
+        value={value}
+        InputProps={InputProps}
       />
     );
   }

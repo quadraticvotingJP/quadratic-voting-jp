@@ -17,6 +17,7 @@ type Props = {
   readonly min?: string;
   readonly max?: string;
   readonly onWheel?: <T>(arg: T) => void;
+  readonly className?: string;
 };
 
 // eslint-disable-next-line react/display-name
@@ -34,10 +35,11 @@ const AtInput: React.FC<Props> = React.memo(
     disableUnderline = false,
     readOnly = false,
     onWheel,
+    className = "w-full px-0.5 py-0.5 rounded-l-lg rounded-r-lg bg-white",
   }) => {
     return (
       <Input
-        className="w-full px-0.5 py-0.5 rounded-l-lg rounded-r-lg bg-white"
+        className={className}
         {...register}
         defaultValue={defaultValue}
         id={id}

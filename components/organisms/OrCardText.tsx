@@ -31,7 +31,7 @@ const OrCardText: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <Card className="p-6">
+      <Card className="p-6 rounded-xl">
         <MoLabelText
           focused={focused}
           title={title}

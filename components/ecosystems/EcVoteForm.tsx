@@ -9,7 +9,7 @@ import { routerPush } from "@/architecture/application/routing";
 // i18n
 import { useTranslation } from "next-i18next";
 // component
-import { AtH2, AtButton } from "@/components/atoms/EntryPoint";
+import { AtH2, AtButton, AtInputLabel } from "@/components/atoms/EntryPoint";
 import {
   OrCardText,
   OrVoteOptionCardForm,
@@ -21,6 +21,7 @@ import { useLoadingContext } from "@/context/LoadingContext";
 
 // architecture
 import { answer } from "@/architecture/application/answer";
+import { Card } from "@mui/material";
 
 interface Props {
   conversionVoteData: VoteData;
@@ -146,7 +147,10 @@ const EcVoteForm: React.VFC<Props> = ({
 
   return (
     <>
-      <AtH2 title={t("pageTitle.vote")} />
+      <AtH2
+        title={t("pageTitle.vote")}
+        className={"text-center mb-16 text-4xl font-bold"}
+      />
       <br />
       <OrCardText
         title={t("common.event.eventTitle.title")}
@@ -172,30 +176,26 @@ const EcVoteForm: React.VFC<Props> = ({
         disabled={false}
       />
       <br />
-      <br />
-      <AtH2
-        title={t("common.event.options.title")}
-        className="font-bold text-lg text-center"
-      />
-      <OrProposalBlocks
-        color={creditsColor}
-        cost={credits}
-        denominator={conversionVoteData.votes}
-      />
-      {voteOptions.map((option: VoteOption, index: number) => {
-        return (
-          <div key={`${index}-${option.id}`}>
-            <OrVoteOptionCardForm
-              option={option}
-              votes={conversionVoteData.votes}
-              incrementButtonDisable={option.left}
-              decrementButtonDisable={option.right}
-              incrementVote={() => incrementVote(option)}
-              decrementVote={() => decrementVote(option)}
-            />
-          </div>
-        );
-      })}
+      <Card className="p-6 my-6 rounded-xl">
+        <AtInputLabel
+          required={false}
+          title={t("common.event.options.title")}
+        />
+        {voteOptions.map((option: VoteOption, index: number) => {
+          return (
+            <div key={`${index}-${option.id}`}>
+              <OrVoteOptionCardForm
+                option={option}
+                votes={conversionVoteData.votes}
+                incrementButtonDisable={option.left}
+                decrementButtonDisable={option.right}
+                incrementVote={() => incrementVote(option)}
+                decrementVote={() => decrementVote(option)}
+              />
+            </div>
+          );
+        })}
+      </Card>
       <br />
       <div className="text-center mt-8">
         <AtButton
@@ -204,6 +204,11 @@ const EcVoteForm: React.VFC<Props> = ({
           onClick={() => onSubmit(voteOptions)}
         />
       </div>
+      <OrProposalBlocks
+        color={creditsColor}
+        cost={credits}
+        denominator={conversionVoteData.votes}
+      />
     </>
   );
 };

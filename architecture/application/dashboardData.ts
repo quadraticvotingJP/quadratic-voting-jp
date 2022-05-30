@@ -22,12 +22,13 @@ export function dashboardData() {
       secretKey,
     } = response; // responseDataの展開
 
-    let participantVotesMolecule: string = ""; // [参加者数・投票数]参加者数の分子
-    const participantVotesDenominator: string = participant; // [参加者数・投票数]参加者数の分母
-    let effectiveVotesMolecule: string = ""; // [参加者数・投票数]投票数の分子
+    let participantVotesMolecule: string = ""; // [参加者数・消化クレジット数]参加者数の分子
+    const participantVotesDenominator: string = participant; // [参加者数・消化クレジット数]参加者数の分母
+    let effectiveVotesMolecule: string = ""; // [参加者数・消化クレジット数]消化クレジットの分子
+    let digestionCredits: string = ""; // [参加者数・消化クレジット数]消化クレジットの分子
     const effectiveVotesDenominator: string = (
       Number(participant) * Number(votes)
-    ).toString(); // [参加者数・投票数]投票数の分母
+    ).toString(); // [参加者数・消化クレジット数]消化クレジットの分母
     const grafOptions: string[] = options.map((item: Option) => item.title); // [投票数・投票率]選択肢
     let grafEffectiveVotes: number[] = []; // [投票数・投票率]投票数
     let grafPercentCredits: number[] = []; // [投票数・投票率]投票率
@@ -37,7 +38,7 @@ export function dashboardData() {
       participantVotesMolecule = answer.length.toString();
       /**
        * @description
-       * [参加者数・投票数]参加者数の分子の計算
+       * [参加者数・消化クレジット数]参加者数の分子の計算
        * 1回目のreduceで回答者数分回して前回回答者の合計と足す
        * 2回目のreduceで1回答者の投票数の合計を出す
        * @param prev 前回の値が入る　初期値は第2引数に指定している0
@@ -49,6 +50,17 @@ export function dashboardData() {
           let vote = current.votes.reduce(
             (prev: number, current: AnswerOption): number =>
               prev + current.vote,
+            0
+          );
+          return prev + vote; // returnすると次のprevに入る
+        }, 0) // 初期値0を設定することにより最初のprevに0が入る
+        .toString(); // 最後に数値から文字列に変換
+
+      digestionCredits = answer
+        .reduce((prev: number, current: Answer): number => {
+          let vote = current.votes.reduce(
+            (prev: number, current: AnswerOption): number =>
+              prev + current.vote * current.vote,
             0
           );
           return prev + vote; // returnすると次のprevに入る
@@ -111,10 +123,11 @@ export function dashboardData() {
     const voterLinks: string = participantLinks.join("\n"); // 参加者用投票リンク
 
     return {
-      participantVotesMolecule, // [参加者数・投票数]参加者数の分子
-      participantVotesDenominator, // [参加者数・投票数]参加者数の分母
-      effectiveVotesMolecule, // [参加者数・投票数]投票数の分子
-      effectiveVotesDenominator, // [参加者数・投票数]投票数の分母
+      participantVotesMolecule, // [参加者数・消化クレジット数]参加者数の分子
+      participantVotesDenominator, // [参加者数・消化クレジット数]参加者数の分母
+      effectiveVotesMolecule, // [参加者数・消化クレジット数]投票数の分子
+      digestionCredits, // [参加者数・消化クレジット数]参加者数・消化クレジット数の分子
+      effectiveVotesDenominator, // [参加者数・消化クレジット数]投票数の分母
       grafOptions, // [投票数・投票率]選択肢
       grafEffectiveVotes, // [投票数・投票率]投票数
       grafPercentCredits, // [投票数・投票率]投票率

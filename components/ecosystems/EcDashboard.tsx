@@ -146,21 +146,25 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       <AtH2 title={t("pageTitle.dashboard")} />
       <br />
       <OrCardProcess
-        labelTitle={t("common.dashboard.participantAndEffectiveVotes.title")}
+        labelTitle={t("common.dashboard.participantAndCredits.title")}
+        overView={t("common.dashboard.participantAndCredits.overView")}
         leftForm={{
           title: t("common.dashboard.participant.title"),
           molecule: dashboard.participantVotesMolecule,
           denominator: dashboard.participantVotesDenominator,
         }}
         rightForm={{
-          title: t("common.dashboard.effectiveVotes.title"),
-          molecule: dashboard.effectiveVotesMolecule,
+          title: t("common.dashboard.credits.title"),
+          molecule: dashboard.digestionCredits,
           denominator: dashboard.effectiveVotesDenominator,
         }}
       />
       <br />
       <OrCardBar
         title={t("common.dashboard.effectiveVotesAndPercentCredits.title")}
+        overView={t(
+          "common.dashboard.effectiveVotesAndPercentCredits.overView"
+        )}
         required={false}
         data={grafData}
         button={{

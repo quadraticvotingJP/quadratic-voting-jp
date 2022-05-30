@@ -35,10 +35,11 @@ http://localhost:4000
 - Next.js 12.1.0
 - TypeScript 4.6.2
 
-### バックエンド
+### Firebase
 
 - Firebase - Authentication(認証)
-- Firebase - Hosting(デプロイ)
+- Firebase - FireStore(DB)
+- Firebase - Storage(画像)
 
 ### デプロイ
 
@@ -51,10 +52,6 @@ http://localhost:4000
 ### パッケージ管理
 
 [renovate](https://www.npmjs.com/package/renovate)
-
-### 設計書
-
-- [API 定義書](https://docs.google.com/spreadsheets/d/100a4ZKqRJC49oHAY0b8O1SdKxKYRHL2-KrTa9D2pnFo/edit#gid=0)
 
 ### その他
 

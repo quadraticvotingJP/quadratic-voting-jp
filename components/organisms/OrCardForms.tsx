@@ -63,7 +63,9 @@ const OrCardForms: React.FC<Props> = ({
               title={label.title}
             />
           </div>
-          {label.overView && <div>{label.overView}</div>}
+          {label.overView && (
+            <div className="whitespace-pre-wrap">{label.overView}</div>
+          )}
         </div>
         <div className="mb-6">
           <MoLabelForm

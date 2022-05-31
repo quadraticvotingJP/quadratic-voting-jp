@@ -1,5 +1,5 @@
-import { GA_TRACKING_ID } from "@/architecture/application/gtag";
-import { useRouter, pageview } from "next/router";
+import { GA_TRACKING_ID, pageview } from "@/architecture/application/gtag";
+import { useRouter } from "next/router";
 // hooks
 import { useEffect } from "react";
 // i18n

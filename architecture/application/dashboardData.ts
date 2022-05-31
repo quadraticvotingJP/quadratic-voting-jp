@@ -22,12 +22,14 @@ export function dashboardData() {
       secretKey,
     } = response; // responseDataの展開
 
-    let participantVotesMolecule: string = ""; // [参加者数・投票数]参加者数の分子
-    const participantVotesDenominator: string = participant; // [参加者数・投票数]参加者数の分母
-    let effectiveVotesMolecule: string = ""; // [参加者数・投票数]投票数の分子
-    const effectiveVotesDenominator: string = (
+    let participantVotesMolecule: string = ""; // [参加者数・クレジット数]参加者数の分子
+    const participantVotesDenominator: string = participant; // [参加者数・クレジット数]参加者数の分母
+    let digestionCreditsMolecule: string = ""; // [参加者数・クレジット数]クレジットの分子
+    const digestionCreditsDenominator: string = (
       Number(participant) * Number(votes)
-    ).toString(); // [参加者数・投票数]投票数の分母
+    ).toString(); // [参加者数・クレジット数]クレジットの分母
+
+    let effectiveVotes: string = ""; // [投票数・投票率]投票数の計算。投票率を計算するために使用。リターンしない
     const grafOptions: string[] = options.map((item: Option) => item.title); // [投票数・投票率]選択肢
     let grafEffectiveVotes: number[] = []; // [投票数・投票率]投票数
     let grafPercentCredits: number[] = []; // [投票数・投票率]投票率
@@ -37,14 +39,14 @@ export function dashboardData() {
       participantVotesMolecule = answer.length.toString();
       /**
        * @description
-       * [参加者数・投票数]参加者数の分子の計算
+       * [参加者数・クレジット数]投票者の投票数の計算。
        * 1回目のreduceで回答者数分回して前回回答者の合計と足す
        * 2回目のreduceで1回答者の投票数の合計を出す
        * @param prev 前回の値が入る　初期値は第2引数に指定している0
        * @param current 次の値が入る
        * @returns 全合計値 @type {number}
        */
-      effectiveVotesMolecule = answer
+      effectiveVotes = answer
         .reduce((prev: number, current: Answer): number => {
           let vote = current.votes.reduce(
             (prev: number, current: AnswerOption): number =>
@@ -57,7 +59,27 @@ export function dashboardData() {
 
       /**
        * @description
-       * [投票数・投票率]算出
+       * [参加者数・クレジット数]クレジット数の分子の計算
+       * 1回目のreduceで回答者数分回して前回回答者の合計と足す
+       * 2回目のreduceで1回答者の消化しているクレジット数の合計を出す
+       * @param prev 前回の値が入る　初期値は第2引数に指定している0
+       * @param current 次の値が入る
+       * @returns 全合計値 @type {number}
+       */
+      digestionCreditsMolecule = answer
+        .reduce((prev: number, current: Answer): number => {
+          let vote = current.votes.reduce(
+            (prev: number, current: AnswerOption): number =>
+              prev + current.vote * current.vote,
+            0
+          );
+          return prev + vote; // returnすると次のprevに入る
+        }, 0) // 初期値0を設定することにより最初のprevに0が入る
+        .toString(); // 最後に数値から文字列に変換
+
+      /**
+       * @description
+       * [投票数・投票率]登場数の算出
        * 1回目のreduceで回答者数分回して同じ選択肢を足す
        * for分で選択肢（Id）分だけ回して同じIDであれば足す
        */
@@ -83,12 +105,12 @@ export function dashboardData() {
 
       // [投票数・投票率]投票数 投票数を全体で割り投票率を算出
       grafPercentCredits = votes().map(
-        (item: number) => (item / Number(effectiveVotesMolecule)) * 100
+        (item: number) => (item / Number(effectiveVotes)) * 100
       );
     } else {
       // 回答が一つもなければ
       participantVotesMolecule = "0";
-      effectiveVotesMolecule = "0";
+      digestionCreditsMolecule = "0";
       // 回答が一つもなければoptionsのlength分0をpushする
       for (let index: number = 0; index < options.length; index++) {
         grafEffectiveVotes.push(0);
@@ -111,10 +133,10 @@ export function dashboardData() {
     const voterLinks: string = participantLinks.join("\n"); // 参加者用投票リンク
 
     return {
-      participantVotesMolecule, // [参加者数・投票数]参加者数の分子
-      participantVotesDenominator, // [参加者数・投票数]参加者数の分母
-      effectiveVotesMolecule, // [参加者数・投票数]投票数の分子
-      effectiveVotesDenominator, // [参加者数・投票数]投票数の分母
+      participantVotesMolecule, // [参加者数・クレジット数]参加者数の分子
+      participantVotesDenominator, // [参加者数・クレジット数]参加者数の分母
+      digestionCreditsMolecule, // [参加者数・クレジット数]参加者数・クレジット数の分子
+      digestionCreditsDenominator, // [参加者数・クレジット数]投票数の分母
       grafOptions, // [投票数・投票率]選択肢
       grafEffectiveVotes, // [投票数・投票率]投票数
       grafPercentCredits, // [投票数・投票率]投票率

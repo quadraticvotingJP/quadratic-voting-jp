@@ -72,7 +72,7 @@ const MoLabelForm: React.FC<Props> = ({
             />
           )}
         </div>
-        {overView && <div>{overView}</div>}
+        {overView && <div className="whitespace-pre-wrap">{overView}</div>}
       </div>
       <div className={showSave ? "flex justify-between" : ""}>
         <div>

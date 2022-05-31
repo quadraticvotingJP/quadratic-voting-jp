@@ -1,4 +1,3 @@
-import { GA_TRACKING_ID, pageview } from "@/architecture/application/gtag";
 import { useRouter } from "next/router";
 // hooks
 import { useEffect } from "react";
@@ -29,27 +28,6 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   }, []);
 
   // GoogleAnalytics4
-  // https://flaviocopes.com/nextjs-google-analytics/
-  // https://fwywd.com/tech/next-ga-pv
-  useEffect(() => {
-    // GA_TRACKING_ID が設定されていない場合は、処理終了
-    if (!GA_TRACKING_ID) return;
-    const handleRouteChange = (url: string) => {
-      pageview(url);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
-
-  // 該当しないpathであれば/に飛ばす
-  // useEffect(() => {
-  //   if (router.pathname === "/create") return;
-  //   if (router.pathname === "/dashboard/[id]") return;
-  //   if (router.pathname === "/vote/[id]") return;
-  //   routerPush("/");
-  // }, [router.pathname]);
   return (
     <>
       <LoadingProvider>

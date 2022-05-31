@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Script from "next/script";
 // hooks
 import { useEffect } from "react";
 // i18n
@@ -27,27 +28,21 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     signInAnonymously(authentication);
   }, []);
 
-  // GoogleAnalytics4
   return (
     <>
-      <script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}"`}
+      <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
       />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}',{'debug_mode': true},{ page_path: window.location.pathname });
-            `,
-        }}
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap"
-        rel="stylesheet"
-      />
+      <Script strategy="lazyOnload" id="">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');
+      `}
+      </Script>
       <LoadingProvider>
         <MoHeader />
         <div className="flex mt-14 sm:mt-16 min-h-screen">

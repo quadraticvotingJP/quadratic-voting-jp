@@ -22,6 +22,7 @@ import { LoadingProvider } from "@/context/LoadingContext";
 import { routerPush } from "@/architecture/application/routing";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
+  const Router = useRouter();
   // 匿名ログイン
   useEffect(() => {
     signInAnonymously(authentication);
@@ -36,11 +37,11 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         page_path: url,
       });
     };
-    router.events.on("routeChangeComplete", handleRouteChange);
+    Router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
-  }, [router.events]);
+  }, [Router.events]);
 
   // 該当しないpathであれば/に飛ばす
   // useEffect(() => {

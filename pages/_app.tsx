@@ -1,4 +1,4 @@
-import { GA_TRACKING_ID, pageview } from "@/architecture/application/gtag";
+import { GA_TRACKING_ID } from "@/architecture/application/gtag";
 import { useRouter } from "next/router";
 // hooks
 import { useEffect } from "react";
@@ -22,22 +22,25 @@ import { LoadingProvider } from "@/context/LoadingContext";
 import { routerPush } from "@/architecture/application/routing";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  const Router = useRouter();
   // 匿名ログイン
   useEffect(() => {
     signInAnonymously(authentication);
   }, []);
 
   // GoogleAnalytics4
-  // https://zenn.dev/keitakn/articles/nextjs-google-tag-manager
-  // https://fwywd.com/tech/next-ga-pv
+  // https://flaviocopes.com/nextjs-google-analytics/
   useEffect(() => {
-    // GA_TRACKING_ID が設定されていない場合は、処理終了
-    if (!GA_TRACKING_ID) return;
-    const handleRouteChange = (url: string) => pageview(url);
-    Router.events.on("routeChangeComplete", handleRouteChange);
-    return () => Router.events.off("routeChangeComplete", handleRouteChange);
-  }, [Router.events]);
+    const handleRouteChange = (url: string) => {
+      // @ts-ignore
+      window.gtag("config", GA_TRACKING_ID, {
+        page_path: url,
+      });
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   // 該当しないpathであれば/に飛ばす
   // useEffect(() => {

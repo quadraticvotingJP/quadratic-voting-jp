@@ -155,8 +155,8 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
         }}
         rightForm={{
           title: t("common.dashboard.credits.title"),
-          molecule: dashboard.digestionCredits,
-          denominator: dashboard.effectiveVotesDenominator,
+          molecule: dashboard.digestionCreditsMolecule,
+          denominator: dashboard.digestionCreditsDenominator,
         }}
       />
       <br />

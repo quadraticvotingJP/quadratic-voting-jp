@@ -30,6 +30,24 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   // GoogleAnalytics4
   return (
     <>
+      <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}"`}
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}', { page_path: window.location.pathname });
+            `,
+        }}
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap"
+        rel="stylesheet"
+      />
       <LoadingProvider>
         <MoHeader />
         <div className="flex mt-14 sm:mt-16 min-h-screen">

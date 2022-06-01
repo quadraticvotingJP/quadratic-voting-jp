@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+import { pageview } from "@/lib/gtag";
 // hooks
 import { useEffect } from "react";
 // i18n
@@ -19,19 +21,23 @@ import { LoadingProvider } from "@/context/LoadingContext";
 // application
 import { routerPush } from "@/architecture/application/routing";
 
-function MyApp({ Component, pageProps, router }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   // 匿名ログイン
   useEffect(() => {
     signInAnonymously(authentication);
   }, []);
 
-  // 該当しないpathであれば/に飛ばす
-  // useEffect(() => {
-  //   if (router.pathname === "/create") return;
-  //   if (router.pathname === "/dashboard/[id]") return;
-  //   if (router.pathname === "/vote/[id]") return;
-  //   routerPush("/");
-  // }, [router.pathname]);
+  // googleAnalytics4
+  // https://fwywd.com/tech/next-ga-pv
+  useEffect(() => {
+    const handleRouteChange = (url: any) => pageview(url);
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <>
       <LoadingProvider>

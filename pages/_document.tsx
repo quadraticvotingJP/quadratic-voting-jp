@@ -10,6 +10,12 @@ export default class MyDocument extends Document {
         <Head>
           {GA_TRACKING_ID && (
             <>
+              {/* SEO */}
+              <meta
+                name="viewport"
+                content="minimum-scale=1, initial-scale=1, width=device-width"
+              />
+              {/* google Analytics */}
               <script
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}

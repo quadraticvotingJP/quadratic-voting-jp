@@ -1,5 +1,9 @@
 import { useRouter } from "next/router";
+// GA
 import { pageview } from "@/lib/gtag";
+// SEO
+import { DefaultSeo } from "next-seo";
+import { SEO } from "@/lib/next-seo.config";
 // hooks
 import { useEffect } from "react";
 // i18n
@@ -40,6 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <DefaultSeo {...SEO} />
       <LoadingProvider>
         <MoHeader />
         <div className="flex mt-14 sm:mt-16 min-h-screen">

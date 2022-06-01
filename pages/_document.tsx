@@ -1,6 +1,5 @@
-import { GA_TRACKING_ID } from "@/architecture/application/gtag";
+import { GA_TRACKING_ID } from "@/lib/gtag";
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import Script from "next/script";
 
 export default class MyDocument extends Document {
   render(): JSX.Element {
@@ -9,19 +8,22 @@ export default class MyDocument extends Document {
         <Head>
           {GA_TRACKING_ID && (
             <>
-              <Script
-                strategy="lazyOnload"
+              <script
+                async
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
               />
-              <Script strategy="lazyOnload" id="">
-                {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', '${GA_TRACKING_ID}');
-      `}
-              </Script>
+              <script
+                id="google-analytics"
+                dangerouslySetInnerHTML={{
+                  __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });`,
+                }}
+              />
             </>
           )}
         </Head>

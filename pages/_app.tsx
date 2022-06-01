@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { GA_TRACKING_ID, pageview } from "@/architecture/application/gtag";
+import { pageview } from "@/lib/gtag";
 // hooks
 import { useEffect } from "react";
 // i18n
@@ -21,8 +21,8 @@ import { LoadingProvider } from "@/context/LoadingContext";
 // application
 import { routerPush } from "@/architecture/application/routing";
 
-function MyApp({ Component, pageProps, router }: AppProps) {
-  const Router = useRouter();
+function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   // 匿名ログイン
   useEffect(() => {
     signInAnonymously(authentication);
@@ -31,17 +31,12 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   // googleAnalytics4
   // https://fwywd.com/tech/next-ga-pv
   useEffect(() => {
-    // GA_TRACKING_ID が設定されていない場合は、処理終了
-    if (!GA_TRACKING_ID) return;
-
-    const handleRouteChange = (url: string) => {
-      pageview(url);
-    };
-    Router.events.on("routeChangeComplete", handleRouteChange);
+    const handleRouteChange = (url: any) => pageview(url);
+    router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
-      Router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("routeChangeComplete", handleRouteChange);
     };
-  }, [Router.events]);
+  }, [router.events]);
 
   return (
     <>

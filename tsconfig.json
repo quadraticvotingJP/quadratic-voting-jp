@@ -29,6 +29,6 @@
     "jsx": "preserve", // tsxファイルをjsxやjsにコンパイルする際の出力の形式を指定
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"], // コンパイルする対象ファイルを記述
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/gtag.js"], // コンパイルする対象ファイルを記述
   "exclude": ["node_modules"]
 }

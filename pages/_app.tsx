@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Script from "next/script";
+import { GA_TRACKING_ID, pageview } from "@/architecture/application/gtag";
 // hooks
 import { useEffect } from "react";
 // i18n
@@ -28,21 +28,23 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     signInAnonymously(authentication);
   }, []);
 
+  // googleAnalytics4
+  // https://fwywd.com/tech/next-ga-pv
+  useEffect(() => {
+    // GA_TRACKING_ID が設定されていない場合は、処理終了
+    if (!GA_TRACKING_ID) return;
+
+    const handleRouteChange = (url: string) => {
+      pageview(url);
+    };
+    Router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      Router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [Router.events]);
+
   return (
     <>
-      <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
-      />
-      <Script strategy="lazyOnload" id="">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}');
-      `}
-      </Script>
       <LoadingProvider>
         <MoHeader />
         <div className="flex mt-14 sm:mt-16 min-h-screen">

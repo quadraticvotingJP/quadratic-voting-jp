@@ -14,7 +14,7 @@
     "licenseLink": "https://github.com/quadraticvotingJP/quadratic-voting-jp/blob/main/LICENSE"
   },
   "pageTitle": {
-    "creat": "イベント作成",
+    "creat": "アンケート作成",
     "dashboard": "ダッシュボード",
     "vote": "投票"
   },
@@ -26,7 +26,7 @@
       "medium": "medium"
     },
     "button": {
-      "eventCreation": "イベント作成",
+      "eventCreation": "アンケート作成",
       "add": "追加",
       "edit": "編集",
       "vote": "投票",
@@ -37,12 +37,12 @@
     "event": {
       "eventTitle": {
         "title": "タイトル",
-        "detail": "イベントタイトルを40文字で入力してください。",
+        "detail": "アンケートのタイトルを40文字以内で入力してください。",
         "placeholder": "定期旅行の行き先決め"
       },
       "overview": {
         "title": "概要",
-        "detail": "イベント概要を240文字で入力してください。",
+        "detail": "アンケートの概要を240文字以内で入力してください。",
         "placeholder": "QuadraticVoting.jpを利用し、次回の旅行先を決めます。"
       },
       "publicationStartDate": {
@@ -133,7 +133,7 @@
       },
       "eventCreation": {
         "pageTitle": {
-          "title": "イベント作成"
+          "title": "アンケート作成"
         }
       }
     }

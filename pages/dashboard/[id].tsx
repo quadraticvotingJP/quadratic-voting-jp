@@ -1,3 +1,4 @@
+import { NextSeo } from "next-seo";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { EcDashboard } from "@/components/ecosystems/EntryPoint";
@@ -9,7 +10,15 @@ const Id = ({
   conversionEventData,
   query,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  return <EcDashboard dashboard={conversionEventData} query={query} />;
+  return (
+    <>
+      <NextSeo
+        title="ダッシュボード ｜革命的な民主主義を実現するアンケートフォーム"
+        description="アンケートのダッシュボードページ。"
+      />
+      <EcDashboard dashboard={conversionEventData} query={query} />
+    </>
+  );
 };
 export default Id;
 

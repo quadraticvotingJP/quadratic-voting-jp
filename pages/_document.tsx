@@ -1,3 +1,5 @@
+// Next.js の独自ファイル。 HTML の <html> や <body> タグの拡張に使う
+// _document.js はサーバーサイドのみでレンダリングされるため、クライアントサイドでは使われない。
 import { GA_TRACKING_ID } from "@/lib/gtag";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 

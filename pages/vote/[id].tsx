@@ -1,5 +1,5 @@
 /** 投票画面  */
-
+import { NextSeo } from "next-seo";
 import React, { useEffect, useState } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -26,11 +26,17 @@ const Id = ({
   cantVote = false,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
-    <EcVoteForm
-      query={query}
-      documentId={documentId}
-      conversionVoteData={conversionVoteData}
-    />
+    <>
+      <NextSeo
+        title="投票 ｜革命的な民主主義を実現するアンケートフォーム"
+        description="アンケートに対する投票ページ。"
+      />
+      <EcVoteForm
+        query={query}
+        documentId={documentId}
+        conversionVoteData={conversionVoteData}
+      />
+    </>
   );
 };
 export default Id;

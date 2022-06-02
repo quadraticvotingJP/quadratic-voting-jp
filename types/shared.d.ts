@@ -163,3 +163,8 @@ interface VotePageQuery {
   readonly user?: string;
   readonly id?: string;
 }
+
+// adsbygoogle の型定義
+interface Window {
+  adsbygoogle?: { [key: string]: unknown }[];
+}

@@ -18,10 +18,12 @@ export default class MyDocument extends Document {
               {/* google Analytics */}
               <script
                 async
+                crossOrigin="anonymous"
                 src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
               />
               <script
                 id="google-analytics"
+                crossOrigin="anonymous"
                 dangerouslySetInnerHTML={{
                   __html: `
                 window.dataLayer = window.dataLayer || [];
@@ -35,8 +37,8 @@ export default class MyDocument extends Document {
               {/* google Adsense */}
               <script
                 id="google-adsense"
-                async
                 crossOrigin="anonymous"
+                async
                 src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.NEXT_PUBLIC_GOOGLE_ADSENCE}`}
               />
             </>

@@ -19,7 +19,7 @@ import { authentication } from "@/firebase/initialize";
 import { signInAnonymously } from "firebase/auth";
 // component
 import { MoHeader, MoFooter } from "@/components/molecules/EntryPoint";
-import { EcAdvertisement } from "@/components/ecosystems/EntryPoint";
+import { EcAdSense } from "@/components/ecosystems/EntryPoint";
 // context
 import { LoadingProvider } from "@/context/LoadingContext";
 // application
@@ -48,11 +48,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       <LoadingProvider>
         <MoHeader />
         <div className="flex mt-14 sm:mt-16 min-h-screen">
-          {/* <EcAdvertisement className="w-1/5 bg-gray-400" /> */}
+          <div className="w-1/5"></div>
           <div className="w-full mx-10 mt-16 mb-32">
             <Component {...pageProps} />
           </div>
-          {/* <EcAdvertisement className="w-1/5 bg-gray-400" /> */}
+          <EcAdSense className="w-1/5" format="horizontal" />
         </div>
         <MoFooter />
       </LoadingProvider>

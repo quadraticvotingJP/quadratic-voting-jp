@@ -1,11 +1,11 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
+import styled from "styled-components";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 
 // component
-import { AtHref, AtButton } from "@/components/atoms/EntryPoint";
+import { AtHref, AtButton, AtImage } from "@/components/atoms/EntryPoint";
 
 type Props = {
   images: string[];
@@ -19,15 +19,9 @@ const EcLp: React.FC<Props> = ({ images }) => {
 
   return (
     <>
-      <section id="firstView" className="bg-gray-200 px-20 py-32 mb-14">
-        <div>
-          <p className="whitespace-pre-wrap text-4xl font-bold mb-10">
-            {t("lp.firstView.title")}
-          </p>
-          <p className="text-3xl font-bold mb-40">
-            {t("lp.firstView.subTitle")}
-          </p>
-        </div>
+      <FirstView id="firstView">
+        <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
+        <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
         <div className="flex justify-center">
           <AtButton
             className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
@@ -36,8 +30,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
             onClick={moveCreateEvent}
           />
         </div>
-      </section>
-      <section id="isQuadraticVoting" className="p-12 mb-14">
+      </FirstView>
+      <Section id="isQuadraticVoting">
         <div className="flex">
           <div className="mr-12">
             <p className="mb-10">{t("lp.isQuadraticVoting.title")}</p>
@@ -67,8 +61,18 @@ const EcLp: React.FC<Props> = ({ images }) => {
             </div>
           </div>
         </div>
-      </section>
-      <section id="feature" className="p-12 mb-14">
+      </Section>
+      <Section id="hoge">
+        <div className="relative w-full h-full">
+          <Image
+            className="block"
+            src={images[1].toString()}
+            alt={"hoge"}
+            layout={"fill"}
+          />
+        </div>
+      </Section>
+      <Section id="feature">
         <p className="mb-10 text-center">{t("lp.feature.title")}</p>
         <div className="flex flex-col items-center">
           <div className="w-3/4 flex justify-between">
@@ -105,8 +109,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
             </div>
           </div>
         </div>
-      </section>
-      <section id="rule" className="p-12 mb-14">
+      </Section>
+      <Section id="rule">
         <p className="mb-10 text-center">{t("lp.rule.title")}</p>
         <div className="flex justify-between mb-10">
           <div>
@@ -152,8 +156,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
           </div>
           <div>{/* 得票例 */}</div>
         </div>
-      </section>
-      <section id="scene" className="p-12 mb-14">
+      </Section>
+      <Section id="scene">
         <p className="mb-10 text-center">{t("lp.scene.title")}</p>
         <div className="flex flex-col items-center">
           <div className="w-3/4 flex justify-between mb-10">
@@ -166,8 +170,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
             <p>{t("lp.scene.scene5")}</p>
           </div>
         </div>
-      </section>
-      <section id="startNow" className="p-12">
+      </Section>
+      <BaseSection id="startNow">
         <p className="text-3xl font-bold mb-14 text-center">
           {t("lp.startNow.title")}
         </p>
@@ -179,8 +183,41 @@ const EcLp: React.FC<Props> = ({ images }) => {
             onClick={moveCreateEvent}
           />
         </div>
-      </section>
+      </BaseSection>
     </>
   );
 };
 export default EcLp;
+
+const Image = styled(AtImage)`
+  display: block;
+`;
+const BaseSection = styled.section`
+  padding: 10px;
+`;
+const BaseTitle = styled.p`
+  font-size: 20px;
+`;
+
+const FirstView = styled.section`
+  padding: 185px 0px 0px 100px;
+  margin-bottom: 118px;
+  /* background: url(${(props) => props}); */
+`;
+const FirstViewTitle = styled.section`
+  white-space: pre-wrap;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 32px;
+`;
+
+const FirstViewSubTitle = styled.section`
+  white-space: pre-wrap;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 158px;
+`;
+
+const Section = styled(BaseSection)`
+  margin-bottom: 160px;
+`;

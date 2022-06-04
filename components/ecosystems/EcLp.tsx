@@ -128,6 +128,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
           </FeatureElement>
         </DirectionColElement>
       </Section>
+
       <Section id="rule">
         <RuleTitle>{t("lp.rule.title")}</RuleTitle>
         <DirectionColElement>
@@ -182,71 +183,13 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 onClick={moveCreateEvent}
               />
             </div>
-            <RuleGraf>
-              <Point1>
-                <PointText>{t("lp.rule.point1")}</PointText>
-                <AtImage
-                  src={images[4].toString()}
-                  alt="point1"
-                  layout="intrinsic"
-                  width={70}
-                  height={70}
-                />
-              </Point1>
-              <div>矢印</div>
-              <JustifyBetweenElement>
-                <div>
-                  <PointText>{t("lp.rule.point2")}</PointText>
-                  <AtImage
-                    src={images[4].toString()}
-                    alt="point2"
-                    layout="intrinsic"
-                    width={70}
-                    height={70}
-                  />
-                </div>
-                <div>
-                  <PointText>{t("lp.rule.point3")}</PointText>
-                  <AtImage
-                    src={images[4].toString()}
-                    alt="point3"
-                    layout="intrinsic"
-                    width={70}
-                    height={70}
-                  />
-                </div>
-                <div>
-                  <PointText>{t("lp.rule.point4")}</PointText>
-                  <AtImage
-                    src={images[4].toString()}
-                    alt="point4"
-                    layout="intrinsic"
-                    width={70}
-                    height={70}
-                  />
-                </div>
-                <div>
-                  <PointText>{t("lp.rule.point5")}</PointText>
-                  <AtImage
-                    src={images[4].toString()}
-                    alt="point5"
-                    layout="intrinsic"
-                    width={70}
-                    height={70}
-                  />
-                </div>
-                <div>
-                  <PointText>{t("lp.rule.point6")}</PointText>
-                  <AtImage
-                    src={images[4].toString()}
-                    alt="point6"
-                    layout="intrinsic"
-                    width={70}
-                    height={70}
-                  />
-                </div>
-              </JustifyBetweenElement>
-            </RuleGraf>
+            <AtImage
+              src={images[4].toString()}
+              alt="point4"
+              layout="intrinsic"
+              width={400}
+              height={400}
+            />
           </RuleExampleElement>
         </DirectionColElement>
       </Section>
@@ -390,9 +333,6 @@ const RuleText = styled(Text)`
 const RuleExampleElement = styled(JustifyBetweenElement)`
   width: 70%;
 `;
-const RuleGraf = styled.div`
-  width: 45%;
-`;
 const RuleExample1 = styled(Text)`
   margin-bottom: 24px;
 `;
@@ -401,14 +341,6 @@ const RuleExample2 = styled(Text)`
 `;
 const RuleExample3 = styled.div`
   margin-bottom: 89px;
-`;
-const Point1 = styled(DirectionColElement)`
-  margin-bottom: 12px;
-`;
-
-const PointText = styled(Text)`
-  text-align: center;
-  margin-bottom: 12px;
 `;
 
 // scene

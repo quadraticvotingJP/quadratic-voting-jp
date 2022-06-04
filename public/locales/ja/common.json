@@ -113,6 +113,9 @@
       "message": {
         "40": "40文字以上にしてください"
       }
+    },
+    "systemError": {
+      "invalidUrl": "無効なURLです。正しいリンクを入力してください。"
     }
   },
   "unique": {

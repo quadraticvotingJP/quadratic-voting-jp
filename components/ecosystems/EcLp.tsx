@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
@@ -6,6 +7,8 @@ import { routerPush } from "@/architecture/application/routing";
 
 // component
 import { AtHref, AtButton, AtImage } from "@/components/atoms/EntryPoint";
+
+import Image from "next/image";
 
 type Props = {
   images: string[];
@@ -16,6 +19,10 @@ const EcLp: React.FC<Props> = ({ images }) => {
   const { t } = useTranslation("common");
   const moveCreateEvent = (): void => routerPush("create");
   console.log(images);
+
+  const firstView = () => {
+    return images[1].toString();
+  };
 
   return (
     <>
@@ -31,12 +38,18 @@ const EcLp: React.FC<Props> = ({ images }) => {
           />
         </JustifyCenterElement>
       </FirstView>
-      <Section id="isQuadraticVoting">
-        <FlexElement>
-          <div className="mr-12">
-            <BaseTitle>{t("lp.isQuadraticVoting.title")}</BaseTitle>
-            <BoldTitle>{t("lp.isQuadraticVoting.subTitle")}</BoldTitle>
-            <Text>{t("lp.isQuadraticVoting.overview")}</Text>
+      <SectionIsQuadraticVoting id="isQuadraticVoting">
+        <IsQuadraticVoting>
+          <div>
+            <IsQuadraticVotingTitle>
+              {t("lp.isQuadraticVoting.title")}
+            </IsQuadraticVotingTitle>
+            <IsQuadraticVotingSubTitle>
+              {t("lp.isQuadraticVoting.subTitle")}
+            </IsQuadraticVotingSubTitle>
+            <IsQuadraticVotingOverview>
+              {t("lp.isQuadraticVoting.overview")}
+            </IsQuadraticVotingOverview>
             <AtButton
               className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
               title={t("common.button.startNow")}
@@ -45,113 +58,197 @@ const EcLp: React.FC<Props> = ({ images }) => {
             />
           </div>
           <div>
-            <div>
-              <p>{t("lp.isQuadraticVoting.conventional")}</p>
-              <div className="mb-10  w-64 h-40 bg-gray-200"></div>
-              {/* <img src="" alt="" /> */}
-            </div>
-            <div>
-              <p>{t("lp.isQuadraticVoting.quadraticVoting")}</p>
-              <div className="mb-10  w-64 h-40 bg-gray-200"></div>
-              {/* <img src="" alt="" /> */}
-            </div>
+            <IsQuadraticVotingImageElement>
+              <Text>{t("lp.isQuadraticVoting.conventional")}</Text>
+              <AtImage
+                src={images[2].toString()}
+                alt="conventional"
+                layout="intrinsic"
+                width={261}
+                height={174}
+              />
+            </IsQuadraticVotingImageElement>
+            <IsQuadraticVotingImageElement>
+              <Text>{t("lp.isQuadraticVoting.quadraticVoting")}</Text>
+              <AtImage
+                src={images[2].toString()}
+                alt="quadraticVoting"
+                layout="intrinsic"
+                width={261}
+                height={174}
+              />
+            </IsQuadraticVotingImageElement>
           </div>
-        </FlexElement>
-      </Section>
-      <Section id="hoge">
-        <div className="relative w-full h-full">
-          <Image
-            className="block"
-            src={images[1].toString()}
-            alt={"hoge"}
-            layout={"fill"}
-          />
-        </div>
-      </Section>
+        </IsQuadraticVoting>
+      </SectionIsQuadraticVoting>
       <Section id="feature">
-        <p className="mb-10 text-center">{t("lp.feature.title")}</p>
-        <div className="flex flex-col items-center">
-          <div className="w-3/4 flex justify-between">
-            <div className="mb-10  w-64 h-40 bg-gray-200 mr-20"></div>
-            {/* <img src="" alt="" /> */}
-            <div>
-              <p className="font-bold text-2xl mb-2">{t("lp.feature.no1")}</p>
-              <p className="mb-2 text-2xl">{t("lp.feature.no1Feature")}</p>
-              <p className="whitespace-pre-wrap">
-                {t("lp.feature.no1Explanation")}
-              </p>
-            </div>
-          </div>
-          <div className="w-3/4 flex justify-between">
-            <div className="mr-14">
-              <p className="font-bold text-2xl mb-2">{t("lp.feature.no2")}</p>
-              <p className="mb-2 text-2xl">{t("lp.feature.no2Feature")}</p>
-              <p className="whitespace-pre-wrap">
-                {t("lp.feature.no2Explanation")}
-              </p>
-            </div>
-            <div className="mb-10  w-64 h-40 bg-gray-200"></div>
-            {/* <img src="" alt="" /> */}
-          </div>
-          <div className="w-3/4 flex justify-between">
-            <div className="mb-10  w-64 h-40 bg-gray-200 mr-20"></div>
-            {/* <img src="" alt="" /> */}
-            <div>
-              <p className="font-bold text-2xl mb-2">{t("lp.feature.no3")}</p>
-              <p className="mb-2 text-2xl">{t("lp.feature.no3Feature")}</p>
-              <p className="whitespace-pre-wrap">
-                {t("lp.feature.no3Explanation")}
-              </p>
-            </div>
-          </div>
-        </div>
+        <FeatureTitle>{t("lp.feature.title")}</FeatureTitle>
+        <DirectionColElement>
+          <FeatureElement>
+            <AtImage
+              src={images[2].toString()}
+              alt="no1Feature"
+              layout="intrinsic"
+              width={360}
+              height={240}
+            />
+            <FeatureOverview>
+              <FeatureNo>{t("lp.feature.no1")}</FeatureNo>
+              <Feature>{t("lp.feature.no1Feature")}</Feature>
+              <Text>{t("lp.feature.no1Explanation")}</Text>
+            </FeatureOverview>
+          </FeatureElement>
+          <FeatureElement>
+            <FeatureOverview>
+              <FeatureNo>{t("lp.feature.no2")}</FeatureNo>
+              <Feature>{t("lp.feature.no2Feature")}</Feature>
+              <Text>{t("lp.feature.no2Explanation")}</Text>
+            </FeatureOverview>
+            <AtImage
+              src={images[2].toString()}
+              alt="no2Feature"
+              layout="intrinsic"
+              width={360}
+              height={240}
+            />
+          </FeatureElement>
+          <FeatureElement>
+            <AtImage
+              src={images[2].toString()}
+              alt="no3Feature"
+              layout="intrinsic"
+              width={360}
+              height={240}
+            />
+            <FeatureOverview>
+              <FeatureNo>{t("lp.feature.no3")}</FeatureNo>
+              <Feature>{t("lp.feature.no3Feature")}</Feature>
+              <Text>{t("lp.feature.no3Explanation")}</Text>
+            </FeatureOverview>
+          </FeatureElement>
+        </DirectionColElement>
       </Section>
       <Section id="rule">
-        <p className="mb-10 text-center">{t("lp.rule.title")}</p>
-        <div className="flex justify-between mb-10">
-          <div>
-            <div className="mb-4 w-64 h-40 bg-gray-200"></div>
-            {/* <img src="" alt="" /> */}
-            <p className="text-center whitespace-pre-wrap">
-              {t("lp.rule.rule1")}
-            </p>
-          </div>
-          <div>
-            <div className="mb-4 w-64 h-40 bg-gray-200"></div>
-            {/* <img src="" alt="" /> */}
-            <p className="text-center whitespace-pre-wrap">
-              {t("lp.rule.rule2")}
-            </p>
-          </div>
-          <div>
-            <div className="mb-4 w-64 h-40 bg-gray-200"></div>
-            {/* <img src="" alt="" /> */}
-            <p className="text-center whitespace-pre-wrap">
-              {t("lp.rule.rule3")}
-            </p>
-          </div>
-        </div>
-        <div className="flex">
-          <div>
-            <p className="mb-10 whitespace-pre-wrap">{t("lp.rule.example1")}</p>
-            <p className="mb-10 whitespace-pre-wrap">{t("lp.rule.example2")}</p>
-            <p className="whitespace-pre-wrap">{t("lp.rule.example3")}</p>
-            <AtHref
-              blank={true}
-              title={t("lp.rule.urlTitle")}
-              link={t("lp.rule.url")}
-              className="text-blue-500 text-sm"
-            />
-            <div className="mb-10"></div>
-            <AtButton
-              className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
-              title={t("common.button.startNow")}
-              disabled={false}
-              onClick={moveCreateEvent}
-            />
-          </div>
-          <div>{/* 得票例 */}</div>
-        </div>
+        <RuleTitle>{t("lp.rule.title")}</RuleTitle>
+        <DirectionColElement>
+          <RuleElement>
+            <div>
+              <AtImage
+                src={images[3].toString()}
+                alt="rule1"
+                layout="intrinsic"
+                width={229}
+                height={194}
+              />
+              <RuleText>{t("lp.rule.rule1")}</RuleText>
+            </div>
+            <div>
+              <AtImage
+                src={images[3].toString()}
+                alt="rule2"
+                layout="intrinsic"
+                width={229}
+                height={194}
+              />
+              <RuleText>{t("lp.rule.rule2")}</RuleText>
+            </div>
+            <div>
+              <AtImage
+                src={images[3].toString()}
+                alt="rule3"
+                layout="intrinsic"
+                width={229}
+                height={194}
+              />
+              <RuleText>{t("lp.rule.rule3")}</RuleText>
+            </div>
+          </RuleElement>
+          <RuleExampleElement>
+            <div>
+              <RuleExample1>{t("lp.rule.example1")}</RuleExample1>
+              <RuleExample1>{t("lp.rule.example2")}</RuleExample1>
+              <RuleExample2>{t("lp.rule.example3")}</RuleExample2>
+              <AtHref
+                blank={true}
+                title={t("lp.rule.urlTitle")}
+                link={t("lp.rule.url")}
+                className="text-blue-500 text-sm"
+              />
+              <RuleExample3></RuleExample3>
+              <AtButton
+                className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
+                title={t("common.button.startNow")}
+                disabled={false}
+                onClick={moveCreateEvent}
+              />
+            </div>
+            <RuleGraf>
+              <Point1>
+                <PointText>{t("lp.rule.point1")}</PointText>
+                <AtImage
+                  src={images[4].toString()}
+                  alt="point1"
+                  layout="intrinsic"
+                  width={70}
+                  height={70}
+                />
+              </Point1>
+              <div>矢印</div>
+              <JustifyBetweenElement>
+                <div>
+                  <PointText>{t("lp.rule.point2")}</PointText>
+                  <AtImage
+                    src={images[4].toString()}
+                    alt="point2"
+                    layout="intrinsic"
+                    width={70}
+                    height={70}
+                  />
+                </div>
+                <div>
+                  <PointText>{t("lp.rule.point3")}</PointText>
+                  <AtImage
+                    src={images[4].toString()}
+                    alt="point3"
+                    layout="intrinsic"
+                    width={70}
+                    height={70}
+                  />
+                </div>
+                <div>
+                  <PointText>{t("lp.rule.point4")}</PointText>
+                  <AtImage
+                    src={images[4].toString()}
+                    alt="point4"
+                    layout="intrinsic"
+                    width={70}
+                    height={70}
+                  />
+                </div>
+                <div>
+                  <PointText>{t("lp.rule.point5")}</PointText>
+                  <AtImage
+                    src={images[4].toString()}
+                    alt="point5"
+                    layout="intrinsic"
+                    width={70}
+                    height={70}
+                  />
+                </div>
+                <div>
+                  <PointText>{t("lp.rule.point6")}</PointText>
+                  <AtImage
+                    src={images[4].toString()}
+                    alt="point6"
+                    layout="intrinsic"
+                    width={70}
+                    height={70}
+                  />
+                </div>
+              </JustifyBetweenElement>
+            </RuleGraf>
+          </RuleExampleElement>
+        </DirectionColElement>
       </Section>
       <Section id="scene">
         <SceneTitle>{t("lp.scene.title")}</SceneTitle>
@@ -167,7 +264,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
           </SceneListBottom>
         </DirectionColElement>
       </Section>
-      <BaseSection id="startNow">
+      <Section id="startNow">
         <StartNowTitle>{t("lp.startNow.title")}</StartNowTitle>
         <JustifyCenterElement>
           <AtButton
@@ -177,22 +274,18 @@ const EcLp: React.FC<Props> = ({ images }) => {
             onClick={moveCreateEvent}
           />
         </JustifyCenterElement>
-      </BaseSection>
+      </Section>
     </>
   );
 };
 export default EcLp;
 
-const Image = styled(AtImage)`
-  display: block;
-`;
+const Images = styled(Image)``;
 // Base css
-const BaseSection = styled.section`
-  padding: 10px;
-`;
-const Section = styled(BaseSection)`
+const Section = styled.section`
   margin-bottom: 160px;
 `;
+
 const BaseTitle = styled.p`
   font-size: 20px;
   white-space: pre-wrap;
@@ -209,11 +302,9 @@ const FlexElement = styled.div`
   display: flex;
 `;
 const JustifyCenterElement = styled(FlexElement)`
-  /* 中央揃え */
   justify-content: center;
 `;
 const JustifyBetweenElement = styled(FlexElement)`
-  /* 中央揃え */
   justify-content: space-between;
 `;
 const DirectionColElement = styled(FlexElement)`
@@ -221,11 +312,12 @@ const DirectionColElement = styled(FlexElement)`
   flex-direction: column;
   align-items: center;
 `;
+
+// first view
 const FirstView = styled.section`
-  padding: 185px 0px 0px 100px;
+  padding: 185px 100px 0px 100px;
   margin-bottom: 118px;
 `;
-// first view
 const FirstViewTitle = styled.section`
   white-space: pre-wrap;
   font-size: 40px;
@@ -238,9 +330,87 @@ const FirstViewSubTitle = styled.section`
   font-weight: bold;
   margin-bottom: 158px;
 `;
+
 // isQuadraticVoting
+const SectionIsQuadraticVoting = styled(Section)`
+  display: flex;
+  justify-content: center;
+`;
+const IsQuadraticVoting = styled(JustifyBetweenElement)`
+  width: 70%;
+`;
+const IsQuadraticVotingTitle = styled(BaseTitle)`
+  margin-bottom: 32px;
+`;
+const IsQuadraticVotingSubTitle = styled(BoldTitle)`
+  margin-bottom: 80px;
+`;
+const IsQuadraticVotingOverview = styled(Text)`
+  margin-bottom: 80px;
+`;
+const IsQuadraticVotingImageElement = styled.div`
+  margin-bottom: 32px;
+`;
+
 // feature
+const FeatureTitle = styled(BaseTitle)`
+  margin-bottom: 80px;
+  text-align: center;
+`;
+const FeatureElement = styled(JustifyBetweenElement)`
+  width: 65%;
+  margin-bottom: 48px;
+`;
+const FeatureOverview = styled.div`
+  width: 390px;
+`;
+const FeatureNo = styled.p`
+  font-size: 40px;
+  white-space: pre-wrap;
+  margin-bottom: 16px;
+`;
+const Feature = styled.p`
+  font-size: 32px;
+  white-space: pre-wrap;
+  margin-bottom: 16px;
+`;
+
 // rule
+const RuleTitle = styled(BaseTitle)`
+  margin-bottom: 80px;
+  text-align: center;
+`;
+const RuleElement = styled(JustifyBetweenElement)`
+  width: 70%;
+  margin-bottom: 80px;
+`;
+const RuleText = styled(Text)`
+  text-align: center;
+`;
+const RuleExampleElement = styled(JustifyBetweenElement)`
+  width: 70%;
+`;
+const RuleGraf = styled.div`
+  width: 45%;
+`;
+const RuleExample1 = styled(Text)`
+  margin-bottom: 24px;
+`;
+const RuleExample2 = styled(Text)`
+  margin-bottom: 0px;
+`;
+const RuleExample3 = styled.div`
+  margin-bottom: 89px;
+`;
+const Point1 = styled(DirectionColElement)`
+  margin-bottom: 12px;
+`;
+
+const PointText = styled(Text)`
+  text-align: center;
+  margin-bottom: 12px;
+`;
+
 // scene
 const SceneTitle = styled(BaseTitle)`
   margin-bottom: 80px;
@@ -256,6 +426,7 @@ const SceneListBottom = styled(JustifyBetweenElement)`
   margin-bottom: 163px;
   text-align: center;
 `;
+
 // startNow
 const StartNowTitle = styled.p`
   font-size: 32px;

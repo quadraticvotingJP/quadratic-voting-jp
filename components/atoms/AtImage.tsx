@@ -14,8 +14,8 @@ type Props = {
     | undefined;
   readonly loader?: ImageLoader;
   readonly objectFit?: any;
-  readonly width: number;
-  readonly height: number;
+  readonly width?: number;
+  readonly height?: number;
 };
 
 // eslint-disable-next-line react/display-name

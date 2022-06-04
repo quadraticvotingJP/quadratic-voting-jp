@@ -8,8 +8,6 @@ import { routerPush } from "@/architecture/application/routing";
 // component
 import { AtHref, AtButton, AtImage } from "@/components/atoms/EntryPoint";
 
-import Image from "next/image";
-
 type Props = {
   images: string[];
 };
@@ -18,15 +16,9 @@ type Props = {
 const EcLp: React.FC<Props> = ({ images }) => {
   const { t } = useTranslation("common");
   const moveCreateEvent = (): void => routerPush("create");
-  console.log(images);
-
-  const firstView = () => {
-    return images[1].toString();
-  };
-
   return (
     <>
-      <FirstView id="firstView">
+      <FirstView id="firstView" image={images[1].toString()}>
         <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
         <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
         <JustifyCenterElement>
@@ -38,6 +30,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
           />
         </JustifyCenterElement>
       </FirstView>
+
       <SectionIsQuadraticVoting id="isQuadraticVoting">
         <IsQuadraticVoting>
           <div>
@@ -223,7 +216,6 @@ const EcLp: React.FC<Props> = ({ images }) => {
 };
 export default EcLp;
 
-const Images = styled(Image)``;
 // Base css
 const Section = styled.section`
   margin-bottom: 160px;
@@ -257,17 +249,18 @@ const DirectionColElement = styled(FlexElement)`
 `;
 
 // first view
-const FirstView = styled.section`
-  padding: 185px 100px 0px 100px;
+const FirstView = styled.div<{ image: string }>`
+  padding: 185px 100px 158px 100px;
   margin-bottom: 118px;
+  background-image: url(${(props) => props.image});
 `;
-const FirstViewTitle = styled.section`
+const FirstViewTitle = styled.p`
   white-space: pre-wrap;
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 32px;
 `;
-const FirstViewSubTitle = styled.section`
+const FirstViewSubTitle = styled.p`
   white-space: pre-wrap;
   font-size: 36px;
   font-weight: bold;

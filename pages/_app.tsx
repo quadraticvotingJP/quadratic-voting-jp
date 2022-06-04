@@ -27,6 +27,8 @@ import { routerPush } from "@/architecture/application/routing";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  const isLandingPage: boolean = router.route === "/";
+
   // 匿名ログイン
   useEffect(() => {
     signInAnonymously(authentication);
@@ -48,11 +50,25 @@ function MyApp({ Component, pageProps }: AppProps) {
       <LoadingProvider>
         <MoHeader />
         <div className="flex mt-14 sm:mt-16 min-h-screen">
-          <div className="w-1/5"></div>
-          <div className="w-full mx-10 mt-16 mb-32">
-            <Component {...pageProps} />
-          </div>
-          <EcAdSense className="w-1/5" format="horizontal" />
+          {isLandingPage ? (
+            <div className="w-full  mb-32">
+              <Component {...pageProps} />
+              {/* 広告 */}
+              <div className="flex">
+                <div className="w-1/5"></div>
+                <EcAdSense className="w-full" format="horizontal" />
+                <div className="w-1/5"></div>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="w-1/5"></div>
+              <div className="w-full mx-10 mt-16 mb-32">
+                <Component {...pageProps} />
+              </div>
+              <EcAdSense className="w-1/5" format="horizontal" />
+            </>
+          )}
         </div>
         <MoFooter />
       </LoadingProvider>

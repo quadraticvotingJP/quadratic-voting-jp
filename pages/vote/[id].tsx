@@ -1,6 +1,7 @@
 /** 投票画面  */
 
 import React from "react";
+import { NextSeo } from "next-seo";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -12,9 +13,6 @@ import { getAnswerData } from "@/architecture/application/getAnswer";
 import { getEventData } from "@/architecture/application/getEvent";
 import { eventDateAuthorize } from "@/architecture/application/getToday";
 import { voteData } from "@/architecture/application/voteData";
-
-// context
-// import { useLoadingContext } from "@/context/LoadingContext";
 
 /**
  * getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
@@ -124,11 +122,17 @@ const Id = ({
     return <EcInvalidLink />;
   }
   return (
-    <EcVoteForm
-      query={query}
-      documentId={documentId}
-      conversionVoteData={conversionVoteData}
-    />
+    <>
+      <NextSeo
+        title="投票 ｜革命的な民主主義を実現するアンケートフォーム"
+        description="アンケートに対する投票ページ。"
+      />
+      <EcVoteForm
+        query={query}
+        documentId={documentId}
+        conversionVoteData={conversionVoteData}
+      />
+    </>
   );
 };
 export default Id;

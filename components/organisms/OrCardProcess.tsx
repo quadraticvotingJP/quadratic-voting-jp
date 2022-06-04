@@ -13,6 +13,7 @@ interface Process {
 type Props = {
   // label
   readonly labelTitle: string;
+  readonly overView: string;
   // form
   readonly leftForm: Process;
   readonly rightForm: Process;
@@ -20,14 +21,16 @@ type Props = {
 
 const OrCardProcess: React.FC<Props> = ({
   labelTitle,
+  overView,
   leftForm,
   rightForm,
 }) => {
   return (
     <Card className="p-6">
-      <div className="mb-3">
+      <div className="mb-1">
         <AtInputLabel required={false} focused={false} title={labelTitle} />
       </div>
+      {overView && <div className="mb-3 whitespace-pre-wrap">{overView}</div>}
       <div className="flex justify-between">
         <div className="mr-6 w-full">
           <Card className="p-3">

@@ -1,0 +1,54 @@
+// Next.js の独自ファイル。 HTML の <html> や <body> タグの拡張に使う
+// _document.js はサーバーサイドのみでレンダリングされるため、クライアントサイドでは使われない。
+import { GA_TRACKING_ID } from "@/lib/gtag";
+import Document, { Html, Head, Main, NextScript } from "next/document";
+
+export default class MyDocument extends Document {
+  render(): JSX.Element {
+    return (
+      <Html lang="ja">
+        <Head>
+          {GA_TRACKING_ID && (
+            <>
+              {/* SEO */}
+              <meta
+                name="viewport"
+                content="minimum-scale=1, initial-scale=1, width=device-width"
+              />
+              {/* google Analytics */}
+              <script
+                async
+                crossOrigin="anonymous"
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+              />
+              <script
+                id="google-analytics"
+                crossOrigin="anonymous"
+                dangerouslySetInnerHTML={{
+                  __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });`,
+                }}
+              />
+              {/* google Adsense */}
+              <script
+                id="google-adsense"
+                crossOrigin="anonymous"
+                async
+                src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.NEXT_PUBLIC_GOOGLE_ADSENCE}`}
+              />
+            </>
+          )}
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}

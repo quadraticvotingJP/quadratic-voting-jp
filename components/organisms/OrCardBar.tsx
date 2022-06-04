@@ -14,6 +14,7 @@ interface Button {
 type Props = {
   // label
   readonly title: string;
+  readonly overView: string;
   readonly required: boolean;
   readonly focused?: boolean;
   // bar
@@ -26,6 +27,7 @@ type Props = {
 const OrCardBar: React.FC<Props> = ({
   // label
   title,
+  overView,
   focused,
   required,
   // bar
@@ -40,6 +42,7 @@ const OrCardBar: React.FC<Props> = ({
           <MoLabelBar
             focused={focused}
             title={title}
+            overView={overView}
             required={required}
             data={data}
           />

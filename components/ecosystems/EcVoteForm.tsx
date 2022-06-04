@@ -1,8 +1,5 @@
 /**
  * @description Ecosystem Vote Form
- * @todo 送信時のデータ加工処理
- * @todo クレジットコンポーネント
- * @todo インクリメント・デクリメントのボタン制御
  * */
 import React, { useMemo, useState } from "react";
 import { routerPush } from "@/architecture/application/routing";

@@ -1,55 +1,28 @@
 /** 投票画面  */
+
+import React from "react";
 import { NextSeo } from "next-seo";
-import React, { useEffect, useState } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useRouter } from "next/router";
 
 // component
-import { EcVoteForm } from "@/components/ecosystems/EntryPoint";
+import { EcVoteForm, EcInvalidLink } from "@/components/ecosystems/EntryPoint";
 
 //application
 import { getAnswerData } from "@/architecture/application/getAnswer";
 import { getEventData } from "@/architecture/application/getEvent";
-import { routerPush } from "@/architecture/application/routing";
 import { eventDateAuthorize } from "@/architecture/application/getToday";
 import { voteData } from "@/architecture/application/voteData";
-
-// context
-import { useLoadingContext } from "@/context/LoadingContext";
-
-const Id = ({
-  conversionVoteData = null,
-  documentId = null,
-  query,
-  isAnswer = true,
-  cantVote = false,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  return (
-    <>
-      <NextSeo
-        title="投票 ｜革命的な民主主義を実現するアンケートフォーム"
-        description="アンケートに対する投票ページ。"
-      />
-      <EcVoteForm
-        query={query}
-        documentId={documentId}
-        conversionVoteData={conversionVoteData}
-      />
-    </>
-  );
-};
-export default Id;
 
 /**
  * getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
  *
  * @description 処理概要
- * - QueryにドキュメントIDが存在しない → トップ画面へ遷移
- * - 該当するイベントが存在しない → トップページ画面へ遷移
- * - Queryにユーザーデータが存在するか確認 → ダッシュボードへ遷移
- * - 回答者がすでに回答済みの場合 → ダッシュボードへ遷移
- * - 開始日と終了日内か確認 → ダッシュボードへ遷移
+ * - QueryにドキュメントIDが存在しない
+ * - 該当するイベントが存在しない
+ * - Queryにユーザーデータが存在するか確認
+ * - 回答者がすでに回答済みの場合
+ * - 開始日と終了日内か確認
  *
  * @param context
  * @returns GetServerSideProps
@@ -68,7 +41,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // QueryにドキュメントIDが存在しない場合
   if (!documentId) {
     return {
-      props: {},
+      props: {
+        ...(await serverSideTranslations(context.locale!, ["common"])),
+      },
     };
   }
 
@@ -77,44 +52,49 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // 該当するイベントが存在するか確認
   if (event === undefined) {
     return {
-      props: {},
+      props: {
+        ...(await serverSideTranslations(context.locale!, ["common"])),
+      },
     };
   }
   // Queryにユーザーデータが存在するか確認
-  // if (!userId) {
-  //   return {
-  //     props: {
-  //       documentId,
-  //     },
-  //   };
-  // }
+  if (!userId) {
+    return {
+      props: {
+        documentId,
+        ...(await serverSideTranslations(context.locale!, ["common"])),
+      },
+    };
+  }
 
-  // const answer = await answerInformation("event", documentId, "answer", userId); // //回答したデータが存在するかチェックするAPI
+  const answer = await answerInformation("event", documentId, "answer", userId); // //回答したデータが存在するかチェックするAPI
 
   // 回答者がいた場合
-  // if (answer !== undefined) {
-  //   return {
-  //     props: {
-  //       documentId,
-  //     },
-  //   };
-  // }
-  // delete event.createAt;
+  if (answer !== undefined) {
+    return {
+      props: {
+        documentId,
+        ...(await serverSideTranslations(context.locale!, ["common"])),
+      },
+    };
+  }
+  delete event.createAt;
 
-  // const dateBefore: boolean = beforePublicationStartDate(
-  //   event.publicationStartDate
-  // ); // 開始前か確認
-  // const dateAfter: boolean = afterPublicationEndDate(event.publicationEndDate); // 終了後か確認
+  const dateBefore: boolean = beforePublicationStartDate(
+    event.publicationStartDate
+  ); // 開始前か確認
+  const dateAfter: boolean = afterPublicationEndDate(event.publicationEndDate); // 終了後か確認
 
   // 開始日と終了日内か確認
-  // if (dateBefore || dateAfter) {
-  //   return {
-  //     props: {
-  //       cantVote: true,
-  //       documentId,
-  //     },
-  //   };
-  // }
+  if (dateBefore || dateAfter) {
+    return {
+      props: {
+        cantVote: true,
+        documentId,
+        ...(await serverSideTranslations(context.locale!, ["common"])),
+      },
+    };
+  }
 
   // 投票用のKeyを取得した選択肢毎に追加する
   const conversionVoteData = conversion(event);
@@ -130,3 +110,29 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 };
+
+const Id = ({
+  conversionVoteData = null,
+  documentId = null,
+  query = null,
+  isAnswer = true,
+  cantVote = false,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  if (!documentId === null || isAnswer || cantVote || query === null) {
+    return <EcInvalidLink />;
+  }
+  return (
+    <>
+      <NextSeo
+        title="投票 ｜革命的な民主主義を実現するアンケートフォーム"
+        description="アンケートに対する投票ページ。"
+      />
+      <EcVoteForm
+        query={query}
+        documentId={documentId}
+        conversionVoteData={conversionVoteData}
+      />
+    </>
+  );
+};
+export default Id;

@@ -22,25 +22,21 @@ const EcLp: React.FC<Props> = ({ images }) => {
       <FirstView id="firstView">
         <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
         <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
-        <div className="flex justify-center">
+        <JustifyCenterElement>
           <AtButton
             className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
             title={t("common.button.startNow")}
             disabled={false}
             onClick={moveCreateEvent}
           />
-        </div>
+        </JustifyCenterElement>
       </FirstView>
       <Section id="isQuadraticVoting">
-        <div className="flex">
+        <FlexElement>
           <div className="mr-12">
-            <p className="mb-10">{t("lp.isQuadraticVoting.title")}</p>
-            <p className="mb-10 text-lg whitespace-pre-wrap">
-              {t("lp.isQuadraticVoting.subTitle")}
-            </p>
-            <p className="mb-14 whitespace-pre-wrap">
-              {t("lp.isQuadraticVoting.overview")}
-            </p>
+            <BaseTitle>{t("lp.isQuadraticVoting.title")}</BaseTitle>
+            <BoldTitle>{t("lp.isQuadraticVoting.subTitle")}</BoldTitle>
+            <Text>{t("lp.isQuadraticVoting.overview")}</Text>
             <AtButton
               className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
               title={t("common.button.startNow")}
@@ -60,7 +56,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
               {/* <img src="" alt="" /> */}
             </div>
           </div>
-        </div>
+        </FlexElement>
       </Section>
       <Section id="hoge">
         <div className="relative w-full h-full">
@@ -158,31 +154,29 @@ const EcLp: React.FC<Props> = ({ images }) => {
         </div>
       </Section>
       <Section id="scene">
-        <p className="mb-10 text-center">{t("lp.scene.title")}</p>
-        <div className="flex flex-col items-center">
-          <div className="w-3/4 flex justify-between mb-10">
-            <p>{t("lp.scene.scene1")}</p>
-            <p className="whitespace-pre-wrap">{t("lp.scene.scene2")}</p>
-            <p>{t("lp.scene.scene3")}</p>
-          </div>
-          <div className="w-1/2 flex justify-between mb-10">
-            <p>{t("lp.scene.scene4")}</p>
-            <p>{t("lp.scene.scene5")}</p>
-          </div>
-        </div>
+        <SceneTitle>{t("lp.scene.title")}</SceneTitle>
+        <DirectionColElement>
+          <SceneListTop>
+            <Text>{t("lp.scene.scene1")}</Text>
+            <Text>{t("lp.scene.scene2")}</Text>
+            <Text>{t("lp.scene.scene3")}</Text>
+          </SceneListTop>
+          <SceneListBottom>
+            <Text>{t("lp.scene.scene4")}</Text>
+            <Text>{t("lp.scene.scene5")}</Text>
+          </SceneListBottom>
+        </DirectionColElement>
       </Section>
       <BaseSection id="startNow">
-        <p className="text-3xl font-bold mb-14 text-center">
-          {t("lp.startNow.title")}
-        </p>
-        <div className="flex justify-center">
+        <StartNowTitle>{t("lp.startNow.title")}</StartNowTitle>
+        <JustifyCenterElement>
           <AtButton
             className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
             title={t("common.button.startNow")}
             disabled={false}
             onClick={moveCreateEvent}
           />
-        </div>
+        </JustifyCenterElement>
       </BaseSection>
     </>
   );
@@ -192,32 +186,80 @@ export default EcLp;
 const Image = styled(AtImage)`
   display: block;
 `;
+// Base css
 const BaseSection = styled.section`
   padding: 10px;
 `;
+const Section = styled(BaseSection)`
+  margin-bottom: 160px;
+`;
 const BaseTitle = styled.p`
   font-size: 20px;
+  white-space: pre-wrap;
 `;
-
+const BoldTitle = styled(BaseTitle)`
+  font-size: 24px;
+  white-space: pre-wrap;
+`;
+const Text = styled.p`
+  font-size: 16px;
+  white-space: pre-wrap;
+`;
+const FlexElement = styled.div`
+  display: flex;
+`;
+const JustifyCenterElement = styled(FlexElement)`
+  /* 中央揃え */
+  justify-content: center;
+`;
+const JustifyBetweenElement = styled(FlexElement)`
+  /* 中央揃え */
+  justify-content: space-between;
+`;
+const DirectionColElement = styled(FlexElement)`
+  /* 上下中央揃え */
+  flex-direction: column;
+  align-items: center;
+`;
 const FirstView = styled.section`
   padding: 185px 0px 0px 100px;
   margin-bottom: 118px;
-  /* background: url(${(props) => props}); */
 `;
+// first view
 const FirstViewTitle = styled.section`
   white-space: pre-wrap;
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 32px;
 `;
-
 const FirstViewSubTitle = styled.section`
   white-space: pre-wrap;
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 158px;
 `;
-
-const Section = styled(BaseSection)`
-  margin-bottom: 160px;
+// isQuadraticVoting
+// feature
+// rule
+// scene
+const SceneTitle = styled(BaseTitle)`
+  margin-bottom: 80px;
+  text-align: center;
+`;
+const SceneListTop = styled(JustifyBetweenElement)`
+  width: 70%;
+  margin-bottom: 51px;
+  text-align: center;
+`;
+const SceneListBottom = styled(JustifyBetweenElement)`
+  width: 50%;
+  margin-bottom: 163px;
+  text-align: center;
+`;
+// startNow
+const StartNowTitle = styled.p`
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 80px;
+  text-align: center;
 `;

@@ -1,5 +1,6 @@
 // Next.js の独自ファイル。 HTML の <html> や <body> タグの拡張に使う
 // _document.js はサーバーサイドのみでレンダリングされるため、クライアントサイドでは使われない。
+// https://nextjs-ja-translation-docs.vercel.app/docs/advanced-features/custom-document
 import Document, {
   Html,
   Head,

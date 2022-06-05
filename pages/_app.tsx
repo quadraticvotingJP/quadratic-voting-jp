@@ -49,7 +49,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <DefaultSeo {...SEO} />
       <LoadingProvider>
         <MoHeader />
-
         {isLandingPage ? (
           <div className="flex mt-14 sm:mt-16 min-h-screen">
             <div className="w-full  mb-32">

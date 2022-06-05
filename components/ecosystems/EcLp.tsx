@@ -411,6 +411,12 @@ const FeatureElement = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 48px;
+  ${tab`
+  `}
+  ${sp`
+    flex-direction: column;
+    align-items: center;
+  `}
 `;
 const FeatureOverview = styled.div`
   width: 400px;

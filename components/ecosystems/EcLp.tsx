@@ -237,18 +237,42 @@ const Section = styled.section`
   display: flex;
   justify-content: center;
   margin-bottom: 160px;
+  ${tab`
+    margin-bottom: 140px;
+  `}
+  ${sp`
+    margin-bottom: 120px;
+  `}
 `;
 const BaseTitle = styled.p`
   font-size: 20px;
   white-space: pre-wrap;
+  ${tab`
+    font-size: 18px;
+  `}
+  ${sp`
+    font-size: 16px;
+  `}
 `;
 const BoldTitle = styled(BaseTitle)`
   font-size: 24px;
   white-space: pre-wrap;
+  ${tab`
+    font-size: 22px;
+  `}
+  ${sp`
+    font-size: 20px;
+  `}
 `;
 const Text = styled.p`
   font-size: 16px;
   white-space: pre-wrap;
+  ${tab`
+    font-size: 14px;
+  `}
+  ${sp`
+    font-size: 12px;
+  `}
 `;
 const FlexElement = styled.div`
   display: flex;

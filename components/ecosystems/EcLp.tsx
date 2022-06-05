@@ -2,6 +2,7 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
+import { pc, sp, tab } from "@/media";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 
@@ -274,18 +275,37 @@ const FirstView = styled.section<{ image: string }>`
   padding: 185px 100px 158px 100px;
   margin-bottom: 118px;
   background-image: url(${(props) => props.image});
+  ${tab`
+      padding: 100px 60px 100px 60px;
+  `}
+  ${sp`
+      padding: 100px 20px 100px 20px;
+      margin-bottom: 118px;
+  `}
 `;
 const FirstViewTitle = styled.p`
   white-space: pre-wrap;
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 32px;
+  ${tab`
+    font-size: 35px;
+  `}
+  ${sp`
+    font-size: 25px;
+  `}
 `;
 const FirstViewSubTitle = styled.p`
   white-space: pre-wrap;
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 158px;
+  ${tab`
+    font-size: 25px;
+  `}
+  ${sp`
+    font-size: 20px;
+  `}
 `;
 
 // isQuadraticVoting

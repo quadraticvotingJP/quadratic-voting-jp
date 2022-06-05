@@ -12,22 +12,28 @@ interface Button {
 type Props = {
   readonly left: Button;
   readonly right: Button;
+  readonly leftStyle: string;
+  readonly rightStyle: string;
 };
 
 // eslint-disable-next-line react/display-name
-const MoButtons: React.FC<Props> = ({ left, right }) => {
-  const { t } = useTranslation("common");
+const MoButtons: React.FC<Props> = ({
+  left,
+  right,
+  leftStyle = "hover:border-blue-200 hover:text-blue-200 w-full mr-5 text-base w-40 h-10 py-2 px-6 border-2 border-blue-900 text-blue",
+  rightStyle = "bg-blue-900 hover:bg-blue-300	text-white w-full text-base w-40 h-10 py-2 px-6",
+}) => {
   return (
     <div className="flex justify-center">
       <AtButton
-        className="hover:border-blue-200 hover:text-blue-200 w-full mr-5 text-base w-40 h-10 py-2 px-6 border-2 border-blue-900 text-blue"
+        className={leftStyle}
         title={left.title}
         onClick={left.onClick}
         disabled={left.disabled}
       />
       {/* 2つのButtonのサイズ感がずれるためクラスで流す */}
       <AtButton
-        className="bg-blue-900 hover:bg-blue-300	text-white w-full text-base w-40 h-10 py-2 px-6"
+        className={rightStyle}
         title={right.title}
         onClick={right.onClick}
         disabled={right.disabled}

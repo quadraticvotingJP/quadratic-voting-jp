@@ -84,8 +84,8 @@ const EcVoteForm: React.VFC<Props> = ({
   // 投票数のカラーを投票数に応じて変化させる
   const creditsColor: string = useMemo(() => {
     return credits >= 0
-      ? "bg-blue-900 py-6 px-6 text-white text-center"
-      : "bg-red-900 py-6 px-6 text-white text-center";
+      ? "bg-blue-900 py-6 px-6 text-white text-center rounded"
+      : "bg-red-900 py-6 px-6 text-white text-center rounded";
   }, [credits]);
 
   const assginLeftStyle = (isState: boolean) => {

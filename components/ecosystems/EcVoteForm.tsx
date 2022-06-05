@@ -1,6 +1,6 @@
 /**
  * @description Ecosystem Vote Form
- * */
+ */
 import React, { useMemo, useState } from "react";
 import { routerPush } from "@/architecture/application/routing";
 // i18n
@@ -83,9 +83,21 @@ const EcVoteForm: React.VFC<Props> = ({
   }, [credits]);
   // 投票数のカラーを投票数に応じて変化させる
   const creditsColor: string = useMemo(() => {
-    return credits >= 0 ? "bg-blue-900" : "bg-red-900";
+    return credits >= 0
+      ? "bg-blue-900 py-6 px-6 text-white text-center rounded"
+      : "bg-red-900 py-6 px-6 text-white text-center rounded";
   }, [credits]);
 
+  const assginLeftStyle = (isState: boolean) => {
+    return isState
+      ? "w-full mr-5 text-base w-40 h-10 py-2 px-6 border-2 border-blue-200 text-blue-300"
+      : "hover:border-blue-200 hover:text-blue-200 w-full mr-5 text-base w-40 h-10 py-2 px-6 border-2 border-blue-900 text-blue";
+  };
+  const assginRightStyle = (isState: boolean) => {
+    return isState
+      ? "bg-blue-200 text-white w-full text-base w-40 h-10 py-2 px-6"
+      : "bg-blue-900 hover:bg-blue-300 text-white w-full text-base w-40 h-10 py-2 px-6";
+  };
   // オブジェクトの値刷新
   const setNewVoteOptions = (
     oldOptions: VoteOption[],
@@ -144,68 +156,76 @@ const EcVoteForm: React.VFC<Props> = ({
 
   return (
     <>
-      <AtH2
-        title={t("pageTitle.vote")}
-        className={"text-center mb-16 text-4xl font-bold"}
-      />
-      <br />
-      <OrCardText
-        title={t("common.event.eventTitle.title")}
-        required={false}
-        contents={conversionVoteData.title}
-        showEdit={false}
-        disabled={false}
-      />
-      <br />
-      <OrCardText
-        title={t("common.event.overview.title")}
-        required={false}
-        contents={conversionVoteData.overview}
-        showEdit={false}
-        disabled={false}
-      />
-      <br />
-      <OrCardText
-        title={t("common.event.eventDeadline.title")}
-        required={false}
-        contents={`${conversionVoteData.publicationStartDate} ~ ${conversionVoteData.publicationEndDate}`}
-        showEdit={false}
-        disabled={false}
-      />
-      <br />
-      <Card className="p-6 my-6 rounded-xl">
-        <AtInputLabel
-          required={false}
-          title={t("common.event.options.title")}
-        />
-        {voteOptions.map((option: VoteOption, index: number) => {
-          return (
-            <div key={`${index}-${option.id}`}>
-              <OrVoteOptionCardForm
-                option={option}
-                votes={conversionVoteData.votes}
-                incrementButtonDisable={option.left}
-                decrementButtonDisable={option.right}
-                incrementVote={() => incrementVote(option)}
-                decrementVote={() => decrementVote(option)}
-              />
-            </div>
-          );
-        })}
-      </Card>
-      <br />
-      <div className="text-center mt-8">
-        <AtButton
-          title={t("common.button.vote")}
-          disabled={isActive}
-          onClick={() => onSubmit(voteOptions)}
-        />
+      <div className="flex">
+        <div className="flex-auto p-2">
+          <AtH2
+            title={t("pageTitle.vote")}
+            className={"text-center mb-16 text-4xl font-bold"}
+          />
+          <br />
+          <OrCardText
+            title={t("common.event.eventTitle.title")}
+            required={false}
+            contents={conversionVoteData.title}
+            showEdit={false}
+            disabled={false}
+          />
+          <br />
+          <OrCardText
+            title={t("common.event.overview.title")}
+            required={false}
+            contents={conversionVoteData.overview}
+            showEdit={false}
+            disabled={false}
+          />
+          <br />
+          <OrCardText
+            title={t("common.event.eventDeadline.title")}
+            required={false}
+            contents={`${conversionVoteData.publicationStartDate} ~ ${conversionVoteData.publicationEndDate}`}
+            showEdit={false}
+            disabled={false}
+          />
+          <br />
+          <Card className="p-6 my-6 rounded-xl">
+            <AtInputLabel
+              required={false}
+              title={t("common.event.options.title")}
+            />
+            {voteOptions.map((option: VoteOption, index: number) => {
+              return (
+                <div key={`${index}-${option.id}`}>
+                  <OrVoteOptionCardForm
+                    leftStyle={assginLeftStyle(option.left)}
+                    rightStyle={assginRightStyle(option.right)}
+                    option={option}
+                    votes={conversionVoteData.votes}
+                    incrementButtonDisable={option.left}
+                    decrementButtonDisable={option.right}
+                    incrementVote={() => incrementVote(option)}
+                    decrementVote={() => decrementVote(option)}
+                  />
+                </div>
+              );
+            })}
+          </Card>
+          <br />
+          <div className="text-center mt-8">
+            <AtButton
+              title={t("common.button.vote")}
+              disabled={isActive}
+              onClick={() => onSubmit(voteOptions)}
+            />
+          </div>
+        </div>
+        <div className="flex-auto">
+          <OrProposalBlocks
+            style={creditsColor}
+            cost={credits}
+            denominator={conversionVoteData.votes}
+          />
+        </div>
       </div>
-      <OrProposalBlocks
-        color={creditsColor}
-        cost={credits}
-        denominator={conversionVoteData.votes}
-      />
     </>
   );
 };

@@ -2,7 +2,7 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
-import { pc, sp, tab } from "@/media";
+import { sp, tab } from "@/media";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 
@@ -19,21 +19,21 @@ const EcLp: React.FC<Props> = ({ images }) => {
   const moveCreateEvent = (): void => routerPush("create");
   return (
     <>
-      <FirstView id="firstView" image={images[1].toString()}>
+      <SectionFirstView id="firstView" image={images[1].toString()}>
         <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
         <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
-        <JustifyCenterElement>
+        <FirstViewJustifyCenterElement>
           <AtButton
             className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
             title={t("common.button.startNow")}
             disabled={false}
             onClick={moveCreateEvent}
           />
-        </JustifyCenterElement>
-      </FirstView>
+        </FirstViewJustifyCenterElement>
+      </SectionFirstView>
 
-      <Section id="isQuadraticVoting">
-        <JustifyBetweenMaxWidth1000>
+      <SectionIsQuadraticVoting id="isQuadraticVoting">
+        <IsQuadraticVotingJustifyBetweenMaxWidth1000>
           <IsQuadraticVotingOverView>
             <IsQuadraticVotingTitle>
               {t("lp.isQuadraticVoting.title")}
@@ -44,14 +44,14 @@ const EcLp: React.FC<Props> = ({ images }) => {
             <IsQuadraticVotingOverview>
               {t("lp.isQuadraticVoting.overview")}
             </IsQuadraticVotingOverview>
-            <JustifyCenterElement>
+            <IsQuadraticVotingJustifyCenterElement>
               <AtButton
                 className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
                 title={t("common.button.startNow")}
                 disabled={false}
                 onClick={moveCreateEvent}
               />
-            </JustifyCenterElement>
+            </IsQuadraticVotingJustifyCenterElement>
           </IsQuadraticVotingOverView>
           <IsQuadraticVotingImageArea>
             <IsQuadraticVotingImageElement>
@@ -75,11 +75,11 @@ const EcLp: React.FC<Props> = ({ images }) => {
               />
             </IsQuadraticVotingImageElement>
           </IsQuadraticVotingImageArea>
-        </JustifyBetweenMaxWidth1000>
-      </Section>
+        </IsQuadraticVotingJustifyBetweenMaxWidth1000>
+      </SectionIsQuadraticVoting>
 
-      <Section id="feature">
-        <DirectionColMaxWidth1000>
+      <SectionFeature id="feature">
+        <FeatureDirectionColMaxWidth1000>
           <FeatureTitle>{t("lp.feature.title")}</FeatureTitle>
           <FeatureArea>
             <FeatureElement>
@@ -125,13 +125,13 @@ const EcLp: React.FC<Props> = ({ images }) => {
               </FeatureOverview>
             </FeatureElement>
           </FeatureArea>
-        </DirectionColMaxWidth1000>
-      </Section>
+        </FeatureDirectionColMaxWidth1000>
+      </SectionFeature>
 
-      <Section id="rule">
-        <DirectionColMaxWidth1000>
+      <SectionRule id="rule">
+        <RuleDirectionColMaxWidth1000>
           <RuleTitle>{t("lp.rule.title")}</RuleTitle>
-          <DirectionColElement>
+          <RuleDirectionColElement>
             <RuleElement>
               <div>
                 <AtImage
@@ -176,14 +176,14 @@ const EcLp: React.FC<Props> = ({ images }) => {
                   className="text-blue-500 text-sm"
                 />
                 <RuleExample3></RuleExample3>
-                <JustifyCenterElement>
+                <RuleJustifyCenterElement>
                   <AtButton
                     className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
                     title={t("common.button.startNow")}
                     disabled={false}
                     onClick={moveCreateEvent}
                   />
-                </JustifyCenterElement>
+                </RuleJustifyCenterElement>
               </div>
               <AtImage
                 src={images[4].toString()}
@@ -193,14 +193,14 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 height={400}
               />
             </RuleExampleElement>
-          </DirectionColElement>
-        </DirectionColMaxWidth1000>
-      </Section>
+          </RuleDirectionColElement>
+        </RuleDirectionColMaxWidth1000>
+      </SectionRule>
 
-      <Section id="scene">
-        <DirectionColMaxWidth1000>
+      <SectionScene id="scene">
+        <SceneDirectionColMaxWidth1000>
           <SceneTitle>{t("lp.scene.title")}</SceneTitle>
-          <DirectionColElement>
+          <SceneDirectionColElement>
             <SceneListTop>
               <Text>{t("lp.scene.scene1")}</Text>
               <Text>{t("lp.scene.scene2")}</Text>
@@ -210,40 +210,29 @@ const EcLp: React.FC<Props> = ({ images }) => {
               <Text>{t("lp.scene.scene4")}</Text>
               <Text>{t("lp.scene.scene5")}</Text>
             </SceneListBottom>
-          </DirectionColElement>
-        </DirectionColMaxWidth1000>
-      </Section>
+          </SceneDirectionColElement>
+        </SceneDirectionColMaxWidth1000>
+      </SectionScene>
 
-      <Section id="startNow">
-        <MaxWidth1000>
+      <SectionStartNow id="startNow">
+        <StartNowMaxWidth1000>
           <StartNowTitle>{t("lp.startNow.title")}</StartNowTitle>
-          <JustifyCenterElement>
+          <StartNowJustifyCenterElement>
             <AtButton
               className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
               title={t("common.button.startNow")}
               disabled={false}
               onClick={moveCreateEvent}
             />
-          </JustifyCenterElement>
-        </MaxWidth1000>
-      </Section>
+          </StartNowJustifyCenterElement>
+        </StartNowMaxWidth1000>
+      </SectionStartNow>
     </>
   );
 };
 export default EcLp;
 
 // Base css
-const Section = styled.section`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 160px;
-  ${tab`
-    margin-bottom: 140px;
-  `}
-  ${sp`
-    margin-bottom: 120px;
-  `}
-`;
 const BaseTitle = styled.p`
   font-size: 20px;
   white-space: pre-wrap;
@@ -274,50 +263,9 @@ const Text = styled.p`
     font-size: 12px;
   `}
 `;
-const FlexElement = styled.div`
-  display: flex;
-`;
-const JustifyCenterElement = styled(FlexElement)`
-  justify-content: center;
-`;
-const JustifyBetweenElement = styled(FlexElement)`
-  justify-content: space-between;
-`;
-const DirectionColElement = styled(FlexElement)`
-  /* 上下中央揃え */
-  flex-direction: column;
-  align-items: center;
-`;
-const MaxWidth1000 = styled.div`
-  min-width: 1025px;
-  ${tab`
-    max-width: 999px;
-  `}
-  ${sp`
-    max-width: 560px;
-  `}
-`;
-const JustifyBetweenMaxWidth1000 = styled(JustifyBetweenElement)`
-  min-width: 1025px;
-  ${tab`
-    min-width: 561px;
-  `}
-  ${sp`
-    max-width: 560px;
-  `}
-`;
-const DirectionColMaxWidth1000 = styled(DirectionColElement)`
-  min-width: 1025px;
-  ${tab`
-    min-width: 561px;
-  `}
-  ${sp`
-    max-width: 560px;
-  `}
-`;
 
 // first view
-const FirstView = styled.section<{ image: string }>`
+const SectionFirstView = styled.section<{ image: string }>`
   padding: 185px 100px 158px 100px;
   margin-bottom: 118px;
   background-image: url(${(props) => props.image});
@@ -352,8 +300,34 @@ const FirstViewSubTitle = styled.p`
     font-size: 20px;
   `}
 `;
+const FirstViewJustifyCenterElement = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 // isQuadraticVoting
+const SectionIsQuadraticVoting = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 160px;
+  ${tab`
+    margin-bottom: 140px;
+  `}
+  ${sp`
+    margin-bottom: 120px;
+  `}
+`;
+const IsQuadraticVotingJustifyBetweenMaxWidth1000 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  min-width: 1025px;
+  ${tab`
+    min-width: 561px;
+  `}
+  ${sp`
+    max-width: 560px;
+  `}
+`;
 const IsQuadraticVotingOverView = styled.div`
   width: 65%;
 `;
@@ -372,16 +346,50 @@ const IsQuadraticVotingOverview = styled(Text)`
 const IsQuadraticVotingImageElement = styled.div`
   margin-bottom: 32px;
 `;
+const IsQuadraticVotingJustifyCenterElement = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 // feature
+const SectionFeature = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 160px;
+  ${tab`
+    margin-bottom: 140px;
+  `}
+  ${sp`
+    margin-bottom: 120px;
+  `}
+`;
+const FeatureDirectionColMaxWidth1000 = styled.div`
+  display: flex;
+  /* 上下中央揃え */
+  flex-direction: column;
+  align-items: center;
+  min-width: 1025px;
+  ${tab`
+    min-width: 561px;
+  `}
+  ${sp`
+    max-width: 560px;
+  `}
+`;
 const FeatureTitle = styled(BaseTitle)`
   margin-bottom: 80px;
   text-align: center;
 `;
-const FeatureArea = styled(DirectionColElement)`
+const FeatureArea = styled.div`
+  display: flex;
+  /* 上下中央揃え */
+  flex-direction: column;
+  align-items: center;
   width: 877px;
 `;
-const FeatureElement = styled(JustifyBetweenElement)`
+const FeatureElement = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   margin-bottom: 48px;
 `;
@@ -400,18 +408,52 @@ const Feature = styled.p`
 `;
 
 // rule
+const SectionRule = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 160px;
+  ${tab`
+    margin-bottom: 140px;
+  `}
+  ${sp`
+    margin-bottom: 120px;
+  `}
+`;
+const RuleDirectionColMaxWidth1000 = styled.div`
+  display: flex;
+  /* 上下中央揃え */
+  flex-direction: column;
+  align-items: center;
+  min-width: 1025px;
+  ${tab`
+    min-width: 561px;
+  `}
+  ${sp`
+    max-width: 560px;
+  `}
+`;
 const RuleTitle = styled(BaseTitle)`
   margin-bottom: 80px;
   text-align: center;
 `;
-const RuleElement = styled(JustifyBetweenElement)`
+const RuleDirectionColElement = styled.div`
+  display: flex;
+  /* 上下中央揃え */
+  flex-direction: column;
+  align-items: center;
+`;
+const RuleElement = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   margin-bottom: 80px;
 `;
 const RuleText = styled(Text)`
   text-align: center;
 `;
-const RuleExampleElement = styled(JustifyBetweenElement)`
+const RuleExampleElement = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
 `;
 const RuleExample1 = styled(Text)`
@@ -423,27 +465,115 @@ const RuleExample2 = styled(Text)`
 const RuleExample3 = styled.div`
   margin-bottom: 89px;
 `;
+const RuleJustifyCenterElement = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 // scene
+const SectionScene = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 160px;
+  ${tab`
+    margin-bottom: 140px;
+  `}
+  ${sp`
+    margin-bottom: 120px;
+  `}
+`;
+const SceneDirectionColMaxWidth1000 = styled.div`
+  display: flex;
+  /* 上下中央揃え */
+  flex-direction: column;
+  align-items: center;
+  min-width: 1025px;
+  ${tab`
+    min-width: 561px;
+  `}
+  ${sp`
+    max-width: 560px;
+  `}
+`;
 const SceneTitle = styled(BaseTitle)`
   margin-bottom: 80px;
   text-align: center;
+  ${tab`
+    margin-bottom: 70px;
+  `}
+  ${sp`
+    margin-bottom: 15px;
+  `}
 `;
-const SceneListTop = styled(JustifyBetweenElement)`
+const SceneDirectionColElement = styled.div`
+  display: flex;
+  /* 上下中央揃え */
+  flex-direction: column;
+  align-items: center;
+`;
+const SceneListTop = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 804px;
   margin-bottom: 51px;
   text-align: center;
+  ${tab`
+    width: 704px;
+  `}
+  ${sp`
+    margin-bottom: 0px;
+    flex-direction: column;
+  `}
 `;
-const SceneListBottom = styled(JustifyBetweenElement)`
+const SceneListBottom = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 475px;
   margin-bottom: 163px;
   text-align: center;
+  ${tab`
+    width: 375px;
+  `}
+  ${sp`
+    margin-bottom: 0px;
+    flex-direction: column;
+  `}
 `;
 
 // startNow
+const SectionStartNow = styled.section`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 160px;
+  ${tab`
+    margin-bottom: 140px;
+  `}
+  ${sp`
+    margin-bottom: 120px;
+  `}
+`;
+const StartNowMaxWidth1000 = styled.div`
+  min-width: 1025px;
+  ${tab`
+    max-width: 999px;
+  `}
+  ${sp`
+    max-width: 560px;
+  `}
+`;
 const StartNowTitle = styled.p`
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 80px;
   text-align: center;
+  ${tab`
+    font-size: 32px;
+  `}
+  ${sp`
+    font-size: 21px;
+  `}
+`;
+const StartNowJustifyCenterElement = styled.div`
+  display: flex;
+  justify-content: center;
 `;

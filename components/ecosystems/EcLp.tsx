@@ -243,7 +243,7 @@ const BaseTitle = styled.p`
     font-size: 16px;
   `}
 `;
-const BoldTitle = styled(BaseTitle)`
+const BoldTitle = styled.p`
   font-size: 24px;
   white-space: pre-wrap;
   ${tab`

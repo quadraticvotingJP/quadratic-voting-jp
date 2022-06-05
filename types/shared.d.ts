@@ -47,9 +47,6 @@ interface Option {
   readonly title: string;
   readonly overview: string;
   readonly url: string;
-  readonly publicationStartDate: string;
-  readonly publicationEndDate: string;
-  readonly votes: number;
 }
 
 // イベント投票時の型

@@ -133,7 +133,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
           <RuleTitle>{t("lp.rule.title")}</RuleTitle>
           <RuleDirectionColElement>
             <RuleElement>
-              <div>
+              <Rule>
                 <AtImage
                   src={images[3].toString()}
                   alt="rule1"
@@ -142,8 +142,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
                   height={194}
                 />
                 <RuleText>{t("lp.rule.rule1")}</RuleText>
-              </div>
-              <div>
+              </Rule>
+              <Rule>
                 <AtImage
                   src={images[3].toString()}
                   alt="rule2"
@@ -152,8 +152,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
                   height={194}
                 />
                 <RuleText>{t("lp.rule.rule2")}</RuleText>
-              </div>
-              <div>
+              </Rule>
+              <Rule>
                 <AtImage
                   src={images[3].toString()}
                   alt="rule3"
@@ -162,7 +162,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
                   height={194}
                 />
                 <RuleText>{t("lp.rule.rule3")}</RuleText>
-              </div>
+              </Rule>
             </RuleElement>
             <RuleExampleElement>
               <div>
@@ -240,7 +240,7 @@ const BaseTitle = styled.p`
     font-size: 18px;
   `}
   ${sp`
-    font-size: 16px;
+    font-size: 24px;
   `}
 `;
 const BoldTitle = styled.p`
@@ -447,6 +447,21 @@ const RuleElement = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 80px;
+  ${tab`
+    min-width: 561px;
+  `}
+  ${sp`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `}
+`;
+const Rule = styled.div`
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: 40px;
+  `}
 `;
 const RuleText = styled(Text)`
   text-align: center;
@@ -455,6 +470,13 @@ const RuleExampleElement = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  ${tab`
+  `}
+  ${sp`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `}
 `;
 const RuleExample1 = styled(Text)`
   margin-bottom: 24px;

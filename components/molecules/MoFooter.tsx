@@ -12,26 +12,13 @@ const MoFooter = React.memo(({}) => {
       <ul className="w-full">
         <li className="text-white">
           <AtHref
-            title={t("footer.gitHub")}
-            link={t("footer.gitHubLink")}
-            blank
-          />
-        </li>
-        <li className="text-white">
-          <AtHref
             title={t("footer.contact")}
             link={t("footer.contactLink")}
             blank
           />
         </li>
         <li className="text-white flex justify-center">
-          <AtHref
-            title={t("footer.siteName")}
-            link={t("footer.siteNameLink")}
-          />
-        </li>
-        <li className="text-white flex justify-center">
-          <AtHref title={t("footer.license")} link={t("footer.licenseLink")} />
+          <p>{t("footer.siteName")}</p>
         </li>
       </ul>
     </Toolbar>

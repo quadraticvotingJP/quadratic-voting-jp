@@ -20,12 +20,12 @@ export function voteData() {
     });
 
     return {
+      title: title,
+      overview: overview,
+      publicationStartDate: publicationStartDate.replace("T", " "),
+      publicationEndDate: publicationEndDate.replace("T", " "),
+      votes: votes,
       voteOptions,
-      title,
-      overview,
-      publicationStartDate,
-      publicationEndDate,
-      votes,
     };
   }
   return { conversion };

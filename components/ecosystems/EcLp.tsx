@@ -265,13 +265,31 @@ const DirectionColElement = styled(FlexElement)`
   align-items: center;
 `;
 const MaxWidth1000 = styled.div`
-  max-width: 1000px;
+  min-width: 1025px;
+  ${tab`
+    max-width: 999px;
+  `}
+  ${sp`
+    max-width: 560px;
+  `}
 `;
 const JustifyBetweenMaxWidth1000 = styled(JustifyBetweenElement)`
-  max-width: 1000px;
+  min-width: 1025px;
+  ${tab`
+    min-width: 561px;
+  `}
+  ${sp`
+    max-width: 560px;
+  `}
 `;
 const DirectionColMaxWidth1000 = styled(DirectionColElement)`
-  max-width: 1000px;
+  min-width: 1025px;
+  ${tab`
+    min-width: 561px;
+  `}
+  ${sp`
+    max-width: 560px;
+  `}
 `;
 
 // first view
@@ -280,11 +298,10 @@ const FirstView = styled.section<{ image: string }>`
   margin-bottom: 118px;
   background-image: url(${(props) => props.image});
   ${tab`
-      padding: 100px 60px 100px 60px;
+    padding: 100px 60px 100px 60px;
   `}
   ${sp`
-      padding: 100px 20px 100px 20px;
-      margin-bottom: 118px;
+    padding: 100px 20px 100px 20px;
   `}
 `;
 const FirstViewTitle = styled.p`

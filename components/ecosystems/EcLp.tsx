@@ -34,7 +34,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
 
       <SectionIsQuadraticVoting id="isQuadraticVoting">
         <IsQuadraticVotingJustifyBetweenMaxWidth1000>
-          <IsQuadraticVotingOverView>
+          <IsQuadraticVotingOverViewArea>
             <IsQuadraticVotingTitle>
               {t("lp.isQuadraticVoting.title")}
             </IsQuadraticVotingTitle>
@@ -52,10 +52,12 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 onClick={moveCreateEvent}
               />
             </IsQuadraticVotingJustifyCenterElement>
-          </IsQuadraticVotingOverView>
+          </IsQuadraticVotingOverViewArea>
           <IsQuadraticVotingImageArea>
             <IsQuadraticVotingImageElement>
-              <Text>{t("lp.isQuadraticVoting.conventional")}</Text>
+              <IsQuadraticVotingText>
+                {t("lp.isQuadraticVoting.conventional")}
+              </IsQuadraticVotingText>
               <AtImage
                 src={images[2].toString()}
                 alt="conventional"
@@ -65,7 +67,9 @@ const EcLp: React.FC<Props> = ({ images }) => {
               />
             </IsQuadraticVotingImageElement>
             <IsQuadraticVotingImageElement>
-              <Text>{t("lp.isQuadraticVoting.quadraticVoting")}</Text>
+              <IsQuadraticVotingText>
+                {t("lp.isQuadraticVoting.quadraticVoting")}
+              </IsQuadraticVotingText>
               <AtImage
                 src={images[2].toString()}
                 alt="quadraticVoting"
@@ -93,14 +97,14 @@ const EcLp: React.FC<Props> = ({ images }) => {
               <FeatureOverview>
                 <FeatureNo>{t("lp.feature.no1")}</FeatureNo>
                 <Feature>{t("lp.feature.no1Feature")}</Feature>
-                <Text>{t("lp.feature.no1Explanation")}</Text>
+                <FeatureText>{t("lp.feature.no1Explanation")}</FeatureText>
               </FeatureOverview>
             </FeatureElement>
             <FeatureElement>
               <FeatureOverview>
                 <FeatureNo>{t("lp.feature.no2")}</FeatureNo>
                 <Feature>{t("lp.feature.no2Feature")}</Feature>
-                <Text>{t("lp.feature.no2Explanation")}</Text>
+                <FeatureText>{t("lp.feature.no2Explanation")}</FeatureText>
               </FeatureOverview>
               <AtImage
                 src={images[2].toString()}
@@ -121,7 +125,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
               <FeatureOverview>
                 <FeatureNo>{t("lp.feature.no3")}</FeatureNo>
                 <Feature>{t("lp.feature.no3Feature")}</Feature>
-                <Text>{t("lp.feature.no3Explanation")}</Text>
+                <FeatureText>{t("lp.feature.no3Explanation")}</FeatureText>
               </FeatureOverview>
             </FeatureElement>
           </FeatureArea>
@@ -202,13 +206,13 @@ const EcLp: React.FC<Props> = ({ images }) => {
           <SceneTitle>{t("lp.scene.title")}</SceneTitle>
           <SceneDirectionColElement>
             <SceneListTop>
-              <Text>{t("lp.scene.scene1")}</Text>
-              <Text>{t("lp.scene.scene2")}</Text>
-              <Text>{t("lp.scene.scene3")}</Text>
+              <SceneText>{t("lp.scene.scene1")}</SceneText>
+              <SceneText>{t("lp.scene.scene2")}</SceneText>
+              <SceneText>{t("lp.scene.scene3")}</SceneText>
             </SceneListTop>
             <SceneListBottom>
-              <Text>{t("lp.scene.scene4")}</Text>
-              <Text>{t("lp.scene.scene5")}</Text>
+              <SceneText>{t("lp.scene.scene4")}</SceneText>
+              <SceneText>{t("lp.scene.scene5")}</SceneText>
             </SceneListBottom>
           </SceneDirectionColElement>
         </SceneDirectionColMaxWidth1000>
@@ -231,38 +235,6 @@ const EcLp: React.FC<Props> = ({ images }) => {
   );
 };
 export default EcLp;
-
-// Base css
-const BaseTitle = styled.p`
-  font-size: 20px;
-  white-space: pre-wrap;
-  ${tab`
-    font-size: 18px;
-  `}
-  ${sp`
-    font-size: 24px;
-  `}
-`;
-const BoldTitle = styled.p`
-  font-size: 24px;
-  white-space: pre-wrap;
-  ${tab`
-    font-size: 22px;
-  `}
-  ${sp`
-    font-size: 20px;
-  `}
-`;
-const Text = styled.p`
-  font-size: 16px;
-  white-space: pre-wrap;
-  ${tab`
-    font-size: 14px;
-  `}
-  ${sp`
-    font-size: 12px;
-  `}
-`;
 
 // first view
 const SectionFirstView = styled.section<{ image: string }>`
@@ -326,25 +298,66 @@ const IsQuadraticVotingJustifyBetweenMaxWidth1000 = styled.div`
   `}
   ${sp`
     max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   `}
 `;
-const IsQuadraticVotingOverView = styled.div`
+const IsQuadraticVotingOverViewArea = styled.div`
   width: 65%;
+  ${tab`
+  `}
+  ${sp`
+  `}
 `;
 const IsQuadraticVotingImageArea = styled.div`
   width: 30%;
 `;
-const IsQuadraticVotingTitle = styled(BaseTitle)`
+const IsQuadraticVotingTitle = styled.p`
   margin-bottom: 32px;
+  font-size: 20px;
+  white-space: pre-wrap;
+  ${tab`
+    font-size: 18px;
+  `}
+  ${sp`
+    font-size: 16px;
+  `}
 `;
-const IsQuadraticVotingSubTitle = styled(BoldTitle)`
+const IsQuadraticVotingSubTitle = styled.p`
   margin-bottom: 80px;
+  font-size: 24px;
+  white-space: pre-wrap;
+  ${tab`
+    font-size: 22px;
+  `}
+  ${sp`
+    font-size: 16px;
+  `}
 `;
-const IsQuadraticVotingOverview = styled(Text)`
+const IsQuadraticVotingOverview = styled.p`
   margin-bottom: 80px;
+  font-size: 16px;
+  white-space: pre-wrap;
+  ${tab`
+    font-size: 14px;
+  `}
+  ${sp`
+    font-size: 12px;
+  `}
 `;
 const IsQuadraticVotingImageElement = styled.div`
   margin-bottom: 32px;
+`;
+const IsQuadraticVotingText = styled.p`
+  font-size: 16px;
+  white-space: pre-wrap;
+  ${tab`
+    font-size: 14px;
+  `}
+  ${sp`
+    font-size: 12px;
+  `}
 `;
 const IsQuadraticVotingJustifyCenterElement = styled.div`
   display: flex;
@@ -365,7 +378,6 @@ const SectionFeature = styled.section`
 `;
 const FeatureDirectionColMaxWidth1000 = styled.div`
   display: flex;
-  /* 上下中央揃え */
   flex-direction: column;
   align-items: center;
   min-width: 1025px;
@@ -376,13 +388,20 @@ const FeatureDirectionColMaxWidth1000 = styled.div`
     max-width: 560px;
   `}
 `;
-const FeatureTitle = styled(BaseTitle)`
+const FeatureTitle = styled.p`
   margin-bottom: 80px;
   text-align: center;
+  font-size: 20px;
+  white-space: pre-wrap;
+  ${tab`
+    font-size: 18px;
+  `}
+  ${sp`
+    font-size: 24px;
+  `}
 `;
 const FeatureArea = styled.div`
   display: flex;
-  /* 上下中央揃え */
   flex-direction: column;
   align-items: center;
   width: 877px;
@@ -406,6 +425,16 @@ const Feature = styled.p`
   white-space: pre-wrap;
   margin-bottom: 16px;
 `;
+const FeatureText = styled.p`
+  font-size: 16px;
+  white-space: pre-wrap;
+  ${tab`
+    font-size: 14px;
+  `}
+  ${sp`
+    font-size: 12px;
+  `}
+`;
 
 // rule
 const SectionRule = styled.section`
@@ -421,7 +450,6 @@ const SectionRule = styled.section`
 `;
 const RuleDirectionColMaxWidth1000 = styled.div`
   display: flex;
-  /* 上下中央揃え */
   flex-direction: column;
   align-items: center;
   min-width: 1025px;
@@ -432,13 +460,20 @@ const RuleDirectionColMaxWidth1000 = styled.div`
     max-width: 560px;
   `}
 `;
-const RuleTitle = styled(BaseTitle)`
+const RuleTitle = styled.p`
   margin-bottom: 80px;
   text-align: center;
+  font-size: 20px;
+  white-space: pre-wrap;
+  ${tab`
+    font-size: 18px;
+  `}
+  ${sp`
+    font-size: 24px;
+  `}
 `;
 const RuleDirectionColElement = styled.div`
   display: flex;
-  /* 上下中央揃え */
   flex-direction: column;
   align-items: center;
 `;
@@ -463,8 +498,16 @@ const Rule = styled.div`
     margin-bottom: 40px;
   `}
 `;
-const RuleText = styled(Text)`
+const RuleText = styled.p`
   text-align: center;
+  font-size: 16px;
+  white-space: pre-wrap;
+  ${tab`
+    font-size: 14px;
+  `}
+  ${sp`
+    font-size: 12px;
+  `}
 `;
 const RuleExampleElement = styled.div`
   display: flex;
@@ -478,11 +521,27 @@ const RuleExampleElement = styled.div`
     align-items: center;
   `}
 `;
-const RuleExample1 = styled(Text)`
+const RuleExample1 = styled.p`
   margin-bottom: 24px;
+  font-size: 16px;
+  white-space: pre-wrap;
+  ${tab`
+    font-size: 14px;
+  `}
+  ${sp`
+    font-size: 12px;
+  `}
 `;
-const RuleExample2 = styled(Text)`
+const RuleExample2 = styled.p`
   margin-bottom: 0px;
+  font-size: 16px;
+  white-space: pre-wrap;
+  ${tab`
+    font-size: 14px;
+  `}
+  ${sp`
+    font-size: 12px;
+  `}
 `;
 const RuleExample3 = styled.div`
   margin-bottom: 89px;
@@ -506,7 +565,6 @@ const SectionScene = styled.section`
 `;
 const SceneDirectionColMaxWidth1000 = styled.div`
   display: flex;
-  /* 上下中央揃え */
   flex-direction: column;
   align-items: center;
   min-width: 1025px;
@@ -517,19 +575,22 @@ const SceneDirectionColMaxWidth1000 = styled.div`
     max-width: 560px;
   `}
 `;
-const SceneTitle = styled(BaseTitle)`
+const SceneTitle = styled.p`
   margin-bottom: 80px;
   text-align: center;
+  font-size: 20px;
+  white-space: pre-wrap;
   ${tab`
+    font-size: 18px;
     margin-bottom: 70px;
   `}
   ${sp`
+    font-size: 24px;
     margin-bottom: 15px;
   `}
 `;
 const SceneDirectionColElement = styled.div`
   display: flex;
-  /* 上下中央揃え */
   flex-direction: column;
   align-items: center;
 `;
@@ -559,6 +620,16 @@ const SceneListBottom = styled.div`
   ${sp`
     margin-bottom: 0px;
     flex-direction: column;
+  `}
+`;
+const SceneText = styled.p`
+  font-size: 16px;
+  white-space: pre-wrap;
+  ${tab`
+    font-size: 14px;
+  `}
+  ${sp`
+    font-size: 12px;
   `}
 `;
 

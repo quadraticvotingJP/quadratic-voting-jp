@@ -298,6 +298,7 @@ const IsQuadraticVotingJustifyBetweenMaxWidth1000 = styled.div`
   `}
   ${sp`
     max-width: 560px;
+    min-width: 320px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -386,6 +387,7 @@ const FeatureDirectionColMaxWidth1000 = styled.div`
   `}
   ${sp`
     max-width: 560px;
+    min-width: 320px;
   `}
 `;
 const FeatureTitle = styled.p`
@@ -464,6 +466,7 @@ const RuleDirectionColMaxWidth1000 = styled.div`
   `}
   ${sp`
     max-width: 560px;
+    min-width: 320px;
   `}
 `;
 const RuleTitle = styled.p`
@@ -579,6 +582,7 @@ const SceneDirectionColMaxWidth1000 = styled.div`
   `}
   ${sp`
     max-width: 560px;
+    min-width: 320px;
   `}
 `;
 const SceneTitle = styled.p`
@@ -654,10 +658,11 @@ const SectionStartNow = styled.section`
 const StartNowMaxWidth1000 = styled.div`
   min-width: 1025px;
   ${tab`
-    max-width: 999px;
+    min-width: 561px;
   `}
   ${sp`
     max-width: 560px;
+    min-width: 320px;
   `}
 `;
 const StartNowTitle = styled.p`

@@ -47,12 +47,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       <DefaultSeo {...SEO} />
       <LoadingProvider>
         <MoHeader />
-        <div className="flex mt-14 sm:mt-16 min-h-screen">
-          <div className="w-1/5"></div>
-          <div className="w-full mx-10 mt-16 mb-32">
+        <div className="container mx-auto flex mt-14 sm:mt-16">
+          <div className="lg:flex-grow md:w-1/2 mx-10 mt-16 mb-32">
             <Component {...pageProps} />
           </div>
-          <EcAdSense className="w-1/5" format="horizontal" />
+          <EcAdSense
+            className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
+            format="horizontal"
+          />
         </div>
         <MoFooter />
       </LoadingProvider>

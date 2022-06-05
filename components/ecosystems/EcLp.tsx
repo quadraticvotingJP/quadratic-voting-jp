@@ -44,12 +44,14 @@ const EcLp: React.FC<Props> = ({ images }) => {
             <IsQuadraticVotingOverview>
               {t("lp.isQuadraticVoting.overview")}
             </IsQuadraticVotingOverview>
-            <AtButton
-              className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
-              title={t("common.button.startNow")}
-              disabled={false}
-              onClick={moveCreateEvent}
-            />
+            <JustifyCenterElement>
+              <AtButton
+                className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
+                title={t("common.button.startNow")}
+                disabled={false}
+                onClick={moveCreateEvent}
+              />
+            </JustifyCenterElement>
           </IsQuadraticVotingOverView>
           <IsQuadraticVotingImageArea>
             <IsQuadraticVotingImageElement>
@@ -174,12 +176,14 @@ const EcLp: React.FC<Props> = ({ images }) => {
                   className="text-blue-500 text-sm"
                 />
                 <RuleExample3></RuleExample3>
-                <AtButton
-                  className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
-                  title={t("common.button.startNow")}
-                  disabled={false}
-                  onClick={moveCreateEvent}
-                />
+                <JustifyCenterElement>
+                  <AtButton
+                    className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
+                    title={t("common.button.startNow")}
+                    disabled={false}
+                    onClick={moveCreateEvent}
+                  />
+                </JustifyCenterElement>
               </div>
               <AtImage
                 src={images[4].toString()}

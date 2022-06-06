@@ -407,6 +407,12 @@ const FeatureArea = styled.div`
   flex-direction: column;
   align-items: center;
   width: 877px;
+  ${tab`
+    width: 100%;
+  `}
+  ${sp`
+    width: 100%;
+  `}
 `;
 const FeatureElement = styled.div`
   display: flex;
@@ -422,6 +428,11 @@ const FeatureElement = styled.div`
 `;
 const FeatureOverview = styled.div`
   width: 400px;
+  ${tab`
+  `}
+  ${sp`
+    width: 100%;
+  `}
 `;
 const FeatureNo = styled.p`
   font-size: 40px;

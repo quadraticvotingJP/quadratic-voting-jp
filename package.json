@@ -6,7 +6,9 @@
     "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "": "next-sitemap --config sitemap.config.js",
+    "postbuild-comment": "sitemmapを更新したときのみpostbuildを上記keyに入れる"
   },
   "dependencies": {
     "@emotion/react": "11.9.0",
@@ -36,6 +38,7 @@
     "chart.js": "3.8.0",
     "eslint": "8.17.0",
     "eslint-config-next": "12.1.6",
+    "next-sitemap": "^3.0.5",
     "postcss": "8.4.14",
     "prettier": "2.6.2",
     "react-chartjs-2": "4.1.0",

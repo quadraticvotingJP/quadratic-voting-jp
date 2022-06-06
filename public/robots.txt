@@ -1,0 +1,12 @@
+# *
+User-agent: *
+# Allowクローラーの許可
+Allow: /
+# Disallowクローラーの拒否
+Disallow: /create
+Disallow: /dashboard/
+Disallow: /vote/
+# Host
+Host: https://quadraticvoting.jp/
+# Sitemaps
+Sitemap:  https://quadraticvoting.jp/sitemap.xml

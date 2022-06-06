@@ -614,6 +614,7 @@ const SceneListTop = styled.div`
     width: 704px;
   `}
   ${sp`
+    width: 100%;
     margin-bottom: 0px;
     flex-direction: column;
   `}
@@ -628,6 +629,7 @@ const SceneListBottom = styled.div`
     width: 375px;
   `}
   ${sp`
+    width: 100%;
     margin-bottom: 0px;
     flex-direction: column;
   `}
@@ -640,6 +642,7 @@ const SceneText = styled.p`
   `}
   ${sp`
     font-size: 12px;
+    margin-bottom: 10px;
   `}
 `;
 

@@ -3,23 +3,23 @@ import React, { useEffect, useRef } from "react";
 
 interface Props {
   cost: number;
-  color: string;
+  style: string;
   denominator: number;
 }
 
 // eslint-disable-next-line react/display-name
 const OrProposalBlocks: React.FC<Props> = React.memo(
-  ({ cost, color = "bg-blue-900", denominator }) => {
+  ({ cost, style, denominator }) => {
     useEffect(() => {}, [cost]);
 
     return (
       <>
-        <Card
-          className={`${color} top-64 py-6 px-6 right-8 text-white fixed text-center`}
-        >
-          <p className="m-0">{cost + `/` + denominator}</p>
-          <p className="text-xs">Credits</p>
-        </Card>
+        <div className="fixed pl-2">
+          <div className={style}>
+            <p className="m-0">{cost + `/` + denominator}</p>
+            <p className="text-xs">Credits</p>
+          </div>
+        </div>
       </>
     );
   }

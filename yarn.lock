@@ -2854,10 +2854,10 @@ react-adsense@0.1.0:
   resolved "https://registry.npmjs.org/react-adsense/-/react-adsense-0.1.0.tgz"
   integrity sha512-VzGMH9qA7bBKAveK1joFWphhB7e2Y1ToSGzUa8b7eit3+VSkg/2MSvKxe5d/r4mcmkOHu6CHNJW0nn6RQC3IZA==
 
-react-chartjs-2@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/react-chartjs-2/-/react-chartjs-2-4.1.0.tgz"
-  integrity sha512-AsUihxEp8Jm1oBhbEovE+w50m9PVNhz1sfwEIT4hZduRC0m14gHWHd0cUaxkFDb8HNkdMIGzsNlmVqKiOpU74g==
+react-chartjs-2@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.npmjs.org/react-chartjs-2/-/react-chartjs-2-4.2.0.tgz"
+  integrity sha512-9Vm9Sg9XAKiR579/FnBkesofjW9goaaFLfS7XlGTzUJlWFZGSE6A/pBI6+i/bP3pobKZoFcWJdFnjShytToqXw==
 
 react-dom@17.0.2:
   version "17.0.2"

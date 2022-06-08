@@ -309,10 +309,17 @@ const IsQuadraticVotingOverViewArea = styled.div`
   ${tab`
   `}
   ${sp`
+    width: 80%;
+    margin-bottom: 32px;
   `}
 `;
 const IsQuadraticVotingImageArea = styled.div`
   width: 30%;
+  ${tab`
+  `}
+  ${sp`
+    width: 80%;
+  `}
 `;
 const IsQuadraticVotingTitle = styled.p`
   margin-bottom: 32px;
@@ -349,6 +356,13 @@ const IsQuadraticVotingOverview = styled.p`
 `;
 const IsQuadraticVotingImageElement = styled.div`
   margin-bottom: 32px;
+  ${tab`
+  `}
+  ${sp`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  `}
 `;
 const IsQuadraticVotingText = styled.p`
   font-size: 16px;
@@ -357,7 +371,7 @@ const IsQuadraticVotingText = styled.p`
     font-size: 14px;
   `}
   ${sp`
-    font-size: 12px;
+    font-size: 18px;
   `}
 `;
 const IsQuadraticVotingJustifyCenterElement = styled.div`
@@ -411,7 +425,7 @@ const FeatureArea = styled.div`
     width: 100%;
   `}
   ${sp`
-    width: 100%;
+    width: 80%;
   `}
 `;
 const FeatureElement = styled.div`
@@ -506,6 +520,7 @@ const RuleElement = styled.div`
     min-width: 561px;
   `}
   ${sp`
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -536,6 +551,7 @@ const RuleExampleElement = styled.div`
   ${tab`
   `}
   ${sp`
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;

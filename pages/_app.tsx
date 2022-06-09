@@ -20,8 +20,6 @@ import { signInAnonymously } from "firebase/auth";
 // component
 import { MoHeader, MoFooter } from "@/components/molecules/EntryPoint";
 import { EcAdSense } from "@/components/ecosystems/EntryPoint";
-// context
-import { LoadingProvider } from "@/context/LoadingContext";
 // application
 import { routerPush } from "@/architecture/application/routing";
 
@@ -42,8 +40,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     };
   }, [router.events]);
 
+  // Loading
   const [pageLoading, setPageLoading] = useState(false);
-
   useEffect(() => {
     const handleStart = (url: string) =>
       url !== router.asPath && setPageLoading(true);
@@ -61,25 +59,23 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <DefaultSeo {...SEO} />
-      <LoadingProvider>
-        {pageLoading ? (
-          <>Loading</>
-        ) : (
-          <>
-            <MoHeader />
-            <div className="container mx-auto flex mt-14 sm:mt-16">
-              <div className="lg:flex-grow md:w-1/2 mx-10 mt-16 mb-32">
-                <Component {...pageProps} />
-              </div>
-              <EcAdSense
-                className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
-                format="horizontal"
-              />
+      {pageLoading ? (
+        <>Loading...</>
+      ) : (
+        <>
+          <MoHeader />
+          <div className="container mx-auto flex mt-14 sm:mt-16">
+            <div className="lg:flex-grow md:w-1/2 mx-10 mt-16 mb-32">
+              <Component {...pageProps} />
             </div>
-            <MoFooter />
-          </>
-        )}
-      </LoadingProvider>
+            <EcAdSense
+              className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
+              format="horizontal"
+            />
+          </div>
+          <MoFooter />
+        </>
+      )}
     </>
   );
 }

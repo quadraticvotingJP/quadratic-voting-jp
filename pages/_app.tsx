@@ -5,7 +5,7 @@ import { pageview } from "@/lib/gtag";
 import { DefaultSeo } from "next-seo";
 import { SEO } from "@/lib/next-seo.config";
 // hooks
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // i18n
 import { appWithTranslation } from "next-i18next";
 import nextI18NextConfig from "../next-i18next.config.js";
@@ -42,21 +42,43 @@ function MyApp({ Component, pageProps }: AppProps) {
     };
   }, [router.events]);
 
+  const [pageLoading, setPageLoading] = useState(false);
+
+  useEffect(() => {
+    const handleStart = (url: string) =>
+      url !== router.asPath && setPageLoading(true);
+    const handleComplete = () => setPageLoading(false);
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  });
+
   return (
     <>
       <DefaultSeo {...SEO} />
       <LoadingProvider>
-        <MoHeader />
-        <div className="container mx-auto flex mt-14 sm:mt-16">
-          <div className="lg:flex-grow md:w-1/2 mx-10 mt-16 mb-32">
-            <Component {...pageProps} />
-          </div>
-          <EcAdSense
-            className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
-            format="horizontal"
-          />
-        </div>
-        <MoFooter />
+        {pageLoading ? (
+          <>Loading</>
+        ) : (
+          <>
+            <MoHeader />
+            <div className="container mx-auto flex mt-14 sm:mt-16">
+              <div className="lg:flex-grow md:w-1/2 mx-10 mt-16 mb-32">
+                <Component {...pageProps} />
+              </div>
+              <EcAdSense
+                className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
+                format="horizontal"
+              />
+            </div>
+            <MoFooter />
+          </>
+        )}
       </LoadingProvider>
     </>
   );

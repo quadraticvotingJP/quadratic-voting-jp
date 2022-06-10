@@ -18,8 +18,6 @@ import {
   OrCardTextField,
   OrCardBar,
 } from "@/components/organisms/EntryPoint";
-// context
-import { useLoadingContext } from "@/context/LoadingContext";
 // domain
 import { chartData } from "@/architecture/domain/chart";
 // application
@@ -43,7 +41,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   const { t } = useTranslation("common");
   const { excelFile } = downloadXlsx(); // ダウンロード
   const { textFile } = downloadTxt(); // ダウンロード
-  const { setLoading } = useLoadingContext(); // loading
   const { updateEvent } = putEvent(); // api
   const { createDate } = getToday(); // 本日の日付
   const { createAcquiredInformation } = getDashboard(); // api
@@ -120,7 +117,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
     data: DashboardFormVales
   ) => {
     // apiを叩く
-    setLoading(true);
     await updateEvent(data, "event", documentId);
     const response = await createAcquiredInformation(
       "event",
@@ -138,7 +134,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
     dashboard.detailPublicationStartDate = detailPublicationStartDate;
     dashboard.formPublicationEndDate = formPublicationEndDate;
     dashboard.detailPublicationEndDate = detailPublicationEndDate;
-    setLoading(false);
   };
 
   return (

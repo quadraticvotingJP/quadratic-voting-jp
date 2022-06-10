@@ -1,27 +1,44 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
+import styled from "styled-components";
 // component
-import { Toolbar } from "@mui/material";
 import { AtHref } from "@/components/atoms/EntryPoint";
 
 // eslint-disable-next-line react/display-name
 const MoFooter = React.memo(({}) => {
   const { t } = useTranslation("common");
   return (
-    <Toolbar className="bg-blue-900 p-6 m-0 sticky">
-      <ul className="w-full">
-        <li className="text-white">
+    <Footer>
+      <ul>
+        <Li>
           <AtHref
             title={t("footer.contact")}
             link={t("footer.contactLink")}
             blank
           />
-        </li>
-        <li className="text-white flex justify-center">
+        </Li>
+        <Copyright>
           <p>{t("footer.siteName")}</p>
-        </li>
+        </Copyright>
       </ul>
-    </Toolbar>
+    </Footer>
   );
 });
+
 export default MoFooter;
+
+const Footer = styled.footer`
+  position: absolute; /* ContainerComponentのposition: relativeを参照 */
+  bottom: 0;
+  width: 100%;
+  background-color: #2f9bff;
+  margin: 0px;
+  padding: 30px;
+`;
+const Li = styled.li`
+  color: white;
+`;
+const Copyright = styled(Li)`
+  display: flex;
+  justify-content: center;
+`;

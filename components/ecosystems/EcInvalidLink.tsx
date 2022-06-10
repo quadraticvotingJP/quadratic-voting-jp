@@ -8,7 +8,7 @@ const EcInvalidLink: React.FC = () => {
 
   return (
     <>
-      <div className="flex justify-center content-center mb-10">
+      <div className="flex justify-center content-center mb-6">
         <p>{t("common.systemError.invalidUrl")}</p>
       </div>
       <div className="flex justify-center content-center">

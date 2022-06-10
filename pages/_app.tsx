@@ -19,7 +19,7 @@ import { authentication } from "@/firebase/initialize";
 import { signInAnonymously } from "firebase/auth";
 // component
 import { MoHeader, MoFooter } from "@/components/molecules/EntryPoint";
-import { EcAdSense } from "@/components/ecosystems/EntryPoint";
+import { EcAdSense, EcLoading } from "@/components/ecosystems/EntryPoint";
 // application
 import { routerPush } from "@/architecture/application/routing";
 
@@ -59,12 +59,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <DefaultSeo {...SEO} />
+      <MoHeader />
       {pageLoading ? (
-        <>Loading...</>
+        <EcLoading className="" />
       ) : (
         <>
-          <MoHeader />
-          <div className="container mx-auto flex mt-14 sm:mt-16">
+          <EcLoading className="" />
+          {/* <div className="container mx-auto flex mt-14 sm:mt-16">
             <div className="lg:flex-grow md:w-1/2 mx-10 mt-16 mb-32">
               <Component {...pageProps} />
             </div>
@@ -72,10 +73,10 @@ function MyApp({ Component, pageProps }: AppProps) {
               className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
               format="horizontal"
             />
-          </div>
-          <MoFooter />
+          </div> */}
         </>
       )}
+      <MoFooter />
     </>
   );
 }

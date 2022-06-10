@@ -64,12 +64,19 @@ function MyApp({ Component, pageProps }: AppProps) {
       <DefaultSeo {...SEO} />
       <Container>
         <MoHeader />
-
         {pageLoading ? (
           <EcLoading />
         ) : (
           <>
             {isLandingPage ? (
+              <LPMain>
+                <Component {...pageProps} />
+                <EcAdSense
+                  className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
+                  format="horizontal"
+                />
+              </LPMain>
+            ) : (
               <Main>
                 <Page>
                   <Component {...pageProps} />
@@ -79,18 +86,6 @@ function MyApp({ Component, pageProps }: AppProps) {
                   format="horizontal"
                 />
               </Main>
-            ) : (
-              <>
-                <div className="container mx-auto flex mt-14 sm:mt-16">
-                  <div className="lg:flex-grow md:w-1/2 mx-10 mt-16 mb-32">
-                    <Component {...pageProps} />
-                  </div>
-                  <EcAdSense
-                    className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
-                    format="horizontal"
-                  />
-                </div>
-              </>
             )}
           </>
         )}
@@ -113,4 +108,10 @@ const Main = styled.main`
 `;
 const Page = styled.div`
   width: 65%;
+`;
+const LPMain = styled.main`
+  width: 100%;
+  padding: 65px 0px 200px 0px;
+  display: flex;
+  flex-direction: column;
 `;

@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import styled from "styled-components";
 // GA
 import { pageview } from "@/lib/gtag";
 // SEO
@@ -59,26 +60,40 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <DefaultSeo {...SEO} />
-      <MoHeader />
-      {pageLoading ? (
-        <EcLoading className="" />
-      ) : (
-        <>
-          <EcLoading className="" />
-          {/* <div className="container mx-auto flex mt-14 sm:mt-16">
-            <div className="lg:flex-grow md:w-1/2 mx-10 mt-16 mb-32">
-              <Component {...pageProps} />
-            </div>
-            <EcAdSense
-              className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
-              format="horizontal"
-            />
-          </div> */}
-        </>
-      )}
-      <MoFooter />
+      <Container>
+        <MoHeader />
+        {pageLoading ? (
+          <EcLoading />
+        ) : (
+          <>
+            <Main>
+              <Page>
+                <Component {...pageProps} />
+              </Page>
+              <EcAdSense
+                className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
+                format="horizontal"
+              />
+            </Main>
+          </>
+        )}
+        <MoFooter />
+      </Container>
     </>
   );
 }
-
 export default appWithTranslation(MyApp, nextI18NextConfig);
+
+const Container = styled.div`
+  position: relative;
+  min-height: 100vh;
+`;
+const Main = styled.main`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 100px 40px 200px 40px;
+`;
+const Page = styled.div`
+  width: 65%;
+`;

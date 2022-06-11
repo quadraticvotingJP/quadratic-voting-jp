@@ -12,15 +12,15 @@ const MoFooter = React.memo(({}) => {
       <ul>
         <Li>
           <AtHref
-            title={t("footer.privacyPolicy")}
-            link={t("footer.privacyPolicyLink")}
+            title={t("footer.termsOfService")}
+            link={t("footer.termsOfServiceLink")}
             blank
           />
         </Li>
         <Li>
           <AtHref
-            title={t("footer.termsOfService")}
-            link={t("footer.termsOfServiceLink")}
+            title={t("footer.privacyPolicy")}
+            link={t("footer.privacyPolicyLink")}
             blank
           />
         </Li>

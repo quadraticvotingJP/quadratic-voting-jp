@@ -166,6 +166,7 @@ const EcVoteForm: React.VFC<Props> = ({
           <span>{`Default, ${new Date()}`}</span>
           <br />
           <span>{dateCheck()}</span>
+          <span>{`Start, ${conversionVoteData.publicationStartDate}`}</span>
           <br />
           <OrCardText
             title={t("common.event.eventTitle.title")}

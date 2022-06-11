@@ -80,10 +80,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   delete event.createAt;
 
+  // 投票用のKeyを取得した選択肢毎に追加する
+  const conversionVoteData = conversion(event);
+
   const dateBefore: boolean = beforePublicationStartDate(
-    event.publicationStartDate
+    conversionVoteData.publicationStartDate
   ); // 開始前か確認
-  const dateAfter: boolean = afterPublicationEndDate(event.publicationEndDate); // 終了後か確認
+  const dateAfter: boolean = afterPublicationEndDate(
+    conversionVoteData.publicationEndDate
+  ); // 終了後か確認
 
   // 開始日と終了日内か確認
   if (dateBefore || dateAfter) {
@@ -95,9 +100,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-
-  // 投票用のKeyを取得した選択肢毎に追加する
-  const conversionVoteData = conversion(event);
 
   // イベントが存在し、未回答の場合のリターン
   return {

@@ -156,6 +156,13 @@ const EcVoteForm: React.VFC<Props> = ({
             title={t("pageTitle.vote")}
             className={"text-center mb-16 text-4xl font-bold"}
           />
+          <span>{`Default, ${new Date()}`}</span>
+          <br />
+          <span>
+            {`TimeZone, ${new Date().toLocaleString({
+              timeZone: "Asia/Tokyo",
+            })}`}
+          </span>
           <br />
           <OrCardText
             title={t("common.event.eventTitle.title")}

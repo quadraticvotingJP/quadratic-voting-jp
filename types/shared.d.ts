@@ -131,6 +131,12 @@ interface AcquiredInformation {
   readonly subCollectionName: string;
 }
 
+// ダッシュボード情報取得時
+interface LpImages {
+  readonly collectionName: string;
+  readonly documentId: string;
+}
+
 // ダッシュボード情報
 interface Dashboard {
   readonly participantVotesMolecule: string; // [参加者数・投票数]参加者数の分子

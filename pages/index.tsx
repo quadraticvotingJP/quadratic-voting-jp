@@ -1,15 +1,35 @@
 import type { NextPage } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+// application
+// import { getImages } from "@/architecture/application/getImages";
+import { getLpImages } from "@/architecture/application/getLpImages";
 // component
-import { EcExplanation } from "@/components/ecosystems/EntryPoint";
+import { EcLp } from "@/components/ecosystems/EntryPoint";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-const Top: NextPage = ({}) => {
-  return <EcExplanation />;
+const Top: NextPage = ({
+  images,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  return <EcLp images={images} />;
 };
 export default Top;
 
-// i18n
-export const getStaticProps = async ({ locale = "ja" }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ["common"])),
-  },
-});
+// getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  // fireBase storageからの画像習得API
+  // const { imageList } = getImages(); // 画像リストを取得関数をimport
+  // const images = await imageList("lp");
+
+  // fireStoreからの画像習得API
+  const { imageList } = getLpImages(); // api
+  const lpImages = await imageList(
+    "images",
+    process.env.NEXT_PUBLIC_DOCUMENT_IMAGE!
+  );
+  const images = lpImages!.lp;
+  return {
+    props: {
+      images,
+      ...(await serverSideTranslations(context.locale!, ["common"])),
+    },
+  };
+};

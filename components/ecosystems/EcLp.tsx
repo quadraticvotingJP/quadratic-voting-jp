@@ -629,6 +629,11 @@ const RuleExample3 = styled.div`
 const RuleJustifyCenterElement = styled.div`
   display: flex;
   justify-content: center;
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: 50px;
+  `}
 `;
 
 // scene

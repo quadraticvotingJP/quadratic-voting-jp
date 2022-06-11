@@ -9,17 +9,21 @@ import { routerPush } from "@/architecture/application/routing";
 // component
 import { AtHref, AtButton, AtImage } from "@/components/atoms/EntryPoint";
 
+interface Image {
+  [index: string]: string;
+}
 type Props = {
-  images: string[];
+  readonly images: Image;
 };
 
 // eslint-disable-next-line react/display-name
 const EcLp: React.FC<Props> = ({ images }) => {
+  console.log(images);
   const { t } = useTranslation("common");
   const moveCreateEvent = (): void => routerPush("create");
   return (
     <>
-      <SectionFirstView id="firstView" image={images[1].toString()}>
+      <SectionFirstView id="firstView" image={images["firstView"]}>
         <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
         <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
         <FirstViewJustifyCenterElement>
@@ -59,7 +63,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 {t("lp.isQuadraticVoting.conventional")}
               </IsQuadraticVotingText>
               <AtImage
-                src={images[2].toString()}
+                src={images["conventional"]}
                 alt="conventional"
                 layout="intrinsic"
                 width={261}
@@ -71,7 +75,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 {t("lp.isQuadraticVoting.quadraticVoting")}
               </IsQuadraticVotingText>
               <AtImage
-                src={images[2].toString()}
+                src={images["isQuadraticVotingJp"]}
                 alt="quadraticVoting"
                 layout="intrinsic"
                 width={261}
@@ -88,7 +92,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
           <FeatureArea>
             <FeatureElement>
               <AtImage
-                src={images[2].toString()}
+                src={images["easy"]}
                 alt="no1Feature"
                 layout="intrinsic"
                 width={400}
@@ -100,23 +104,23 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 <FeatureText>{t("lp.feature.no1Explanation")}</FeatureText>
               </FeatureOverview>
             </FeatureElement>
-            <FeatureElement>
+            <FeatureElement2>
               <FeatureOverview>
                 <FeatureNo>{t("lp.feature.no2")}</FeatureNo>
                 <Feature>{t("lp.feature.no2Feature")}</Feature>
                 <FeatureText>{t("lp.feature.no2Explanation")}</FeatureText>
               </FeatureOverview>
               <AtImage
-                src={images[2].toString()}
+                src={images["minority"]}
                 alt="no2Feature"
                 layout="intrinsic"
                 width={400}
                 height={240}
               />
-            </FeatureElement>
+            </FeatureElement2>
             <FeatureElement>
               <AtImage
-                src={images[2].toString()}
+                src={images["balance"]}
                 alt="no3Feature"
                 layout="intrinsic"
                 width={400}
@@ -139,7 +143,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
             <RuleElement>
               <Rule>
                 <AtImage
-                  src={images[3].toString()}
+                  src={images["choices"]}
                   alt="rule1"
                   layout="intrinsic"
                   width={229}
@@ -149,7 +153,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
               </Rule>
               <Rule>
                 <AtImage
-                  src={images[3].toString()}
+                  src={images["onlyOnce"]}
                   alt="rule2"
                   layout="intrinsic"
                   width={229}
@@ -159,7 +163,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
               </Rule>
               <Rule>
                 <AtImage
-                  src={images[3].toString()}
+                  src={images["useUp"]}
                   alt="rule3"
                   layout="intrinsic"
                   width={229}
@@ -190,7 +194,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 </RuleJustifyCenterElement>
               </div>
               <AtImage
-                src={images[4].toString()}
+                src={images["vote"]}
                 alt="point4"
                 layout="intrinsic"
                 width={400}
@@ -241,6 +245,8 @@ const SectionFirstView = styled.section<{ image: string }>`
   padding: 185px 100px 158px 100px;
   margin-bottom: 118px;
   background-image: url(${(props) => props.image});
+  background-size: 100% 100%;
+  object-fit: cover;
   ${tab`
     padding: 100px 60px 100px 60px;
   `}
@@ -440,6 +446,19 @@ const FeatureElement = styled.div`
     align-items: center;
   `}
 `;
+const FeatureElement2 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 48px;
+  ${tab`
+  `}
+  ${sp`
+    flex-direction: column-reverse;
+    align-items: center;
+  `}
+`;
+
 const FeatureOverview = styled.div`
   width: 400px;
   ${tab`

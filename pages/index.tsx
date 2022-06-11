@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 // application
-import { getImages } from "@/architecture/application/getImages";
+// import { getImages } from "@/architecture/application/getImages";
+import { getLpImages } from "@/architecture/application/getLpImages";
 // component
 import { EcLp } from "@/components/ecosystems/EntryPoint";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -14,8 +15,17 @@ export default Top;
 
 // getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { imageList } = getImages(); // 画像リストを取得関数をimport
-  const images = await imageList("lp");
+  // fireBase storageからの画像習得API
+  // const { imageList } = getImages(); // 画像リストを取得関数をimport
+  // const images = await imageList("lp");
+
+  // fireStoreからの画像習得API
+  const { imageList } = getLpImages(); // api
+  const lpImages = await imageList(
+    "images",
+    process.env.NEXT_PUBLIC_DOCUMENT_IMAGE!
+  );
+  const images = lpImages!.lp;
   return {
     props: {
       images,

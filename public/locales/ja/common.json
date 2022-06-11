@@ -57,14 +57,12 @@
     "link": "http://quadraticvoting.jp/"
   },
   "footer": {
-    "gitHub": "GitHub",
-    "gitHubLink": "https://github.com/quadraticvotingJP/quadratic-voting-jp",
-    "contact": "お問い合わせ",
-    "contactLink": "https://forms.gle/eBvDiCBEsFHRu4556",
+    "privacyPolicy": "プライバシーポリシー",
+    "privacyPolicyLink": "http://quadraticvoting.jp/privacyPolicy",
+    "termsOfService": "利用規約",
+    "termsOfServiceLink": "http://quadraticvoting.jp/termsOfService",
     "siteName": "Copyright (c) 2022 QuadraticVoting.jp",
-    "siteNameLink": "http://quadraticvoting.jp/",
-    "license": "Released under the MIT license",
-    "licenseLink": "https://github.com/quadraticvotingJP/quadratic-voting-jp/blob/main/LICENSE"
+    "siteNameLink": "http://quadraticvoting.jp/"
   },
   "pageTitle": {
     "creat": "アンケート作成",

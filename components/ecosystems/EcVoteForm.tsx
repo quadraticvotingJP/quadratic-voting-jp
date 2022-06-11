@@ -16,6 +16,7 @@ import { OrProposalBlocks } from "@/components/organisms/EntryPoint";
 // architecture
 import { answer } from "@/architecture/application/answer";
 import { Card } from "@mui/material";
+import { inputDateMaxCheck } from "@/utils/validation";
 
 interface Props {
   conversionVoteData: VoteData;
@@ -127,6 +128,12 @@ const EcVoteForm: React.VFC<Props> = ({
     return newCredits;
   };
 
+  const dateCheck = () => {
+    return `TimeZone, ${new Date().toLocaleString("ja", {
+      timeZone: "Asia/Tokyo",
+    })}`;
+  };
+
   /**
    * @description 増減ボタンの活性非活性制御
    * @param newVoteOptions 更新された投票オプション
@@ -158,11 +165,7 @@ const EcVoteForm: React.VFC<Props> = ({
           />
           <span>{`Default, ${new Date()}`}</span>
           <br />
-          <span>
-            {`TimeZone, ${new Date().toLocaleString({
-              timeZone: "Asia/Tokyo",
-            })}`}
-          </span>
+          <span>{dateCheck()}</span>
           <br />
           <OrCardText
             title={t("common.event.eventTitle.title")}

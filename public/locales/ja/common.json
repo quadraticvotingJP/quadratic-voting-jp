@@ -1,4 +1,22 @@
 {
+  "privacyPolicy": {
+    "adSensePolicy": {
+      "title": "こちら",
+      "link": "https://marketingplatform.google.com/about/analytics/terms/jp/"
+    },
+    "technology": {
+      "title": "こちら",
+      "link": "https://policies.google.com/technologies/partner-sites?hl=ja"
+    },
+    "adSense": {
+      "title": "（Googleアドセンス）",
+      "link": "https://www.google.com/adsense/start/"
+    },
+    "contact": {
+      "title": "お問い合わせ",
+      "link": "https://forms.gle/eBvDiCBEsFHRu4556"
+    }
+  },
   "lp": {
     "firstView": {
       "title": "革命的な民主主義を実現する\nアンケートフォーム",
@@ -57,14 +75,12 @@
     "link": "http://quadraticvoting.jp/"
   },
   "footer": {
-    "gitHub": "GitHub",
-    "gitHubLink": "https://github.com/quadraticvotingJP/quadratic-voting-jp",
-    "contact": "お問い合わせ",
-    "contactLink": "https://forms.gle/eBvDiCBEsFHRu4556",
+    "privacyPolicy": "プライバシーポリシー",
+    "privacyPolicyLink": "http://quadraticvoting.jp/privacyPolicy",
+    "termsOfService": "利用規約",
+    "termsOfServiceLink": "http://quadraticvoting.jp/termsOfService",
     "siteName": "Copyright (c) 2022 QuadraticVoting.jp",
-    "siteNameLink": "http://quadraticvoting.jp/",
-    "license": "Released under the MIT license",
-    "licenseLink": "https://github.com/quadraticvotingJP/quadratic-voting-jp/blob/main/LICENSE"
+    "siteNameLink": "http://quadraticvoting.jp/"
   },
   "pageTitle": {
     "creat": "アンケート作成",

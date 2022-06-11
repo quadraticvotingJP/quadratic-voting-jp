@@ -334,6 +334,7 @@ const IsQuadraticVotingTitle = styled.p`
     font-size: 18px;
   `}
   ${sp`
+    margin-bottom: 22px;
     font-size: 16px;
   `}
 `;
@@ -345,6 +346,8 @@ const IsQuadraticVotingSubTitle = styled.p`
     font-size: 22px;
   `}
   ${sp`
+    font-weight: bold;
+    margin-bottom: 20px;
     font-size: 16px;
   `}
 `;
@@ -356,6 +359,7 @@ const IsQuadraticVotingOverview = styled.p`
     font-size: 14px;
   `}
   ${sp`
+    margin-bottom: 50px;
     font-size: 12px;
   `}
 `;
@@ -376,6 +380,8 @@ const IsQuadraticVotingText = styled.p`
     font-size: 14px;
   `}
   ${sp`
+    font-weight: bold;
+    margin-bottom: 10px;
     font-size: 18px;
   `}
 `;
@@ -410,7 +416,7 @@ const FeatureDirectionColMaxWidth1000 = styled.div`
   `}
 `;
 const FeatureTitle = styled.p`
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   text-align: center;
   font-size: 20px;
   white-space: pre-wrap;
@@ -418,6 +424,7 @@ const FeatureTitle = styled.p`
     font-size: 18px;
   `}
   ${sp`
+    font-weight: bold;
     font-size: 24px;
   `}
 `;
@@ -470,11 +477,23 @@ const FeatureNo = styled.p`
   font-size: 40px;
   white-space: pre-wrap;
   margin-bottom: 16px;
+  ${tab`
+  `}
+  ${sp`
+    font-size: 30px;
+    margin-bottom: 0px;
+  `}
 `;
 const Feature = styled.p`
   font-size: 32px;
   white-space: pre-wrap;
   margin-bottom: 16px;
+  ${tab`
+  `}
+  ${sp`
+    font-size: 22px;
+    margin-bottom: 0px;
+  `}
 `;
 const FeatureText = styled.p`
   font-size: 16px;
@@ -513,7 +532,7 @@ const RuleDirectionColMaxWidth1000 = styled.div`
   `}
 `;
 const RuleTitle = styled.p`
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   text-align: center;
   font-size: 20px;
   white-space: pre-wrap;
@@ -521,6 +540,7 @@ const RuleTitle = styled.p`
     font-size: 18px;
   `}
   ${sp`
+    font-weight: bold;
     font-size: 24px;
   `}
 `;
@@ -542,6 +562,7 @@ const RuleElement = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 40px;
   `}
 `;
 const Rule = styled.div`
@@ -559,7 +580,7 @@ const RuleText = styled.p`
     font-size: 14px;
   `}
   ${sp`
-    font-size: 12px;
+    font-size: 16px;
   `}
 `;
 const RuleExampleElement = styled.div`
@@ -583,7 +604,7 @@ const RuleExample1 = styled.p`
     font-size: 14px;
   `}
   ${sp`
-    font-size: 12px;
+    font-size: 14px;
   `}
 `;
 const RuleExample2 = styled.p`
@@ -594,11 +615,16 @@ const RuleExample2 = styled.p`
     font-size: 14px;
   `}
   ${sp`
-    font-size: 12px;
+    font-size: 14px;
   `}
 `;
 const RuleExample3 = styled.div`
   margin-bottom: 89px;
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: 50px;
+  `}
 `;
 const RuleJustifyCenterElement = styled.div`
   display: flex;
@@ -631,7 +657,7 @@ const SceneDirectionColMaxWidth1000 = styled.div`
   `}
 `;
 const SceneTitle = styled.p`
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   text-align: center;
   font-size: 20px;
   white-space: pre-wrap;
@@ -640,6 +666,7 @@ const SceneTitle = styled.p`
     margin-bottom: 70px;
   `}
   ${sp`
+    font-weight: bold;
     font-size: 24px;
     margin-bottom: 15px;
   `}
@@ -686,7 +713,7 @@ const SceneText = styled.p`
     font-size: 14px;
   `}
   ${sp`
-    font-size: 12px;
+    font-size: 16px;
     margin-bottom: 10px;
   `}
 `;

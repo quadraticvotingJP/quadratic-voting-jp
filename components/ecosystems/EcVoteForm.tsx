@@ -13,9 +13,6 @@ import {
 } from "@/components/organisms/EntryPoint";
 import { OrProposalBlocks } from "@/components/organisms/EntryPoint";
 
-// context
-import { useLoadingContext } from "@/context/LoadingContext";
-
 // architecture
 import { answer } from "@/architecture/application/answer";
 import { Card } from "@mui/material";
@@ -35,7 +32,6 @@ const EcVoteForm: React.VFC<Props> = ({
 }) => {
   const { t } = useTranslation("common");
   const { voteEvent } = answer();
-  const { setLoading } = useLoadingContext(); // loading
   const [voteOptions, setVoteOptions] = useState(
     conversionVoteData.voteOptions
   ); // 選択肢
@@ -44,7 +40,6 @@ const EcVoteForm: React.VFC<Props> = ({
 
   // 回答イベント
   const onSubmit: (data: VoteOption[]) => void = async (data: VoteOption[]) => {
-    await setLoading(true);
     // 回答ようにデータを加工
     const redata: Answer = {
       votes: data.map((option: VoteOption) => {
@@ -58,7 +53,6 @@ const EcVoteForm: React.VFC<Props> = ({
     // answerAPI
     await voteEvent(redata, "event", documentId, "answer", userId);
     routerPush(`/dashboard/${documentId}`);
-    await setLoading(false);
   };
 
   /**

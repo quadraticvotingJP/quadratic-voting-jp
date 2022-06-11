@@ -115,7 +115,9 @@
       }
     },
     "systemError": {
-      "invalidUrl": "無効なURLです。正しいリンクを入力してください。"
+      "invalidUrl": "無効なURLです。正しいリンクを入力してください。",
+      "indexPushComment": "トップページに戻る",
+      "indexPushURL": "http://quadraticvoting.jp/"
     }
   },
   "unique": {

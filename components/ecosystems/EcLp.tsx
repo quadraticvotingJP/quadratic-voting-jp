@@ -18,7 +18,6 @@ type Props = {
 
 // eslint-disable-next-line react/display-name
 const EcLp: React.FC<Props> = ({ images }) => {
-  console.log(images);
   const { t } = useTranslation("common");
   const moveCreateEvent = (): void => routerPush("create");
   return (

@@ -6,7 +6,19 @@ const nextConfig = {
   reactStrictMode: true,
   i18n,
   images: {
-    domains: ["firebasestorage.googleapis.com"],
+    domains: [
+      // firebase storage
+      "firebasestorage.googleapis.com",
+      //a8
+      "www27.a8.net",
+      "www10.a8.net",
+      "px.a8.net",
+      "www15.a8.net",
+      "www21.a8.net",
+      "www16.a8.net",
+      "www26.a8.net",
+      "www13.a8.net",
+    ],
   },
 };
 

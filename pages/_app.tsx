@@ -71,20 +71,24 @@ function MyApp({ Component, pageProps }: AppProps) {
             {isLandingPage ? (
               <LPMain>
                 <Component {...pageProps} />
-                <EcAdSense
-                  className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
-                  format="horizontal"
-                />
+                <LPAdSense>
+                  <EcAdSense format="horizontal" a8netOnamae468x60 />
+                </LPAdSense>
               </LPMain>
             ) : (
               <Main>
                 <Page>
                   <Component {...pageProps} />
                 </Page>
-                <EcAdSense
-                  className="lg:max-w-sm lg:w-full md:w-1/2 w-5/6"
-                  format="horizontal"
-                />
+                <PageAdSense>
+                  <EcAdSense format="horizontal" a8netOnamae300x300 />
+                  <br />
+                  <EcAdSense format="horizontal" a8netOZUBI300x250 />
+                  <br />
+                  <EcAdSense format="horizontal" a8netOnamae120x600 />
+                  <br />
+                  <EcAdSense format="horizontal" adSense />
+                </PageAdSense>
               </Main>
             )}
           </>
@@ -107,11 +111,22 @@ const Main = styled.main`
   padding: 100px 40px 200px 40px;
 `;
 const Page = styled.div`
-  width: 65%;
+  width: 80%;
+`;
+const PageAdSense = styled.div`
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const LPMain = styled.main`
   width: 100%;
   padding: 65px 0px 200px 0px;
   display: flex;
   flex-direction: column;
+`;
+const LPAdSense = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;

@@ -128,12 +128,6 @@ const EcVoteForm: React.VFC<Props> = ({
     return newCredits;
   };
 
-  const dateCheck = () => {
-    return `TimeZone, ${new Date().toLocaleString("ja", {
-      timeZone: "Asia/Tokyo",
-    })}`;
-  };
-
   /**
    * @description 増減ボタンの活性非活性制御
    * @param newVoteOptions 更新された投票オプション
@@ -163,10 +157,6 @@ const EcVoteForm: React.VFC<Props> = ({
             title={t("pageTitle.vote")}
             className={"text-center mb-16 text-4xl font-bold"}
           />
-          <span>{`Default, ${new Date()}`}</span>
-          <br />
-          <span>{dateCheck()}</span>
-          <span>{`Start, ${conversionVoteData.publicationStartDate}`}</span>
           <br />
           <OrCardText
             title={t("common.event.eventTitle.title")}

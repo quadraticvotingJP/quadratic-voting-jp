@@ -81,13 +81,19 @@ function MyApp({ Component, pageProps }: AppProps) {
                   <Component {...pageProps} />
                 </Page>
                 <PageAdSense>
+                  <EcAdSense format="horizontal" adSense />
+                  <br />
+                  <EcAdSense format="horizontal" a8netLoli300x300 />
+                  <br />
                   <EcAdSense format="horizontal" a8netOnamae300x300 />
                   <br />
                   <EcAdSense format="horizontal" a8netOZUBI300x250 />
                   <br />
-                  <EcAdSense format="horizontal" a8netOnamae120x600 />
+                  <EcAdSense format="horizontal" a8netXSERVER300x250 />
                   <br />
-                  <EcAdSense format="horizontal" adSense />
+                  <EcAdSense format="horizontal" a8netA8300x250 />
+                  <br />
+                  <EcAdSense format="horizontal" a8netOnamae300x300 />
                 </PageAdSense>
               </Main>
             )}

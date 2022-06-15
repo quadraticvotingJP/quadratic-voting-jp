@@ -8,6 +8,9 @@ type Props = {
   readonly a8netOnamae468x60?: boolean;
   readonly a8netOnamae300x300?: boolean;
   readonly a8netOZUBI300x250?: boolean;
+  readonly a8netXSERVER300x250?: boolean;
+  readonly a8netLoli300x300?: boolean;
+  readonly a8netA8300x250?: boolean;
 };
 // eslint-disable-next-line react/display-name
 const EcAdSense: React.FC<Props> = ({
@@ -17,6 +20,9 @@ const EcAdSense: React.FC<Props> = ({
   a8netOnamae468x60 = false,
   a8netOnamae300x300 = false,
   a8netOZUBI300x250 = false,
+  a8netXSERVER300x250 = false,
+  a8netLoli300x300 = false,
+  a8netA8300x250 = false,
 }) => {
   const { asPath } = useRouter();
 
@@ -97,7 +103,7 @@ const EcAdSense: React.FC<Props> = ({
         </a>
       )}
       {a8netOZUBI300x250 && (
-        <a href={process.env.NEXT_PUBLIC_A8OZUBI300250_A} rel="nofollow">
+        <a href={process.env.NEXT_PUBLIC_A8OZUBI300X250_A} rel="nofollow">
           <AtImage
             src={process.env.NEXT_PUBLIC_A8OZUBI300X250_A_IMAGE1!}
             alt="a8"
@@ -107,6 +113,60 @@ const EcAdSense: React.FC<Props> = ({
           />
           <AtImage
             src={process.env.NEXT_PUBLIC_A8OZUBI300X250_A_IMAGE2!}
+            alt="a8"
+            layout="intrinsic"
+            width={1}
+            height={1}
+          />
+        </a>
+      )}
+      {a8netXSERVER300x250 && (
+        <a href={process.env.NEXT_PUBLIC_A8XSERVER300X250_A} rel="nofollow">
+          <AtImage
+            src={process.env.NEXT_PUBLIC_A8XSERVER300X250_A_IMAGE1!}
+            alt="a8"
+            layout="intrinsic"
+            width={300}
+            height={250}
+          />
+          <AtImage
+            src={process.env.NEXT_PUBLIC_A8XSERVER300X250_A_IMAGE2!}
+            alt="a8"
+            layout="intrinsic"
+            width={1}
+            height={1}
+          />
+        </a>
+      )}
+      {a8netLoli300x300 && (
+        <a href={process.env.NEXT_PUBLIC_A8LOLI300X300_A} rel="nofollow">
+          <AtImage
+            src={process.env.NEXT_PUBLIC_A8LOLI300X300_A_IMAGE1!}
+            alt="a8"
+            layout="intrinsic"
+            width={300}
+            height={300}
+          />
+          <AtImage
+            src={process.env.NEXT_PUBLIC_A8LOLI300X300_A_IMAGE2!}
+            alt="a8"
+            layout="intrinsic"
+            width={1}
+            height={1}
+          />
+        </a>
+      )}
+      {a8netA8300x250 && (
+        <a href={process.env.NEXT_PUBLIC_A8A8300X250_A} rel="nofollow">
+          <AtImage
+            src={process.env.NEXT_PUBLIC_A8A8300X250_A_IMAGE1!}
+            alt="a8"
+            layout="intrinsic"
+            width={300}
+            height={250}
+          />
+          <AtImage
+            src={process.env.NEXT_PUBLIC_A8A8300X250_A_IMAGE2!}
             alt="a8"
             layout="intrinsic"
             width={1}

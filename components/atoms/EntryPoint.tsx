@@ -2,7 +2,6 @@
 export { AtBar } from "@/components/atoms/AtBar/index";
 export { default as AtButton } from "@/components/atoms/AtButton";
 export { AtImage } from "@/components/atoms/AtImage/index";
-export { AtH2 } from "@/components/atoms/AtH2/index";
 export { default as AtHref } from "@/components/atoms/AtHref";
 export { default as AtIconButton } from "@/components/atoms/AtIconButton";
 export { default as AtInput } from "@/components/atoms/AtInput";

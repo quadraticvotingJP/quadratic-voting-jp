@@ -1,6 +1,5 @@
 import React from "react";
 // component
-import { AtH2 } from "@/components/atoms/EntryPoint";
 import styled from "styled-components";
 
 export type Props = {
@@ -17,7 +16,7 @@ export const MoProcess: React.FC<Props> = ({
   return (
     <>
       <Title>
-        <AtH2 title={title} />
+        <H2>{title}</H2>
       </Title>
       <ValueArea>
         <Molecule>{molecule}</Molecule>
@@ -30,6 +29,9 @@ export const MoProcess: React.FC<Props> = ({
 
 const Title = styled.div`
   margin-bottom: 16px;
+`;
+const H2 = styled.h2`
+  font-weight: bold;
 `;
 const ValueArea = styled.div`
   display: flex;

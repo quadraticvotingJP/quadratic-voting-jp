@@ -10,7 +10,7 @@ import {
 import UUID from "uuidjs";
 import styled from "styled-components";
 // component
-import { AtH2, AtButton } from "@/components/atoms/EntryPoint";
+import { AtButton } from "@/components/atoms/EntryPoint";
 import {
   OrCardForm,
   OrCardForms,
@@ -113,7 +113,7 @@ const EcCreateForm: React.FC = () => {
 
   return (
     <div className="mx-10 mt-16">
-      <H2 title={t("pageTitle.creat")} />
+      <H2>{t("pageTitle.creat")}</H2>
       <form>
         <OrCardForm
           title={t("common.event.eventTitle.title")}
@@ -320,7 +320,9 @@ const EcCreateForm: React.FC = () => {
 };
 export default EcCreateForm;
 
-const H2 = styled(AtH2)`
-  font-size: 20px;
+const H2 = styled.h2`
+  font-size: 30px;
+  font-weight: bold;
   text-align: center;
+  margin-bottom: 16px;
 `;

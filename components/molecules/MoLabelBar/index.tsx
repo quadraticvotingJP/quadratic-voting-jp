@@ -15,7 +15,7 @@ export type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const MoLabelBar: React.FC<Props> = ({
+export const MoLabelBar: React.FC<Props> = ({
   // label
   title,
   overView,
@@ -35,7 +35,6 @@ const MoLabelBar: React.FC<Props> = ({
     </>
   );
 };
-export default MoLabelBar;
 
 const LabelElement = styled.div`
   margin-bottom: 32px;

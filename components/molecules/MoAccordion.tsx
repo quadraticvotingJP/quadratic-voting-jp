@@ -30,7 +30,7 @@ const MoAccordion: React.FC<Props> = React.memo(
               <div className="flex items-center break-words">
                 <p className="text-lg font-bold">{option.title}</p>
               </div>
-              <div className="mr-4">
+              <div className="mr-4 flex">
                 <AtIconButton
                   showEdit
                   onClick={onClickEdit}

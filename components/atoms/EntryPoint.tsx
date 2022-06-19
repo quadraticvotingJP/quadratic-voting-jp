@@ -1,5 +1,5 @@
 // 上位componentで毎回importするのを省くためまとめる
-export { default as AtBar } from "@/components/atoms/AtBar";
+export { AtBar } from "@/components/atoms/AtBar/index";
 export { default as AtButton } from "@/components/atoms/AtButton";
 export { default as AtImage } from "@/components/atoms/AtImage";
 export { default as AtH2 } from "@/components/atoms/AtH2";

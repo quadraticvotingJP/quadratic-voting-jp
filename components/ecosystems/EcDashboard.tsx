@@ -203,7 +203,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
                 ),
             },
           })}
-          min={today}
           error={errors.publicationStartDate}
           placeholder=""
           disabled={false}
@@ -240,7 +239,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
                 ),
             },
           })}
-          min={today}
           placeholder=""
           disabled={false}
           type="datetime-local"

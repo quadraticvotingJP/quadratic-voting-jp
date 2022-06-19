@@ -168,7 +168,6 @@ const EcCreateForm: React.FC = () => {
           placeholder={t("common.event.publicationStartDate.title")}
           disabled={false}
           type="datetime-local"
-          min={today}
           error={errors.publicationStartDate}
         />
         <br />
@@ -191,7 +190,6 @@ const EcCreateForm: React.FC = () => {
           placeholder={t("common.event.publicationEndDate.title")}
           disabled={false}
           type="datetime-local"
-          min={today}
           error={errors.publicationEndDate}
         />
         <br />

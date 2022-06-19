@@ -10,7 +10,6 @@ type Props = {
   // label
   readonly title: string;
   readonly required: boolean;
-  readonly focused?: boolean;
   readonly overView?: string;
   // form
   readonly placeholder: string;
@@ -33,7 +32,6 @@ type Props = {
 const OrCardForm: React.FC<Props> = ({
   // label
   title,
-  focused,
   required,
   overView,
   // form
@@ -56,7 +54,6 @@ const OrCardForm: React.FC<Props> = ({
     <>
       <Card className="p-6">
         <MoLabelForm
-          focused={focused}
           title={title}
           required={required}
           overView={overView}

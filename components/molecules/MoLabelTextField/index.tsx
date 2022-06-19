@@ -1,16 +1,16 @@
 import React from "react";
 // component
 import {
-  AtInputLabel,
-  AtInputLabelNoMark,
+  AtLabel,
+  AtNoMarkLabel,
   AtTextField,
 } from "@/components/atoms/EntryPoint";
+import styled from "styled-components";
 
 type Props = {
   // label
   readonly title: string;
   readonly required: boolean;
-  readonly focused?: boolean;
   readonly labelMark?: boolean;
   readonly overView: string;
   // textField
@@ -26,10 +26,9 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const MoLabelTextField: React.FC<Props> = ({
+export const MoLabelTextField: React.FC<Props> = ({
   // label
   title,
-  focused,
   required,
   overView,
   labelMark = true,
@@ -44,20 +43,16 @@ const MoLabelTextField: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div className="mb-3">
-        <div className="mb-1">
+      <LabelElement>
+        <Label>
           {labelMark ? (
-            <AtInputLabel required={required} focused={focused} title={title} />
+            <AtLabel required={required} title={title} />
           ) : (
-            <AtInputLabelNoMark
-              required={required}
-              focused={focused}
-              title={title}
-            />
+            <AtNoMarkLabel required={required} title={title} />
           )}
-        </div>
-        {overView && <div>{overView}</div>}
-      </div>
+        </Label>
+        {overView && <OverView>{overView}</OverView>}
+      </LabelElement>
       <AtTextField
         id={id}
         name={name}
@@ -71,4 +66,14 @@ const MoLabelTextField: React.FC<Props> = ({
     </>
   );
 };
-export default MoLabelTextField;
+
+const LabelElement = styled.div`
+  margin-bottom: 14px;
+`;
+const Label = styled.div`
+  margin-bottom: 16px;
+`;
+const OverView = styled.div`
+  font-size: 20px;
+  white-space: pre-wrap;
+`;

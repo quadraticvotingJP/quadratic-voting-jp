@@ -19,7 +19,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const AtImage: React.FC<Props> = React.memo(
+export const AtImage: React.FC<Props> = React.memo(
   ({ src, alt, layout = "fill", loader, objectFit, width, height }) => {
     return (
       <Image
@@ -34,4 +34,3 @@ const AtImage: React.FC<Props> = React.memo(
     );
   }
 );
-export default AtImage;

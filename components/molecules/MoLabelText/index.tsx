@@ -1,17 +1,18 @@
 import React from "react";
 // component
 import {
-  AtInputLabel,
-  AtInputLabelNoMark,
+  AtLabel,
+  AtNoMarkLabel,
   AtIconButton,
 } from "@/components/atoms/EntryPoint";
+import styled from "styled-components";
 
 type Props = {
   // label
   readonly title: string;
   readonly required: boolean;
   readonly contents: string;
-  readonly focused?: boolean;
+
   // button
   readonly showEdit: boolean;
   readonly disabled: boolean;
@@ -20,10 +21,9 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const MoLabelText: React.FC<Props> = ({
+export const MoLabelText: React.FC<Props> = ({
   // label
   title,
-  focused,
   required,
   contents,
   // button
@@ -34,21 +34,17 @@ const MoLabelText: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div className="mb-3">
-        <div className="mb-1">
+      <LabelElement>
+        <Label>
           {labelMark ? (
-            <AtInputLabel required={required} focused={focused} title={title} />
+            <AtLabel required={required} title={title} />
           ) : (
-            <AtInputLabelNoMark
-              required={required}
-              focused={focused}
-              title={title}
-            />
+            <AtNoMarkLabel required={required} title={title} />
           )}
-        </div>
-      </div>
-      <div className="flex justify-between items-center">
-        <p className="font-bold">{contents}</p>
+        </Label>
+      </LabelElement>
+      <DateElement>
+        <Date>{contents}</Date>
         {showEdit && (
           <AtIconButton
             size="small"
@@ -57,8 +53,23 @@ const MoLabelText: React.FC<Props> = ({
             onClick={onClick}
           />
         )}
-      </div>
+      </DateElement>
     </>
   );
 };
-export default MoLabelText;
+
+const LabelElement = styled.div`
+  margin-bottom: 14px;
+`;
+const Label = styled.div`
+  margin-bottom: 16px;
+`;
+const DateElement = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const Date = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;

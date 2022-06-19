@@ -1,6 +1,6 @@
 import React from "react";
 // component
-import { AtInputLabel } from "@/components/atoms/EntryPoint";
+import { AtLabel } from "@/components/atoms/EntryPoint";
 import { MoProcess } from "@/components/molecules/EntryPoint";
 import { Card } from "@mui/material";
 
@@ -28,7 +28,7 @@ const OrCardProcess: React.FC<Props> = ({
   return (
     <Card className="p-6">
       <div className="mb-1">
-        <AtInputLabel required={false} focused={false} title={labelTitle} />
+        <AtLabel required={false} title={labelTitle} />
       </div>
       {overView && <div className="mb-3 whitespace-pre-wrap">{overView}</div>}
       <div className="flex justify-between">

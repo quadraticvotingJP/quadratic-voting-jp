@@ -12,8 +12,6 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const AtBar: React.FC<Props> = React.memo(({ data }) => {
+export const AtBar: React.FC<Props> = React.memo(({ data }) => {
   return <Bar data={data} />;
 });
-
-export default AtBar;

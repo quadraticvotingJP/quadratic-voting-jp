@@ -1,7 +1,7 @@
 import React from "react";
 
 // components
-import { AtInputLabelNoMark, AtTextField } from "@/components/atoms/EntryPoint";
+import { AtNoMarkLabel, AtTextField } from "@/components/atoms/EntryPoint";
 import { MoButtons } from "@/components/molecules/EntryPoint";
 import { useTranslation } from "next-i18next";
 
@@ -33,27 +33,24 @@ const OrVoteOptionCardForm: React.FC<Props> = ({
         <div key={option.id} className="mb-1">
           {/* タイトル */}
           <div className="mb-3">
-            <AtInputLabelNoMark
+            <AtNoMarkLabel
               required={false}
-              focused={false}
               title={t("common.event.eventTitle.title")}
             />
             <p>{option.title}</p>
           </div>
           {/* 概要 */}
           <div className="mb-3">
-            <AtInputLabelNoMark
+            <AtNoMarkLabel
               required={false}
-              focused={false}
               title={t("common.event.overview.title")}
             />
             <p>{option.overview}</p>
           </div>
           {/* リンク */}
           <div className="mb-3">
-            <AtInputLabelNoMark
+            <AtNoMarkLabel
               required={false}
-              focused={false}
               title={t("common.event.createOption.optionLink")}
             />
             <AtTextField
@@ -71,9 +68,8 @@ const OrVoteOptionCardForm: React.FC<Props> = ({
           </div>
           {/* 投票数 */}
           <div className="mb-6">
-            <AtInputLabelNoMark
+            <AtNoMarkLabel
               required={false}
-              focused={false}
               title={t("common.event.votes.title")}
             />
             <AtTextField

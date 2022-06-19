@@ -1,9 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 import { ChartData } from "chart.js";
 // component
 import { MoLabelBar } from "@/components/molecules/EntryPoint";
 import { AtButton } from "@/components/atoms/EntryPoint";
-import { Card } from "@mui/material";
 
 interface Button {
   readonly disabled: boolean;
@@ -11,7 +11,7 @@ interface Button {
   readonly onClick?: () => void;
 }
 
-type Props = {
+export type Props = {
   // label
   readonly title: string;
   readonly overView: string;
@@ -23,7 +23,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const OrCardBar: React.FC<Props> = ({
+export const OrCardBar: React.FC<Props> = ({
   // label
   title,
   overView,
@@ -35,25 +35,40 @@ const OrCardBar: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <Card className="p-6">
-        <div className="mb-3">
+      <Card>
+        <Bar>
           <MoLabelBar
             title={title}
             overView={overView}
             required={required}
             data={data}
           />
-        </div>
-        <div className="flex justify-center">
+        </Bar>
+        <Button>
           <AtButton
             className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-xs w-40 h-10 py-2 px-6 rounded"
             title={button.title}
             disabled={button.disabled}
             onClick={button.onClick}
           />
-        </div>
+        </Button>
       </Card>
     </>
   );
 };
-export default OrCardBar;
+
+const Card = styled.div`
+  padding: 24px;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+`;
+
+const Bar = styled.div`
+  margin-bottom: 24px;
+`;
+const Button = styled.div`
+  display: flex;
+  justify-content: center;
+`;

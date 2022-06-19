@@ -1,9 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 // component
 import { MoLabelText } from "@/components/molecules/EntryPoint";
-import { Card } from "@mui/material";
 
-type Props = {
+export type Props = {
   // label
   readonly title: string;
   readonly contents: string;
@@ -16,7 +16,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const OrCardText: React.FC<Props> = ({
+export const OrCardText: React.FC<Props> = ({
   // label
   title,
   required,
@@ -29,7 +29,7 @@ const OrCardText: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <Card className="p-6 rounded-xl">
+      <Card>
         <MoLabelText
           title={title}
           required={required}
@@ -42,4 +42,11 @@ const OrCardText: React.FC<Props> = ({
     </>
   );
 };
-export default OrCardText;
+
+const Card = styled.div`
+  padding: 24px;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+`;

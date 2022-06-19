@@ -1,13 +1,11 @@
-// https://mui.com/components/buttons/#icon-button
 import React from "react";
+import styled from "styled-components";
 // component
 import { MoForm, MoAccordion } from "@/components/molecules/EntryPoint";
 import { AtLabel } from "@/components/atoms/EntryPoint";
-// mui
-import { Card } from "@mui/material";
 import { UseFormRegisterReturn } from "react-hook-form";
 
-type Props = {
+export type Props = {
   readonly title: string;
   readonly required: boolean;
   // Options
@@ -26,7 +24,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const OrAccordion: React.FC<Props> = React.memo(
+export const OrAccordion: React.FC<Props> = React.memo(
   ({
     required,
     title,
@@ -46,13 +44,12 @@ const OrAccordion: React.FC<Props> = React.memo(
   }) => {
     return (
       <>
-        <Card className="p-6">
-          <div className="mb-3">
-            <div className="mb-1">
+        <Card>
+          <LabelElement>
+            <Label>
               <AtLabel required={required} title={title} />
-            </div>
-          </div>
-
+            </Label>
+          </LabelElement>
           {options &&
             options.map((option: Option, index: number) => {
               return (
@@ -83,4 +80,17 @@ const OrAccordion: React.FC<Props> = React.memo(
     );
   }
 );
-export default OrAccordion;
+
+const Card = styled.div`
+  padding: 24px;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+`;
+const LabelElement = styled.div`
+  margin-bottom: 14px;
+`;
+const Label = styled.div`
+  margin-bottom: 16px;
+`;

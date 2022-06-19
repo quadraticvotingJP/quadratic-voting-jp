@@ -22,8 +22,8 @@ export function eventDateAuthorize() {
    * @returns boolean
    */
   function beforePublicationStartDate(publicationStartDate: string): boolean {
-    const now = new Date();
-    return new Date(publicationStartDate) > now;
+    const now: number = getNowToTime();
+    return new Date(replaceDate(publicationStartDate)).getTime() > now;
   }
 
   /**
@@ -32,8 +32,29 @@ export function eventDateAuthorize() {
    * @returns boolean
    */
   function afterPublicationEndDate(publicationEndDate: string): boolean {
-    const now = new Date();
-    return new Date(publicationEndDate) < now;
+    const now: number = getNowToTime();
+    return new Date(replaceDate(publicationEndDate)).getTime() < now;
+  }
+
+  function getNowToTime(): number {
+    const timeZoneData = JSON.parse(
+      JSON.stringify(
+        new Date().toLocaleString("ja", {
+          timeZone: "Asia/Tokyo",
+        })
+      )
+    );
+    return new Date(timeZoneData).getTime();
+  }
+
+  function replaceDate(date: string) {
+    return JSON.parse(
+      JSON.stringify(
+        new Date(date).toLocaleString("ja", {
+          timeZone: "Asia/Tokyo",
+        })
+      )
+    );
   }
 
   return {

@@ -49,6 +49,5 @@ export function eventDateAuthorize() {
   return {
     beforePublicationStartDate,
     afterPublicationEndDate,
-    getNow,
   };
 }

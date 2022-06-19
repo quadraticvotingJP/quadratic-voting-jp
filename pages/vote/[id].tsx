@@ -100,7 +100,7 @@ const Id = ({
   isAnswer = true,
   cantVote = false,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { beforePublicationStartDate, afterPublicationEndDate, getNow } =
+  const { beforePublicationStartDate, afterPublicationEndDate } =
     eventDateAuthorize(); // 日にちチェック
   const dateBefore: boolean = beforePublicationStartDate(
     conversionVoteData.publicationStartDate
@@ -126,7 +126,7 @@ const Id = ({
       <EcVoteForm
         query={query}
         documentId={documentId}
-        dates={getNow()}
+        dates={}
         conversionVoteData={conversionVoteData}
       />
     </>

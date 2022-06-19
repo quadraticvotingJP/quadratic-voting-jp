@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { AtHref } from "@/components/atoms/EntryPoint";
 
 // eslint-disable-next-line react/display-name
-const MoHeader = React.memo(({}) => {
+export const MoHeader = React.memo(({}) => {
   const { t } = useTranslation("common");
   return (
     <Header>
@@ -13,7 +13,6 @@ const MoHeader = React.memo(({}) => {
     </Header>
   );
 });
-export default MoHeader;
 
 const Header = styled.div`
   position: fixed; /* ヘッダーを固定する */

@@ -1,26 +1,26 @@
 import React from "react";
+import styled from "styled-components";
 // component
 import { AtLabel, AtButton } from "@/components/atoms/EntryPoint";
 import { MoLabelForm } from "@/components/molecules/EntryPoint";
-import { Card } from "@mui/material";
 
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
 
 // interface
-interface FormLabel {
+export interface FormLabel {
   readonly required: boolean;
   readonly title: string;
   readonly overView: string;
 }
 
-interface Button {
+export interface Button {
   readonly disabled: boolean;
   readonly title: string;
   readonly onClick?: () => void;
 }
 
-interface Form {
+export interface Form {
   // label
   readonly title: string;
   readonly required: boolean;
@@ -35,7 +35,7 @@ interface Form {
   readonly labelMark: boolean;
 }
 
-type Props = {
+export type Props = {
   readonly label: FormLabel;
   readonly form1: Form;
   readonly form2: Form;
@@ -44,7 +44,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const OrCardForms: React.FC<Props> = ({
+export const OrCardForms: React.FC<Props> = ({
   label,
   form1,
   form2,
@@ -53,16 +53,14 @@ const OrCardForms: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <Card className="p-6">
-        <div className="mb-3">
-          <div className="mb-1">
+      <Card>
+        <LabelElement>
+          <Label>
             <AtLabel required={label.required} title={label.title} />
-          </div>
-          {label.overView && (
-            <div className="whitespace-pre-wrap">{label.overView}</div>
-          )}
-        </div>
-        <div className="mb-6">
+          </Label>
+          {label.overView && <OverView>{label.overView}</OverView>}
+        </LabelElement>
+        <Section>
           <MoLabelForm
             title={form1.title}
             required={form1.required}
@@ -75,8 +73,8 @@ const OrCardForms: React.FC<Props> = ({
             error={form1.error}
             labelMark={form1.labelMark}
           />
-        </div>
-        <div className="mb-6">
+        </Section>
+        <Section>
           <MoLabelForm
             title={form2.title}
             required={form2.required}
@@ -89,8 +87,8 @@ const OrCardForms: React.FC<Props> = ({
             error={form2.error}
             labelMark={form2.labelMark}
           />
-        </div>
-        <div className="mb-12">
+        </Section>
+        <Section>
           <MoLabelForm
             title={form3.title}
             required={form3.required}
@@ -103,16 +101,40 @@ const OrCardForms: React.FC<Props> = ({
             error={form3.error}
             labelMark={form3.labelMark}
           />
-        </div>
-        <div className="flex justify-center">
+        </Section>
+        <Button>
           <AtButton
             title={button.title}
             disabled={button.disabled}
             onClick={button.onClick}
           />
-        </div>
+        </Button>
       </Card>
     </>
   );
 };
-export default OrCardForms;
+
+const Card = styled.div`
+  padding: 24px;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+`;
+const LabelElement = styled.div`
+  margin-bottom: 14px;
+`;
+const Label = styled.div`
+  margin-bottom: 16px;
+`;
+const OverView = styled.div`
+  font-size: 20px;
+  white-space: pre-wrap;
+`;
+const Section = styled.div`
+  margin-bottom: 24px;
+`;
+const Button = styled.div`
+  display: flex;
+  justify-content: center;
+`;

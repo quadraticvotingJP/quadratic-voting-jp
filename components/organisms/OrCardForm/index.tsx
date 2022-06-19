@@ -1,12 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 // component
 import { MoLabelForm } from "@/components/molecules/EntryPoint";
-import { Card } from "@mui/material";
 
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
 
-type Props = {
+export type Props = {
   // label
   readonly title: string;
   readonly required: boolean;
@@ -29,7 +29,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const OrCardForm: React.FC<Props> = ({
+export const OrCardForm: React.FC<Props> = ({
   // label
   title,
   required,
@@ -52,7 +52,7 @@ const OrCardForm: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <Card className="p-6">
+      <Card>
         <MoLabelForm
           title={title}
           required={required}
@@ -76,4 +76,11 @@ const OrCardForm: React.FC<Props> = ({
     </>
   );
 };
-export default OrCardForm;
+
+const Card = styled.div`
+  padding: 24px;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+`;

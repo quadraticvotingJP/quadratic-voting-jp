@@ -1,10 +1,10 @@
 // 上位componentで毎回importするのを省くためまとめる
 export { default as OrAccordion } from "@/components/organisms/OrAccordion";
-export { default as OrCardBar } from "@/components/organisms/OrCardBar";
-export { default as OrCardForm } from "@/components/organisms/OrCardForm";
-export { default as OrCardForms } from "@/components/organisms/OrCardForms";
+export { OrCardBar } from "@/components/organisms/OrCardBar/index";
+export { OrCardForm } from "@/components/organisms/OrCardForm/index";
+export { OrCardForms } from "@/components/organisms/OrCardForms/index";
 export { default as OrCardProcess } from "@/components/organisms/OrCardProcess";
-export { default as OrCardText } from "@/components/organisms/OrCardText";
+export { OrCardText } from "@/components/organisms/OrCardText/index";
 export { default as OrCardTextField } from "@/components/organisms/OrCardTextField";
 export { OrVoteOptionCardForm } from "@/components/organisms/OrVoteOptionCardForm/index";
 export { OrProposalBlocks } from "@/components/organisms/OrProposalBlocks/index";

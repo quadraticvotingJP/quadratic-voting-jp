@@ -126,7 +126,6 @@ const Id = ({
       <EcVoteForm
         query={query}
         documentId={documentId}
-        dates={}
         conversionVoteData={conversionVoteData}
       />
     </>

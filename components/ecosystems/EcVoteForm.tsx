@@ -16,6 +16,7 @@ import { OrProposalBlocks } from "@/components/organisms/EntryPoint";
 // architecture
 import { answer } from "@/architecture/application/answer";
 import { Card } from "@mui/material";
+import { inputDateMaxCheck } from "@/utils/validation";
 
 interface Props {
   conversionVoteData: VoteData;
@@ -25,7 +26,7 @@ interface Props {
   };
 }
 
-const EcVoteForm: React.VFC<Props> = ({
+const EcVoteForm: React.FC<Props> = ({
   conversionVoteData,
   documentId,
   query,

@@ -18,17 +18,17 @@ export const AtIconButton: React.FC<Props> = React.memo(
     return (
       <>
         {showDelete && (
-          <DeleteIconButton onClick={onClick} disabled={disabled}>
+          <DeleteIconButton onClick={onClick} disabled={disabled} type="button">
             <Trash />
           </DeleteIconButton>
         )}
         {showEdit && (
-          <EditIconButton onClick={onClick} disabled={disabled}>
+          <EditIconButton onClick={onClick} disabled={disabled} type="button">
             <Edit2 />
           </EditIconButton>
         )}
         {showSave && (
-          <SaveIconButton onClick={onClick} disabled={disabled}>
+          <SaveIconButton onClick={onClick} disabled={disabled} type="button">
             <Save />
           </SaveIconButton>
         )}

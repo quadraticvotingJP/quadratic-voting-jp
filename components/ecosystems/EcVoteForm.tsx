@@ -21,6 +21,7 @@ import { inputDateMaxCheck } from "@/utils/validation";
 interface Props {
   conversionVoteData: VoteData;
   documentId: string;
+  dates?: Date;
   query: {
     user: string;
   };
@@ -29,6 +30,7 @@ interface Props {
 const EcVoteForm: React.FC<Props> = ({
   conversionVoteData,
   documentId,
+  dates,
   query,
 }) => {
   const { t } = useTranslation("common");
@@ -128,6 +130,12 @@ const EcVoteForm: React.FC<Props> = ({
     return newCredits;
   };
 
+  const dateCheck = () => {
+    return `TimeZone, ${new Date().toLocaleString("ja", {
+      timeZone: "Asia/Tokyo",
+    })}`;
+  };
+
   /**
    * @description 増減ボタンの活性非活性制御
    * @param newVoteOptions 更新された投票オプション
@@ -157,6 +165,12 @@ const EcVoteForm: React.FC<Props> = ({
             title={t("pageTitle.vote")}
             className={"text-center mb-16 text-4xl font-bold"}
           />
+          <span>{`SSR, ${dates}`}</span>
+          <br />
+          <span>{`Default, ${new Date()}`}</span>
+          <br />
+          <span>{dateCheck()}</span>
+          <span>{`Start, ${conversionVoteData.publicationStartDate}`}</span>
           <br />
           <OrCardText
             title={t("common.event.eventTitle.title")}

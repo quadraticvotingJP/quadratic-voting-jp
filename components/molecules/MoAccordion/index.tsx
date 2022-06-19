@@ -7,7 +7,7 @@ import { AtIconButton, AtHref } from "@/components/atoms/EntryPoint";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-type Props = {
+export type Props = {
   readonly size: Readonly<ButtonSize>;
   readonly option: Readonly<Option>;
   readonly onClickEdit?: () => void;
@@ -16,7 +16,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const MoAccordion: React.FC<Props> = React.memo(
+export const MoAccordion: React.FC<Props> = React.memo(
   ({ option, size, onClickEdit, onClickDelete, disabled }) => {
     return (
       <>
@@ -26,11 +26,11 @@ const MoAccordion: React.FC<Props> = React.memo(
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <div className="w-full flex justify-between">
-              <div className="flex items-center break-words">
-                <p className="text-lg font-bold">{option.title}</p>
-              </div>
-              <div className="mr-4 flex">
+            <OptionElement>
+              <TitleElement>
+                <Title>{option.title}</Title>
+              </TitleElement>
+              <IconButtonElement>
                 <AtIconButton
                   showEdit
                   onClick={onClickEdit}
@@ -43,19 +43,19 @@ const MoAccordion: React.FC<Props> = React.memo(
                   size={size}
                   disabled={disabled}
                 />
-              </div>
-            </div>
+              </IconButtonElement>
+            </OptionElement>
           </AccordionSummary>
           <AccordionDetails>
             {option.overview && (
-              <div className="mb-4 break-words">
-                <p className="font-bold">概要</p>
+              <Overview>
+                <Title>概要</Title>
                 {option.overview}
-              </div>
+              </Overview>
             )}
             {option.url && (
               <div>
-                <p className="font-bold">リンク</p>
+                <Title>リンク</Title>
                 <Link>
                   <AtHref blank={true} title={option.url} link={option.url} />
                 </Link>
@@ -63,7 +63,7 @@ const MoAccordion: React.FC<Props> = React.memo(
             )}
             {!option.url && !option.overview && (
               <div>
-                <p className="font-bold">概要とリンクは登録されていません。</p>
+                <Title>概要とリンクは登録されていません。</Title>
               </div>
             )}
           </AccordionDetails>
@@ -72,8 +72,28 @@ const MoAccordion: React.FC<Props> = React.memo(
     );
   }
 );
-export default MoAccordion;
-
+const OptionElement = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+const TitleElement = styled.div`
+  display: flex;
+  align-items: center;
+  word-break: break-word;
+`;
+const Title = styled.p`
+  font-size: 20px;
+  font-weight: bold;
+`;
+const IconButtonElement = styled.div`
+  display: flex;
+  margin-right: 10px;
+`;
+const Overview = styled.div`
+  margin-bottom: 14px;
+  word-break: break-word;
+`;
 const Link = styled.div`
   color: #4c51bf;
 `;

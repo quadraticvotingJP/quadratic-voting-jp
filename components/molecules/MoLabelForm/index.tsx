@@ -57,8 +57,6 @@ export const MoLabelForm: React.FC<Props> = ({
   onWheel,
   labelMark = true,
 }) => {
-  console.log(showSave);
-
   return (
     <>
       <LabelElement>

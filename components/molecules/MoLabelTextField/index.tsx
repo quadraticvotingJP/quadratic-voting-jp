@@ -5,6 +5,7 @@ import {
   AtNoMarkLabel,
   AtTextField,
 } from "@/components/atoms/EntryPoint";
+import styled from "styled-components";
 
 type Props = {
   // label
@@ -25,7 +26,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const MoLabelTextField: React.FC<Props> = ({
+export const MoLabelTextField: React.FC<Props> = ({
   // label
   title,
   required,
@@ -42,16 +43,16 @@ const MoLabelTextField: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div className="mb-3">
-        <div className="mb-1">
+      <LabelElement>
+        <Label>
           {labelMark ? (
             <AtLabel required={required} title={title} />
           ) : (
             <AtNoMarkLabel required={required} title={title} />
           )}
-        </div>
-        {overView && <div>{overView}</div>}
-      </div>
+        </Label>
+        {overView && <OverView>{overView}</OverView>}
+      </LabelElement>
       <AtTextField
         id={id}
         name={name}
@@ -65,4 +66,13 @@ const MoLabelTextField: React.FC<Props> = ({
     </>
   );
 };
-export default MoLabelTextField;
+
+const LabelElement = styled.div`
+  margin-bottom: 32px;
+`;
+const Label = styled.div`
+  margin-bottom: 17px;
+`;
+const OverView = styled.div`
+  white-space: pre-wrap;
+`;

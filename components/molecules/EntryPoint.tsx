@@ -6,6 +6,6 @@ export { default as MoForm } from "@/components/molecules/MoForm";
 export { default as MoHeader } from "@/components/molecules/MoHeader";
 export { MoLabelBar } from "@/components/molecules/MoLabelBar/index";
 export { default as MoLabelForm } from "@/components/molecules/MoLabelForm";
-export { default as MoLabelText } from "@/components/molecules/MoLabelText";
+export { MoLabelText } from "@/components/molecules/MoLabelText/index";
 export { default as MoLabelTextField } from "@/components/molecules/MoLabelTextField";
 export { default as MoProcess } from "@/components/molecules/MoProcess";

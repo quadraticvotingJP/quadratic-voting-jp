@@ -114,12 +114,13 @@ export const MoLabelForm: React.FC<Props> = ({
 };
 
 const LabelElement = styled.div`
-  margin-bottom: 32px;
+  margin-bottom: 14px;
 `;
 const Label = styled.div`
-  margin-bottom: 17px;
+  margin-bottom: 16px;
 `;
 const OverView = styled.div`
+  font-size: 20px;
   white-space: pre-wrap;
 `;
 const EditElement = styled.div`

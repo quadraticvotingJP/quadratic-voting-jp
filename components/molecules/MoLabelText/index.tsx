@@ -59,10 +59,10 @@ export const MoLabelText: React.FC<Props> = ({
 };
 
 const LabelElement = styled.div`
-  margin-bottom: 32px;
+  margin-bottom: 14px;
 `;
 const Label = styled.div`
-  margin-bottom: 17px;
+  margin-bottom: 16px;
 `;
 const DateElement = styled.div`
   display: flex;
@@ -70,5 +70,6 @@ const DateElement = styled.div`
   align-items: center;
 `;
 const Date = styled.div`
+  font-size: 20px;
   font-weight: bold;
 `;

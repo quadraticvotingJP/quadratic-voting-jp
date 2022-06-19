@@ -1,5 +1,5 @@
 // 上位componentで毎回importするのを省くためまとめる
-export { default as OrAccordion } from "@/components/organisms/OrAccordion";
+export { OrAccordion } from "@/components/organisms/OrAccordion/index";
 export { OrCardBar } from "@/components/organisms/OrCardBar/index";
 export { OrCardForm } from "@/components/organisms/OrCardForm/index";
 export { OrCardForms } from "@/components/organisms/OrCardForms/index";

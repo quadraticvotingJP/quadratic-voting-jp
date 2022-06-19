@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 // components
 import { AtNoMarkLabel, AtTextField } from "@/components/atoms/EntryPoint";
 import { MoButtons } from "@/components/molecules/EntryPoint";

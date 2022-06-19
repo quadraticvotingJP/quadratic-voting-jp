@@ -1,14 +1,13 @@
 import React from "react";
 import { ChartData } from "chart.js";
 // component
-import { AtInputLabel, AtBar } from "@/components/atoms/EntryPoint";
+import { AtLabel, AtBar } from "@/components/atoms/EntryPoint";
 
 type Props = {
   // label
   readonly title: string;
   readonly overView: string;
   readonly required: boolean;
-  readonly focused?: boolean;
   // bar
   readonly data: ChartData<"bar", number[], string>;
 };
@@ -18,7 +17,6 @@ const MoLabelBar: React.FC<Props> = ({
   // label
   title,
   overView,
-  focused,
   required,
   // bar
   data,
@@ -27,7 +25,7 @@ const MoLabelBar: React.FC<Props> = ({
     <>
       <div className="mb-3">
         <div className="mb-1">
-          <AtInputLabel required={required} focused={focused} title={title} />
+          <AtLabel required={required} title={title} />
         </div>
         {overView && <div className="mb-3 whitespace-pre-wrap">{overView}</div>}
       </div>

@@ -8,7 +8,6 @@ type Props = {
   readonly title: string;
   readonly contents: string;
   readonly required: boolean;
-  readonly focused?: boolean;
   // button
   readonly showEdit: boolean;
   readonly disabled: boolean;
@@ -20,7 +19,6 @@ type Props = {
 const OrCardText: React.FC<Props> = ({
   // label
   title,
-  focused,
   required,
   // Text
   contents,
@@ -33,7 +31,6 @@ const OrCardText: React.FC<Props> = ({
     <>
       <Card className="p-6 rounded-xl">
         <MoLabelText
-          focused={focused}
           title={title}
           required={required}
           contents={contents}

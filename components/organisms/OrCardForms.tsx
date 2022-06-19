@@ -1,6 +1,6 @@
 import React from "react";
 // component
-import { AtInputLabel, AtButton } from "@/components/atoms/EntryPoint";
+import { AtLabel, AtButton } from "@/components/atoms/EntryPoint";
 import { MoLabelForm } from "@/components/molecules/EntryPoint";
 import { Card } from "@mui/material";
 
@@ -12,7 +12,6 @@ interface FormLabel {
   readonly required: boolean;
   readonly title: string;
   readonly overView: string;
-  readonly focused?: boolean;
 }
 
 interface Button {
@@ -57,11 +56,7 @@ const OrCardForms: React.FC<Props> = ({
       <Card className="p-6">
         <div className="mb-3">
           <div className="mb-1">
-            <AtInputLabel
-              required={label.required}
-              focused={label.focused}
-              title={label.title}
-            />
+            <AtLabel required={label.required} title={label.title} />
           </div>
           {label.overView && (
             <div className="whitespace-pre-wrap">{label.overView}</div>

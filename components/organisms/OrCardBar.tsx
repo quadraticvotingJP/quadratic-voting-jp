@@ -16,7 +16,6 @@ type Props = {
   readonly title: string;
   readonly overView: string;
   readonly required: boolean;
-  readonly focused?: boolean;
   // bar
   readonly data: ChartData<"bar", number[], string>;
   // button
@@ -28,7 +27,6 @@ const OrCardBar: React.FC<Props> = ({
   // label
   title,
   overView,
-  focused,
   required,
   // bar
   data,
@@ -40,7 +38,6 @@ const OrCardBar: React.FC<Props> = ({
       <Card className="p-6">
         <div className="mb-3">
           <MoLabelBar
-            focused={focused}
             title={title}
             overView={overView}
             required={required}

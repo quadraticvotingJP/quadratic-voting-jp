@@ -1,8 +1,8 @@
 import React from "react";
 // component
 import {
-  AtInputLabel,
-  AtInputLabelNoMark,
+  AtLabel,
+  AtNoMarkLabel,
   AtTextField,
 } from "@/components/atoms/EntryPoint";
 
@@ -10,7 +10,6 @@ type Props = {
   // label
   readonly title: string;
   readonly required: boolean;
-  readonly focused?: boolean;
   readonly labelMark?: boolean;
   readonly overView: string;
   // textField
@@ -29,7 +28,6 @@ type Props = {
 const MoLabelTextField: React.FC<Props> = ({
   // label
   title,
-  focused,
   required,
   overView,
   labelMark = true,
@@ -47,13 +45,9 @@ const MoLabelTextField: React.FC<Props> = ({
       <div className="mb-3">
         <div className="mb-1">
           {labelMark ? (
-            <AtInputLabel required={required} focused={focused} title={title} />
+            <AtLabel required={required} title={title} />
           ) : (
-            <AtInputLabelNoMark
-              required={required}
-              focused={focused}
-              title={title}
-            />
+            <AtNoMarkLabel required={required} title={title} />
           )}
         </div>
         {overView && <div>{overView}</div>}

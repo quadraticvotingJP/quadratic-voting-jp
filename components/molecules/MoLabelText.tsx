@@ -1,8 +1,8 @@
 import React from "react";
 // component
 import {
-  AtInputLabel,
-  AtInputLabelNoMark,
+  AtLabel,
+  AtNoMarkLabel,
   AtIconButton,
 } from "@/components/atoms/EntryPoint";
 
@@ -11,7 +11,7 @@ type Props = {
   readonly title: string;
   readonly required: boolean;
   readonly contents: string;
-  readonly focused?: boolean;
+
   // button
   readonly showEdit: boolean;
   readonly disabled: boolean;
@@ -23,7 +23,6 @@ type Props = {
 const MoLabelText: React.FC<Props> = ({
   // label
   title,
-  focused,
   required,
   contents,
   // button
@@ -37,13 +36,9 @@ const MoLabelText: React.FC<Props> = ({
       <div className="mb-3">
         <div className="mb-1">
           {labelMark ? (
-            <AtInputLabel required={required} focused={focused} title={title} />
+            <AtLabel required={required} title={title} />
           ) : (
-            <AtInputLabelNoMark
-              required={required}
-              focused={focused}
-              title={title}
-            />
+            <AtNoMarkLabel required={required} title={title} />
           )}
         </div>
       </div>

@@ -2,7 +2,7 @@
 import React from "react";
 // component
 import { MoForm, MoAccordion } from "@/components/molecules/EntryPoint";
-import { AtInputLabel } from "@/components/atoms/EntryPoint";
+import { AtLabel } from "@/components/atoms/EntryPoint";
 // mui
 import { Card } from "@mui/material";
 import { UseFormRegisterReturn } from "react-hook-form";
@@ -10,7 +10,6 @@ import { UseFormRegisterReturn } from "react-hook-form";
 type Props = {
   readonly title: string;
   readonly required: boolean;
-  readonly focused?: boolean;
   // Options
   readonly options: Option[];
   readonly onClickEdit: (index: number) => void;
@@ -30,7 +29,6 @@ type Props = {
 const OrAccordion: React.FC<Props> = React.memo(
   ({
     required,
-    focused,
     title,
     // Options
     options,
@@ -51,11 +49,7 @@ const OrAccordion: React.FC<Props> = React.memo(
         <Card className="p-6">
           <div className="mb-3">
             <div className="mb-1">
-              <AtInputLabel
-                required={required}
-                focused={focused}
-                title={title}
-              />
+              <AtLabel required={required} title={title} />
             </div>
           </div>
 

@@ -1,9 +1,9 @@
 import React from "react";
 // component
 import {
-  AtInputLabel,
+  AtLabel,
   AtInput,
-  AtInputLabelNoMark,
+  AtNoMarkLabel,
   AtIconButton,
 } from "@/components/atoms/EntryPoint";
 
@@ -14,7 +14,6 @@ type Props = {
   // label
   readonly title: string;
   readonly required: boolean;
-  readonly focused?: boolean;
   readonly overView?: string;
   // form
   readonly placeholder: string;
@@ -38,7 +37,6 @@ type Props = {
 const MoLabelForm: React.FC<Props> = ({
   // label
   title,
-  focused,
   required,
   overView,
   // form
@@ -63,13 +61,9 @@ const MoLabelForm: React.FC<Props> = ({
       <div className="mb-3">
         <div className="mb-1">
           {labelMark ? (
-            <AtInputLabel required={required} focused={focused} title={title} />
+            <AtLabel required={required} title={title} />
           ) : (
-            <AtInputLabelNoMark
-              required={required}
-              focused={focused}
-              title={title}
-            />
+            <AtNoMarkLabel required={required} title={title} />
           )}
         </div>
         {overView && <div className="whitespace-pre-wrap">{overView}</div>}

@@ -14,7 +14,6 @@ type Props = {
   // label
   readonly title: string;
   readonly required: boolean;
-  readonly focused?: boolean;
   readonly overView: string;
   readonly labelMark?: boolean;
   // textField
@@ -34,7 +33,6 @@ type Props = {
 const OrCardTextField: React.FC<Props> = ({
   // label
   title,
-  focused,
   required,
   overView,
   labelMark = true,
@@ -54,7 +52,6 @@ const OrCardTextField: React.FC<Props> = ({
         <div className="mb-3">
           <MoLabelTextField
             title={title}
-            focused={focused}
             required={required}
             disabled={disabled}
             labelMark={labelMark}

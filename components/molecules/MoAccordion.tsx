@@ -1,5 +1,6 @@
 // https://mui.com/components/buttons/#icon-button
 import React from "react";
+import styled from "styled-components";
 // component
 import { AtIconButton, AtHref } from "@/components/atoms/EntryPoint";
 // mui
@@ -55,12 +56,9 @@ const MoAccordion: React.FC<Props> = React.memo(
             {option.url && (
               <div>
                 <p className="font-bold">リンク</p>
-                <AtHref
-                  blank={true}
-                  title={option.url}
-                  link={option.url}
-                  className="text-blue-500"
-                />
+                <Link>
+                  <AtHref blank={true} title={option.url} link={option.url} />
+                </Link>
               </div>
             )}
             {!option.url && !option.overview && (
@@ -75,3 +73,7 @@ const MoAccordion: React.FC<Props> = React.memo(
   }
 );
 export default MoAccordion;
+
+const Link = styled.div`
+  color: #4c51bf;
+`;

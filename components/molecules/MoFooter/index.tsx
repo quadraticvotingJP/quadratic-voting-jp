@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { AtHref } from "@/components/atoms/EntryPoint";
 
 // eslint-disable-next-line react/display-name
-const MoFooter = React.memo(({}) => {
+export const MoFooter = React.memo(({}) => {
   const { t } = useTranslation("common");
   return (
     <Footer>
@@ -31,8 +31,6 @@ const MoFooter = React.memo(({}) => {
     </Footer>
   );
 });
-
-export default MoFooter;
 
 const Footer = styled.footer`
   position: absolute; /* ContainerComponentのposition: relativeを参照 */

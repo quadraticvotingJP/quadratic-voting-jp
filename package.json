@@ -11,8 +11,8 @@
     "postbuild-comment": "sitemmapを更新したときのみpostbuildを上記keyに入れる"
   },
   "dependencies": {
-    "@emotion/react": "11.9.0",
-    "@emotion/styled": "11.8.1",
+    "@emotion/react": "11.9.3",
+    "@emotion/styled": "11.9.3",
     "@material-ui/icons": "4.11.3",
     "@mui/icons-material": "5.8.3",
     "@mui/material": "5.8.3",

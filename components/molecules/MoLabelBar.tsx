@@ -2,8 +2,10 @@ import React from "react";
 import { ChartData } from "chart.js";
 // component
 import { AtLabel, AtBar } from "@/components/atoms/EntryPoint";
+// styled components
+import styled from "styled-components";
 
-type Props = {
+export type Props = {
   // label
   readonly title: string;
   readonly overView: string;
@@ -23,14 +25,24 @@ const MoLabelBar: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div className="mb-3">
-        <div className="mb-1">
+      <LabelElement>
+        <Label>
           <AtLabel required={required} title={title} />
-        </div>
-        {overView && <div className="mb-3 whitespace-pre-wrap">{overView}</div>}
-      </div>
+        </Label>
+        {overView && <OverView>{overView}</OverView>}
+      </LabelElement>
       <AtBar data={data} />
     </>
   );
 };
 export default MoLabelBar;
+
+const LabelElement = styled.div`
+  margin-bottom: 32px;
+`;
+const Label = styled.div`
+  margin-bottom: 17px;
+`;
+const OverView = styled.div`
+  white-space: pre-wrap;
+`;

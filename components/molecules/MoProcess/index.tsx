@@ -28,20 +28,20 @@ export const MoProcess: React.FC<Props> = ({
   );
 };
 
-const Title = styled.h2`
+const Title = styled.div`
   margin-bottom: 16px;
 `;
-const ValueArea = styled.h2`
+const ValueArea = styled.div`
   display: flex;
   justify-content: center;
 `;
-const Molecule = styled.h2`
+const Molecule = styled.div`
   font-weight: bold;
 `;
-const Vinculum = styled.h2`
+const Vinculum = styled.div`
   font-weight: bold;
   margin: 0px 16px;
 `;
-const Denominator = styled.h2`
+const Denominator = styled.div`
   font-weight: bold;
 `;

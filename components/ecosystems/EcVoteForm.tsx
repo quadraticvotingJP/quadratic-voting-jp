@@ -152,10 +152,7 @@ const EcVoteForm: React.VFC<Props> = ({
     <>
       <div className="flex">
         <div className="flex-auto p-2">
-          <AtH2
-            title={t("pageTitle.vote")}
-            className={"text-center mb-16 text-4xl font-bold"}
-          />
+          <AtH2 title={t("pageTitle.vote")} />
           <br />
           <OrCardText
             title={t("common.event.eventTitle.title")}

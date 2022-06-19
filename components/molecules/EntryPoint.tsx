@@ -8,4 +8,4 @@ export { MoLabelBar } from "@/components/molecules/MoLabelBar/index";
 export { MoLabelForm } from "@/components/molecules/MoLabelForm/index";
 export { MoLabelText } from "@/components/molecules/MoLabelText/index";
 export { MoLabelTextField } from "@/components/molecules/MoLabelTextField/index";
-export { default as MoProcess } from "@/components/molecules/MoProcess";
+export { MoProcess } from "@/components/molecules/MoProcess/index";

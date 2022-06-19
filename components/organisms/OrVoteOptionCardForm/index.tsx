@@ -1,11 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 
 // components
 import { AtNoMarkLabel, AtTextField } from "@/components/atoms/EntryPoint";
 import { MoButtons } from "@/components/molecules/EntryPoint";
 import { useTranslation } from "next-i18next";
 
-interface Props {
+export interface Props {
   readonly votes?: number;
   readonly option: VoteOption;
   readonly incrementVote: (option: VoteOption) => void;
@@ -16,7 +17,7 @@ interface Props {
   readonly rightStyle: string;
 }
 
-const OrVoteOptionCardForm: React.FC<Props> = ({
+export const OrVoteOptionCardForm: React.FC<Props> = ({
   option,
   incrementVote,
   decrementVote,
@@ -29,26 +30,26 @@ const OrVoteOptionCardForm: React.FC<Props> = ({
 
   return (
     <>
-      <div className="mb-3 border-2 p-6 mt-6 rounded-xl">
+      <OptionElement>
         <div key={option.id} className="mb-1">
           {/* タイトル */}
-          <div className="mb-3">
+          <Section>
             <AtNoMarkLabel
               required={false}
               title={t("common.event.eventTitle.title")}
             />
-            <p>{option.title}</p>
-          </div>
+            <Text>{option.title}</Text>
+          </Section>
           {/* 概要 */}
-          <div className="mb-3">
+          <Section>
             <AtNoMarkLabel
               required={false}
               title={t("common.event.overview.title")}
             />
-            <p>{option.overview}</p>
-          </div>
+            <Text>{option.overview}</Text>
+          </Section>
           {/* リンク */}
-          <div className="mb-3">
+          <Section>
             <AtNoMarkLabel
               required={false}
               title={t("common.event.createOption.optionLink")}
@@ -65,9 +66,9 @@ const OrVoteOptionCardForm: React.FC<Props> = ({
               name={option.url}
               multiline={false}
             />
-          </div>
+          </Section>
           {/* 投票数 */}
-          <div className="mb-6">
+          <VoteElement>
             <AtNoMarkLabel
               required={false}
               title={t("common.event.votes.title")}
@@ -83,7 +84,7 @@ const OrVoteOptionCardForm: React.FC<Props> = ({
               className={"w-full"}
               name={`${option.vote}-vote`}
             />
-          </div>
+          </VoteElement>
           <MoButtons
             leftStyle={leftStyle}
             rightStyle={rightStyle}
@@ -99,9 +100,23 @@ const OrVoteOptionCardForm: React.FC<Props> = ({
             }}
           />
         </div>
-      </div>
+      </OptionElement>
     </>
   );
 };
 
-export default OrVoteOptionCardForm;
+const OptionElement = styled.div`
+  border-radius: 0.75rem;
+  border: 2px solid #e5e7eb;
+  padding: 1.5rem;
+  margin: 14px 0px;
+`;
+const Section = styled.div`
+  margin-bottom: 16px;
+`;
+const Text = styled.p`
+  font-size: 20px;
+`;
+const VoteElement = styled.div`
+  margin-bottom: 24px;
+`;

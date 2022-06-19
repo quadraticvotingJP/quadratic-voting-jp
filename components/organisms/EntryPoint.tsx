@@ -6,5 +6,5 @@ export { default as OrCardForms } from "@/components/organisms/OrCardForms";
 export { default as OrCardProcess } from "@/components/organisms/OrCardProcess";
 export { default as OrCardText } from "@/components/organisms/OrCardText";
 export { default as OrCardTextField } from "@/components/organisms/OrCardTextField";
-export { default as OrVoteOptionCardForm } from "@/components/organisms/OrVoteOptionCardForm";
+export { OrVoteOptionCardForm } from "@/components/organisms/OrVoteOptionCardForm/index";
 export { OrProposalBlocks } from "@/components/organisms/OrProposalBlocks/index";

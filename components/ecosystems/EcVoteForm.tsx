@@ -26,7 +26,7 @@ interface Props {
   };
 }
 
-const EcVoteForm: React.VFC<Props> = ({
+const EcVoteForm: React.FC<Props> = ({
   conversionVoteData,
   documentId,
   query,

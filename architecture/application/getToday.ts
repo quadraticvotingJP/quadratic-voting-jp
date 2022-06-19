@@ -22,7 +22,7 @@ export function eventDateAuthorize() {
    * @returns boolean
    */
   function beforePublicationStartDate(publicationStartDate: string): boolean {
-    const now = new Date();
+    const now: Date = getNow();
     return new Date(publicationStartDate) > now;
   }
 
@@ -32,8 +32,18 @@ export function eventDateAuthorize() {
    * @returns boolean
    */
   function afterPublicationEndDate(publicationEndDate: string): boolean {
-    const now = new Date();
+    const now = getNow();
     return new Date(publicationEndDate) < now;
+  }
+
+  function getNow() {
+    return JSON.parse(
+      JSON.stringify(
+        new Date().toLocaleString("ja", {
+          timeZone: "Asia/Tokyo",
+        })
+      )
+    );
   }
 
   return {

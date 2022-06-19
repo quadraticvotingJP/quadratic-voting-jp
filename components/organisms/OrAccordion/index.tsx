@@ -20,7 +20,6 @@ export type Props = {
   readonly id: string;
   readonly name: string;
   readonly error: any;
-  readonly className: string;
 };
 
 // eslint-disable-next-line react/display-name
@@ -40,7 +39,6 @@ export const OrAccordion: React.FC<Props> = React.memo(
     id,
     name,
     error,
-    className,
   }) => {
     return (
       <>
@@ -65,7 +63,6 @@ export const OrAccordion: React.FC<Props> = React.memo(
             })}
           {/* OptionsがあるかだけのチェックをするForm */}
           <MoForm
-            className={className}
             register={register}
             id={id}
             name={name}

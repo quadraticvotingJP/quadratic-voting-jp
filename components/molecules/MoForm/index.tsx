@@ -1,41 +1,38 @@
 import React from "react";
+import styled from "styled-components";
 // component
 import { AtInput } from "@/components/atoms/EntryPoint";
 
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
 
-type Props = {
+export type Props = {
   // form
   readonly register: UseFormRegisterReturn;
   readonly placeholder: string;
   readonly disabled: boolean;
-  readonly disableUnderline?: boolean;
   readonly type: Readonly<FormType>;
   readonly readOnly?: boolean;
   readonly id: string;
   readonly name: string;
   readonly error: any;
-  readonly className: string;
 };
 
 // eslint-disable-next-line react/display-name
-const MoForm: React.FC<Props> = ({
+export const MoForm: React.FC<Props> = ({
   // form
   register,
   id,
   name,
   placeholder,
   disabled,
-  disableUnderline,
   type,
   readOnly,
   error,
-  className,
 }) => {
   return (
     <>
-      <div className={className}>
+      <Hidden>
         <AtInput
           register={register}
           id={id}
@@ -43,12 +40,17 @@ const MoForm: React.FC<Props> = ({
           type={type}
           placeholder={placeholder}
           disabled={disabled}
-          disableUnderline={disableUnderline}
           readOnly={readOnly}
         />
-      </div>
-      {error && <span className="text-red-600">{error.message}</span>}
+      </Hidden>
+      {error && <Error>{error.message}</Error>}
     </>
   );
 };
-export default MoForm;
+
+const Hidden = styled.div`
+  display: none;
+`;
+const Error = styled.span`
+  color: red;
+`;

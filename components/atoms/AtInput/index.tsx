@@ -1,10 +1,21 @@
 import React from "react";
-// component
-import { Input } from "@mui/material";
+import styled from "styled-components";
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
 
-type Props = {
+const InputElement = styled.input`
+  width: 100%;
+  height: 44px;
+  border-bottom: 2px #e3e8ef solid;
+  font-size: 20px;
+  padding: 0px 0px 0px 4px;
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid #2f9bff;
+  }
+`;
+
+export type Props = {
   readonly placeholder: string;
   readonly disabled: boolean;
   readonly type: Readonly<FormType>;
@@ -13,46 +24,34 @@ type Props = {
   readonly defaultValue?: string;
   readonly register?: UseFormRegisterReturn;
   readonly readOnly?: boolean;
-  readonly disableUnderline?: boolean;
-  readonly min?: string;
-  readonly max?: string;
   readonly onWheel?: <T>(arg: T) => void;
-  readonly className?: string;
 };
 
 // eslint-disable-next-line react/display-name
-const AtInput: React.FC<Props> = React.memo(
+export const AtInput: React.FC<Props> = React.memo(
   ({
     register,
     id,
-    name,
     placeholder,
     disabled,
     type,
+    name,
     defaultValue,
-    min,
-    max,
-    disableUnderline = false,
     readOnly = false,
     onWheel,
-    className = "w-full px-0.5 py-0.5 rounded-l-lg rounded-r-lg bg-white",
   }) => {
     return (
-      <Input
-        className={className}
+      <InputElement
         {...register}
         defaultValue={defaultValue}
         id={id}
         name={name}
         type={type}
-        inputProps={{ min: min, max: max }}
         placeholder={placeholder}
         disabled={disabled}
-        disableUnderline={disableUnderline}
         readOnly={readOnly}
         onWheel={onWheel}
       />
     );
   }
 );
-export default AtInput;

@@ -19,6 +19,9 @@ const H3 = styled.h3`
   font-weight: bold;
   margin-bottom: 10px;
 `;
+const Link = styled.span`
+  color: #4c51bf;
+`;
 
 const EcTermsOfService: React.FC = () => {
   const { t } = useTranslation("common");
@@ -76,12 +79,13 @@ const EcTermsOfService: React.FC = () => {
       <H3>{"連絡先"}</H3>
       <P>{"お問い合わせは下記よりご連絡をお願いいたします。"}</P>
       <P>{"(お問合せフォームはGoogle Formを利用しています)"}</P>
-      <AtHref
-        blank={true}
-        title={t("privacyPolicy.contact.title")}
-        link={t("privacyPolicy.contact.link")}
-        className="text-blue-500"
-      />
+      <Link>
+        <AtHref
+          blank={true}
+          title={t("privacyPolicy.contact.title")}
+          link={t("privacyPolicy.contact.link")}
+        />
+      </Link>
       <br />
       <H3>{"その他"}</H3>
       <P>{"本規約は、事前の予告なしに改訂することがあります。"}</P>

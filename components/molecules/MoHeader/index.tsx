@@ -9,7 +9,9 @@ export const MoHeader = React.memo(({}) => {
   const { t } = useTranslation("common");
   return (
     <Header>
-      <Title title={t("header.siteName")} link={t("header.link")} />
+      <Title>
+        <AtHref title={t("header.siteName")} link={t("header.link")} />
+      </Title>
     </Header>
   );
 });
@@ -25,7 +27,7 @@ const Header = styled.div`
   z-index: 100;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 `;
-const Title = styled(AtHref)`
+const Title = styled.div`
   position: absolute; /* ContainerComponentのposition: relativeを参照 */
   top: 25%;
   color: white;

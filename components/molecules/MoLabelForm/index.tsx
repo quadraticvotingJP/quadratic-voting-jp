@@ -6,11 +6,12 @@ import {
   AtNoMarkLabel,
   AtIconButton,
 } from "@/components/atoms/EntryPoint";
+import styled from "styled-components";
 
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
 
-type Props = {
+export type Props = {
   // label
   readonly title: string;
   readonly required: boolean;
@@ -34,7 +35,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const MoLabelForm: React.FC<Props> = ({
+export const MoLabelForm: React.FC<Props> = ({
   // label
   title,
   required,
@@ -56,20 +57,44 @@ const MoLabelForm: React.FC<Props> = ({
   onWheel,
   labelMark = true,
 }) => {
+  console.log(showSave);
+
   return (
     <>
-      <div className="mb-3">
-        <div className="mb-1">
+      <LabelElement>
+        <Label>
           {labelMark ? (
             <AtLabel required={required} title={title} />
           ) : (
             <AtNoMarkLabel required={required} title={title} />
           )}
-        </div>
-        {overView && <div className="whitespace-pre-wrap">{overView}</div>}
-      </div>
-      <div className={showSave ? "flex justify-between" : ""}>
-        <div>
+        </Label>
+        {overView && <OverView>{overView}</OverView>}
+      </LabelElement>
+      {showSave ? (
+        <>
+          <EditElement>
+            <div>
+              <AtInput
+                defaultValue={defaultValue}
+                register={register}
+                id={id}
+                name={name}
+                type={type}
+                placeholder={placeholder}
+                disabled={disabled}
+                disableUnderline={disableUnderline}
+                readOnly={readOnly}
+                min={min}
+                onWheel={onWheel}
+              />
+              {error && <Error>{error.message}</Error>}
+            </div>
+            <AtIconButton size="small" showSave={showSave} onClick={onClick} />
+          </EditElement>
+        </>
+      ) : (
+        <>
           <AtInput
             defaultValue={defaultValue}
             register={register}
@@ -83,13 +108,26 @@ const MoLabelForm: React.FC<Props> = ({
             min={min}
             onWheel={onWheel}
           />
-          {error && <span className="text-red-600">{error.message}</span>}
-        </div>
-        {showSave && (
-          <AtIconButton size="small" showSave={showSave} onClick={onClick} />
-        )}
-      </div>
+          {error && <Error>{error.message}</Error>}
+        </>
+      )}
     </>
   );
 };
-export default MoLabelForm;
+
+const LabelElement = styled.div`
+  margin-bottom: 32px;
+`;
+const Label = styled.div`
+  margin-bottom: 17px;
+`;
+const OverView = styled.div`
+  white-space: pre-wrap;
+`;
+const EditElement = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const Error = styled.span`
+  color: red;
+`;

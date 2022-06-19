@@ -247,7 +247,6 @@ const EcCreateForm: React.FC = () => {
           disabled={isEdit}
           readOnly={true}
           error={errors.options}
-          className={"hidden"}
           onClickDelete={(index: number) => onClickDelete(index)}
           onClickEdit={(index: number) => onClickEdit(index)}
         />

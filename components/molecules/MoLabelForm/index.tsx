@@ -19,7 +19,6 @@ export type Props = {
   // form
   readonly placeholder: string;
   readonly disabled: boolean;
-  readonly disableUnderline?: boolean;
   readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
@@ -28,7 +27,6 @@ export type Props = {
   readonly defaultValue?: string;
   readonly readOnly?: boolean;
   readonly labelMark?: boolean;
-  readonly min?: string;
   readonly showSave?: boolean;
   readonly onClick?: () => void;
   readonly onWheel?: <T>(arg: T) => void;
@@ -46,12 +44,10 @@ export const MoLabelForm: React.FC<Props> = ({
   name,
   placeholder,
   disabled,
-  disableUnderline,
   type,
   readOnly,
   defaultValue,
   error,
-  min,
   showSave,
   onClick,
   onWheel,
@@ -81,9 +77,7 @@ export const MoLabelForm: React.FC<Props> = ({
                 type={type}
                 placeholder={placeholder}
                 disabled={disabled}
-                disableUnderline={disableUnderline}
                 readOnly={readOnly}
-                min={min}
                 onWheel={onWheel}
               />
               {error && <Error>{error.message}</Error>}
@@ -101,9 +95,7 @@ export const MoLabelForm: React.FC<Props> = ({
             type={type}
             placeholder={placeholder}
             disabled={disabled}
-            disableUnderline={disableUnderline}
             readOnly={readOnly}
-            min={min}
             onWheel={onWheel}
           />
           {error && <Error>{error.message}</Error>}

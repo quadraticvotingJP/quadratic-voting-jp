@@ -88,6 +88,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       documentId,
       query,
       isAnswer: false,
+      isDate: false,
       ...(await serverSideTranslations(context.locale!, ["common"])),
     },
   };
@@ -99,22 +100,25 @@ const Id = ({
   query = null,
   isAnswer = true,
   cantVote = false,
+  isDate = true,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { beforePublicationStartDate, afterPublicationEndDate } =
     eventDateAuthorize(); // 日にちチェック
   const dateBefore: boolean = beforePublicationStartDate(
-    conversionVoteData.publicationStartDate
+    conversionVoteData?.publicationStartDate
   ); // 開始前か確認
   const dateAfter: boolean = afterPublicationEndDate(
-    conversionVoteData.publicationEndDate
+    conversionVoteData?.publicationEndDate
   ); // 終了後か確認
 
   if (!documentId === null || isAnswer || cantVote || query === null) {
     return <EcInvalidLink />;
   }
   // 開始日と終了日内か確認
-  if (dateBefore || dateAfter) {
-    return <EcInvalidLink />;
+  if (!isDate) {
+    if (dateBefore || dateAfter) {
+      return <EcInvalidLink />;
+    }
   }
 
   return (

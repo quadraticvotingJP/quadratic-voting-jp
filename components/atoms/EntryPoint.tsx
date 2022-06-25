@@ -8,3 +8,4 @@ export { AtInput } from "@/components/atoms/AtInput/index";
 export { AtLabel } from "@/components/atoms/AtLabel/index";
 export { AtNoMarkLabel } from "@/components/atoms/AtNoMarkLabel/index";
 export { AtTextField } from "@/components/atoms/AtTextField/index";
+export { AtErrorMessage } from "@/components/atoms/AtErrorMessage/index";

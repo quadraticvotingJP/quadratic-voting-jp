@@ -7,6 +7,7 @@ import {
   AtInput,
   AtNoMarkLabel,
   AtIconButton,
+  AtErrorMessage,
 } from "@/components/atoms/EntryPoint";
 import styled from "styled-components";
 
@@ -82,7 +83,7 @@ export const MoLabelForm: React.FC<Props> = ({
                 readOnly={readOnly}
                 onWheel={onWheel}
               />
-              {error && <Error>{error.message}</Error>}
+              <AtErrorMessage error={error} />
             </div>
             <AtIconButton size="small" showSave={showSave} onClick={onClick} />
           </EditElement>
@@ -100,7 +101,7 @@ export const MoLabelForm: React.FC<Props> = ({
             readOnly={readOnly}
             onWheel={onWheel}
           />
-          {error && <Error>{error.message}</Error>}
+          <AtErrorMessage error={error} />
         </>
       )}
     </>
@@ -135,7 +136,4 @@ const OverView = styled.div`
 const EditElement = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-const Error = styled.span`
-  color: ${BASE_CSS.color.red};
 `;

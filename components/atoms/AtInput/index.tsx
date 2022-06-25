@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
@@ -16,42 +16,12 @@ const InputElement = styled.input`
 `;
 
 export type Props = {
-  readonly placeholder: string;
-  readonly disabled: boolean;
   readonly type: Readonly<FormType>;
   readonly id: string;
-  readonly name: string;
-  readonly defaultValue?: string;
   readonly register?: UseFormRegisterReturn;
-  readonly readOnly?: boolean;
-  readonly onWheel?: <T>(arg: T) => void;
-};
+} & ComponentPropsWithoutRef<"input">;
 
 // eslint-disable-next-line react/display-name
-export const AtInput: React.FC<Props> = React.memo(
-  ({
-    register,
-    id,
-    placeholder,
-    disabled,
-    type,
-    name,
-    defaultValue,
-    readOnly = false,
-    onWheel,
-  }) => {
-    return (
-      <InputElement
-        {...register}
-        defaultValue={defaultValue}
-        id={id}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        readOnly={readOnly}
-        onWheel={onWheel}
-      />
-    );
-  }
-);
+export const AtInput: React.FC<Props> = React.memo((props) => {
+  return <InputElement {...props.register} {...props} />;
+});

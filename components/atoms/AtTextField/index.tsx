@@ -2,7 +2,7 @@ import React from "react";
 // component
 import { TextField } from "@mui/material";
 
-type Props = {
+export type Props = {
   readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
@@ -19,7 +19,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-const AtTextField: React.FC<Props> = React.memo(
+export const AtTextField: React.FC<Props> = React.memo(
   ({
     id,
     name,
@@ -52,4 +52,3 @@ const AtTextField: React.FC<Props> = React.memo(
     );
   }
 );
-export default AtTextField;

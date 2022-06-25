@@ -7,4 +7,4 @@ export { AtIconButton } from "@/components/atoms/AtIconButton/index";
 export { AtInput } from "@/components/atoms/AtInput/index";
 export { AtLabel } from "@/components/atoms/AtLabel/index";
 export { AtNoMarkLabel } from "@/components/atoms/AtNoMarkLabel/index";
-export { default as AtTextField } from "@/components/atoms/AtTextField";
+export { AtTextField } from "@/components/atoms/AtTextField/index";

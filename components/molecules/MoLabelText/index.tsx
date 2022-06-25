@@ -1,4 +1,6 @@
 import React from "react";
+import { BASE_CSS } from "@/utils/baseCss";
+import { sp, tab } from "@/media";
 // component
 import {
   AtLabel,
@@ -59,10 +61,20 @@ export const MoLabelText: React.FC<Props> = ({
 };
 
 const LabelElement = styled.div`
-  margin-bottom: 14px;
+  margin-bottom: ${BASE_CSS.form.pc.labelAreaBottom};
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: ${BASE_CSS.form.sp.labelAreaBottom};
+  `}
 `;
 const Label = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: ${BASE_CSS.form.pc.labelTitleBottom};
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: ${BASE_CSS.form.sp.labelTitleBottom};
+  `}
 `;
 const DateElement = styled.div`
   display: flex;
@@ -70,6 +82,11 @@ const DateElement = styled.div`
   align-items: center;
 `;
 const Date = styled.div`
-  font-size: 20px;
+  font-size: ${BASE_CSS.form.pc.formFontSize};
   font-weight: bold;
+  ${tab`
+  `}
+  ${sp`
+    font-size: ${BASE_CSS.form.sp.formFontSize};
+  `}
 `;

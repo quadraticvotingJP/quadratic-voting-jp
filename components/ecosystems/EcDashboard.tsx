@@ -8,6 +8,8 @@ import {
   inputDateMinCheck,
 } from "@/utils/validation";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
+import { sp, tab } from "@/media";
 // library
 import { ChartData } from "chart.js";
 // Component
@@ -137,7 +139,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   };
 
   return (
-    <div className="mx-10 mt-16">
+    <EcosystemArea>
       <H2>{t("pageTitle.creat")}</H2>
       <br />
       <OrCardProcess
@@ -292,9 +294,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
           defaultValue={dashboard.voterLinks}
           id={"votersLink"}
           name={"votersLink"}
-          type="text"
           rows={10}
-          inputProps={{ readOnly: true }}
           button={{
             title: t("common.button.downloadTxt"),
             disabled: false,
@@ -302,7 +302,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
           }}
         />
       )}
-    </div>
+    </EcosystemArea>
   );
 };
 export default EcDashboard;
@@ -312,4 +312,15 @@ const H2 = styled.h2`
   font-weight: bold;
   text-align: center;
   margin-bottom: 16px;
+`;
+const EcosystemArea = styled.div`
+  margin-top: 4rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  ${tab`
+  `}
+  ${sp`
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  `}
 `;

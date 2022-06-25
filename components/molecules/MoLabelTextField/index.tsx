@@ -1,4 +1,6 @@
 import React from "react";
+import { BASE_CSS } from "@/utils/baseCss";
+import { sp, tab } from "@/media";
 // component
 import {
   AtLabel,
@@ -14,13 +16,9 @@ type Props = {
   readonly labelMark?: boolean;
   readonly overView: string;
   // textField
-  readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
-  readonly rows?: number;
-  readonly maxRows?: number;
-  readonly inputProps?: object;
-  readonly disabled?: boolean;
+  readonly rows: number;
   readonly defaultValue?: string;
   readonly readOnly?: boolean;
 };
@@ -34,12 +32,8 @@ export const MoLabelTextField: React.FC<Props> = ({
   labelMark = true,
   id,
   name,
-  disabled,
-  type,
   defaultValue,
   rows,
-  maxRows,
-  inputProps,
 }) => {
   return (
     <>
@@ -56,24 +50,35 @@ export const MoLabelTextField: React.FC<Props> = ({
       <AtTextField
         id={id}
         name={name}
-        type={type}
-        inputProps={inputProps}
-        disabled={disabled}
         defaultValue={defaultValue}
         rows={rows}
-        maxRows={maxRows}
       />
     </>
   );
 };
 
 const LabelElement = styled.div`
-  margin-bottom: 14px;
+  margin-bottom: ${BASE_CSS.form.pc.labelAreaBottom};
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: ${BASE_CSS.form.sp.labelAreaBottom};
+  `}
 `;
 const Label = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: ${BASE_CSS.form.pc.labelTitleBottom};
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: ${BASE_CSS.form.sp.labelTitleBottom};
+  `}
 `;
 const OverView = styled.div`
-  font-size: 20px;
+  font-size: ${BASE_CSS.form.pc.overView};
   white-space: pre-wrap;
+  ${tab`
+  `}
+  ${sp`
+    font-size: ${BASE_CSS.form.sp.overView};
+  `}
 `;

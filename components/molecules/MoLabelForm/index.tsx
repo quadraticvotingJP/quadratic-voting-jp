@@ -1,10 +1,13 @@
 import React from "react";
+import { BASE_CSS } from "@/utils/baseCss";
+import { sp, tab } from "@/media";
 // component
 import {
   AtLabel,
   AtInput,
   AtNoMarkLabel,
   AtIconButton,
+  AtErrorMessage,
 } from "@/components/atoms/EntryPoint";
 import styled from "styled-components";
 
@@ -80,7 +83,7 @@ export const MoLabelForm: React.FC<Props> = ({
                 readOnly={readOnly}
                 onWheel={onWheel}
               />
-              {error && <Error>{error.message}</Error>}
+              <AtErrorMessage error={error} />
             </div>
             <AtIconButton size="small" showSave={showSave} onClick={onClick} />
           </EditElement>
@@ -98,7 +101,7 @@ export const MoLabelForm: React.FC<Props> = ({
             readOnly={readOnly}
             onWheel={onWheel}
           />
-          {error && <Error>{error.message}</Error>}
+          <AtErrorMessage error={error} />
         </>
       )}
     </>
@@ -106,19 +109,31 @@ export const MoLabelForm: React.FC<Props> = ({
 };
 
 const LabelElement = styled.div`
-  margin-bottom: 14px;
+  margin-bottom: ${BASE_CSS.form.pc.labelAreaBottom};
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: ${BASE_CSS.form.sp.labelAreaBottom};
+  `}
 `;
 const Label = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: ${BASE_CSS.form.pc.labelTitleBottom};
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: ${BASE_CSS.form.sp.labelTitleBottom};
+  `}
 `;
 const OverView = styled.div`
-  font-size: 20px;
+  font-size: ${BASE_CSS.form.pc.overView};
   white-space: pre-wrap;
+  ${tab`
+  `}
+  ${sp`
+    font-size: ${BASE_CSS.form.sp.overView};
+  `}
 `;
 const EditElement = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-const Error = styled.span`
-  color: red;
 `;

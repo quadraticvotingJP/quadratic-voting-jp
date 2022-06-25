@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 // component
-import { AtInput } from "@/components/atoms/EntryPoint";
+import { AtInput, AtErrorMessage } from "@/components/atoms/EntryPoint";
 
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
@@ -43,14 +44,10 @@ export const MoForm: React.FC<Props> = ({
           readOnly={readOnly}
         />
       </Hidden>
-      {error && <Error>{error.message}</Error>}
+      <AtErrorMessage error={error} />
     </>
   );
 };
-
 const Hidden = styled.div`
   display: none;
-`;
-const Error = styled.span`
-  color: red;
 `;

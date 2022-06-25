@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 import ReactLoading from "react-loading";
 
 // https://maasaablog.com/development/react/1149/
@@ -10,7 +11,7 @@ const EcLoading: React.FC = () => {
       <div>
         <ReactLoading
           type="spin"
-          color="#2f9bff"
+          color={`${BASE_CSS.color.base}`}
           width={100}
           height={100}
           className="mx-auto"

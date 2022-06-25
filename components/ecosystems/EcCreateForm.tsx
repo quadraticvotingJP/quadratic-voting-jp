@@ -114,7 +114,7 @@ const EcCreateForm: React.FC = () => {
     event.target instanceof HTMLElement && event.target.blur();
 
   return (
-    <div className="mx-10 mt-16">
+    <EcosystemArea>
       <H2>{t("pageTitle.creat")}</H2>
       <form>
         <OrCardForm
@@ -314,7 +314,7 @@ const EcCreateForm: React.FC = () => {
           />
         </div>
       </form>
-    </div>
+    </EcosystemArea>
   );
 };
 export default EcCreateForm;
@@ -328,5 +328,16 @@ const H2 = styled.h2`
   `}
   ${sp`
     font-size: ${BASE_CSS.page.sp.title};
+  `}
+`;
+const EcosystemArea = styled.div`
+  margin-top: 4rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  ${tab`
+  `}
+  ${sp`
+    margin-left: 1rem;
+    margin-right: 1rem;
   `}
 `;

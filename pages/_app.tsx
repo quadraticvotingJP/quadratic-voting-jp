@@ -130,7 +130,7 @@ const Main = styled.main`
     padding: 100px 20px 200px 20px;
   `}
   ${sp`
-    padding: 60px 2px 200px 2px;
+    padding: 60px 0px 200px 0px;
   `}
 `;
 const Page = styled.div`

@@ -1,5 +1,6 @@
 import React from "react";
 import { BASE_CSS } from "@/utils/baseCss";
+import { sp, tab } from "@/media";
 // styled components
 import styled from "styled-components";
 
@@ -38,8 +39,13 @@ const Label = styled.label`
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-size: 24px;
+  font-size: ${BASE_CSS.form.pc.title};
   margin-right: 10px;
+  ${tab`
+  `}
+  ${sp`
+    font-size: ${BASE_CSS.form.sp.title};
+  `}
 `;
 const RequiredElement = styled.div`
   position: relative;

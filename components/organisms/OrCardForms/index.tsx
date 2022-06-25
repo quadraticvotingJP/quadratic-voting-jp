@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BASE_CSS } from "@/utils/baseCss";
+import { sp, tab } from "@/media";
 // component
 import { AtLabel, AtButton } from "@/components/atoms/EntryPoint";
 import { MoLabelForm } from "@/components/molecules/EntryPoint";
@@ -129,11 +130,21 @@ const Label = styled.div`
   margin-bottom: 16px;
 `;
 const OverView = styled.div`
-  font-size: 20px;
+  font-size: ${BASE_CSS.form.pc.overView};
   white-space: pre-wrap;
+  ${tab`
+  `}
+  ${sp`
+    font-size: ${BASE_CSS.form.sp.overView};
+  `}
 `;
 const Section = styled.div`
   margin-bottom: 24px;
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: 14px;
+  `}
 `;
 const Button = styled.div`
   display: flex;

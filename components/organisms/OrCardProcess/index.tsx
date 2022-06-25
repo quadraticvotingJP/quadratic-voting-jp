@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BASE_CSS } from "@/utils/baseCss";
+import { sp, tab } from "@/media";
 // component
 import { AtLabel } from "@/components/atoms/EntryPoint";
 import { MoProcess } from "@/components/molecules/EntryPoint";
@@ -66,14 +67,29 @@ const Card = styled.div`
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 `;
 const LabelElement = styled.div`
-  margin-bottom: 14px;
+  margin-bottom: ${BASE_CSS.form.pc.labelAreaBottom};
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: ${BASE_CSS.form.sp.labelAreaBottom};
+  `}
 `;
 const Label = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: ${BASE_CSS.form.pc.labelTitleBottom};
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: ${BASE_CSS.form.sp.labelTitleBottom};
+  `}
 `;
 const OverView = styled.div`
-  font-size: 20px;
+  font-size: ${BASE_CSS.form.pc.overView};
   white-space: pre-wrap;
+  ${tab`
+  `}
+  ${sp`
+    font-size: ${BASE_CSS.form.sp.overView};
+  `}
 `;
 const ProcessElement = styled.div`
   display: flex;

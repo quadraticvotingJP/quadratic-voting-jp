@@ -7,6 +7,7 @@ import { DefaultSeo } from "next-seo";
 import { SEO } from "@/lib/next-seo.config";
 // hooks
 import { useEffect, useState } from "react";
+import { useScreenSize } from "@/architecture/hooks/ screenSize";
 // i18n
 import { appWithTranslation } from "next-i18next";
 import nextI18NextConfig from "../next-i18next.config.js";
@@ -25,8 +26,10 @@ import { EcAdSense, EcLoading } from "@/components/ecosystems/EntryPoint";
 import { routerPush } from "@/architecture/application/routing";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const RESPONSIVE = useScreenSize();
   const router = useRouter();
   const isLandingPage: boolean = router.route === "/";
+  const SIZE_PC_TAB = RESPONSIVE.SIZE_PC || RESPONSIVE.SIZE_TAB;
 
   // 匿名ログイン
   useEffect(() => {
@@ -71,30 +74,42 @@ function MyApp({ Component, pageProps }: AppProps) {
             {isLandingPage ? (
               <LPMain>
                 <Component {...pageProps} />
-                <LPAdSense>
+                <BottomAdSense>
                   <EcAdSense format="horizontal" a8netOnamae468x60 />
-                </LPAdSense>
+                </BottomAdSense>
               </LPMain>
             ) : (
               <Main>
                 <Page>
                   <Component {...pageProps} />
+                  {RESPONSIVE.SIZE_SP && (
+                    <BottomAdSense>
+                      <EcAdSense format="horizontal" a8netOnamae468x60 />
+                    </BottomAdSense>
+                  )}
                 </Page>
-                <PageAdSense>
-                  <EcAdSense format="horizontal" adSense />
-                  <br />
-                  <EcAdSense format="horizontal" a8netLoli300x300 />
-                  <br />
-                  <EcAdSense format="horizontal" a8netOnamae300x300 />
-                  <br />
-                  <EcAdSense format="horizontal" a8netOZUBI300x250 />
-                  <br />
-                  <EcAdSense format="horizontal" a8netXSERVER300x250 />
-                  <br />
-                  <EcAdSense format="horizontal" a8netA8300x250 />
-                  <br />
-                  <EcAdSense format="horizontal" a8netOnamae300x300 />
-                </PageAdSense>
+                {SIZE_PC_TAB && (
+                  <PageAdSense>
+                    <EcAdSense format="horizontal" adSense />
+                    <br />
+                    <EcAdSense format="horizontal" a8netLoli300x300 />
+                    <br />
+                    <EcAdSense format="horizontal" a8netOnamae300x300 />
+                    <br />
+                    <EcAdSense format="horizontal" a8netOZUBI300x250 />
+                    <br />
+                    <EcAdSense format="horizontal" a8netXSERVER300x250 />
+                    <br />
+                    <EcAdSense format="horizontal" a8netA8300x250 />
+                    <br />
+                    <EcAdSense format="horizontal" a8netOnamae300x300 />
+                  </PageAdSense>
+                )}
+                {RESPONSIVE.SIZE_SP && (
+                  <BottomAdSense>
+                    <EcAdSense format="horizontal" a8netOnamae468x60 />
+                  </BottomAdSense>
+                )}
               </Main>
             )}
           </>
@@ -117,7 +132,7 @@ const Main = styled.main`
   padding: 100px 40px 200px 40px;
 `;
 const Page = styled.div`
-  width: 80%;
+  width: 100%;
 `;
 const PageAdSense = styled.div`
   width: 400px;
@@ -131,8 +146,9 @@ const LPMain = styled.main`
   display: flex;
   flex-direction: column;
 `;
-const LPAdSense = styled.div`
+const BottomAdSense = styled.div`
   width: 100%;
+  padding-top: 20px;
   display: flex;
   justify-content: center;
 `;

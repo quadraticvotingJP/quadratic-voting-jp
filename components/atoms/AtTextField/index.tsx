@@ -25,6 +25,10 @@ const TextAreaElement = styled.textarea<CssProps>`
     outline: none;
     border: 2px solid ${BASE_CSS.color.base};
   }
+  &:hover {
+    outline: none;
+    border: 2px solid ${BASE_CSS.color.base};
+  }
 `;
 const voteCredits = css`
   display: flex;

@@ -1,16 +1,15 @@
 import React, { ComponentPropsWithoutRef } from "react";
 import styled, { css } from "styled-components";
 import { BASE_CSS } from "@/utils/baseCss";
-export type CssProps = {
+interface CssProps {
   voteCredits?: boolean;
-};
-export type Props = {
-  voteCredits?: boolean;
-} & ComponentPropsWithoutRef<"textarea">;
+  voteLink?: boolean;
+}
+export type Props = CssProps & ComponentPropsWithoutRef<"textarea">;
 
 // eslint-disable-next-line react/display-name
 export const AtTextField: React.FC<Props> = React.memo((props) => (
-  <TextAreaElement {...props} voteCredits={props.voteCredits} readOnly />
+  <TextAreaElement {...props} readOnly />
 ));
 
 const TextAreaElement = styled.textarea<CssProps>`
@@ -21,6 +20,7 @@ const TextAreaElement = styled.textarea<CssProps>`
   padding: 10px;
   resize: none;
   ${(props) => props.voteCredits && voteCredits}
+  ${(props) => props.voteLink && voteLink}
   &:focus {
     outline: none;
     border: 2px solid ${BASE_CSS.color.base};
@@ -32,4 +32,7 @@ const voteCredits = css`
   text-align: center;
   font-size: 20px;
   font-weight: bold;
+`;
+const voteLink = css`
+  font-size: 12px;
 `;

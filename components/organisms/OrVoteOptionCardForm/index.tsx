@@ -58,6 +58,7 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
               defaultValue={option.url ? option.url : "-"}
               name={option.url}
               rows={1}
+              voteLink
             />
           </Section>
           {/* 投票数 */}

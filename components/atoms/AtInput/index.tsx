@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithoutRef } from "react";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
 
@@ -11,7 +12,7 @@ const InputElement = styled.input`
   padding: 0px 0px 0px 4px;
   &:focus {
     outline: none;
-    border-bottom: 2px solid #2f9bff;
+    border-bottom: 2px solid ${BASE_CSS.color.base};
   }
 `;
 

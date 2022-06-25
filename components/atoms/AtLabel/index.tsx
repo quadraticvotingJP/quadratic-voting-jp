@@ -1,4 +1,5 @@
 import React from "react";
+import { BASE_CSS } from "@/utils/baseCss";
 // styled components
 import styled from "styled-components";
 
@@ -28,7 +29,7 @@ const LabelElement = styled.div`
   height: 32px;
 `;
 const LabelMark = styled.div`
-  background-color: #2f9bff;
+  background-color: ${BASE_CSS.color.base};
   width: 6px;
   margin-right: 8px;
 `;

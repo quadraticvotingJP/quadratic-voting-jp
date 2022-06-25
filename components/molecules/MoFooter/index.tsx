@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 // component
 import { AtHref } from "@/components/atoms/EntryPoint";
 
@@ -36,12 +37,12 @@ const Footer = styled.footer`
   position: absolute; /* ContainerComponentのposition: relativeを参照 */
   bottom: 0;
   width: 100%;
-  background-color: #2f9bff;
+  background-color: ${BASE_CSS.color.base};
   margin: 0px;
   padding: 30px;
 `;
 const Li = styled.li`
-  color: white;
+  color: ${BASE_CSS.color.white};
 `;
 const Copyright = styled(Li)`
   display: flex;

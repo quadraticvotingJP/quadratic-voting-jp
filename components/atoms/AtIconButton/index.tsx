@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 // https://feathericons.com/
 import { Trash, Edit2, Save } from "react-feather";
 
@@ -40,7 +41,7 @@ export const AtIconButton: React.FC<Props> = React.memo(
 const SharedButton = styled.button`
   border: none;
   border-radius: 40px;
-  color: black;
+  color: ${BASE_CSS.color.black};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,35 +51,35 @@ const EditIconButton = styled(SharedButton)`
   min-width: 32px;
   height: 32px;
   &:hover {
-    background-color: #2f9bff;
-    color: white;
+    background-color: ${BASE_CSS.color.base};
+    color: ${BASE_CSS.color.white};
   }
   &:disabled {
-    background-color: white;
-    color: #696969;
+    background-color: ${BASE_CSS.color.white};
+    color: ${BASE_CSS.color.disabled};
   }
 `;
 const DeleteIconButton = styled(SharedButton)`
   min-width: 32px;
   height: 32px;
   &:hover {
-    background-color: #fa0e0e;
-    color: white;
+    background-color: ${BASE_CSS.color.danger};
+    color: ${BASE_CSS.color.white};
   }
   &:disabled {
-    background-color: white;
-    color: #696969;
+    background-color: ${BASE_CSS.color.white};
+    color: ${BASE_CSS.color.disabled};
   }
 `;
 const SaveIconButton = styled(SharedButton)`
   min-width: 32px;
   height: 32px;
   &:hover {
-    background-color: #2f9bff;
-    color: white;
+    background-color: ${BASE_CSS.color.base};
+    color: ${BASE_CSS.color.white};
   }
   &:disabled {
-    background-color: white;
-    color: #696969;
+    background-color: ${BASE_CSS.color.white};
+    color: ${BASE_CSS.color.disabled};
   }
 `;

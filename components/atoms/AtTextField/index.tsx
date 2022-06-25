@@ -1,4 +1,6 @@
-import React from "react";
+import React, { ComponentPropsWithoutRef } from "react";
+import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 // component
 import { TextField } from "@mui/material";
 
@@ -52,3 +54,16 @@ export const AtTextField: React.FC<Props> = React.memo(
     );
   }
 );
+
+const TextAreaElement = styled.textarea`
+  width: 100%;
+  height: 301px;
+  border: 2px #e3e8ef solid;
+  border-radius: 4px;
+  font-size: 20px;
+  padding: 0px;
+  &:focus {
+    outline: none;
+    border: 2px solid ${BASE_CSS.color.base};
+  }
+`;

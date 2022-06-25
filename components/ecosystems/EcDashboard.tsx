@@ -292,9 +292,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
           defaultValue={dashboard.voterLinks}
           id={"votersLink"}
           name={"votersLink"}
-          type="text"
           rows={10}
-          inputProps={{ readOnly: true }}
           button={{
             title: t("common.button.downloadTxt"),
             disabled: false,

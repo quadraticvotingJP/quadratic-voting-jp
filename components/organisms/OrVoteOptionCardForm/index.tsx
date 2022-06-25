@@ -54,16 +54,10 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
               title={t("common.event.createOption.optionLink")}
             />
             <AtTextField
-              type="url"
               id={option.url}
               defaultValue={option.url ? option.url : "-"}
-              InputProps={{
-                readOnly: true,
-                className: "rounded-xl",
-              }}
-              className={"w-full"}
               name={option.url}
-              multiline={false}
+              rows={1}
             />
           </Section>
           {/* 投票数 */}
@@ -73,15 +67,11 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
               title={t("common.event.votes.title")}
             />
             <AtTextField
-              type="text"
               id={`${option.vote}-vote`}
               value={option.vote}
-              InputProps={{
-                readOnly: true,
-                className: "rounded-xl",
-              }}
-              className={"w-full"}
               name={`${option.vote}-vote`}
+              rows={1}
+              voteCredits
             />
           </VoteElement>
           <MoButtons

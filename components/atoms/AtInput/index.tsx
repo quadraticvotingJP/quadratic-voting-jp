@@ -17,8 +17,6 @@ const InputElement = styled.input`
 `;
 
 export type Props = {
-  readonly type: Readonly<FormType>;
-  readonly id: string;
   readonly register?: UseFormRegisterReturn;
 } & ComponentPropsWithoutRef<"input">;
 

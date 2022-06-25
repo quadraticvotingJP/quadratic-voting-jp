@@ -18,13 +18,9 @@ export type Props = {
   readonly overView: string;
   readonly labelMark?: boolean;
   // textField
-  readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
-  readonly rows?: number;
-  readonly maxRows?: number;
-  readonly inputProps?: object;
-  readonly disabled?: boolean;
+  readonly rows: number;
   readonly defaultValue?: string;
   readonly readOnly?: boolean;
   readonly button: Button;
@@ -39,12 +35,8 @@ export const OrCardTextField: React.FC<Props> = ({
   labelMark = true,
   id,
   name,
-  disabled,
-  type,
   defaultValue,
   rows,
-  maxRows,
-  inputProps,
   button,
 }) => {
   return (
@@ -54,16 +46,12 @@ export const OrCardTextField: React.FC<Props> = ({
           <MoLabelTextField
             title={title}
             required={required}
-            disabled={disabled}
             labelMark={labelMark}
             overView={overView}
             id={id}
             name={name}
-            type={type}
             defaultValue={defaultValue}
             rows={rows}
-            maxRows={maxRows}
-            inputProps={inputProps}
           />
         </Section>
         <Button>

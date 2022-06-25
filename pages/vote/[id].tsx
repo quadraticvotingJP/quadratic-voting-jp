@@ -81,25 +81,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // 投票用のKeyを取得した選択肢毎に追加する
   const conversionVoteData = conversion(event);
 
-  const { beforePublicationStartDate, afterPublicationEndDate } =
-    eventDateAuthorize(); // 日にちチェック
-  const dateBefore: boolean = beforePublicationStartDate(
-    conversionVoteData.publicationStartDate
-  ); // 開始前か確認
-  const dateAfter: boolean = afterPublicationEndDate(
-    conversionVoteData.publicationEndDate
-  ); // 終了後か確認
-
-  // 開始日と終了日内か確認
-  if (dateBefore || dateAfter) {
-    return {
-      props: {
-        documentId,
-        ...(await serverSideTranslations(context.locale!, ["common"])),
-      },
-    };
-  }
-
   // イベントが存在し、未回答の場合のリターン
   return {
     props: {
@@ -107,6 +88,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       documentId,
       query,
       isAnswer: false,
+      isDate: false,
       ...(await serverSideTranslations(context.locale!, ["common"])),
     },
   };
@@ -118,8 +100,22 @@ const Id = ({
   query = null,
   isAnswer = true,
   cantVote = false,
+  isDate = true,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const { beforePublicationStartDate, afterPublicationEndDate } =
+    eventDateAuthorize(); // 日にちチェック
+  const dateBefore: boolean = beforePublicationStartDate(
+    conversionVoteData.publicationStartDate
+  ); // 開始前か確認
+  const dateAfter: boolean = afterPublicationEndDate(
+    conversionVoteData.publicationEndDate
+  ); // 終了後か確認
+
   if (!documentId === null || isAnswer || cantVote || query === null) {
+    return <EcInvalidLink />;
+  }
+  // 開始日と終了日内か確認
+  if (isDate || dateBefore || dateAfter) {
     return <EcInvalidLink />;
   }
 

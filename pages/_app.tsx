@@ -106,11 +106,6 @@ function MyApp({ Component, pageProps }: AppProps) {
                     <EcAdSense format="horizontal" a8netOnamae300x300 />
                   </PageAdSense>
                 )}
-                {RESPONSIVE.SIZE_SP && (
-                  <BottomAdSense>
-                    <EcAdSense format="horizontal" a8netOnamae468x60 />
-                  </BottomAdSense>
-                )}
               </Main>
             )}
           </>

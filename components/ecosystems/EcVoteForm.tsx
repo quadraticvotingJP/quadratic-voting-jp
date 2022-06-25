@@ -3,10 +3,11 @@
  */
 import React, { useMemo, useState } from "react";
 import { routerPush } from "@/architecture/application/routing";
+import styled from "styled-components";
 // i18n
 import { useTranslation } from "next-i18next";
 // component
-import { AtH2, AtButton, AtInputLabel } from "@/components/atoms/EntryPoint";
+import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
 import {
   OrCardText,
   OrVoteOptionCardForm,
@@ -153,10 +154,7 @@ const EcVoteForm: React.FC<Props> = ({
     <>
       <div className="flex">
         <div className="flex-auto p-2">
-          <AtH2
-            title={t("pageTitle.vote")}
-            className={"text-center mb-16 text-4xl font-bold"}
-          />
+          <H2>{t("pageTitle.creat")}</H2>
           <br />
           <OrCardText
             title={t("common.event.eventTitle.title")}
@@ -183,10 +181,7 @@ const EcVoteForm: React.FC<Props> = ({
           />
           <br />
           <Card className="p-6 my-6 rounded-xl">
-            <AtInputLabel
-              required={false}
-              title={t("common.event.options.title")}
-            />
+            <AtLabel required={false} title={t("common.event.options.title")} />
             {voteOptions.map((option: VoteOption, index: number) => {
               return (
                 <div key={`${index}-${option.id}`}>
@@ -226,3 +221,10 @@ const EcVoteForm: React.FC<Props> = ({
 };
 
 export default EcVoteForm;
+
+const H2 = styled.h2`
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+`;

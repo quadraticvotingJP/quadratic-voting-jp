@@ -176,12 +176,13 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 <RuleExample1>{t("lp.rule.example1")}</RuleExample1>
                 <RuleExample1>{t("lp.rule.example2")}</RuleExample1>
                 <RuleExample2>{t("lp.rule.example3")}</RuleExample2>
-                <AtHref
-                  blank={true}
-                  title={t("lp.rule.urlTitle")}
-                  link={t("lp.rule.url")}
-                  className="text-blue-500 text-sm"
-                />
+                <Link>
+                  <AtHref
+                    blank={true}
+                    title={t("lp.rule.urlTitle")}
+                    link={t("lp.rule.url")}
+                  />
+                </Link>
                 <RuleExample3></RuleExample3>
                 <RuleJustifyCenterElement>
                   <AtButton
@@ -618,6 +619,11 @@ const RuleExample2 = styled.p`
     font-size: 14px;
   `}
 `;
+const Link = styled.div`
+  color: #4c51bf;
+  font-size: 12px;
+`;
+
 const RuleExample3 = styled.div`
   margin-bottom: 89px;
   ${tab`

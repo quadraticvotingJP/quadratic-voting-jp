@@ -7,10 +7,10 @@ import {
   inputDateMaxCheck,
   inputDateMinCheck,
 } from "@/utils/validation";
+import styled from "styled-components";
 // library
 import { ChartData } from "chart.js";
 // Component
-import { AtH2 } from "@/components/atoms/EntryPoint";
 import {
   OrCardText,
   OrCardProcess,
@@ -138,7 +138,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
 
   return (
     <div className="mx-10 mt-16">
-      <AtH2 title={t("pageTitle.dashboard")} />
+      <H2>{t("pageTitle.creat")}</H2>
       <br />
       <OrCardProcess
         labelTitle={t("common.dashboard.participantAndCredits.title")}
@@ -203,7 +203,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
                 ),
             },
           })}
-          min={today}
           error={errors.publicationStartDate}
           placeholder=""
           disabled={false}
@@ -240,7 +239,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
                 ),
             },
           })}
-          min={today}
           placeholder=""
           disabled={false}
           type="datetime-local"
@@ -308,3 +306,10 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   );
 };
 export default EcDashboard;
+
+const H2 = styled.h2`
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+`;

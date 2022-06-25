@@ -1,6 +1,7 @@
 // https://mui.com/components/buttons/#icon-button
 import React from "react";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 // component
 import { AtIconButton, AtHref } from "@/components/atoms/EntryPoint";
 // mui
@@ -95,5 +96,5 @@ const Overview = styled.div`
   word-break: break-word;
 `;
 const Link = styled.div`
-  color: #4c51bf;
+  color: ${BASE_CSS.link.color};
 `;

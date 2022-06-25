@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { sp, tab } from "@/media";
+import { BASE_CSS } from "@/utils/baseCss";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 
@@ -620,7 +621,7 @@ const RuleExample2 = styled.p`
   `}
 `;
 const Link = styled.div`
-  color: #4c51bf;
+  color: ${BASE_CSS.link.color};
   font-size: 12px;
 `;
 

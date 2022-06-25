@@ -1,4 +1,5 @@
 import React from "react";
+import { BASE_CSS } from "@/utils/baseCss";
 // styled components
 import styled from "styled-components";
 
@@ -26,7 +27,7 @@ const LabelElement = styled.div`
   height: 32px;
 `;
 const Label = styled.label`
-  color: #00022e;
+  color: ${BASE_CSS.text.label.color};
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -37,7 +38,7 @@ const RequiredElement = styled.div`
   position: relative;
 `;
 const LabelRequired = styled.div`
-  color: red;
+  color: ${BASE_CSS.color.red};
   font-size: 20px;
   font-weight: bold;
   position: absolute;

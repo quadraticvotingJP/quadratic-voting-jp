@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
+import { BASE_CSS } from "@/utils/baseCss";
 import styled from "styled-components";
 
 // component
@@ -28,5 +29,5 @@ const EcInvalidLink: React.FC = () => {
 export default EcInvalidLink;
 
 const Link = styled.div`
-  color: #4c51bf;
+  color: ${BASE_CSS.link.color};
 `;

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
+import { BASE_CSS } from "@/utils/baseCss";
 import { AtHref } from "@/components/atoms/EntryPoint";
 const P = styled.p`
   white-space: pre-wrap;
@@ -25,7 +26,7 @@ const H4 = styled.h4`
   margin-bottom: 5px;
 `;
 const Link = styled.span`
-  color: #4c51bf;
+  color: ${BASE_CSS.link.color};
 `;
 
 const EcPrivacyPolicy: React.FC = () => {

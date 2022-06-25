@@ -1,4 +1,5 @@
 import React from "react";
+import { BASE_CSS } from "@/utils/baseCss";
 // component
 import {
   AtLabel,
@@ -120,5 +121,5 @@ const EditElement = styled.div`
   justify-content: space-between;
 `;
 const Error = styled.span`
-  color: red;
+  color: ${BASE_CSS.color.red};
 `;

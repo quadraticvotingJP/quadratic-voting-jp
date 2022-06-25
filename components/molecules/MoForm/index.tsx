@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 // component
 import { AtInput } from "@/components/atoms/EntryPoint";
 
@@ -52,5 +53,5 @@ const Hidden = styled.div`
   display: none;
 `;
 const Error = styled.span`
-  color: red;
+  color: ${BASE_CSS.color.red};
 `;

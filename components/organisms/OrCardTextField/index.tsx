@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 // component
 import { MoLabelTextField } from "@/components/molecules/EntryPoint";
 import { AtButton } from "@/components/atoms/EntryPoint";
@@ -17,13 +18,9 @@ export type Props = {
   readonly overView: string;
   readonly labelMark?: boolean;
   // textField
-  readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
-  readonly rows?: number;
-  readonly maxRows?: number;
-  readonly inputProps?: object;
-  readonly disabled?: boolean;
+  readonly rows: number;
   readonly defaultValue?: string;
   readonly readOnly?: boolean;
   readonly button: Button;
@@ -38,12 +35,8 @@ export const OrCardTextField: React.FC<Props> = ({
   labelMark = true,
   id,
   name,
-  disabled,
-  type,
   defaultValue,
   rows,
-  maxRows,
-  inputProps,
   button,
 }) => {
   return (
@@ -53,16 +46,12 @@ export const OrCardTextField: React.FC<Props> = ({
           <MoLabelTextField
             title={title}
             required={required}
-            disabled={disabled}
             labelMark={labelMark}
             overView={overView}
             id={id}
             name={name}
-            type={type}
             defaultValue={defaultValue}
             rows={rows}
-            maxRows={maxRows}
-            inputProps={inputProps}
           />
         </Section>
         <Button>
@@ -80,7 +69,7 @@ export const OrCardTextField: React.FC<Props> = ({
 
 const Card = styled.div`
   padding: 24px;
-  background-color: white;
+  background-color: ${BASE_CSS.color.white};
   border-radius: 0.75rem;
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);

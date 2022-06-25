@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { BASE_CSS } from "@/utils/baseCss";
+import { sp, tab } from "@/media";
 import {
   utilsValidationRule,
   inputDateMaxCheck,
@@ -318,8 +320,13 @@ const EcCreateForm: React.FC = () => {
 export default EcCreateForm;
 
 const H2 = styled.h2`
-  font-size: 30px;
+  font-size: ${BASE_CSS.page.pc.title};
   font-weight: bold;
   text-align: center;
   margin-bottom: 16px;
+  ${tab`
+  `}
+  ${sp`
+    font-size: ${BASE_CSS.page.sp.title};
+  `}
 `;

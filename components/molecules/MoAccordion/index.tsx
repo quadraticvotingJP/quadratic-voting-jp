@@ -2,6 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BASE_CSS } from "@/utils/baseCss";
+import { sp, tab } from "@/media";
 // component
 import { AtIconButton, AtHref } from "@/components/atoms/EntryPoint";
 // mui
@@ -86,10 +87,20 @@ const TitleElement = styled.div`
 const Title = styled.p`
   font-size: 20px;
   font-weight: bold;
+  ${tab`
+  `}
+  ${sp`
+    font-size: 16px;
+  `}
 `;
 const IconButtonElement = styled.div`
   display: flex;
   margin-right: 10px;
+  ${tab`
+  `}
+  ${sp`
+    flex-direction: column;
+  `}
 `;
 const Overview = styled.div`
   margin-bottom: 14px;

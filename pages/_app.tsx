@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { sp, tab } from "@/media";
 // GA
 import { pageview } from "@/lib/gtag";
 // SEO
@@ -130,6 +131,12 @@ const Main = styled.main`
   display: flex;
   justify-content: space-between;
   padding: 100px 40px 200px 40px;
+  ${tab`
+    padding: 100px 20px 200px 20px;
+  `}
+  ${sp`
+    padding: 60px 2px 200px 2px;
+  `}
 `;
 const Page = styled.div`
   width: 100%;

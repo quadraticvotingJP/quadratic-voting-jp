@@ -24,8 +24,8 @@ export const BASE_CSS = {
       overView: "20px",
       labelAreaBottom: "14px",
       labelTitleBottom: "16px",
-      formFontSize: "44px",
-      formHeight: "20px",
+      formFontSize: "20px",
+      formHeight: "44px",
     },
     tab: {
       title: "",

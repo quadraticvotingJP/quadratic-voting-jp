@@ -205,6 +205,7 @@ const EcVoteForm: React.FC<Props> = ({
               title={t("common.button.vote")}
               disabled={isActive}
               onClick={() => onSubmit(voteOptions)}
+              accent={true}
             />
           </div>
         </div>

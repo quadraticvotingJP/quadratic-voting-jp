@@ -310,6 +310,7 @@ const EcCreateForm: React.FC = () => {
           <AtButton
             title={t("common.button.eventCreation")}
             disabled={false}
+            accent={true}
             onClick={() => handleSubmit(onSubmit)()}
           />
         </div>

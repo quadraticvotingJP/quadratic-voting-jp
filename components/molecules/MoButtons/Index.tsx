@@ -1,8 +1,6 @@
 import React from "react";
-import { useTranslation } from "next-i18next";
 // component
 import { AtButton } from "@/components/atoms/EntryPoint";
-
 import styled from "styled-components";
 
 interface Button {
@@ -18,8 +16,7 @@ type Props = {
   readonly rightStyle: string;
 };
 
-// eslint-disable-next-line react/display-name
-const MoButtons: React.FC<Props> = ({ left, right }) => {
+export const MoButtons: React.FC<Props> = ({ left, right }) => {
   return (
     <Col2>
       <AtButton

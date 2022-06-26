@@ -51,6 +51,7 @@ export const OrCardBar: React.FC<Props> = ({
             title={button.title}
             disabled={button.disabled}
             onClick={button.onClick}
+            accent={true}
           />
         </Button>
       </Card>

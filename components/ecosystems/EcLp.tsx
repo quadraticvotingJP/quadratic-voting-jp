@@ -49,12 +49,6 @@ const EcLp: React.FC<Props> = ({ images }) => {
               {t("lp.isQuadraticVoting.overview")}
             </IsQuadraticVotingOverview>
             <IsQuadraticVotingJustifyCenterElement>
-              {/* <AtButton
-                className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
-                title={t("common.button.startNow")}
-                disabled={false}
-                onClick={moveCreateEvent}
-              /> */}
               <AtButton
                 title={t("common.button.startNow")}
                 disabled={false}
@@ -192,12 +186,6 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 </Link>
                 <RuleExample3></RuleExample3>
                 <RuleJustifyCenterElement>
-                  {/* <AtButton
-                    className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
-                    title={t("common.button.startNow")}
-                    disabled={false}
-                    onClick={moveCreateEvent}
-                  /> */}
                   <AtButton
                     title={t("common.button.startNow")}
                     disabled={false}
@@ -239,12 +227,6 @@ const EcLp: React.FC<Props> = ({ images }) => {
         <StartNowMaxWidth1000>
           <StartNowTitle>{t("lp.startNow.title")}</StartNowTitle>
           <StartNowJustifyCenterElement>
-            {/* <AtButton
-              className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
-              title={t("common.button.startNow")}
-              disabled={false}
-              onClick={moveCreateEvent}
-            /> */}
             <AtButton
               title={t("common.button.startNow")}
               disabled={false}

@@ -1,16 +1,11 @@
-import React from "react";
+import React, { ComponentPropsWithoutRef } from "react";
 import styled, { css } from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 
 export type Props = {
   readonly title: string;
-  readonly disabled: boolean;
-  readonly onClick?: () => void;
-  readonly type?: Readonly<ButtonType>;
-  readonly className?: string;
-  readonly main?: boolean;
-  readonly accent?: boolean;
-  readonly fullWidth?: boolean;
-};
+} & StyledBaseButtonProps &
+  ComponentPropsWithoutRef<"button">;
 
 interface StyledBaseButtonProps {
   main?: boolean;
@@ -19,24 +14,9 @@ interface StyledBaseButtonProps {
 }
 
 // eslint-disable-next-line react/display-name
-export const AtButton: React.FC<Props> = React.memo(
-  ({ title, disabled, onClick, type = "button", main, accent, fullWidth }) => {
-    return (
-      <>
-        <BaseButton
-          type={type}
-          disabled={disabled}
-          onClick={onClick}
-          main={main}
-          accent={accent}
-          fullWidth={fullWidth}
-        >
-          {title}
-        </BaseButton>
-      </>
-    );
-  }
-);
+export const AtButton: React.FC<Props> = React.memo((props) => (
+  <BaseButton {...props}>{props.title}</BaseButton>
+));
 
 const BaseButton = styled.button<StyledBaseButtonProps>`
   font-size: 1rem;
@@ -67,14 +47,14 @@ const MainButton = css`
     background-color: rgb(191 219 254);
     border-color: rgb(191 219 254);
     opacity: 1;
-    color: white;
+    color: ${BASE_CSS.color.white};
   }
 `;
 const AccentButton = css`
   padding: 1rem 3rem;
   background-color: rgb(0 33 52);
   border: unset;
-  color: white;
+  color: ${BASE_CSS.color.white};
   width: auto;
   min-width: 200px;
   &:hover {
@@ -82,7 +62,7 @@ const AccentButton = css`
   }
   &:disabled {
     background-color: rgb(203 213 225);
-    color: white;
+    color: ${BASE_CSS.color.white};
     opacity: 1;
   }
 `;

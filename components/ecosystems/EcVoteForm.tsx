@@ -83,17 +83,6 @@ const EcVoteForm: React.FC<Props> = ({
       ? "bg-blue-900 py-6 px-6 text-white text-center rounded"
       : "bg-red-900 py-6 px-6 text-white text-center rounded";
   }, [credits]);
-
-  const assginLeftStyle = (isState: boolean) => {
-    return isState
-      ? "w-full mr-5 text-base w-40 h-10 py-2 px-6 border-2 border-blue-200 text-blue-300"
-      : "hover:border-blue-200 hover:text-blue-200 w-full mr-5 text-base w-40 h-10 py-2 px-6 border-2 border-blue-900 text-blue";
-  };
-  const assginRightStyle = (isState: boolean) => {
-    return isState
-      ? "bg-blue-200 text-white w-full text-base w-40 h-10 py-2 px-6"
-      : "bg-blue-900 hover:bg-blue-300 text-white w-full text-base w-40 h-10 py-2 px-6";
-  };
   // オブジェクトの値刷新
   const setNewVoteOptions = (
     oldOptions: VoteOption[],
@@ -186,8 +175,6 @@ const EcVoteForm: React.FC<Props> = ({
               return (
                 <div key={`${index}-${option.id}`}>
                   <OrVoteOptionCardForm
-                    leftStyle={assginLeftStyle(option.left)}
-                    rightStyle={assginRightStyle(option.right)}
                     option={option}
                     votes={conversionVoteData.votes}
                     incrementButtonDisable={option.left}

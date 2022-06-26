@@ -9,11 +9,9 @@ interface Button {
   readonly onClick: () => void;
 }
 
-type Props = {
+export type Props = {
   readonly left: Button;
   readonly right: Button;
-  readonly leftStyle: string;
-  readonly rightStyle: string;
 };
 
 export const MoButtons: React.FC<Props> = ({ left, right }) => {
@@ -36,7 +34,6 @@ export const MoButtons: React.FC<Props> = ({ left, right }) => {
     </Col2>
   );
 };
-export default MoButtons;
 
 const Col2 = styled.div`
   display: grid;

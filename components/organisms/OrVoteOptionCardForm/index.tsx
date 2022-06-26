@@ -12,8 +12,6 @@ export interface Props {
   readonly decrementVote: (option: VoteOption) => void;
   readonly incrementButtonDisable: boolean;
   readonly decrementButtonDisable: boolean;
-  readonly leftStyle: string;
-  readonly rightStyle: string;
 }
 
 export const OrVoteOptionCardForm: React.FC<Props> = ({
@@ -22,15 +20,13 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
   decrementVote,
   incrementButtonDisable,
   decrementButtonDisable,
-  leftStyle,
-  rightStyle,
 }) => {
   const { t } = useTranslation("common");
 
   return (
     <>
       <OptionElement>
-        <div key={option.id} className="mb-1">
+        <Option key={option.id}>
           {/* タイトル */}
           <Section>
             <AtNoMarkLabel
@@ -76,8 +72,6 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
             />
           </VoteElement>
           <MoButtons
-            leftStyle={leftStyle}
-            rightStyle={rightStyle}
             left={{
               title: "-",
               disabled: incrementButtonDisable,
@@ -89,7 +83,7 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
               onClick: () => incrementVote(option),
             }}
           />
-        </div>
+        </Option>
       </OptionElement>
     </>
   );
@@ -109,4 +103,7 @@ const Text = styled.p`
 `;
 const VoteElement = styled.div`
   margin-bottom: 24px;
+`;
+const Option = styled.div`
+  margin-bottom: 10px;
 `;

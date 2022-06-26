@@ -30,7 +30,7 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
   return (
     <>
       <OptionElement>
-        <div key={option.id} className="mb-1">
+        <Option key={option.id}>
           {/* タイトル */}
           <Section>
             <AtNoMarkLabel
@@ -89,7 +89,7 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
               onClick: () => incrementVote(option),
             }}
           />
-        </div>
+        </Option>
       </OptionElement>
     </>
   );
@@ -109,4 +109,7 @@ const Text = styled.p`
 `;
 const VoteElement = styled.div`
   margin-bottom: 24px;
+`;
+const Option = styled.div`
+  margin-bottom: 10px;
 `;

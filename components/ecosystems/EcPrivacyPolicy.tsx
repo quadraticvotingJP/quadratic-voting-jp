@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
+import { BASE_CSS } from "@/utils/baseCss";
 import { AtHref } from "@/components/atoms/EntryPoint";
 const P = styled.p`
   white-space: pre-wrap;
@@ -24,6 +25,10 @@ const H4 = styled.h4`
   font-weight: bold;
   margin-bottom: 5px;
 `;
+const Link = styled.span`
+  color: ${BASE_CSS.link.color};
+`;
+
 const EcPrivacyPolicy: React.FC = () => {
   const { t } = useTranslation("common");
   return (
@@ -54,19 +59,22 @@ const EcPrivacyPolicy: React.FC = () => {
         </P>
         <P>
           {"この規約に関して、詳しくは"}
-          <AtHref
-            blank={true}
-            title={t("privacyPolicy.adSensePolicy.title")}
-            link={t("privacyPolicy.adSensePolicy.link")}
-            className="text-blue-500"
-          />
+          <Link>
+            <AtHref
+              blank={true}
+              title={t("privacyPolicy.adSensePolicy.title")}
+              link={t("privacyPolicy.adSensePolicy.link")}
+            />
+          </Link>
           {"または"}
-          <AtHref
-            blank={true}
-            title={t("privacyPolicy.technology.title")}
-            link={t("privacyPolicy.technology.link")}
-            className="text-blue-500"
-          />
+          <Link>
+            <AtHref
+              blank={true}
+              title={t("privacyPolicy.technology.title")}
+              link={t("privacyPolicy.technology.link")}
+            />
+          </Link>
+
           {"をクリックしてください。"}
         </P>
         <br />
@@ -74,12 +82,14 @@ const EcPrivacyPolicy: React.FC = () => {
         <H4>{"Googleアドセンス"}</H4>
         <P>
           {"当サイトでは、第三者配信の広告サービス"}
-          <AtHref
-            blank={true}
-            title={t("privacyPolicy.adSense.title")}
-            link={t("privacyPolicy.adSense.link")}
-            className="text-blue-500"
-          />
+          <Link>
+            <AtHref
+              blank={true}
+              title={t("privacyPolicy.adSense.title")}
+              link={t("privacyPolicy.adSense.link")}
+            />
+          </Link>
+
           {"を利用しています。"}
         </P>
         <P>
@@ -91,12 +101,14 @@ const EcPrivacyPolicy: React.FC = () => {
           {
             "またGoogleアドセンスに関して、このプロセスの詳細やこのような情報が広告配信事業者に"
           }
-          <AtHref
-            blank={true}
-            title={t("privacyPolicy.technology.title")}
-            link={t("privacyPolicy.technology.link")}
-            className="text-blue-500"
-          />
+          <Link>
+            <AtHref
+              blank={true}
+              title={t("privacyPolicy.technology.title")}
+              link={t("privacyPolicy.technology.link")}
+            />
+          </Link>
+
           {
             "使用されないようにする方法については、こちらをクリックしてください。"
           }
@@ -131,12 +143,13 @@ const EcPrivacyPolicy: React.FC = () => {
           }
         </P>
         <P>{"(お問合せフォームはGoogle Formを利用しています)"}</P>
-        <AtHref
-          blank={true}
-          title={t("privacyPolicy.contact.title")}
-          link={t("privacyPolicy.contact.link")}
-          className="text-blue-500"
-        />
+        <Link>
+          <AtHref
+            blank={true}
+            title={t("privacyPolicy.contact.title")}
+            link={t("privacyPolicy.contact.link")}
+          />
+        </Link>
       </section>
     </>
   );

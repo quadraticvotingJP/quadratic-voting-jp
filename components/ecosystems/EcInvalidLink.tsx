@@ -1,5 +1,7 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
+import { BASE_CSS } from "@/utils/baseCss";
+import styled from "styled-components";
 
 // component
 import { AtHref } from "@/components/atoms/EntryPoint";
@@ -13,14 +15,19 @@ const EcInvalidLink: React.FC = () => {
         <p>{t("common.systemError.invalidUrl")}</p>
       </div>
       <div className="flex justify-center content-center">
-        <AtHref
-          title={t("common.systemError.indexPushComment")}
-          link={t("common.systemError.indexPushURL")}
-          className="text-blue-500"
-        />
+        <Link>
+          <AtHref
+            title={t("common.systemError.indexPushComment")}
+            link={t("common.systemError.indexPushURL")}
+          />
+        </Link>
       </div>
     </>
   );
 };
 
 export default EcInvalidLink;
+
+const Link = styled.div`
+  color: ${BASE_CSS.link.color};
+`;

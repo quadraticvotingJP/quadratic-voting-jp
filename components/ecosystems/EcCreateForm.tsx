@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { BASE_CSS } from "@/utils/baseCss";
+import { sp, tab } from "@/media";
 import {
   utilsValidationRule,
   inputDateMaxCheck,
@@ -8,8 +10,9 @@ import {
   optionCheck,
 } from "@/utils/validation";
 import UUID from "uuidjs";
+import styled from "styled-components";
 // component
-import { AtH2, AtButton } from "@/components/atoms/EntryPoint";
+import { AtButton } from "@/components/atoms/EntryPoint";
 import {
   OrCardForm,
   OrCardForms,
@@ -111,8 +114,8 @@ const EcCreateForm: React.FC = () => {
     event.target instanceof HTMLElement && event.target.blur();
 
   return (
-    <div className="mx-10 mt-16">
-      <AtH2 title={t("pageTitle.creat")} />
+    <EcosystemArea>
+      <H2>{t("pageTitle.creat")}</H2>
       <form>
         <OrCardForm
           title={t("common.event.eventTitle.title")}
@@ -167,7 +170,6 @@ const EcCreateForm: React.FC = () => {
           placeholder={t("common.event.publicationStartDate.title")}
           disabled={false}
           type="datetime-local"
-          min={today}
           error={errors.publicationStartDate}
         />
         <br />
@@ -190,7 +192,6 @@ const EcCreateForm: React.FC = () => {
           placeholder={t("common.event.publicationEndDate.title")}
           disabled={false}
           type="datetime-local"
-          min={today}
           error={errors.publicationEndDate}
         />
         <br />
@@ -246,7 +247,6 @@ const EcCreateForm: React.FC = () => {
           disabled={isEdit}
           readOnly={true}
           error={errors.options}
-          className={"hidden"}
           onClickDelete={(index: number) => onClickDelete(index)}
           onClickEdit={(index: number) => onClickEdit(index)}
         />
@@ -306,15 +306,43 @@ const EcCreateForm: React.FC = () => {
           }}
         />
         <br />
-        <div className="flex justify-center">
+        <ButtonArea>
           <AtButton
             title={t("common.button.eventCreation")}
             disabled={false}
+            accent={true}
             onClick={() => handleSubmit(onSubmit)()}
           />
-        </div>
+        </ButtonArea>
       </form>
-    </div>
+    </EcosystemArea>
   );
 };
 export default EcCreateForm;
+
+const H2 = styled.h2`
+  font-size: ${BASE_CSS.page.pc.title};
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+  ${tab`
+  `}
+  ${sp`
+    font-size: ${BASE_CSS.page.sp.title};
+  `}
+`;
+const EcosystemArea = styled.div`
+  margin-top: 4rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  ${tab`
+  `}
+  ${sp`
+    margin-left: 1rem;
+    margin-right: 1rem;
+  `}
+`;
+const ButtonArea = styled.div`
+  display: flex;
+  justify-content: center;
+`;

@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { sp, tab } from "@/media";
+import { BASE_CSS } from "@/utils/baseCss";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 
@@ -27,10 +28,10 @@ const EcLp: React.FC<Props> = ({ images }) => {
         <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
         <FirstViewJustifyCenterElement>
           <AtButton
-            className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
             title={t("common.button.startNow")}
             disabled={false}
             onClick={moveCreateEvent}
+            accent={true}
           />
         </FirstViewJustifyCenterElement>
       </SectionFirstView>
@@ -49,10 +50,10 @@ const EcLp: React.FC<Props> = ({ images }) => {
             </IsQuadraticVotingOverview>
             <IsQuadraticVotingJustifyCenterElement>
               <AtButton
-                className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
                 title={t("common.button.startNow")}
                 disabled={false}
                 onClick={moveCreateEvent}
+                accent={true}
               />
             </IsQuadraticVotingJustifyCenterElement>
           </IsQuadraticVotingOverViewArea>
@@ -176,19 +177,20 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 <RuleExample1>{t("lp.rule.example1")}</RuleExample1>
                 <RuleExample1>{t("lp.rule.example2")}</RuleExample1>
                 <RuleExample2>{t("lp.rule.example3")}</RuleExample2>
-                <AtHref
-                  blank={true}
-                  title={t("lp.rule.urlTitle")}
-                  link={t("lp.rule.url")}
-                  className="text-blue-500 text-sm"
-                />
+                <Link>
+                  <AtHref
+                    blank={true}
+                    title={t("lp.rule.urlTitle")}
+                    link={t("lp.rule.url")}
+                  />
+                </Link>
                 <RuleExample3></RuleExample3>
                 <RuleJustifyCenterElement>
                   <AtButton
-                    className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
                     title={t("common.button.startNow")}
                     disabled={false}
                     onClick={moveCreateEvent}
+                    accent={true}
                   />
                 </RuleJustifyCenterElement>
               </div>
@@ -226,10 +228,10 @@ const EcLp: React.FC<Props> = ({ images }) => {
           <StartNowTitle>{t("lp.startNow.title")}</StartNowTitle>
           <StartNowJustifyCenterElement>
             <AtButton
-              className="bg-black-900 hover:bg-black-900 hover:bg-opacity-80 text-white text-base w-40 h-12 py-2 px-6 w-64 rounded disabled:bg-slate-300"
               title={t("common.button.startNow")}
               disabled={false}
               onClick={moveCreateEvent}
+              accent={true}
             />
           </StartNowJustifyCenterElement>
         </StartNowMaxWidth1000>
@@ -618,6 +620,11 @@ const RuleExample2 = styled.p`
     font-size: 14px;
   `}
 `;
+const Link = styled.div`
+  color: ${BASE_CSS.link.color};
+  font-size: 12px;
+`;
+
 const RuleExample3 = styled.div`
   margin-bottom: 89px;
   ${tab`

@@ -1,11 +1,11 @@
 // 上位componentで毎回importするのを省くためまとめる
-export { default as AtBar } from "@/components/atoms/AtBar";
-export { default as AtButton } from "@/components/atoms/AtButton";
-export { default as AtImage } from "@/components/atoms/AtImage";
-export { default as AtH2 } from "@/components/atoms/AtH2";
-export { default as AtHref } from "@/components/atoms/AtHref";
-export { default as AtIconButton } from "@/components/atoms/AtIconButton";
-export { default as AtInput } from "@/components/atoms/AtInput";
-export { default as AtInputLabel } from "@/components/atoms/AtInputLabel";
-export { default as AtInputLabelNoMark } from "@/components/atoms/AtInputLabelNoMark";
-export { default as AtTextField } from "@/components/atoms/AtTextField";
+export { AtBar } from "@/components/atoms/AtBar/index";
+export { AtButton } from "@/components/atoms/AtButton/index";
+export { AtImage } from "@/components/atoms/AtImage/index";
+export { AtHref } from "@/components/atoms/AtHref/index";
+export { AtIconButton } from "@/components/atoms/AtIconButton/index";
+export { AtInput } from "@/components/atoms/AtInput/index";
+export { AtLabel } from "@/components/atoms/AtLabel/index";
+export { AtNoMarkLabel } from "@/components/atoms/AtNoMarkLabel/index";
+export { AtTextField } from "@/components/atoms/AtTextField/index";
+export { AtErrorMessage } from "@/components/atoms/AtErrorMessage/index";

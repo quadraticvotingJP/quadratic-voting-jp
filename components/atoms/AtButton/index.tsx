@@ -18,6 +18,7 @@ interface StyledBaseButtonProps {
   fullWidth?: boolean;
 }
 
+// eslint-disable-next-line react/display-name
 export const AtButton: React.FC<Props> = React.memo(
   ({ title, disabled, onClick, type = "button", main, accent, fullWidth }) => {
     return (

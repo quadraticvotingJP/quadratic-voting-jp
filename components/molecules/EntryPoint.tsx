@@ -1,6 +1,6 @@
 // 上位componentで毎回importするのを省くためまとめる
 export { MoAccordion } from "@/components/molecules/MoAccordion/index";
-export { default as MoButtons } from "@/components/molecules/MoButtons";
+export { MoButtons } from "@/components/molecules/MoButtons/Index";
 export { MoFooter } from "@/components/molecules/MoFooter/index";
 export { MoForm } from "@/components/molecules/MoForm/index";
 export { MoHeader } from "@/components/molecules/MoHeader/index";

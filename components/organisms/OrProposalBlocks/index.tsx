@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { sp, tab } from "@/media";
 
 export interface Props {
   readonly cost: number;
@@ -28,6 +29,10 @@ export const OrProposalBlocks: React.FC<Props> = React.memo(
 const ProposalBlocks = styled.div`
   position: fixed;
   padding-left: 8px;
+  ${tab`
+  `}
+  ${sp`
+  `}
 `;
 const Credits = styled.p`
   margin: 0px;

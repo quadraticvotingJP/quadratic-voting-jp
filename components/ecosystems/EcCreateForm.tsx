@@ -306,14 +306,14 @@ const EcCreateForm: React.FC = () => {
           }}
         />
         <br />
-        <div className="flex justify-center">
+        <ButtonArea>
           <AtButton
             title={t("common.button.eventCreation")}
             disabled={false}
             accent={true}
             onClick={() => handleSubmit(onSubmit)()}
           />
-        </div>
+        </ButtonArea>
       </form>
     </EcosystemArea>
   );
@@ -341,4 +341,8 @@ const EcosystemArea = styled.div`
     margin-left: 1rem;
     margin-right: 1rem;
   `}
+`;
+const ButtonArea = styled.div`
+  display: flex;
+  justify-content: center;
 `;

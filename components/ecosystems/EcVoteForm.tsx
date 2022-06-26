@@ -4,6 +4,8 @@
 import React, { useMemo, useState } from "react";
 import { routerPush } from "@/architecture/application/routing";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
+import { sp, tab } from "@/media";
 // i18n
 import { useTranslation } from "next-i18next";
 // component
@@ -16,8 +18,6 @@ import { OrProposalBlocks } from "@/components/organisms/EntryPoint";
 
 // architecture
 import { answer } from "@/architecture/application/answer";
-import { Card } from "@mui/material";
-import { inputDateMaxCheck } from "@/utils/validation";
 
 interface Props {
   conversionVoteData: VoteData;
@@ -141,8 +141,8 @@ const EcVoteForm: React.FC<Props> = ({
 
   return (
     <>
-      <div className="flex">
-        <div className="flex-auto p-2">
+      <FlexElement>
+        <FlexAuto>
           <H2>{t("pageTitle.creat")}</H2>
           <br />
           <OrCardText
@@ -169,7 +169,7 @@ const EcVoteForm: React.FC<Props> = ({
             disabled={false}
           />
           <br />
-          <Card className="p-6 my-6 rounded-xl">
+          <Card>
             <AtLabel required={false} title={t("common.event.options.title")} />
             {voteOptions.map((option: VoteOption, index: number) => {
               return (
@@ -187,32 +187,71 @@ const EcVoteForm: React.FC<Props> = ({
             })}
           </Card>
           <br />
-          <div className="text-center mt-8">
+          <ButtonArea>
             <AtButton
               title={t("common.button.vote")}
               disabled={isActive}
               onClick={() => onSubmit(voteOptions)}
               accent={true}
             />
-          </div>
-        </div>
-        <div className="flex-auto">
+          </ButtonArea>
+        </FlexAuto>
+        <ProposalBlocksArea>
           <OrProposalBlocks
             style={creditsColor}
             cost={credits}
             denominator={conversionVoteData.votes}
           />
-        </div>
-      </div>
+        </ProposalBlocksArea>
+      </FlexElement>
     </>
   );
 };
 
 export default EcVoteForm;
 
+const FlexElement = styled.h2`
+  display: flex;
+  margin-top: 4rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  ${tab`
+  `}
+  ${sp`
+    margin-left: 1rem;
+    margin-right: 1rem;
+  `}
+`;
 const H2 = styled.h2`
-  font-size: 30px;
+  font-size: ${BASE_CSS.page.pc.title};
   font-weight: bold;
   text-align: center;
   margin-bottom: 16px;
+  ${tab`
+  `}
+  ${sp`
+    font-size: ${BASE_CSS.page.sp.title};
+  `}
+`;
+const Card = styled.div`
+  padding: 24px;
+  background-color: ${BASE_CSS.color.white};
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+`;
+const FlexAuto = styled.div`
+  width: 100%;
+`;
+const ProposalBlocksArea = styled.div`
+  width: 100px;
+  ${tab`
+  `}
+  ${sp`
+    width: 0px;
+  `}
+`;
+const ButtonArea = styled.div`
+  display: flex;
+  justify-content: center;
 `;

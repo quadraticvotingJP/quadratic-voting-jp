@@ -12,8 +12,6 @@ export interface Props {
   readonly decrementVote: (option: VoteOption) => void;
   readonly incrementButtonDisable: boolean;
   readonly decrementButtonDisable: boolean;
-  readonly leftStyle: string;
-  readonly rightStyle: string;
 }
 
 export const OrVoteOptionCardForm: React.FC<Props> = ({
@@ -22,8 +20,6 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
   decrementVote,
   incrementButtonDisable,
   decrementButtonDisable,
-  leftStyle,
-  rightStyle,
 }) => {
   const { t } = useTranslation("common");
 
@@ -76,8 +72,6 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
             />
           </VoteElement>
           <MoButtons
-            leftStyle={leftStyle}
-            rightStyle={rightStyle}
             left={{
               title: "-",
               disabled: incrementButtonDisable,

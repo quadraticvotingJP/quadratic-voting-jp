@@ -1,10 +1,10 @@
 import { ComponentStoryObj, Meta } from "@storybook/react";
 import { withDesign } from "storybook-addon-designs";
-import { MoLabelBar, Props } from ".";
+import { OrCardBar, Props } from ".";
 
 const meta: Meta = {
-  title: "components/molecules/MoLabelBar",
-  component: MoLabelBar,
+  title: "components/organisms/OrCardBar",
+  component: OrCardBar,
   decorators: [withDesign],
 };
 export default meta;
@@ -35,6 +35,7 @@ const defaultArgs: Props = {
     ],
     labels: ["選択肢1", "選択肢2"],
   },
+  button: { title: "ボタン", disabled: false, onClick: () => {} },
 };
 
 const defaultDesign = {
@@ -42,7 +43,7 @@ const defaultDesign = {
   url: "",
 };
 
-export const LabelBar: ComponentStoryObj<typeof MoLabelBar> = {
+export const LabelBar: ComponentStoryObj<typeof OrCardBar> = {
   parameters: {
     design: {
       ...defaultDesign,

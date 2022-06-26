@@ -7,11 +7,11 @@ import { CategoryScale, ChartData } from "chart.js";
 import Chart from "chart.js/auto";
 Chart.register(CategoryScale);
 
-type Props = {
+export type Props = {
   readonly data: ChartData<"bar", number[], string>;
 };
 
 // eslint-disable-next-line react/display-name
-export const AtBar: React.FC<Props> = React.memo(({ data }) => {
-  return <Bar data={data} />;
-});
+export const AtBar: React.FC<Props> = React.memo(({ data }) => (
+  <Bar data={data} />
+));

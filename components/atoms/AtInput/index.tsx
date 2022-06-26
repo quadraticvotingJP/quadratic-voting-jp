@@ -28,6 +28,6 @@ export type Props = {
 } & ComponentPropsWithoutRef<"input">;
 
 // eslint-disable-next-line react/display-name
-export const AtInput: React.FC<Props> = React.memo((props) => {
-  return <InputElement {...props.register} {...props} />;
-});
+export const AtInput: React.FC<Props> = React.memo((props) => (
+  <InputElement {...props.register} {...props} />
+));

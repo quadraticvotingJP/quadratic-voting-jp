@@ -9,7 +9,7 @@ import {
 } from "@/components/atoms/EntryPoint";
 import styled from "styled-components";
 
-type Props = {
+export type Props = {
   // label
   readonly title: string;
   readonly required: boolean;

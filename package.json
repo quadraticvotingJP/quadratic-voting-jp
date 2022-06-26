@@ -5,7 +5,7 @@
   "scripts": {
     "next-dev": "next dev -p 4000",
     "dev": "next dev -p 4000 & yarn run sb",
-    "sb": "start-storybook -p 6006",
+    "sb": "start-storybook -p 4004",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

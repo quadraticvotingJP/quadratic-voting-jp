@@ -3,7 +3,7 @@ import { withDesign } from "storybook-addon-designs";
 import { AtNoMarkLabel, Props } from ".";
 
 const meta: Meta = {
-  title: "components/atoms/shared/AtNoMarkLabel",
+  title: "components/atoms/AtNoMarkLabel",
   component: AtNoMarkLabel,
   decorators: [withDesign],
 };

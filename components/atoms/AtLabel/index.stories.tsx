@@ -3,7 +3,7 @@ import { withDesign } from "storybook-addon-designs";
 import { AtLabel, Props } from ".";
 
 const meta: Meta = {
-  title: "components/atoms/shared/AtLabel",
+  title: "components/atoms/AtLabel",
   component: AtLabel,
   decorators: [withDesign],
 };

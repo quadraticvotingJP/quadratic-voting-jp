@@ -1,31 +1,25 @@
 import { ComponentStoryObj, Meta } from "@storybook/react";
 import { withDesign } from "storybook-addon-designs";
-import { AtErrorMessage, Props } from ".";
+import { MoFooter } from ".";
 
 const meta: Meta = {
-  title: "components/atoms/AtErrorMessage",
-  component: AtErrorMessage,
+  title: "components/molecules/MoFooter",
+  component: MoFooter,
   decorators: [withDesign],
 };
 export default meta;
-
-const defaultArgs: Props = {
-  error: { message: "必須です。" },
-};
 
 const defaultDesign = {
   type: "figma",
   url: "",
 };
 
-export const ErrorMessage: ComponentStoryObj<typeof AtErrorMessage> = {
+export const Footer: ComponentStoryObj<typeof MoFooter> = {
   parameters: {
     design: {
       ...defaultDesign,
       url: "",
     },
   },
-  args: {
-    ...defaultArgs,
-  },
+  args: {},
 };

@@ -3,7 +3,7 @@ import { withDesign } from "storybook-addon-designs";
 import { AtTextField, Props } from ".";
 
 const meta: Meta = {
-  title: "components/atoms/shared/AtTextField",
+  title: "components/atoms/AtTextField",
   component: AtTextField,
   decorators: [withDesign],
 };

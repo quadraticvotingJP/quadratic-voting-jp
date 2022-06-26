@@ -3,7 +3,7 @@ import { withDesign } from "storybook-addon-designs";
 import { AtBar, Props } from ".";
 
 const meta: Meta = {
-  title: "components/atoms/shared/AtBar",
+  title: "components/atoms/AtBar",
   component: AtBar,
   decorators: [withDesign],
 };

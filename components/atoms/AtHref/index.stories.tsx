@@ -3,7 +3,7 @@ import { withDesign } from "storybook-addon-designs";
 import { AtHref, Props } from ".";
 
 const meta: Meta = {
-  title: "components/atoms/shared/AtHref",
+  title: "components/atoms/AtHref",
   component: AtHref,
   decorators: [withDesign],
 };

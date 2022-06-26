@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { sp, tab } from "@/media";
+import { BASE_CSS } from "@/utils/baseCss";
 // components
 import { AtNoMarkLabel, AtTextField } from "@/components/atoms/EntryPoint";
 import { MoButtons } from "@/components/molecules/EntryPoint";
@@ -97,9 +99,20 @@ const OptionElement = styled.div`
 `;
 const Section = styled.div`
   margin-bottom: 16px;
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: 14px;
+  `}
 `;
 const Text = styled.p`
-  font-size: 20px;
+  font-size: ${BASE_CSS.form.pc.overView};
+  white-space: pre-wrap;
+  ${tab`
+  `}
+  ${sp`
+    font-size: ${BASE_CSS.form.sp.overView};
+  `}
 `;
 const VoteElement = styled.div`
   margin-bottom: 24px;

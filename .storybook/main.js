@@ -13,13 +13,14 @@ module.exports = {
     "@storybook/addon-interactions",
   ],
   framework: "@storybook/react",
-  core: {
-    builder: "@storybook/builder-webpack5",
-  },
   webpackFinal: (config) => {
     // https://ocws.jp/blog/post1825/
     // https://www.techpit.jp/courses/109/curriculums/112/sections/841/parts/3119
     config.resolve.alias["@"] = path.resolve(__dirname, "../");
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "next-i18next": "react-i18next",
+    };
     config.resolve.extensions.push(".ts", ".tsx");
     return config;
   },

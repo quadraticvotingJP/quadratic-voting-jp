@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithoutRef } from "react";
 import styled, { css } from "styled-components";
+import { sp, tab } from "@/media";
 import { BASE_CSS } from "@/utils/baseCss";
 
 export type Props = {
@@ -39,6 +40,11 @@ const BaseButton = styled.button<StyledBaseButtonProps>`
   ${(props) => props.main && MainButton};
   ${(props) => props.accent && AccentButton};
   ${(props) => props.fullWidth && FullWidth};
+  ${tab`
+  `}
+  ${sp`
+    padding: 0.4rem 1.5rem;
+  `}
 `;
 const MainButton = css`
   background-color: rgb(47 155 255);
@@ -65,6 +71,11 @@ const AccentButton = css`
     color: ${BASE_CSS.color.white};
     opacity: 1;
   }
+  ${tab`
+  `}
+  ${sp`
+    padding: 0.4rem 1.5rem;
+  `}
 `;
 
 const FullWidth = css`

@@ -1,10 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import { UseFormRegisterReturn } from "react-hook-form";
 // component
 import { MoForm, MoAccordion } from "@/components/molecules/EntryPoint";
 import { AtLabel } from "@/components/atoms/EntryPoint";
-import { Card } from "@/components/shared/EntryPoint";
+import { Card, LabelArea, LabelTitle } from "@/components/shared/EntryPoint";
 
 export type Props = {
   readonly title: string;
@@ -44,11 +43,11 @@ export const OrAccordion: React.FC<Props> = React.memo(
     return (
       <>
         <Card>
-          <LabelElement>
-            <Label>
+          <LabelArea>
+            <LabelTitle>
               <AtLabel required={required} title={title} />
-            </Label>
-          </LabelElement>
+            </LabelTitle>
+          </LabelArea>
           {options &&
             options.map((option: Option, index: number) => {
               return (
@@ -78,9 +77,3 @@ export const OrAccordion: React.FC<Props> = React.memo(
     );
   }
 );
-const LabelElement = styled.div`
-  margin-bottom: 14px;
-`;
-const Label = styled.div`
-  margin-bottom: 16px;
-`;

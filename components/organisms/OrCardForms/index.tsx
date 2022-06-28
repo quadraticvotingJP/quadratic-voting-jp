@@ -5,7 +5,7 @@ import { sp, tab } from "@/media";
 // component
 import { AtLabel, AtButton } from "@/components/atoms/EntryPoint";
 import { MoLabelForm } from "@/components/molecules/EntryPoint";
-import { Card } from "@/components/shared/EntryPoint";
+import { Card, LabelArea, LabelTitle } from "@/components/shared/EntryPoint";
 
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
@@ -57,12 +57,12 @@ export const OrCardForms: React.FC<Props> = ({
   return (
     <>
       <Card>
-        <LabelElement>
-          <Label>
+        <LabelArea>
+          <LabelTitle>
             <AtLabel required={label.required} title={label.title} />
-          </Label>
+          </LabelTitle>
           {label.overView && <OverView>{label.overView}</OverView>}
-        </LabelElement>
+        </LabelArea>
         <Section>
           <MoLabelForm
             title={form1.title}
@@ -117,12 +117,6 @@ export const OrCardForms: React.FC<Props> = ({
     </>
   );
 };
-const LabelElement = styled.div`
-  margin-bottom: 14px;
-`;
-const Label = styled.div`
-  margin-bottom: 16px;
-`;
 const OverView = styled.div`
   font-size: ${BASE_CSS.form.pc.overView};
   white-space: pre-wrap;

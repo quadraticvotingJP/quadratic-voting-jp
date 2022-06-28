@@ -5,7 +5,7 @@ import { sp, tab } from "@/media";
 // component
 import { AtLabel } from "@/components/atoms/EntryPoint";
 import { MoProcess } from "@/components/molecules/EntryPoint";
-import { Card } from "@/components/shared/EntryPoint";
+import { Card, LabelArea, LabelTitle } from "@/components/shared/EntryPoint";
 
 export interface Process {
   readonly title: string;
@@ -30,12 +30,12 @@ export const OrCardProcess: React.FC<Props> = ({
 }) => {
   return (
     <Card>
-      <LabelElement>
-        <Label>
+      <LabelArea>
+        <LabelTitle>
           <AtLabel required={false} title={labelTitle} />
-        </Label>
+        </LabelTitle>
         {overView && <OverView>{overView}</OverView>}
-      </LabelElement>
+      </LabelArea>
       <ProcessElement>
         <Participant>
           <ProcessCard>
@@ -59,22 +59,6 @@ export const OrCardProcess: React.FC<Props> = ({
     </Card>
   );
 };
-const LabelElement = styled.div`
-  margin-bottom: ${BASE_CSS.form.pc.labelAreaBottom};
-  ${tab`
-  `}
-  ${sp`
-    margin-bottom: ${BASE_CSS.form.sp.labelAreaBottom};
-  `}
-`;
-const Label = styled.div`
-  margin-bottom: ${BASE_CSS.form.pc.labelTitleBottom};
-  ${tab`
-  `}
-  ${sp`
-    margin-bottom: ${BASE_CSS.form.sp.labelTitleBottom};
-  `}
-`;
 const OverView = styled.div`
   font-size: ${BASE_CSS.form.pc.overView};
   white-space: pre-wrap;

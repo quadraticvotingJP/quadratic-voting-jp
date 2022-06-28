@@ -4,7 +4,7 @@ import { ChartData } from "chart.js";
 // component
 import { MoLabelBar } from "@/components/molecules/EntryPoint";
 import { AtButton } from "@/components/atoms/EntryPoint";
-import { Card } from "@/components/shared/EntryPoint";
+import { Card, JustifyCenter } from "@/components/shared/EntryPoint";
 
 interface Button {
   readonly disabled: boolean;
@@ -45,14 +45,14 @@ export const OrCardBar: React.FC<Props> = ({
             data={data}
           />
         </Bar>
-        <Button>
+        <JustifyCenter>
           <AtButton
             title={button.title}
             disabled={button.disabled}
             onClick={button.onClick}
             accent={true}
           />
-        </Button>
+        </JustifyCenter>
       </Card>
     </>
   );
@@ -60,8 +60,4 @@ export const OrCardBar: React.FC<Props> = ({
 
 const Bar = styled.div`
   margin-bottom: 24px;
-`;
-const Button = styled.div`
-  display: flex;
-  justify-content: center;
 `;

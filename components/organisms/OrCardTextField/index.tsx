@@ -3,7 +3,7 @@ import styled from "styled-components";
 // component
 import { MoLabelTextField } from "@/components/molecules/EntryPoint";
 import { AtButton } from "@/components/atoms/EntryPoint";
-import { Card } from "@/components/shared/EntryPoint";
+import { Card, JustifyCenter } from "@/components/shared/EntryPoint";
 
 export interface Button {
   readonly title: string;
@@ -54,22 +54,18 @@ export const OrCardTextField: React.FC<Props> = ({
             rows={rows}
           />
         </Section>
-        <Button>
+        <JustifyCenter>
           <AtButton
             title={button.title}
             disabled={button.disabled}
             onClick={button.onClick}
             accent={true}
           />
-        </Button>
+        </JustifyCenter>
       </Card>
     </>
   );
 };
 const Section = styled.div`
   margin-bottom: 24px;
-`;
-const Button = styled.div`
-  display: flex;
-  justify-content: center;
 `;

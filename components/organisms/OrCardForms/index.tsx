@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { BASE_CSS } from "@/utils/baseCss";
 import { sp, tab } from "@/media";
 // component
 import { AtLabel, AtButton } from "@/components/atoms/EntryPoint";
@@ -10,6 +9,7 @@ import {
   LabelArea,
   LabelTitle,
   OverView,
+  JustifyCenter,
 } from "@/components/shared/EntryPoint";
 
 // hook
@@ -110,14 +110,14 @@ export const OrCardForms: React.FC<Props> = ({
             labelMark={form3.labelMark}
           />
         </Section>
-        <Button>
+        <JustifyCenter>
           <AtButton
             title={button.title}
             disabled={button.disabled}
             onClick={button.onClick}
             accent={true}
           />
-        </Button>
+        </JustifyCenter>
       </Card>
     </>
   );
@@ -129,8 +129,4 @@ const Section = styled.div`
   ${sp`
     margin-bottom: 14px;
   `}
-`;
-const Button = styled.div`
-  display: flex;
-  justify-content: center;
 `;

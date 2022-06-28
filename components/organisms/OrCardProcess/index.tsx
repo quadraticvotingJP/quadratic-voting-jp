@@ -5,7 +5,12 @@ import { sp, tab } from "@/media";
 // component
 import { AtLabel } from "@/components/atoms/EntryPoint";
 import { MoProcess } from "@/components/molecules/EntryPoint";
-import { Card, LabelArea, LabelTitle } from "@/components/shared/EntryPoint";
+import {
+  Card,
+  LabelArea,
+  LabelTitle,
+  OverView,
+} from "@/components/shared/EntryPoint";
 
 export interface Process {
   readonly title: string;
@@ -59,15 +64,6 @@ export const OrCardProcess: React.FC<Props> = ({
     </Card>
   );
 };
-const OverView = styled.div`
-  font-size: ${BASE_CSS.form.pc.overView};
-  white-space: pre-wrap;
-  ${tab`
-  `}
-  ${sp`
-    font-size: ${BASE_CSS.form.sp.overView};
-  `}
-`;
 const ProcessElement = styled.div`
   display: flex;
   justify-content: center;

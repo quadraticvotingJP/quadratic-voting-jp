@@ -5,7 +5,12 @@ import { sp, tab } from "@/media";
 // component
 import { AtLabel, AtButton } from "@/components/atoms/EntryPoint";
 import { MoLabelForm } from "@/components/molecules/EntryPoint";
-import { Card, LabelArea, LabelTitle } from "@/components/shared/EntryPoint";
+import {
+  Card,
+  LabelArea,
+  LabelTitle,
+  OverView,
+} from "@/components/shared/EntryPoint";
 
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
@@ -117,15 +122,6 @@ export const OrCardForms: React.FC<Props> = ({
     </>
   );
 };
-const OverView = styled.div`
-  font-size: ${BASE_CSS.form.pc.overView};
-  white-space: pre-wrap;
-  ${tab`
-  `}
-  ${sp`
-    font-size: ${BASE_CSS.form.sp.overView};
-  `}
-`;
 const Section = styled.div`
   margin-bottom: 24px;
   ${tab`

@@ -1,14 +1,15 @@
 import React from "react";
-import { BASE_CSS } from "@/utils/baseCss";
-import { sp, tab } from "@/media";
-import styled from "styled-components";
 // component
 import {
   AtLabel,
   AtNoMarkLabel,
   AtTextField,
 } from "@/components/atoms/EntryPoint";
-import { LabelArea, LabelTitle } from "@/components/shared/EntryPoint";
+import {
+  LabelArea,
+  LabelTitle,
+  OverView,
+} from "@/components/shared/EntryPoint";
 
 export type Props = {
   // label
@@ -57,12 +58,3 @@ export const MoLabelTextField: React.FC<Props> = ({
     </>
   );
 };
-const OverView = styled.div`
-  font-size: ${BASE_CSS.form.pc.overView};
-  white-space: pre-wrap;
-  ${tab`
-  `}
-  ${sp`
-    font-size: ${BASE_CSS.form.sp.overView};
-  `}
-`;

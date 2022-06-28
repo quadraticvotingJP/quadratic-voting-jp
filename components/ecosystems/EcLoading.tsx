@@ -14,7 +14,6 @@ const EcLoading: React.FC = () => {
           color={`${BASE_CSS.color.base}`}
           width={100}
           height={100}
-          className="mx-auto"
         />
         <Text>Loading...</Text>
       </div>

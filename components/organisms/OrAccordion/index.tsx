@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { BASE_CSS } from "@/utils/baseCss";
+import { UseFormRegisterReturn } from "react-hook-form";
 // component
 import { MoForm, MoAccordion } from "@/components/molecules/EntryPoint";
 import { AtLabel } from "@/components/atoms/EntryPoint";
-import { UseFormRegisterReturn } from "react-hook-form";
+import { Card } from "@/components/shared/EntryPoint";
 
 export type Props = {
   readonly title: string;
@@ -78,14 +78,6 @@ export const OrAccordion: React.FC<Props> = React.memo(
     );
   }
 );
-
-const Card = styled.div`
-  padding: 24px;
-  background-color: ${BASE_CSS.color.white};
-  border-radius: 0.75rem;
-  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-`;
 const LabelElement = styled.div`
   margin-bottom: 14px;
 `;

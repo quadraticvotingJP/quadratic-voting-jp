@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { BASE_CSS } from "@/utils/baseCss";
 import { ChartData } from "chart.js";
 // component
 import { MoLabelBar } from "@/components/molecules/EntryPoint";
 import { AtButton } from "@/components/atoms/EntryPoint";
+import { Card } from "@/components/shared/EntryPoint";
 
 interface Button {
   readonly disabled: boolean;
@@ -57,14 +57,6 @@ export const OrCardBar: React.FC<Props> = ({
     </>
   );
 };
-
-const Card = styled.div`
-  padding: 24px;
-  background-color: ${BASE_CSS.color.white};
-  border-radius: 0.75rem;
-  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-`;
 
 const Bar = styled.div`
   margin-bottom: 24px;

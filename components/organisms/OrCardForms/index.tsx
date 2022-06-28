@@ -5,6 +5,7 @@ import { sp, tab } from "@/media";
 // component
 import { AtLabel, AtButton } from "@/components/atoms/EntryPoint";
 import { MoLabelForm } from "@/components/molecules/EntryPoint";
+import { Card } from "@/components/shared/EntryPoint";
 
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
@@ -116,14 +117,6 @@ export const OrCardForms: React.FC<Props> = ({
     </>
   );
 };
-
-const Card = styled.div`
-  padding: 24px;
-  background-color: ${BASE_CSS.color.white};
-  border-radius: 0.75rem;
-  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-`;
 const LabelElement = styled.div`
   margin-bottom: 14px;
 `;

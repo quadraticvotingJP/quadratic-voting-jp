@@ -5,6 +5,12 @@ import { sp, tab } from "@/media";
 // component
 import { AtLabel } from "@/components/atoms/EntryPoint";
 import { MoProcess } from "@/components/molecules/EntryPoint";
+import {
+  Card,
+  LabelArea,
+  LabelTitle,
+  OverView,
+} from "@/components/shared/EntryPoint";
 
 export interface Process {
   readonly title: string;
@@ -29,12 +35,12 @@ export const OrCardProcess: React.FC<Props> = ({
 }) => {
   return (
     <Card>
-      <LabelElement>
-        <Label>
+      <LabelArea>
+        <LabelTitle>
           <AtLabel required={false} title={labelTitle} />
-        </Label>
+        </LabelTitle>
         {overView && <OverView>{overView}</OverView>}
-      </LabelElement>
+      </LabelArea>
       <ProcessElement>
         <Participant>
           <ProcessCard>
@@ -58,39 +64,6 @@ export const OrCardProcess: React.FC<Props> = ({
     </Card>
   );
 };
-
-const Card = styled.div`
-  padding: 24px;
-  background-color: ${BASE_CSS.color.white};
-  border-radius: 0.75rem;
-  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-`;
-const LabelElement = styled.div`
-  margin-bottom: ${BASE_CSS.form.pc.labelAreaBottom};
-  ${tab`
-  `}
-  ${sp`
-    margin-bottom: ${BASE_CSS.form.sp.labelAreaBottom};
-  `}
-`;
-const Label = styled.div`
-  margin-bottom: ${BASE_CSS.form.pc.labelTitleBottom};
-  ${tab`
-  `}
-  ${sp`
-    margin-bottom: ${BASE_CSS.form.sp.labelTitleBottom};
-  `}
-`;
-const OverView = styled.div`
-  font-size: ${BASE_CSS.form.pc.overView};
-  white-space: pre-wrap;
-  ${tab`
-  `}
-  ${sp`
-    font-size: ${BASE_CSS.form.sp.overView};
-  `}
-`;
 const ProcessElement = styled.div`
   display: flex;
   justify-content: center;

@@ -1,13 +1,15 @@
 import React from "react";
-import { BASE_CSS } from "@/utils/baseCss";
-import { sp, tab } from "@/media";
 // component
 import {
   AtLabel,
   AtNoMarkLabel,
   AtTextField,
 } from "@/components/atoms/EntryPoint";
-import styled from "styled-components";
+import {
+  LabelArea,
+  LabelTitle,
+  OverView,
+} from "@/components/shared/EntryPoint";
 
 export type Props = {
   // label
@@ -37,16 +39,16 @@ export const MoLabelTextField: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <LabelElement>
-        <Label>
+      <LabelArea>
+        <LabelTitle>
           {labelMark ? (
             <AtLabel required={required} title={title} />
           ) : (
             <AtNoMarkLabel required={required} title={title} />
           )}
-        </Label>
+        </LabelTitle>
         {overView && <OverView>{overView}</OverView>}
-      </LabelElement>
+      </LabelArea>
       <AtTextField
         id={id}
         name={name}
@@ -56,29 +58,3 @@ export const MoLabelTextField: React.FC<Props> = ({
     </>
   );
 };
-
-const LabelElement = styled.div`
-  margin-bottom: ${BASE_CSS.form.pc.labelAreaBottom};
-  ${tab`
-  `}
-  ${sp`
-    margin-bottom: ${BASE_CSS.form.sp.labelAreaBottom};
-  `}
-`;
-const Label = styled.div`
-  margin-bottom: ${BASE_CSS.form.pc.labelTitleBottom};
-  ${tab`
-  `}
-  ${sp`
-    margin-bottom: ${BASE_CSS.form.sp.labelTitleBottom};
-  `}
-`;
-const OverView = styled.div`
-  font-size: ${BASE_CSS.form.pc.overView};
-  white-space: pre-wrap;
-  ${tab`
-  `}
-  ${sp`
-    font-size: ${BASE_CSS.form.sp.overView};
-  `}
-`;

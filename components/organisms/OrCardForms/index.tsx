@@ -1,10 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { BASE_CSS } from "@/utils/baseCss";
 import { sp, tab } from "@/media";
 // component
 import { AtLabel, AtButton } from "@/components/atoms/EntryPoint";
 import { MoLabelForm } from "@/components/molecules/EntryPoint";
+import {
+  Card,
+  LabelArea,
+  LabelTitle,
+  OverView,
+  JustifyCenter,
+} from "@/components/shared/EntryPoint";
 
 // hook
 import { UseFormRegisterReturn } from "react-hook-form";
@@ -56,12 +62,12 @@ export const OrCardForms: React.FC<Props> = ({
   return (
     <>
       <Card>
-        <LabelElement>
-          <Label>
+        <LabelArea>
+          <LabelTitle>
             <AtLabel required={label.required} title={label.title} />
-          </Label>
+          </LabelTitle>
           {label.overView && <OverView>{label.overView}</OverView>}
-        </LabelElement>
+        </LabelArea>
         <Section>
           <MoLabelForm
             title={form1.title}
@@ -104,41 +110,18 @@ export const OrCardForms: React.FC<Props> = ({
             labelMark={form3.labelMark}
           />
         </Section>
-        <Button>
+        <JustifyCenter>
           <AtButton
             title={button.title}
             disabled={button.disabled}
             onClick={button.onClick}
             accent={true}
           />
-        </Button>
+        </JustifyCenter>
       </Card>
     </>
   );
 };
-
-const Card = styled.div`
-  padding: 24px;
-  background-color: ${BASE_CSS.color.white};
-  border-radius: 0.75rem;
-  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
-    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-`;
-const LabelElement = styled.div`
-  margin-bottom: 14px;
-`;
-const Label = styled.div`
-  margin-bottom: 16px;
-`;
-const OverView = styled.div`
-  font-size: ${BASE_CSS.form.pc.overView};
-  white-space: pre-wrap;
-  ${tab`
-  `}
-  ${sp`
-    font-size: ${BASE_CSS.form.sp.overView};
-  `}
-`;
 const Section = styled.div`
   margin-bottom: 24px;
   ${tab`
@@ -146,8 +129,4 @@ const Section = styled.div`
   ${sp`
     margin-bottom: 14px;
   `}
-`;
-const Button = styled.div`
-  display: flex;
-  justify-content: center;
 `;

@@ -1,11 +1,12 @@
 import React from "react";
 import { ChartData } from "chart.js";
-import { BASE_CSS } from "@/utils/baseCss";
-import { sp, tab } from "@/media";
 // component
 import { AtLabel, AtBar } from "@/components/atoms/EntryPoint";
-// styled components
-import styled from "styled-components";
+import {
+  LabelArea,
+  LabelTitle,
+  OverView,
+} from "@/components/shared/EntryPoint";
 
 export type Props = {
   // label
@@ -27,39 +28,13 @@ export const MoLabelBar: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <LabelElement>
-        <Label>
+      <LabelArea>
+        <LabelTitle>
           <AtLabel required={required} title={title} />
-        </Label>
+        </LabelTitle>
         {overView && <OverView>{overView}</OverView>}
-      </LabelElement>
+      </LabelArea>
       <AtBar data={data} />
     </>
   );
 };
-
-const LabelElement = styled.div`
-  margin-bottom: ${BASE_CSS.form.pc.labelAreaBottom};
-  ${tab`
-  `}
-  ${sp`
-    margin-bottom: ${BASE_CSS.form.sp.labelAreaBottom};
-  `}
-`;
-const Label = styled.div`
-  margin-bottom: ${BASE_CSS.form.pc.labelTitleBottom};
-  ${tab`
-  `}
-  ${sp`
-    margin-bottom: ${BASE_CSS.form.sp.labelTitleBottom};
-  `}
-`;
-const OverView = styled.div`
-  font-size: ${BASE_CSS.form.pc.overView};
-  white-space: pre-wrap;
-  ${tab`
-  `}
-  ${sp`
-    font-size: ${BASE_CSS.form.sp.overView};
-  `}
-`;

@@ -1,7 +1,8 @@
 import React, { ComponentPropsWithoutRef } from "react";
-import styled, { css } from "styled-components";
+import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 import { sp, tab } from "@/media";
 import { BASE_CSS } from "@/utils/baseCss";
+import { CSSObject } from "styled-components";
 
 export type Props = {
   readonly title: string;
@@ -18,6 +19,10 @@ interface StyledBaseButtonProps {
 export const AtButton: React.FC<Props> = React.memo((props) => (
   <BaseButton {...props}>{props.title}</BaseButton>
 ));
+
+const csssssss: CSSObject = {
+  backgroundColor: BASE_CSS.color.black,
+};
 
 const BaseButton = styled.button<StyledBaseButtonProps>`
   font-size: 1rem;
@@ -56,9 +61,9 @@ const MainButton = css`
     color: ${BASE_CSS.color.white};
   }
 `;
-const AccentButton = css`
+const AccentButton: FlattenSimpleInterpolation = css`
   padding: 1rem 3rem;
-  background-color: rgb(0 33 52);
+  ${csssssss}
   border: unset;
   color: ${BASE_CSS.color.white};
   width: auto;

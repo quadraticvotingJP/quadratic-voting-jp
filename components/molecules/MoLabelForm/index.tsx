@@ -28,6 +28,7 @@ export type Props = {
   readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
+  readonly min?: string;
   readonly error?: any;
   readonly register?: UseFormRegisterReturn;
   readonly defaultValue?: string;
@@ -58,58 +59,61 @@ export const MoLabelForm: React.FC<Props> = ({
   onClick,
   onWheel,
   labelMark = true,
-}) => {
-  return (
-    <>
-      <LabelArea>
-        <LabelTitle>
-          {labelMark ? (
-            <AtLabel required={required} title={title} />
-          ) : (
-            <AtNoMarkLabel required={required} title={title} />
-          )}
-        </LabelTitle>
-        {overView && <OverView>{overView}</OverView>}
-      </LabelArea>
-      {showSave ? (
-        <>
-          <EditElement>
-            <div>
-              <AtInput
-                defaultValue={defaultValue}
-                register={register}
-                id={id}
-                name={name}
-                type={type}
-                placeholder={placeholder}
-                disabled={disabled}
-                readOnly={readOnly}
-                onWheel={onWheel}
-              />
-              <AtErrorMessage error={error} />
-            </div>
-            <AtIconButton size="small" showSave={showSave} onClick={onClick} />
-          </EditElement>
-        </>
-      ) : (
-        <>
-          <AtInput
-            defaultValue={defaultValue}
-            register={register}
-            id={id}
-            name={name}
-            type={type}
-            placeholder={placeholder}
-            disabled={disabled}
-            readOnly={readOnly}
-            onWheel={onWheel}
-          />
-          <AtErrorMessage error={error} />
-        </>
-      )}
-    </>
-  );
-};
+  min,
+}) => (
+  <>
+    <LabelArea>
+      <LabelTitle>
+        {labelMark ? (
+          <AtLabel required={required} title={title} />
+        ) : (
+          <AtNoMarkLabel required={required} title={title} />
+        )}
+      </LabelTitle>
+      {overView && <OverView>{overView}</OverView>}
+    </LabelArea>
+    {showSave ? (
+      <>
+        {/* ダッシュボードの日付編集 */}
+        <EditElement>
+          <div>
+            <AtInput
+              defaultValue={defaultValue}
+              min={min}
+              register={register}
+              id={id}
+              name={name}
+              type={type}
+              placeholder={placeholder}
+              disabled={disabled}
+              readOnly={readOnly}
+              onWheel={onWheel}
+            />
+            <AtErrorMessage error={error} />
+          </div>
+          <AtIconButton size="small" showSave={showSave} onClick={onClick} />
+        </EditElement>
+      </>
+    ) : (
+      <>
+        <AtInput
+          min={min}
+          defaultValue={defaultValue}
+          register={register}
+          id={id}
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          disabled={disabled}
+          readOnly={readOnly}
+          onWheel={onWheel}
+        />
+        <AtErrorMessage error={error} />
+      </>
+    )}
+  </>
+);
+
 const EditElement = styled.div`
   display: flex;
   justify-content: space-between;

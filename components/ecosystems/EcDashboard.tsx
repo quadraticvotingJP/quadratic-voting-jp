@@ -25,7 +25,6 @@ import { chartData } from "@/architecture/domain/chart";
 import { downloadXlsx } from "@/architecture/application/downloadXlsx";
 import { downloadTxt } from "@/architecture/application/downloadTxt";
 import { putEvent } from "@/architecture/application/putEvent";
-import { getToday } from "@/architecture/application/getToday";
 import { getDashboard } from "@/architecture/application/getDashboard";
 import { dashboardData } from "@/architecture/application/dashboardData";
 
@@ -43,7 +42,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   const { excelFile } = downloadXlsx(); // ダウンロード
   const { textFile } = downloadTxt(); // ダウンロード
   const { updateEvent } = putEvent(); // api
-  const { createDate } = getToday(); // 本日の日付
   const { createAcquiredInformation } = getDashboard(); // api
   const { conversion } = dashboardData(); // dashboardData整形
   const adminUser: boolean = query.secret === dashboard.secretKey; // 閲覧権限

@@ -33,7 +33,7 @@ export function dashboardData() {
     const grafOptions: string[] = options.map((item: Option) => item.title); // [投票数・投票率]選択肢
     let grafEffectiveVotes: number[] = []; // [投票数・投票率]投票数
     let grafPercentCredits: number[] = []; // [投票数・投票率]投票率
-    const grafHeight = grafOptions.length * 30; //　[投票数・投票率]のグラフの高さ
+    const grafHeight = grafOptions.length * 40; //　[投票数・投票率]のグラフの高さ
 
     // 回答が一つでもあるかないか
     if (answer.length !== 0) {

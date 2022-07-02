@@ -11,10 +11,9 @@ const EcLoading: React.FC = () => {
       <div>
         <ReactLoading
           type="spin"
-          color={`${BASE_CSS.color.base}`}
+          color={`${BASE_CSS.color.main}`}
           width={100}
           height={100}
-          className="mx-auto"
         />
         <Text>Loading...</Text>
       </div>

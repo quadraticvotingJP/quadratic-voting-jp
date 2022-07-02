@@ -24,7 +24,7 @@ const Header = styled.div`
   width: 100%; /* ヘッダーの横幅を指定する */
   height: 64px; /* ヘッダーの高さを指定する */
   padding: 10px 20px; /* ヘッダー内側の余白を指定する(上下左右) */
-  background-color: ${BASE_CSS.color.base}; /* ヘッダーの背景色を指定する */
+  background-color: ${BASE_CSS.color.main}; /* ヘッダーの背景色を指定する */
   z-index: 100;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 `;

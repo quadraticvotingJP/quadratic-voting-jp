@@ -27,6 +27,7 @@ import { downloadTxt } from "@/architecture/application/downloadTxt";
 import { putEvent } from "@/architecture/application/putEvent";
 import { getDashboard } from "@/architecture/application/getDashboard";
 import { dashboardData } from "@/architecture/application/dashboardData";
+import { getToday } from "@/architecture/application/getToday";
 
 type PublicationStartDate = "publicationStartDate";
 type PublicationEndDate = "publicationEndDate";
@@ -42,6 +43,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   const { excelFile } = downloadXlsx(); // ダウンロード
   const { textFile } = downloadTxt(); // ダウンロード
   const { updateEvent } = putEvent(); // api
+  const { createDate } = getToday(); // 本日の日付
   const { createAcquiredInformation } = getDashboard(); // api
   const { conversion } = dashboardData(); // dashboardData整形
   const adminUser: boolean = query.secret === dashboard.secretKey; // 閲覧権限
@@ -50,6 +52,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
     useState<boolean>(false); // 編集ボタン制御
   const [isPublicationEndDateEdit, setIsPublicationEndDateEdit] =
     useState<boolean>(false); // 編集ボタン制御
+  const today = createDate(); // 本日の日付
   const {
     register,
     handleSubmit,
@@ -185,6 +188,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       <br />
 
       {isPublicationStartDateEdit ? (
+        // 公開開始日の修正
         <OrCardForm
           showSave
           title={t("common.event.publicationStartDate.title")}
@@ -201,6 +205,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
                 ),
             },
           })}
+          min={today}
           error={errors.publicationStartDate}
           placeholder=""
           disabled={false}
@@ -221,6 +226,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       )}
       <br />
       {isPublicationEndDateEdit ? (
+        // 公開終了日の修正
         <OrCardForm
           showSave
           title={t("common.event.publicationEndDate.title")}
@@ -237,6 +243,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
                 ),
             },
           })}
+          min={today}
           placeholder=""
           disabled={false}
           type="datetime-local"

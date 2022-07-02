@@ -1,3 +1,6 @@
+/**
+ * @description イベント作成画面
+ */
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -44,6 +47,7 @@ const EcCreateForm: React.FC = () => {
     defaultValues: {
       options: [],
       optionsTitle: "",
+      publicationStartDate: today,
     },
   });
 
@@ -117,6 +121,7 @@ const EcCreateForm: React.FC = () => {
     <EcosystemArea>
       <H2>{t("pageTitle.creat")}</H2>
       <form>
+        {/* タイトル */}
         <OrCardForm
           title={t("common.event.eventTitle.title")}
           overView={t("common.event.eventTitle.detail")}
@@ -134,6 +139,7 @@ const EcCreateForm: React.FC = () => {
           error={errors.title}
         />
         <br />
+        {/* 補足 */}
         <OrCardForm
           title={t("common.event.overview.title")}
           overView={t("common.event.overview.detail")}
@@ -151,6 +157,7 @@ const EcCreateForm: React.FC = () => {
           error={errors.overview}
         />
         <br />
+        {/* 公開開始日 */}
         <OrCardForm
           title={t("common.event.publicationStartDate.title")}
           overView={t("common.event.publicationStartDate.detail")}
@@ -165,6 +172,7 @@ const EcCreateForm: React.FC = () => {
                 ),
             },
           })}
+          min={today}
           id="publicationStartDate"
           name="publicationStartDate"
           placeholder={t("common.event.publicationStartDate.title")}
@@ -173,6 +181,7 @@ const EcCreateForm: React.FC = () => {
           error={errors.publicationStartDate}
         />
         <br />
+        {/* 公開終了日 */}
         <OrCardForm
           title={t("common.event.publicationEndDate.title")}
           overView={t("common.event.publicationEndDate.detail")}
@@ -187,6 +196,7 @@ const EcCreateForm: React.FC = () => {
                 ),
             },
           })}
+          min={today}
           id="publicationEndDate"
           name="publicationEndDate"
           placeholder={t("common.event.publicationEndDate.title")}
@@ -195,6 +205,7 @@ const EcCreateForm: React.FC = () => {
           error={errors.publicationEndDate}
         />
         <br />
+        {/* 参加者 */}
         <OrCardForm
           title={t("common.event.participant.title")}
           overView={t("common.event.participant.detail")}
@@ -213,6 +224,7 @@ const EcCreateForm: React.FC = () => {
           onWheel={noScrolling}
         />
         <br />
+        {/* クレジット数 */}
         <OrCardForm
           title={t("common.event.votes.title")}
           overView={t("common.event.votes.detail")}
@@ -231,6 +243,7 @@ const EcCreateForm: React.FC = () => {
           onWheel={noScrolling}
         />
         <br />
+        {/* 選択肢 */}
         {getValues("options").length !== 0 && (
           <OrAccordion
             title={t("common.event.options.title")}
@@ -253,6 +266,7 @@ const EcCreateForm: React.FC = () => {
           />
         )}
         <br />
+        {/* 選択肢作成 */}
         <OrCardForms
           label={{
             required: false,
@@ -308,13 +322,12 @@ const EcCreateForm: React.FC = () => {
           }}
         />
         <br />
-
-        <br />
         <ButtonArea>
           <AtButton
             title={t("common.button.eventCreation")}
             disabled={false}
             accent={true}
+            type="button"
             onClick={() => handleSubmit(onSubmit)()}
           />
         </ButtonArea>

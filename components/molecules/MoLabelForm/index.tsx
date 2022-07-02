@@ -28,6 +28,7 @@ export type Props = {
   readonly type: Readonly<FormType>;
   readonly id: string;
   readonly name: string;
+  readonly min?: string;
   readonly error?: any;
   readonly register?: UseFormRegisterReturn;
   readonly defaultValue?: string;
@@ -58,6 +59,7 @@ export const MoLabelForm: React.FC<Props> = ({
   onClick,
   onWheel,
   labelMark = true,
+  min,
 }) => {
   return (
     <>
@@ -94,6 +96,7 @@ export const MoLabelForm: React.FC<Props> = ({
       ) : (
         <>
           <AtInput
+            min={min}
             defaultValue={defaultValue}
             register={register}
             id={id}

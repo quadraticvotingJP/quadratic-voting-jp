@@ -18,6 +18,7 @@ export type Props = {
   readonly id: string;
   readonly name: string;
   readonly register?: UseFormRegisterReturn;
+  readonly min?: string;
   readonly error?: any;
   readonly defaultValue?: string;
   readonly readOnly?: boolean;
@@ -43,6 +44,7 @@ export const OrCardForm: React.FC<Props> = ({
   readOnly,
   error,
   showSave,
+  min,
   onClick,
   onWheel,
 }) => {
@@ -61,6 +63,7 @@ export const OrCardForm: React.FC<Props> = ({
           placeholder={placeholder}
           disabled={disabled}
           readOnly={readOnly}
+          min={min}
           error={error}
           showSave={showSave}
           onClick={onClick}

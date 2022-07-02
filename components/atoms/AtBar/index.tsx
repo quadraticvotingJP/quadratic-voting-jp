@@ -9,9 +9,10 @@ Chart.register(CategoryScale);
 
 export type Props = {
   readonly data: ChartData<"bar", number[], string>;
+  readonly height: number;
 };
 
 // eslint-disable-next-line react/display-name
-export const AtBar: React.FC<Props> = React.memo(({ data }) => (
-  <Bar data={data} />
+export const AtBar: React.FC<Props> = React.memo(({ data, height }) => (
+  <Bar height={height} data={data} />
 ));

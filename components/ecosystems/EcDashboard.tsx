@@ -8,7 +8,6 @@ import {
   inputDateMinCheck,
 } from "@/utils/validation";
 import styled from "styled-components";
-import { BASE_CSS } from "@/utils/baseCss";
 import { sp, tab } from "@/media";
 // library
 import { ChartData } from "chart.js";
@@ -26,7 +25,6 @@ import { chartData } from "@/architecture/domain/chart";
 import { downloadXlsx } from "@/architecture/application/downloadXlsx";
 import { downloadTxt } from "@/architecture/application/downloadTxt";
 import { putEvent } from "@/architecture/application/putEvent";
-import { getToday } from "@/architecture/application/getToday";
 import { getDashboard } from "@/architecture/application/getDashboard";
 import { dashboardData } from "@/architecture/application/dashboardData";
 
@@ -44,12 +42,10 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   const { excelFile } = downloadXlsx(); // ダウンロード
   const { textFile } = downloadTxt(); // ダウンロード
   const { updateEvent } = putEvent(); // api
-  const { createDate } = getToday(); // 本日の日付
   const { createAcquiredInformation } = getDashboard(); // api
   const { conversion } = dashboardData(); // dashboardData整形
   const adminUser: boolean = query.secret === dashboard.secretKey; // 閲覧権限
   const documentId = query.id;
-  const today = createDate();
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false); // 編集ボタン制御
   const [isPublicationEndDateEdit, setIsPublicationEndDateEdit] =
@@ -65,7 +61,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       publicationEndDate: dashboard.formPublicationEndDate,
     },
   });
-
   const changeEditMode = (
     form: PublicationStartDate | PublicationEndDate,
     type: Edit | Save
@@ -158,6 +153,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       />
       <br />
       <OrCardBar
+        height={dashboard.grafHeight}
         title={t("common.dashboard.effectiveVotesAndPercentCredits.title")}
         overView={t(
           "common.dashboard.effectiveVotesAndPercentCredits.overView"

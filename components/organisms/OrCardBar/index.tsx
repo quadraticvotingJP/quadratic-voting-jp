@@ -19,6 +19,7 @@ export type Props = {
   readonly required: boolean;
   // bar
   readonly data: ChartData<"bar", number[], string>;
+  readonly height: number;
   // button
   readonly button: Button;
 };
@@ -31,6 +32,7 @@ export const OrCardBar: React.FC<Props> = ({
   required,
   // bar
   data,
+  height,
   // button
   button,
 }) => {
@@ -43,6 +45,7 @@ export const OrCardBar: React.FC<Props> = ({
             overView={overView}
             required={required}
             data={data}
+            height={height}
           />
         </Bar>
         <JustifyCenter>

@@ -9,20 +9,18 @@ interface StyledBaseStatusProps {
 
 export type Props = {
   readonly cost: number;
-  readonly style: string;
   readonly denominator: number;
 } & StyledBaseStatusProps;
 
 // eslint-disable-next-line react/display-name
 export const OrProposalBlocks: React.FC<Props> = React.memo(
-  ({ cost, style, denominator, normal = true }) => {
+  ({ cost, denominator, normal = true }) => {
     useEffect(() => {}, [cost]);
     const RESPONSIVE = useScreenSize();
 
     return (
       <ProposalBlocks>
-        <StatusReflection normal={normal}></StatusReflection>
-        <div className={style}>
+        <StatusReflection normal={normal}>
           <Credits>
             {(RESPONSIVE.SIZE_PC || RESPONSIVE.SIZE_TAB) && (
               <>
@@ -40,7 +38,7 @@ export const OrProposalBlocks: React.FC<Props> = React.memo(
             )}
           </Credits>
           <Text>Credits</Text>
-        </div>
+        </StatusReflection>
       </ProposalBlocks>
     );
   }
@@ -68,6 +66,8 @@ const StatusReflection = styled.div<StyledBaseStatusProps>`
   color: white;
   text-align: center;
   border-radius: 0.25rem;
+  font-weight: normal;
+  min-width: 105px;
   ${(props) => props.normal && Normal};
   ${(props) => !props.normal && Abnormal};
 `;
@@ -81,6 +81,7 @@ const Abnormal = css`
 
 const Credits = styled.p`
   margin: 0px;
+  font-size: 16px;
   ${sp`
     display: flex;
     flex-wrap: wrap;

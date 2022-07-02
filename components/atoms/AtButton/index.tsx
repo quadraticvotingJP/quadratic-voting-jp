@@ -2,7 +2,6 @@ import React, { ComponentPropsWithoutRef } from "react";
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 import { sp, tab } from "@/media";
 import { BASE_CSS } from "@/utils/baseCss";
-import { CSSObject } from "styled-components";
 
 export type Props = {
   readonly title: string;
@@ -31,6 +30,9 @@ const BaseButton = styled.button<StyledBaseButtonProps>`
   border-radius: 9999px;
   width: auto;
   -webkit-appearance: button;
+  &:hover {
+    opacity: 0.7;
+  }
   &:disabled {
     border-color: rgb(191 219 254);
     color: rgb(191 219 254);

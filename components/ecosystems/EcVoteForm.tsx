@@ -79,10 +79,8 @@ const EcVoteForm: React.FC<Props> = ({
     return credits < 0;
   }, [credits]);
   // 投票数のカラーを投票数に応じて変化させる
-  const creditsColor: string = useMemo(() => {
-    return credits >= 0
-      ? "bg-blue-900 py-6 px-6 text-white text-center rounded"
-      : "bg-red-900 py-6 px-6 text-white text-center rounded";
+  const creditsColor: boolean = useMemo(() => {
+    return credits >= 0 ? true : false;
   }, [credits]);
   // オブジェクトの値刷新
   const setNewVoteOptions = (
@@ -199,8 +197,8 @@ const EcVoteForm: React.FC<Props> = ({
         </FlexAuto>
         <ProposalBlocksArea>
           <OrProposalBlocks
-            style={creditsColor}
             cost={credits}
+            normal={creditsColor}
             denominator={conversionVoteData.votes}
           />
         </ProposalBlocksArea>

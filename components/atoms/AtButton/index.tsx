@@ -1,7 +1,8 @@
 import React, { ComponentPropsWithoutRef } from "react";
-import styled, { css } from "styled-components";
+import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 import { sp, tab } from "@/media";
 import { BASE_CSS } from "@/utils/baseCss";
+import { CSSObject } from "styled-components";
 
 export type Props = {
   readonly title: string;
@@ -23,10 +24,8 @@ const BaseButton = styled.button<StyledBaseButtonProps>`
   font-size: 1rem;
   line-height: 1.5rem;
   padding: 0.8rem 3rem;
-  --tw-border-opacity: 1;
-  --tw-bg-opacity: 1;
-  --tw-text-opacity: 1;
-  border-color: rgb(47 155 255);
+  border-color: ${BASE_CSS.color.main};
+  background-color: ${BASE_CSS.color.base};
   color: rgb(47 155 255);
   border-width: 2px;
   border-radius: 9999px;
@@ -47,20 +46,20 @@ const BaseButton = styled.button<StyledBaseButtonProps>`
   `}
 `;
 const MainButton = css`
-  background-color: rgb(47 155 255);
+  background-color: ${BASE_CSS.color.main};
   color: rgb(255 255 255);
   &:disabled {
     background-color: rgb(191 219 254);
     border-color: rgb(191 219 254);
     opacity: 1;
-    color: ${BASE_CSS.color.white};
+    color: ${BASE_CSS.color.base};
   }
 `;
-const AccentButton = css`
+const AccentButton: FlattenSimpleInterpolation = css`
   padding: 1rem 3rem;
-  background-color: rgb(0 33 52);
   border: unset;
-  color: ${BASE_CSS.color.white};
+  background-color: ${BASE_CSS.color.accent};
+  color: ${BASE_CSS.color.base};
   width: auto;
   min-width: 200px;
   &:hover {
@@ -68,7 +67,7 @@ const AccentButton = css`
   }
   &:disabled {
     background-color: rgb(203 213 225);
-    color: ${BASE_CSS.color.white};
+    color: ${BASE_CSS.color.base};
     opacity: 1;
   }
   ${tab`

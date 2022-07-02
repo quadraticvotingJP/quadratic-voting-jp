@@ -1,44 +1,45 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import React, { ComponentPropsWithoutRef, useEffect } from "react";
+import styled, { css } from "styled-components";
 import { sp, tab } from "@/media";
 import { useScreenSize } from "@/architecture/hooks/ screenSize";
 
-export interface Props {
-  readonly cost: number;
-  readonly style: string;
-  readonly denominator: number;
+interface StyledBaseStatusProps {
+  normal?: boolean;
 }
+
+export type Props = {
+  readonly cost: number;
+  readonly denominator: number;
+} & StyledBaseStatusProps;
 
 // eslint-disable-next-line react/display-name
 export const OrProposalBlocks: React.FC<Props> = React.memo(
-  ({ cost, style, denominator }) => {
+  ({ cost, denominator, normal = true }) => {
     useEffect(() => {}, [cost]);
     const RESPONSIVE = useScreenSize();
 
     return (
-      <>
-        <ProposalBlocks>
-          <div className={style}>
-            <Credits>
-              {(RESPONSIVE.SIZE_PC || RESPONSIVE.SIZE_TAB) && (
-                <>
-                  <span>{cost}</span>
-                  <span>/</span>
-                  <span>{denominator}</span>
-                </>
-              )}
-              {RESPONSIVE.SIZE_SP && (
-                <>
-                  <span>{cost}</span>
-                  <span>-</span>
-                  <span>{denominator}</span>
-                </>
-              )}
-            </Credits>
-            <Text>Credits</Text>
-          </div>
-        </ProposalBlocks>
-      </>
+      <ProposalBlocks>
+        <StatusReflection normal={normal}>
+          <Credits>
+            {(RESPONSIVE.SIZE_PC || RESPONSIVE.SIZE_TAB) && (
+              <>
+                <span>{cost}</span>
+                <span>/</span>
+                <span>{denominator}</span>
+              </>
+            )}
+            {RESPONSIVE.SIZE_SP && (
+              <>
+                <span>{cost}</span>
+                <span>-</span>
+                <span>{denominator}</span>
+              </>
+            )}
+          </Credits>
+          <Text>Credits</Text>
+        </StatusReflection>
+      </ProposalBlocks>
     );
   }
 );
@@ -59,8 +60,28 @@ const ProposalBlocks = styled.div`
     }
   `}
 `;
+
+const StatusReflection = styled.div<StyledBaseStatusProps>`
+  padding: 1.5rem;
+  color: white;
+  text-align: center;
+  border-radius: 0.25rem;
+  font-weight: normal;
+  min-width: 105px;
+  ${(props) => props.normal && Normal};
+  ${(props) => !props.normal && Abnormal};
+`;
+
+const Normal = css`
+  background-color: rgb(47 155 255);
+`;
+const Abnormal = css`
+  background-color: rgb(250 14 14);
+`;
+
 const Credits = styled.p`
   margin: 0px;
+  font-size: 16px;
   ${sp`
     display: flex;
     flex-wrap: wrap;

@@ -23,11 +23,11 @@ const TextAreaElement = styled.textarea<CssProps>`
   ${(props) => props.voteLink && voteLink}
   &:focus {
     outline: none;
-    border: 2px solid ${BASE_CSS.color.base};
+    border: 2px solid ${BASE_CSS.color.main};
   }
   &:hover {
     outline: none;
-    border: 2px solid ${BASE_CSS.color.base};
+    border: 2px solid ${BASE_CSS.color.main};
   }
 `;
 const voteCredits = css`

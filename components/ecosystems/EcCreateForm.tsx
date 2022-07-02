@@ -231,25 +231,27 @@ const EcCreateForm: React.FC = () => {
           onWheel={noScrolling}
         />
         <br />
-        <OrAccordion
-          title={t("common.event.options.title")}
-          required={true}
-          options={getValues("options")}
-          register={register("options", {
-            validate: {
-              value: () => optionCheck(getValues("options")),
-            },
-          })}
-          id={"options"}
-          name={"options"}
-          type={"hidden"}
-          placeholder={""}
-          disabled={isEdit}
-          readOnly={true}
-          error={errors.options}
-          onClickDelete={(index: number) => onClickDelete(index)}
-          onClickEdit={(index: number) => onClickEdit(index)}
-        />
+        {getValues("options").length !== 0 && (
+          <OrAccordion
+            title={t("common.event.options.title")}
+            required={true}
+            options={getValues("options")}
+            register={register("options", {
+              validate: {
+                value: () => optionCheck(getValues("options")),
+              },
+            })}
+            id={"options"}
+            name={"options"}
+            type={"hidden"}
+            placeholder={""}
+            disabled={isEdit}
+            readOnly={true}
+            error={errors.options}
+            onClickDelete={(index: number) => onClickDelete(index)}
+            onClickEdit={(index: number) => onClickEdit(index)}
+          />
+        )}
         <br />
         <OrCardForms
           label={{
@@ -305,6 +307,8 @@ const EcCreateForm: React.FC = () => {
             onClick: setOptions,
           }}
         />
+        <br />
+
         <br />
         <ButtonArea>
           <AtButton

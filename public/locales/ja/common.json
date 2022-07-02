@@ -111,8 +111,8 @@
         "placeholder": "定期旅行の行き先決め"
       },
       "overview": {
-        "title": "概要",
-        "detail": "アンケートの概要を240文字以内で入力してください。",
+        "title": "補足",
+        "detail": "アンケートの補足を240文字以内で入力してください。",
         "placeholder": "QuadraticVoting.jpを利用し、次回の旅行先を決めます。"
       },
       "publicationStartDate": {
@@ -146,7 +146,7 @@
         "formDetail": "選択肢を追加してください。\n最低2件必要です。",
         "optionTitle": "タイトル",
         "titlePlaceholder": "尾瀬ヶ原",
-        "optionDetail": "概要",
+        "optionDetail": "補足",
         "detailPlaceholder": "福島・群馬・新潟３県境の尾瀬地域にある日本最大の湿原。",
         "optionLink": "リンク",
         "linkPlaceholder": "https://www.oze-fnd.or.jp/"

@@ -248,6 +248,8 @@ const SectionFirstView = styled.section<{ image: string }>`
   background-image: url(${(props) => props.image});
   background-size: 100% 100%;
   object-fit: cover;
+  background-position: center;
+  background-size: cover;
   ${tab`
     padding: 100px 60px 100px 60px;
   `}

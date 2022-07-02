@@ -30,7 +30,7 @@ const LabelElement = styled.div`
   height: 32px;
 `;
 const LabelMark = styled.div`
-  background-color: ${BASE_CSS.color.base};
+  background-color: ${BASE_CSS.color.main};
   width: 6px;
   margin-right: 8px;
 `;

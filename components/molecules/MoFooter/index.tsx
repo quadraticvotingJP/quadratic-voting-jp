@@ -37,7 +37,7 @@ const Footer = styled.footer`
   position: absolute; /* ContainerComponentのposition: relativeを参照 */
   bottom: 0;
   width: 100%;
-  background-color: ${BASE_CSS.color.base};
+  background-color: ${BASE_CSS.color.main};
   margin: 0px;
   padding: 30px;
 `;

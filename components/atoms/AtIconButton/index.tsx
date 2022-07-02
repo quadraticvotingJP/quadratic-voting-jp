@@ -51,7 +51,7 @@ const EditIconButton = styled(SharedButton)`
   min-width: 32px;
   height: 32px;
   &:hover {
-    background-color: ${BASE_CSS.color.base};
+    background-color: ${BASE_CSS.color.main};
     color: ${BASE_CSS.color.white};
   }
   &:disabled {
@@ -75,7 +75,7 @@ const SaveIconButton = styled(SharedButton)`
   min-width: 32px;
   height: 32px;
   &:hover {
-    background-color: ${BASE_CSS.color.base};
+    background-color: ${BASE_CSS.color.main};
     color: ${BASE_CSS.color.white};
   }
   &:disabled {

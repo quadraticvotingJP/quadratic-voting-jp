@@ -142,7 +142,7 @@ const EcVoteForm: React.FC<Props> = ({
     <>
       <FlexElement>
         <FlexAuto>
-          <H2>{t("pageTitle.creat")}</H2>
+          <H2>{t("pageTitle.vote")}</H2>
           <br />
           <OrCardText
             title={t("common.event.eventTitle.title")}

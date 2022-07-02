@@ -28,48 +28,50 @@ export type Props = {
 };
 
 // eslint-disable-next-line react/display-name
-export const OrCardForm: React.FC<Props> = ({
-  // label
-  title,
-  required,
-  overView,
-  // form
-  register,
-  id,
-  name,
-  placeholder,
-  disabled,
-  defaultValue,
-  type,
-  readOnly,
-  error,
-  showSave,
-  min,
-  onClick,
-  onWheel,
-}) => {
-  return (
-    <>
-      <Card>
-        <MoLabelForm
-          title={title}
-          required={required}
-          overView={overView}
-          register={register}
-          defaultValue={defaultValue}
-          id={id}
-          name={name}
-          type={type}
-          placeholder={placeholder}
-          disabled={disabled}
-          readOnly={readOnly}
-          min={min}
-          error={error}
-          showSave={showSave}
-          onClick={onClick}
-          onWheel={onWheel}
-        />
-      </Card>
-    </>
-  );
-};
+export const OrCardForm: React.FC<Props> = React.memo(
+  ({
+    // label
+    title,
+    required,
+    overView,
+    // form
+    register,
+    id,
+    name,
+    placeholder,
+    disabled,
+    defaultValue,
+    type,
+    readOnly,
+    error,
+    showSave,
+    min,
+    onClick,
+    onWheel,
+  }) => {
+    return (
+      <>
+        <Card>
+          <MoLabelForm
+            title={title}
+            required={required}
+            overView={overView}
+            register={register}
+            defaultValue={defaultValue}
+            id={id}
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            disabled={disabled}
+            readOnly={readOnly}
+            min={min}
+            error={error}
+            showSave={showSave}
+            onClick={onClick}
+            onWheel={onWheel}
+          />
+        </Card>
+      </>
+    );
+  }
+);

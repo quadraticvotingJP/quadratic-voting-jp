@@ -37,8 +37,8 @@ interface Props {
   dashboard: Dashboard;
   query: { id: string; secret: string };
 }
-
-const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
+// eslint-disable-next-line react/display-name
+const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
   const { t } = useTranslation("common");
   const { excelFile } = downloadXlsx(); // ダウンロード
   const { textFile } = downloadTxt(); // ダウンロード
@@ -307,7 +307,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       )}
     </EcosystemArea>
   );
-};
+});
 export default EcDashboard;
 
 const H2 = styled.h2`

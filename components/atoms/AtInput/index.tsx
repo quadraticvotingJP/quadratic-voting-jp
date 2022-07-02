@@ -11,9 +11,12 @@ const InputElement = styled.input`
   border-bottom: 2px #e3e8ef solid;
   font-size: ${BASE_CSS.form.pc.formFontSize};
   padding: 0px 0px 0px 4px;
+  box-sizing: border-box;
+  border: 0 solid #e5e7eb;
+  border-bottom: 2px solid ${BASE_CSS.color.gray};
   &:focus {
     outline: none;
-    border-bottom: 2px solid ${BASE_CSS.color.base};
+    border-bottom: 2px solid ${BASE_CSS.color.main};
   }
   ${tab`
   `}

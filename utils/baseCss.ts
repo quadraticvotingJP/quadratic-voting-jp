@@ -1,11 +1,14 @@
 export const BASE_CSS = {
   color: {
-    base: "#2f9bff",
+    base: "#f6f6f6",
+    main: "#2f9bff",
+    accent: "#002134",
     danger: "#fa0e0e",
     disabled: "#696969",
     white: "white",
     black: "#000000",
     red: "#e60033",
+    gray: "#e3e8ef",
   },
   text: {
     label: {

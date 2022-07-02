@@ -8,7 +8,6 @@ import {
   inputDateMinCheck,
 } from "@/utils/validation";
 import styled from "styled-components";
-import { BASE_CSS } from "@/utils/baseCss";
 import { sp, tab } from "@/media";
 // library
 import { ChartData } from "chart.js";
@@ -49,7 +48,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   const { conversion } = dashboardData(); // dashboardData整形
   const adminUser: boolean = query.secret === dashboard.secretKey; // 閲覧権限
   const documentId = query.id;
-  const today = createDate();
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false); // 編集ボタン制御
   const [isPublicationEndDateEdit, setIsPublicationEndDateEdit] =
@@ -65,7 +63,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       publicationEndDate: dashboard.formPublicationEndDate,
     },
   });
-
   const changeEditMode = (
     form: PublicationStartDate | PublicationEndDate,
     type: Edit | Save
@@ -158,6 +155,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       />
       <br />
       <OrCardBar
+        height={dashboard.grafHeight}
         title={t("common.dashboard.effectiveVotesAndPercentCredits.title")}
         overView={t(
           "common.dashboard.effectiveVotesAndPercentCredits.overView"

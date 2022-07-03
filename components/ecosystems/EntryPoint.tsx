@@ -8,3 +8,4 @@ export { default as EcInvalidLink } from "@/components/ecosystems/EcInvalidLink"
 export { default as EcLoading } from "@/components/ecosystems/EcLoading";
 export { default as EcPrivacyPolicy } from "@/components/ecosystems/EcPrivacyPolicy";
 export { default as EcTermsOfService } from "@/components/ecosystems/EcTermsOfService";
+export { default as EcTimeReflection } from "@/components/ecosystems/EcTimeReflection";

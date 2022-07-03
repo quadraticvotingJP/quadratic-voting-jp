@@ -6,13 +6,20 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // component
-import { EcVoteForm, EcInvalidLink } from "@/components/ecosystems/EntryPoint";
+import {
+  EcVoteForm,
+  EcInvalidLink,
+  EcTimeReflection,
+} from "@/components/ecosystems/EntryPoint";
 
 //application
 import { getAnswerData } from "@/architecture/application/getAnswer";
 import { getEventData } from "@/architecture/application/getEvent";
 import { eventDateAuthorize } from "@/architecture/application/getToday";
 import { voteData } from "@/architecture/application/voteData";
+
+const { beforePublicationStartDate, afterPublicationEndDate, getNowToTime } =
+  eventDateAuthorize(); // 日にちチェック
 
 /**
  * getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
@@ -36,10 +43,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const documentId: string | undefined = query.id;
   const userId: string | undefined = query.user;
 
+  const now = getNowToTime();
+
   // QueryにドキュメントIDが存在しない場合
   if (!documentId) {
     return {
       props: {
+        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -51,6 +61,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (event === undefined) {
     return {
       props: {
+        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -60,6 +71,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         documentId,
+        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -72,6 +84,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         documentId,
+        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -89,6 +102,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       query,
       isAnswer: false,
       isDate: false,
+      now,
       ...(await serverSideTranslations(context.locale!, ["common"])),
     },
   };
@@ -101,14 +115,15 @@ const Id = ({
   isAnswer = true,
   cantVote = false,
   isDate = true,
+  now,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { beforePublicationStartDate, afterPublicationEndDate } =
-    eventDateAuthorize(); // 日にちチェック
   const dateBefore: boolean = beforePublicationStartDate(
-    conversionVoteData?.publicationStartDate
+    conversionVoteData?.publicationStartDate,
+    now
   ); // 開始前か確認
   const dateAfter: boolean = afterPublicationEndDate(
-    conversionVoteData?.publicationEndDate
+    conversionVoteData?.publicationEndDate,
+    now
   ); // 終了後か確認
 
   if (!documentId === null || isAnswer || cantVote || query === null) {
@@ -116,7 +131,15 @@ const Id = ({
   }
   // 開始日と終了日内か確認
   if (!isDate) {
-    if (dateBefore || dateAfter) {
+    if (dateBefore) {
+      return (
+        <EcTimeReflection
+          time={conversionVoteData.publicationStartDate}
+          now={now}
+        />
+      );
+    }
+    if (dateAfter) {
       return <EcInvalidLink />;
     }
   }

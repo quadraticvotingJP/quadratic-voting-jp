@@ -179,6 +179,11 @@
         "detail": "参加人数分の投票者リンクです。"
       }
     },
+    "vote": {
+      "message": {
+        "beforeDate": "開始まで"
+      }
+    },
     "validation": {
       "message": {
         "40": "40文字以上にしてください"

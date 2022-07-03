@@ -45,9 +45,17 @@ http://localhost:4000
 
 [vercel](https://vercel.com/)
 
+### Component
+
+[storybook](https://storybook.js.org/)
+
 ### css
 
-[tailwind](https://tailwindcss.jp/)
+[styled-components](https://styled-components.com/)
+
+### Test
+- [jestjs](https://jestjs.io/ja/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 
 ### パッケージ管理
 

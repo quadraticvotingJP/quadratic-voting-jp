@@ -350,14 +350,6 @@ const H2 = styled.h2`
 `;
 const EcosystemArea = styled.div`
   margin-top: 4rem;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
-  ${tab`
-  `}
-  ${sp`
-    margin-left: 1rem;
-    margin-right: 1rem;
-  `}
 `;
 const ButtonArea = styled.div`
   display: flex;

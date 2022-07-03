@@ -8,7 +8,6 @@ import {
   inputDateMinCheck,
 } from "@/utils/validation";
 import styled from "styled-components";
-import { BASE_CSS } from "@/utils/baseCss";
 import { sp, tab } from "@/media";
 // library
 import { ChartData } from "chart.js";
@@ -26,9 +25,9 @@ import { chartData } from "@/architecture/domain/chart";
 import { downloadXlsx } from "@/architecture/application/downloadXlsx";
 import { downloadTxt } from "@/architecture/application/downloadTxt";
 import { putEvent } from "@/architecture/application/putEvent";
-import { getToday } from "@/architecture/application/getToday";
 import { getDashboard } from "@/architecture/application/getDashboard";
 import { dashboardData } from "@/architecture/application/dashboardData";
+import { getToday } from "@/architecture/application/getToday";
 
 type PublicationStartDate = "publicationStartDate";
 type PublicationEndDate = "publicationEndDate";
@@ -38,8 +37,8 @@ interface Props {
   dashboard: Dashboard;
   query: { id: string; secret: string };
 }
-
-const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
+// eslint-disable-next-line react/display-name
+const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
   const { t } = useTranslation("common");
   const { excelFile } = downloadXlsx(); // ダウンロード
   const { textFile } = downloadTxt(); // ダウンロード
@@ -49,11 +48,11 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
   const { conversion } = dashboardData(); // dashboardData整形
   const adminUser: boolean = query.secret === dashboard.secretKey; // 閲覧権限
   const documentId = query.id;
-  const today = createDate();
   const [isPublicationStartDateEdit, setIsPublicationStartDateEdit] =
     useState<boolean>(false); // 編集ボタン制御
   const [isPublicationEndDateEdit, setIsPublicationEndDateEdit] =
     useState<boolean>(false); // 編集ボタン制御
+  const today = createDate(); // 本日の日付
   const {
     register,
     handleSubmit,
@@ -65,7 +64,6 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       publicationEndDate: dashboard.formPublicationEndDate,
     },
   });
-
   const changeEditMode = (
     form: PublicationStartDate | PublicationEndDate,
     type: Edit | Save
@@ -140,7 +138,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
 
   return (
     <EcosystemArea>
-      <H2>{t("pageTitle.creat")}</H2>
+      <H2>{t("pageTitle.dashboard")}</H2>
       <br />
       <OrCardProcess
         labelTitle={t("common.dashboard.participantAndCredits.title")}
@@ -158,6 +156,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       />
       <br />
       <OrCardBar
+        height={dashboard.grafHeight}
         title={t("common.dashboard.effectiveVotesAndPercentCredits.title")}
         overView={t(
           "common.dashboard.effectiveVotesAndPercentCredits.overView"
@@ -189,6 +188,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       <br />
 
       {isPublicationStartDateEdit ? (
+        // 公開開始日の修正
         <OrCardForm
           showSave
           title={t("common.event.publicationStartDate.title")}
@@ -205,6 +205,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
                 ),
             },
           })}
+          min={today}
           error={errors.publicationStartDate}
           placeholder=""
           disabled={false}
@@ -225,6 +226,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       )}
       <br />
       {isPublicationEndDateEdit ? (
+        // 公開終了日の修正
         <OrCardForm
           showSave
           title={t("common.event.publicationEndDate.title")}
@@ -241,6 +243,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
                 ),
             },
           })}
+          min={today}
           placeholder=""
           disabled={false}
           type="datetime-local"
@@ -304,7 +307,7 @@ const EcDashboard: React.FC<Props> = ({ dashboard, query }) => {
       )}
     </EcosystemArea>
   );
-};
+});
 export default EcDashboard;
 
 const H2 = styled.h2`
@@ -315,12 +318,4 @@ const H2 = styled.h2`
 `;
 const EcosystemArea = styled.div`
   margin-top: 4rem;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
-  ${tab`
-  `}
-  ${sp`
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  `}
 `;

@@ -31,6 +31,7 @@ const defaultArgs: Props = {
     ],
     labels: ["選択肢1", "選択肢2"],
   },
+  height: 2 * 30,
 };
 
 const defaultDesign = {

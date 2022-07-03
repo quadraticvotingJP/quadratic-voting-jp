@@ -143,6 +143,7 @@ interface Dashboard {
   readonly participantVotesDenominator: string; // [参加者数・投票数]参加者数の分母
   readonly digestionCreditsMolecule: string; // [参加者数・投票数]クレジットの分子
   readonly digestionCreditsDenominator: string; // [参加者数・投票数]投票数の分母
+  readonly grafHeight: number; // [投票数・投票率]グラフの高さ
   readonly grafOptions: string[]; // [投票数・投票率]選択肢
   readonly grafEffectiveVotes: number[]; // [投票数・投票率]投票数
   readonly grafPercentCredits: number[]; // [投票数・投票率]投票率

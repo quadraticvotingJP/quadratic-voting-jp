@@ -32,8 +32,6 @@ import { voteData } from "@/architecture/application/voteData";
  * @returns GetServerSideProps
  */
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { beforePublicationStartDate, afterPublicationEndDate, getNowToTime } =
-    eventDateAuthorize(); // 日にちチェック
   const { answerInformation } = getAnswerData(); // api
   const { createAcquiredInformation } = getEventData(); // api
   const { conversion } = voteData(); // 投票データ変換
@@ -41,8 +39,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const query: VotePageQuery = context.query; // クエリーパラメーター
   const documentId: string | undefined = query.id;
   const userId: string | undefined = query.user;
-
-  const now = getNowToTime();
 
   // QueryにドキュメントIDが存在しない場合
   if (!documentId) {

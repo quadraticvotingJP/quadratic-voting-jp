@@ -3,11 +3,7 @@ import styled from "styled-components";
 import { sp, tab } from "@/media";
 import { BASE_CSS } from "@/utils/baseCss";
 // components
-import {
-  AtNoMarkLabel,
-  AtTextField,
-  AtHref,
-} from "@/components/atoms/EntryPoint";
+import { AtNoMarkLabel, AtHref } from "@/components/atoms/EntryPoint";
 import { MoButtons } from "@/components/molecules/EntryPoint";
 import { useTranslation } from "next-i18next";
 
@@ -70,13 +66,7 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
               required={false}
               title={t("common.event.votes.title")}
             />
-            <AtTextField
-              id={`${option.vote}-vote`}
-              value={option.vote}
-              name={`${option.vote}-vote`}
-              rows={1}
-              voteCredits
-            />
+            <Text>{option.vote}</Text>
           </VoteElement>
           <MoButtons
             left={{

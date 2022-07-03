@@ -45,22 +45,22 @@ const EcTimeReflection: React.FC<Props> = ({ time, now }) => {
   });
 
   return (
-    <>
-      <FlexElement>
-        {isTime >= 1 && (
-          <p>
-            <span>{t("common.vote.message.beforeDate")} / </span>
-            {timeReflection}
-          </p>
-        )}
-      </FlexElement>
-    </>
+    <FlexElement>
+      {isTime >= 1 && (
+        <p>
+          <span>{t("common.vote.message.beforeDate")} / </span>
+          {timeReflection}
+        </p>
+      )}
+    </FlexElement>
   );
 };
 
 export default EcTimeReflection;
 
 const FlexElement = styled.div`
+  min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;

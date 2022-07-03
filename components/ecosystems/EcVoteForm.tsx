@@ -4,7 +4,6 @@
 import React, { useMemo, useState } from "react";
 import { routerPush } from "@/architecture/application/routing";
 import styled from "styled-components";
-import { BASE_CSS } from "@/utils/baseCss";
 import { sp, tab } from "@/media";
 // i18n
 import { useTranslation } from "next-i18next";
@@ -15,7 +14,7 @@ import {
   OrVoteOptionCardForm,
   OrProposalBlocks,
 } from "@/components/organisms/EntryPoint";
-import { Card } from "@/components/shared/EntryPoint";
+import { Card, H2, JustifyCenter } from "@/components/shared/EntryPoint";
 
 // architecture
 import { answer } from "@/architecture/application/answer";
@@ -186,14 +185,14 @@ const EcVoteForm: React.FC<Props> = ({
             })}
           </Card>
           <br />
-          <ButtonArea>
+          <JustifyCenter>
             <AtButton
               title={t("common.button.vote")}
               disabled={isActive}
               onClick={() => onSubmit(voteOptions)}
               accent={true}
             />
-          </ButtonArea>
+          </JustifyCenter>
         </FlexAuto>
         <ProposalBlocksArea>
           <OrProposalBlocks
@@ -213,17 +212,6 @@ const FlexElement = styled.h2`
   display: flex;
   margin-top: 4rem;
 `;
-const H2 = styled.h2`
-  font-size: ${BASE_CSS.page.pc.title};
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 16px;
-  ${tab`
-  `}
-  ${sp`
-    font-size: ${BASE_CSS.page.sp.title};
-  `}
-`;
 const FlexAuto = styled.div`
   width: 100%;
 `;
@@ -234,8 +222,4 @@ const ProposalBlocksArea = styled.div`
   ${sp`
     width: 0px;
   `}
-`;
-const ButtonArea = styled.div`
-  display: flex;
-  justify-content: center;
 `;

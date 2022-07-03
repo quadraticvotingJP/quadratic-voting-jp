@@ -22,10 +22,10 @@ export function eventDateAuthorize() {
    * @returns boolean
    */
   function beforePublicationStartDate(
-    publicationStartDate: string | null
+    publicationStartDate: string | null,
+    now: number
   ): boolean {
     if (publicationStartDate === null) return true;
-    const now: number = getNowToTime();
     return new Date(replaceDate(publicationStartDate)).getTime() > now;
   }
 
@@ -34,9 +34,11 @@ export function eventDateAuthorize() {
    * @param publicationEndDate 終了日
    * @returns boolean
    */
-  function afterPublicationEndDate(publicationEndDate: string): boolean {
+  function afterPublicationEndDate(
+    publicationEndDate: string,
+    now: number
+  ): boolean {
     if (publicationEndDate === null) return true;
-    const now: number = getNowToTime();
     return new Date(replaceDate(publicationEndDate)).getTime() < now;
   }
 
@@ -64,5 +66,7 @@ export function eventDateAuthorize() {
   return {
     beforePublicationStartDate,
     afterPublicationEndDate,
+    getNowToTime,
+    replaceDate,
   };
 }

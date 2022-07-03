@@ -15,6 +15,7 @@ export type Props = {
   readonly required: boolean;
   // bar
   readonly data: ChartData<"bar", number[], string>;
+  readonly height: number;
 };
 
 // eslint-disable-next-line react/display-name
@@ -25,6 +26,7 @@ export const MoLabelBar: React.FC<Props> = ({
   required,
   // bar
   data,
+  height,
 }) => {
   return (
     <>
@@ -34,7 +36,7 @@ export const MoLabelBar: React.FC<Props> = ({
         </LabelTitle>
         {overView && <OverView>{overView}</OverView>}
       </LabelArea>
-      <AtBar data={data} />
+      <AtBar data={data} height={height} />
     </>
   );
 };

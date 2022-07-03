@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { sp, tab } from "@/media";
 import { BASE_CSS } from "@/utils/baseCss";
 // components
-import { AtNoMarkLabel, AtTextField } from "@/components/atoms/EntryPoint";
+import {
+  AtNoMarkLabel,
+  AtTextField,
+  AtHref,
+} from "@/components/atoms/EntryPoint";
 import { MoButtons } from "@/components/molecules/EntryPoint";
 import { useTranslation } from "next-i18next";
 
@@ -38,27 +42,28 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
             <Text>{option.title}</Text>
           </Section>
           {/* 概要 */}
-          <Section>
-            <AtNoMarkLabel
-              required={false}
-              title={t("common.event.overview.title")}
-            />
-            <Text>{option.overview}</Text>
-          </Section>
+          {option.overview && (
+            <Section>
+              <AtNoMarkLabel
+                required={false}
+                title={t("common.event.overview.title")}
+              />
+              <Text>{option.overview}</Text>
+            </Section>
+          )}
           {/* リンク */}
-          <Section>
-            <AtNoMarkLabel
-              required={false}
-              title={t("common.event.createOption.optionLink")}
-            />
-            <AtTextField
-              id={option.url}
-              defaultValue={option.url ? option.url : "-"}
-              name={option.url}
-              rows={1}
-              voteLink
-            />
-          </Section>
+          {option.url && (
+            <Section>
+              <AtNoMarkLabel
+                required={false}
+                title={t("common.event.createOption.optionLink")}
+              />
+              <Link>
+                <AtHref blank={true} title={option.url} link={option.url} />
+              </Link>
+            </Section>
+          )}
+
           {/* 投票数 */}
           <VoteElement>
             <AtNoMarkLabel
@@ -119,4 +124,7 @@ const VoteElement = styled.div`
 `;
 const Option = styled.div`
   margin-bottom: 10px;
+`;
+const Link = styled.div`
+  color: ${BASE_CSS.link.color};
 `;

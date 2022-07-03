@@ -83,7 +83,7 @@
     "siteNameLink": "http://quadraticvoting.jp/"
   },
   "pageTitle": {
-    "creat": "アンケート作成",
+    "create": "アンケート作成",
     "dashboard": "ダッシュボード",
     "vote": "投票"
   },
@@ -108,12 +108,12 @@
       "eventTitle": {
         "title": "タイトル",
         "detail": "アンケートのタイトルを40文字以内で入力してください。",
-        "placeholder": "定期旅行の行き先決め"
+        "placeholder": "例：定期旅行の行き先決め"
       },
       "overview": {
-        "title": "概要",
-        "detail": "アンケートの概要を240文字以内で入力してください。",
-        "placeholder": "QuadraticVoting.jpを利用し、次回の旅行先を決めます。"
+        "title": "補足",
+        "detail": "アンケートの補足を240文字以内で入力してください。",
+        "placeholder": "例：QuadraticVoting.jpを利用し、次回の旅行先を決めます。"
       },
       "publicationStartDate": {
         "title": "公開開始日",
@@ -145,9 +145,9 @@
         "formTitle": "選択肢作成",
         "formDetail": "選択肢を追加してください。\n最低2件必要です。",
         "optionTitle": "タイトル",
-        "titlePlaceholder": "尾瀬ヶ原",
-        "optionDetail": "概要",
-        "detailPlaceholder": "福島・群馬・新潟３県境の尾瀬地域にある日本最大の湿原。",
+        "titlePlaceholder": "例：尾瀬ヶ原",
+        "optionDetail": "補足",
+        "detailPlaceholder": "例：福島・群馬・新潟３県境の尾瀬地域にある日本最大の湿原。",
         "optionLink": "リンク",
         "linkPlaceholder": "https://www.oze-fnd.or.jp/"
       }
@@ -177,6 +177,11 @@
       "votersLink": {
         "title": "投票者リンク",
         "detail": "参加人数分の投票者リンクです。"
+      }
+    },
+    "vote": {
+      "message": {
+        "beforeDate": "開始まで"
       }
     },
     "validation": {

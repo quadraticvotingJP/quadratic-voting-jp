@@ -18,6 +18,9 @@ const InputElement = styled.input`
     outline: none;
     border-bottom: 2px solid ${BASE_CSS.color.main};
   }
+  ::placeholder {
+    color: #ccc;
+  }
   ${tab`
   `}
   ${sp`

@@ -33,6 +33,7 @@ export function dashboardData() {
     const grafOptions: string[] = options.map((item: Option) => item.title); // [投票数・投票率]選択肢
     let grafEffectiveVotes: number[] = []; // [投票数・投票率]投票数
     let grafPercentCredits: number[] = []; // [投票数・投票率]投票率
+    const grafHeight = grafOptions.length * 40; //　[投票数・投票率]のグラフの高さ
 
     // 回答が一つでもあるかないか
     if (answer.length !== 0) {
@@ -137,6 +138,7 @@ export function dashboardData() {
       participantVotesDenominator, // [参加者数・クレジット数]参加者数の分母
       digestionCreditsMolecule, // [参加者数・クレジット数]参加者数・クレジット数の分子
       digestionCreditsDenominator, // [参加者数・クレジット数]投票数の分母
+      grafHeight, //　[投票数・投票率]のグラフの高さ
       grafOptions, // [投票数・投票率]選択肢
       grafEffectiveVotes, // [投票数・投票率]投票数
       grafPercentCredits, // [投票数・投票率]投票率

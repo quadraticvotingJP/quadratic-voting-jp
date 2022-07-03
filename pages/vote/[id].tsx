@@ -6,7 +6,11 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // component
-import { EcVoteForm, EcInvalidLink } from "@/components/ecosystems/EntryPoint";
+import {
+  EcVoteForm,
+  EcInvalidLink,
+  EcTimeReflection,
+} from "@/components/ecosystems/EntryPoint";
 
 //application
 import { getAnswerData } from "@/architecture/application/getAnswer";
@@ -102,13 +106,16 @@ const Id = ({
   cantVote = false,
   isDate = true,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { beforePublicationStartDate, afterPublicationEndDate } =
+  const { beforePublicationStartDate, afterPublicationEndDate, getNowToTime } =
     eventDateAuthorize(); // 日にちチェック
+  const now = getNowToTime();
   const dateBefore: boolean = beforePublicationStartDate(
-    conversionVoteData?.publicationStartDate
+    conversionVoteData?.publicationStartDate,
+    now
   ); // 開始前か確認
   const dateAfter: boolean = afterPublicationEndDate(
-    conversionVoteData?.publicationEndDate
+    conversionVoteData?.publicationEndDate,
+    now
   ); // 終了後か確認
 
   if (!documentId === null || isAnswer || cantVote || query === null) {
@@ -116,7 +123,15 @@ const Id = ({
   }
   // 開始日と終了日内か確認
   if (!isDate) {
-    if (dateBefore || dateAfter) {
+    if (dateBefore) {
+      return (
+        <EcTimeReflection
+          time={conversionVoteData.publicationStartDate}
+          now={now}
+        />
+      );
+    }
+    if (dateAfter) {
       return <EcInvalidLink />;
     }
   }

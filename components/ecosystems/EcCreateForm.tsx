@@ -119,7 +119,7 @@ const EcCreateForm: React.FC = () => {
 
   return (
     <EcosystemArea>
-      <H2>{t("pageTitle.creat")}</H2>
+      <H2>{t("pageTitle.create")}</H2>
       <form>
         {/* タイトル */}
         <OrCardForm

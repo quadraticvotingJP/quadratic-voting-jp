@@ -4,8 +4,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { BASE_CSS } from "@/utils/baseCss";
-import { sp, tab } from "@/media";
 import {
   utilsValidationRule,
   inputDateMaxCheck,
@@ -21,6 +19,7 @@ import {
   OrCardForms,
   OrAccordion,
 } from "@/components/organisms/EntryPoint";
+import { H2, JustifyCenter } from "@/components/shared/EntryPoint";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 import { postEvent } from "@/architecture/application/postEvent";
@@ -322,7 +321,7 @@ const EcCreateForm: React.FC = () => {
           }}
         />
         <br />
-        <ButtonArea>
+        <JustifyCenter>
           <AtButton
             title={t("common.button.eventCreation")}
             disabled={false}
@@ -330,28 +329,13 @@ const EcCreateForm: React.FC = () => {
             type="button"
             onClick={() => handleSubmit(onSubmit)()}
           />
-        </ButtonArea>
+        </JustifyCenter>
       </form>
     </EcosystemArea>
   );
 };
 export default EcCreateForm;
 
-const H2 = styled.h2`
-  font-size: ${BASE_CSS.page.pc.title};
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 16px;
-  ${tab`
-  `}
-  ${sp`
-    font-size: ${BASE_CSS.page.sp.title};
-  `}
-`;
 const EcosystemArea = styled.div`
   margin-top: 4rem;
-`;
-const ButtonArea = styled.div`
-  display: flex;
-  justify-content: center;
 `;

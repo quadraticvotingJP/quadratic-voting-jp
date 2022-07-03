@@ -5,6 +5,8 @@ import { BASE_CSS } from "@/utils/baseCss";
 import { sp, tab } from "@/media";
 // component
 import { AtIconButton, AtHref } from "@/components/atoms/EntryPoint";
+import { OverView } from "@/components/shared/EntryPoint";
+
 // mui
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -50,10 +52,10 @@ export const MoAccordion: React.FC<Props> = React.memo(
           </AccordionSummary>
           <AccordionDetails>
             {option.overview && (
-              <Overview>
+              <OverView>
                 <Title>概要</Title>
                 {option.overview}
-              </Overview>
+              </OverView>
             )}
             {option.url && (
               <div>
@@ -101,10 +103,6 @@ const IconButtonElement = styled.div`
   ${sp`
     flex-direction: column;
   `}
-`;
-const Overview = styled.div`
-  margin-bottom: 14px;
-  word-break: break-word;
 `;
 const Link = styled.div`
   color: ${BASE_CSS.link.color};

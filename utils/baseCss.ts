@@ -1,3 +1,21 @@
+/**
+ * @description
+ * 管理するcss
+ * - color
+ * - font-size
+ * - margin
+ * - padding
+ *
+ * 大項目
+ * color
+ * unit
+ *
+ * unitとは
+ * いくつかのコンポーネントで共通の見た目をもつもののまとまり
+ * 複数コンポーネントでまたぐコンポーネントのみ。
+ * 複数コンポーネントで同じスタイルを書く可能性があるものは共通化する。
+ *
+ */
 export const BASE_CSS = {
   color: {
     base: "#f6f6f6",

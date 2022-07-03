@@ -123,17 +123,22 @@ const Container = styled.div`
 const Main = styled.main`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 100px 40px 200px 40px;
   ${tab`
     padding: 100px 20px 200px 20px;
   `}
   ${sp`
-    padding: 60px 0px 200px 0px;
+    padding: 60px 10px 200px 10px;
   `}
 `;
 const Page = styled.div`
-  width: 100%;
+  width: 768px;
+  ${tab`
+  `}
+  ${sp`
+    width: 100%;
+  `}
 `;
 const PageAdSense = styled.div`
   width: 400px;

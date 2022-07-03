@@ -212,14 +212,6 @@ export default EcVoteForm;
 const FlexElement = styled.h2`
   display: flex;
   margin-top: 4rem;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
-  ${tab`
-  `}
-  ${sp`
-    margin-left: 1rem;
-    margin-right: 1rem;
-  `}
 `;
 const H2 = styled.h2`
   font-size: ${BASE_CSS.page.pc.title};

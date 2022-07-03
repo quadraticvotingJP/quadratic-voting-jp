@@ -138,7 +138,7 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
 
   return (
     <EcosystemArea>
-      <H2>{t("pageTitle.creat")}</H2>
+      <H2>{t("pageTitle.dashboard")}</H2>
       <br />
       <OrCardProcess
         labelTitle={t("common.dashboard.participantAndCredits.title")}
@@ -318,12 +318,4 @@ const H2 = styled.h2`
 `;
 const EcosystemArea = styled.div`
   margin-top: 4rem;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
-  ${tab`
-  `}
-  ${sp`
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-  `}
 `;

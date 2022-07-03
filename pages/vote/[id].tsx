@@ -48,7 +48,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!documentId) {
     return {
       props: {
-        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -60,7 +59,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (event === undefined) {
     return {
       props: {
-        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -70,7 +68,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         documentId,
-        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -83,7 +80,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         documentId,
-        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -101,7 +97,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       query,
       isAnswer: false,
       isDate: false,
-      now,
       ...(await serverSideTranslations(context.locale!, ["common"])),
     },
   };
@@ -114,10 +109,10 @@ const Id = ({
   isAnswer = true,
   cantVote = false,
   isDate = true,
-  now,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { beforePublicationStartDate, afterPublicationEndDate, getNowToTime } =
     eventDateAuthorize(); // 日にちチェック
+  const now = getNowToTime();
   const dateBefore: boolean = beforePublicationStartDate(
     conversionVoteData?.publicationStartDate,
     now

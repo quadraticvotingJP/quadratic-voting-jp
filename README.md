@@ -97,6 +97,48 @@ git commit -m "行ったことの内容 #issue 番号"
 
 ### GitHub
 
+#### ブランチ運用
+- `main` ブランチ → 本番ブランチ
+- `hotfix` ブランチ → 本番環境のバグ対応
+
+  ※詳細
+  1. 対応後`hotfix`を`main`へmerge
+  1. `main`へマージ後、`hotfixをdevelopへmerge`
+  1. `develop`へマージ後、`hotfix`を`develop-ver〇〇`へmerge
+  1. `hotfix`ブランチを削除
+  1. `main`ブランチを対象にタグを新規作成
+
+      作成するタグはマイナーバージョンを1上げること（v1.0.○）
+
+- `develop` ブランチ → 検証環境ブランチ
+
+- `release` ブランチ → 本番環境の修正対応
+
+   ※詳細
+   1. 本番環境の修正が必要なタイミングで`develop`から作成
+   1. 対応後`develop`へmerge
+   1. `develop`へmerge後、`main`へmerge
+   1. `main`へmerge後、`develop-ver〇〇`へmerge
+   1. ブランチ削除
+   1. `main`ブランチを対象にタグを新規作成
+
+      作成するタグはミドルバージョンを1上げること（v1.○.0）
+
+- `develop-ver${対象バージョン}` → ネクストフェーズのブランチ対応
+   ※詳細
+   1. フェーズごとに作成
+   1. 各種フェーズの対応が完了後`develop`へmerge
+   1. `develop`へmerge後、`main`へmerge
+   1. `main`へmerge後、ブランチ削除
+   1. `main`ブランチを対象にタグを新規作成
+
+      作成するタグはメジャーバージョンを1上げること（v○.0.0）
+
+![brunch](https://user-images.githubusercontent.com/42969626/177020323-f3518a68-969d-48f5-8f14-35b1536d9349.png)
+
+
+
+
 #### プルリクスト作成
 
 1. [Create pull request]を押下

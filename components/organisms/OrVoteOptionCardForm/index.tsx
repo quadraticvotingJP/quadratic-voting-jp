@@ -38,27 +38,32 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
             <Text>{option.title}</Text>
           </Section>
           {/* 概要 */}
-          <Section>
-            <AtNoMarkLabel
-              required={false}
-              title={t("common.event.overview.title")}
-            />
-            <Text>{option.overview}</Text>
-          </Section>
+          {option.overview && (
+            <Section>
+              <AtNoMarkLabel
+                required={false}
+                title={t("common.event.overview.title")}
+              />
+              <Text>{option.overview}</Text>
+            </Section>
+          )}
           {/* リンク */}
-          <Section>
-            <AtNoMarkLabel
-              required={false}
-              title={t("common.event.createOption.optionLink")}
-            />
-            <AtTextField
-              id={option.url}
-              defaultValue={option.url ? option.url : "-"}
-              name={option.url}
-              rows={1}
-              voteLink
-            />
-          </Section>
+          {option.url && (
+            <Section>
+              <AtNoMarkLabel
+                required={false}
+                title={t("common.event.createOption.optionLink")}
+              />
+              <AtTextField
+                id={option.url}
+                defaultValue={option.url}
+                name={option.url}
+                rows={1}
+                voteLink
+              />
+            </Section>
+          )}
+
           {/* 投票数 */}
           <VoteElement>
             <AtNoMarkLabel

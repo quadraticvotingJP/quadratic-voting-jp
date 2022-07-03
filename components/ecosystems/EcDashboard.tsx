@@ -138,7 +138,7 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
 
   return (
     <EcosystemArea>
-      <H2>{t("pageTitle.vote")}</H2>
+      <H2>{t("pageTitle.dashboard")}</H2>
       <br />
       <OrCardProcess
         labelTitle={t("common.dashboard.participantAndCredits.title")}

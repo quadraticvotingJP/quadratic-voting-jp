@@ -8,7 +8,6 @@ import {
   inputDateMinCheck,
 } from "@/utils/validation";
 import styled from "styled-components";
-import { sp, tab } from "@/media";
 // library
 import { ChartData } from "chart.js";
 // Component
@@ -19,6 +18,7 @@ import {
   OrCardTextField,
   OrCardBar,
 } from "@/components/organisms/EntryPoint";
+import { H2 } from "@/components/shared/EntryPoint";
 // domain
 import { chartData } from "@/architecture/domain/chart";
 // application
@@ -310,12 +310,6 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
 });
 export default EcDashboard;
 
-const H2 = styled.h2`
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 16px;
-`;
 const EcosystemArea = styled.div`
   margin-top: 4rem;
 `;

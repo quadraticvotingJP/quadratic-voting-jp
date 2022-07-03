@@ -18,9 +18,6 @@ import { getEventData } from "@/architecture/application/getEvent";
 import { eventDateAuthorize } from "@/architecture/application/getToday";
 import { voteData } from "@/architecture/application/voteData";
 
-const { beforePublicationStartDate, afterPublicationEndDate, getNowToTime } =
-  eventDateAuthorize(); // 日にちチェック
-
 /**
  * getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
  *
@@ -43,13 +40,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const documentId: string | undefined = query.id;
   const userId: string | undefined = query.user;
 
-  const now = getNowToTime();
-
   // QueryにドキュメントIDが存在しない場合
   if (!documentId) {
     return {
       props: {
-        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -61,7 +55,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (event === undefined) {
     return {
       props: {
-        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -71,7 +64,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         documentId,
-        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -84,7 +76,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         documentId,
-        now,
         ...(await serverSideTranslations(context.locale!, ["common"])),
       },
     };
@@ -102,7 +93,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       query,
       isAnswer: false,
       isDate: false,
-      now,
       ...(await serverSideTranslations(context.locale!, ["common"])),
     },
   };
@@ -115,8 +105,10 @@ const Id = ({
   isAnswer = true,
   cantVote = false,
   isDate = true,
-  now,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const { beforePublicationStartDate, afterPublicationEndDate, getNowToTime } =
+    eventDateAuthorize(); // 日にちチェック
+  const now = getNowToTime();
   const dateBefore: boolean = beforePublicationStartDate(
     conversionVoteData?.publicationStartDate,
     now

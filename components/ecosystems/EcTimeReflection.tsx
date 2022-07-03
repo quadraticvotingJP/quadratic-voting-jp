@@ -3,6 +3,7 @@ import { useTranslation } from "next-i18next";
 import { BASE_CSS } from "@/utils/baseCss";
 import styled from "styled-components";
 import { useInterval } from "@/architecture/application/useInterval";
+import { eventDateAuthorize } from "@/architecture/application/getToday";
 
 interface Props {
   time: string;
@@ -19,8 +20,11 @@ const convertDateTime = (date: number) => {
 };
 
 const EcTimeReflection: React.FC<Props> = ({ time, now }) => {
+  const { replaceDate } = eventDateAuthorize(); // 日にちチェック
   const { t } = useTranslation("common");
-  const [isTime, setIsTime] = useState(new Date(time).getTime() - now);
+  const [isTime, setIsTime] = useState(
+    new Date(replaceDate(time)).getTime() - now
+  );
   const [timeReflection, setTimeReflection] = useState(() => {
     return convertDateTime(isTime);
   });

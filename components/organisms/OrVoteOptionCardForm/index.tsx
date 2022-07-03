@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { sp, tab } from "@/media";
 import { BASE_CSS } from "@/utils/baseCss";
 // components
-import { AtNoMarkLabel, AtTextField } from "@/components/atoms/EntryPoint";
+import {
+  AtNoMarkLabel,
+  AtTextField,
+  AtHref,
+} from "@/components/atoms/EntryPoint";
 import { MoButtons } from "@/components/molecules/EntryPoint";
 import { useTranslation } from "next-i18next";
 
@@ -54,13 +58,9 @@ export const OrVoteOptionCardForm: React.FC<Props> = ({
                 required={false}
                 title={t("common.event.createOption.optionLink")}
               />
-              <AtTextField
-                id={option.url}
-                defaultValue={option.url}
-                name={option.url}
-                rows={1}
-                voteLink
-              />
+              <Link>
+                <AtHref blank={true} title={option.url} link={option.url} />
+              </Link>
             </Section>
           )}
 
@@ -124,4 +124,7 @@ const VoteElement = styled.div`
 `;
 const Option = styled.div`
   margin-bottom: 10px;
+`;
+const Link = styled.div`
+  color: ${BASE_CSS.link.color};
 `;

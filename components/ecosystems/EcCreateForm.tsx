@@ -230,7 +230,7 @@ const EcCreateForm: React.FC = () => {
           required={true}
           register={register("votes", {
             required: utilsValidationRule.REQUIRED,
-            max: utilsValidationRule.MAX_100,
+            max: utilsValidationRule.MAX_99,
             min: utilsValidationRule.MIN_1,
           })}
           id="votes"

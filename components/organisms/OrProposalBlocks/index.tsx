@@ -24,20 +24,23 @@ export const OrProposalBlocks: React.FC<Props> = React.memo(
           <Credits>
             {(RESPONSIVE.SIZE_PC || RESPONSIVE.SIZE_TAB) && (
               <>
+                <Text>残</Text>
                 <span>{cost}</span>
                 <span>/</span>
                 <span>{denominator}</span>
+                <span>票</span>
               </>
             )}
             {RESPONSIVE.SIZE_SP && (
               <>
+                <Text>残</Text>
                 <span>{cost}</span>
                 <span>-</span>
                 <span>{denominator}</span>
+                <span>票</span>
               </>
             )}
           </Credits>
-          <Text>Credits</Text>
         </StatusReflection>
       </ProposalBlocks>
     );
@@ -90,7 +93,7 @@ const Credits = styled.p`
     }
   `}
 `;
-const Text = styled.p`
+const Text = styled.span`
   font-size: 8px;
   width: -webkit-fill-available;
 `;

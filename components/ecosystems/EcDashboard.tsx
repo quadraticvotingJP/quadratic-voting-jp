@@ -17,8 +17,13 @@ import {
   OrCardTextField,
   OrCardBar,
 } from "@/components/organisms/EntryPoint";
-import { MoLabelText, MoLabelForm } from "@/components/molecules/EntryPoint";
-import { H2 } from "@/components/shared/EntryPoint";
+import {
+  MoLabelText,
+  MoLabelForm,
+  MoLabelBar,
+} from "@/components/molecules/EntryPoint";
+import { AtButton } from "@/components/atoms/EntryPoint";
+import { H2, JustifyCenter } from "@/components/shared/EntryPoint";
 // domain
 import { chartData } from "@/architecture/domain/chart";
 // application
@@ -155,20 +160,31 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
         }}
       />
       <br />
-      <OrCardBar
-        height={dashboard.grafHeight}
-        title={t("common.dashboard.effectiveVotesAndPercentCredits.title")}
-        overView={t(
-          "common.dashboard.effectiveVotesAndPercentCredits.overView"
-        )}
-        required={false}
-        data={grafData}
-        button={{
-          title: t("common.button.downloadXlsx"),
-          disabled: false,
-          onClick: downloadXLSX,
-        }}
-      />
+      <OrCard>
+        <>
+          <Bar>
+            <MoLabelBar
+              height={dashboard.grafHeight}
+              title={t(
+                "common.dashboard.effectiveVotesAndPercentCredits.title"
+              )}
+              overView={t(
+                "common.dashboard.effectiveVotesAndPercentCredits.overView"
+              )}
+              required={false}
+              data={grafData}
+            />
+          </Bar>
+          <JustifyCenter>
+            <AtButton
+              title={t("common.button.downloadXlsx")}
+              disabled={false}
+              onClick={downloadXLSX}
+              accent={true}
+            />
+          </JustifyCenter>
+        </>
+      </OrCard>
       <br />
       <OrCard>
         <MoLabelText
@@ -328,4 +344,8 @@ export default EcDashboard;
 
 const EcosystemArea = styled.div`
   margin-top: 4rem;
+`;
+
+const Bar = styled.div`
+  margin-bottom: 24px;
 `;

@@ -12,14 +12,18 @@ import {
 } from "@/utils/validation";
 import UUID from "uuidjs";
 import styled from "styled-components";
+import { sp, tab } from "@/media";
 // component
-import { AtButton } from "@/components/atoms/EntryPoint";
+import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
+import { OrCard, OrAccordion } from "@/components/organisms/EntryPoint";
+import { MoLabelForm } from "@/components/molecules/EntryPoint";
 import {
-  OrCardForm,
-  OrCardForms,
-  OrAccordion,
-} from "@/components/organisms/EntryPoint";
-import { H2, JustifyCenter } from "@/components/shared/EntryPoint";
+  H2,
+  JustifyCenter,
+  LabelArea,
+  LabelTitle,
+  OverView,
+} from "@/components/shared/EntryPoint";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 import { postEvent } from "@/architecture/application/postEvent";
@@ -121,204 +125,225 @@ const EcCreateForm: React.FC = () => {
       <H2>{t("pageTitle.create")}</H2>
       <form>
         {/* タイトル */}
-        <OrCardForm
-          title={t("common.event.eventTitle.title")}
-          overView={t("common.event.eventTitle.detail")}
-          required={true}
-          register={register("title", {
-            required: utilsValidationRule.REQUIRED,
-            maxLength: utilsValidationRule.MAX_LENGTH_40,
-            minLength: utilsValidationRule.MIN_LENGTH_1,
-          })}
-          id="title"
-          name="title"
-          placeholder={t("common.event.eventTitle.placeholder")}
-          disabled={false}
-          type="text"
-          error={errors.title}
-        />
+        <OrCard>
+          <MoLabelForm
+            title={t("common.event.eventTitle.title")}
+            overView={t("common.event.eventTitle.detail")}
+            required={true}
+            register={register("title", {
+              required: utilsValidationRule.REQUIRED,
+              maxLength: utilsValidationRule.MAX_LENGTH_40,
+              minLength: utilsValidationRule.MIN_LENGTH_1,
+            })}
+            id="title"
+            name="title"
+            placeholder={t("common.event.eventTitle.placeholder")}
+            disabled={false}
+            type="text"
+            error={errors.title}
+          />
+        </OrCard>
         <br />
         {/* 補足 */}
-        <OrCardForm
-          title={t("common.event.overview.title")}
-          overView={t("common.event.overview.detail")}
-          required={true}
-          register={register("overview", {
-            required: utilsValidationRule.REQUIRED,
-            maxLength: utilsValidationRule.MAX_LENGTH_240,
-            minLength: utilsValidationRule.MIN_LENGTH_1,
-          })}
-          id="overview"
-          name="overview"
-          placeholder={t("common.event.overview.placeholder")}
-          disabled={false}
-          type="text"
-          error={errors.overview}
-        />
+        <OrCard>
+          <MoLabelForm
+            title={t("common.event.overview.title")}
+            overView={t("common.event.overview.detail")}
+            required={true}
+            register={register("overview", {
+              required: utilsValidationRule.REQUIRED,
+              maxLength: utilsValidationRule.MAX_LENGTH_240,
+              minLength: utilsValidationRule.MIN_LENGTH_1,
+            })}
+            id="overview"
+            name="overview"
+            placeholder={t("common.event.overview.placeholder")}
+            disabled={false}
+            type="text"
+            error={errors.overview}
+          />
+        </OrCard>
         <br />
         {/* 公開開始日 */}
-        <OrCardForm
-          title={t("common.event.publicationStartDate.title")}
-          overView={t("common.event.publicationStartDate.detail")}
-          required={true}
-          register={register("publicationStartDate", {
-            required: utilsValidationRule.REQUIRED,
-            validate: {
-              value: (publicationStartDate) =>
-                inputDateMinCheck(
-                  publicationStartDate,
-                  getValues("publicationEndDate")
-                ),
-            },
-          })}
-          min={today}
-          id="publicationStartDate"
-          name="publicationStartDate"
-          placeholder={t("common.event.publicationStartDate.title")}
-          disabled={false}
-          type="datetime-local"
-          error={errors.publicationStartDate}
-        />
-        <br />
-        {/* 公開終了日 */}
-        <OrCardForm
-          title={t("common.event.publicationEndDate.title")}
-          overView={t("common.event.publicationEndDate.detail")}
-          required={true}
-          register={register("publicationEndDate", {
-            required: utilsValidationRule.REQUIRED,
-            validate: {
-              value: (publicationEndDate) =>
-                inputDateMaxCheck(
-                  publicationEndDate,
-                  getValues("publicationStartDate")
-                ),
-            },
-          })}
-          min={today}
-          id="publicationEndDate"
-          name="publicationEndDate"
-          placeholder={t("common.event.publicationEndDate.title")}
-          disabled={false}
-          type="datetime-local"
-          error={errors.publicationEndDate}
-        />
-        <br />
-        {/* 参加者 */}
-        <OrCardForm
-          title={t("common.event.participant.title")}
-          overView={t("common.event.participant.detail")}
-          required={true}
-          register={register("participant", {
-            required: utilsValidationRule.REQUIRED,
-            max: utilsValidationRule.MAX_250,
-            min: utilsValidationRule.MIN_2,
-          })}
-          id="participant"
-          name="participant"
-          placeholder={t("common.event.participant.placeholder")}
-          disabled={false}
-          type="number"
-          error={errors.participant}
-          onWheel={noScrolling}
-        />
-        <br />
-        {/* クレジット数 */}
-        <OrCardForm
-          title={t("common.event.votes.title")}
-          overView={t("common.event.votes.detail")}
-          required={true}
-          register={register("votes", {
-            required: utilsValidationRule.REQUIRED,
-            max: utilsValidationRule.MAX_99,
-            min: utilsValidationRule.MIN_1,
-          })}
-          id="votes"
-          name="votes"
-          placeholder={t("common.event.votes.placeholder")}
-          disabled={false}
-          type="number"
-          error={errors.votes}
-          onWheel={noScrolling}
-        />
-        <br />
-        {/* 選択肢 */}
-        {getValues("options").length !== 0 && (
-          <OrAccordion
-            title={t("common.event.options.title")}
+        <OrCard>
+          <MoLabelForm
+            title={t("common.event.publicationStartDate.title")}
+            overView={t("common.event.publicationStartDate.detail")}
             required={true}
-            options={getValues("options")}
-            register={register("options", {
+            register={register("publicationStartDate", {
+              required: utilsValidationRule.REQUIRED,
               validate: {
-                value: () => optionCheck(getValues("options")),
+                value: (publicationStartDate) =>
+                  inputDateMinCheck(
+                    publicationStartDate,
+                    getValues("publicationEndDate")
+                  ),
               },
             })}
-            id={"options"}
-            name={"options"}
-            type={"hidden"}
-            placeholder={""}
-            disabled={isEdit}
-            readOnly={true}
-            error={errors.options}
-            onClickDelete={(index: number) => onClickDelete(index)}
-            onClickEdit={(index: number) => onClickEdit(index)}
+            min={today}
+            id="publicationStartDate"
+            name="publicationStartDate"
+            placeholder={t("common.event.publicationStartDate.title")}
+            disabled={false}
+            type="datetime-local"
+            error={errors.publicationStartDate}
           />
-        )}
+        </OrCard>
+        <br />
+        {/* 公開終了日 */}
+        <OrCard>
+          <MoLabelForm
+            title={t("common.event.publicationEndDate.title")}
+            overView={t("common.event.publicationEndDate.detail")}
+            required={true}
+            register={register("publicationEndDate", {
+              required: utilsValidationRule.REQUIRED,
+              validate: {
+                value: (publicationEndDate) =>
+                  inputDateMaxCheck(
+                    publicationEndDate,
+                    getValues("publicationStartDate")
+                  ),
+              },
+            })}
+            min={today}
+            id="publicationEndDate"
+            name="publicationEndDate"
+            placeholder={t("common.event.publicationEndDate.title")}
+            disabled={false}
+            type="datetime-local"
+            error={errors.publicationEndDate}
+          />
+        </OrCard>
+        <br />
+        {/* 参加者 */}
+        <OrCard>
+          <MoLabelForm
+            title={t("common.event.participant.title")}
+            overView={t("common.event.participant.detail")}
+            required={true}
+            register={register("participant", {
+              required: utilsValidationRule.REQUIRED,
+              max: utilsValidationRule.MAX_250,
+              min: utilsValidationRule.MIN_2,
+            })}
+            id="participant"
+            name="participant"
+            placeholder={t("common.event.participant.placeholder")}
+            disabled={false}
+            type="number"
+            error={errors.participant}
+            onWheel={noScrolling}
+          />
+        </OrCard>
+        <br />
+        {/* クレジット数 */}
+        <OrCard>
+          <MoLabelForm
+            title={t("common.event.votes.title")}
+            overView={t("common.event.votes.detail")}
+            required={true}
+            register={register("votes", {
+              required: utilsValidationRule.REQUIRED,
+              max: utilsValidationRule.MAX_99,
+              min: utilsValidationRule.MIN_1,
+            })}
+            id="votes"
+            name="votes"
+            placeholder={t("common.event.votes.placeholder")}
+            disabled={false}
+            type="number"
+            error={errors.votes}
+            onWheel={noScrolling}
+          />
+        </OrCard>
         <br />
         {/* 選択肢作成 */}
-        <OrCardForms
-          label={{
-            required: false,
-            title: t("common.event.createOption.formTitle"),
-            overView: t("common.event.createOption.formDetail"),
-          }}
-          form1={{
-            title: t("common.event.createOption.optionTitle"),
-            required: true,
-            placeholder: t("common.event.createOption.titlePlaceholder"),
-            register: {
-              ...register("optionsTitle"),
+        <OrCard>
+          <>
+            <LabelArea>
+              <LabelTitle>
+                <AtLabel
+                  required={false}
+                  title={t("common.event.createOption.formTitle")}
+                />
+              </LabelTitle>
+              <OverView>{t("common.event.createOption.formDetail")}</OverView>
+            </LabelArea>
+            <Section>
+              <MoLabelForm
+                title={t("common.event.createOption.optionTitle")}
+                required={true}
+                register={register("optionsTitle")}
+                id={"optionsTitle"}
+                name={"optionsTitle"}
+                type={"text"}
+                placeholder={t("common.event.createOption.titlePlaceholder")}
+                disabled={false}
+                error={errors.optionsTitle}
+                labelMark={false}
+              />
+            </Section>
+            <Section>
+              <MoLabelForm
+                title={t("common.event.createOption.optionDetail")}
+                required={false}
+                register={register("optionsOverview")}
+                id={"optionsOverview"}
+                name={"optionsOverview"}
+                type={"text"}
+                placeholder={t("common.event.createOption.detailPlaceholder")}
+                disabled={false}
+                error={errors.optionsOverview}
+                labelMark={false}
+              />
+            </Section>
+            <Section>
+              <MoLabelForm
+                title={t("common.event.createOption.optionLink")}
+                required={false}
+                register={register("optionsUrl")}
+                id={"optionsUrl"}
+                name={"optionsUrl"}
+                type={"url"}
+                placeholder={t("common.event.createOption.linkPlaceholder")}
+                disabled={false}
+                error={errors.optionsUrl}
+                labelMark={false}
+              />
+            </Section>
+            <JustifyCenter>
+              <AtButton
+                title={
+                  isEdit ? t("common.button.edit") : t("common.button.add")
+                }
+                disabled={watch("optionsTitle") === ""}
+                onClick={setOptions}
+                accent={true}
+              />
+            </JustifyCenter>
+          </>
+        </OrCard>
+        <br />
+        {/* 選択肢 */}
+        <OrAccordion
+          title={t("common.event.options.title")}
+          required={true}
+          options={getValues("options")}
+          register={register("options", {
+            validate: {
+              value: () => optionCheck(getValues("options")),
             },
-            disabled: false,
-            type: "text",
-            id: "optionsTitle",
-            name: "optionsTitle",
-            labelMark: false,
-            error: errors.optionsTitle,
-          }}
-          form2={{
-            title: t("common.event.createOption.optionDetail"),
-            required: false,
-            placeholder: t("common.event.createOption.detailPlaceholder"),
-            register: {
-              ...register("optionsOverview"),
-            },
-            disabled: false,
-            type: "text",
-            id: "optionsOverview",
-            name: "optionsOverview",
-            labelMark: false,
-            error: errors.optionsOverview,
-          }}
-          form3={{
-            title: t("common.event.createOption.optionLink"),
-            required: false,
-            placeholder: t("common.event.createOption.linkPlaceholder"),
-            register: {
-              ...register("optionsUrl"),
-            },
-            disabled: false,
-            type: "url",
-            id: "optionsUrl",
-            name: "optionsUrl",
-            labelMark: false,
-            error: errors.optionsUrl,
-          }}
-          button={{
-            title: isEdit ? t("common.button.edit") : t("common.button.add"),
-            disabled: watch("optionsTitle") === "",
-            onClick: setOptions,
-          }}
+          })}
+          id={"options"}
+          name={"options"}
+          type={"hidden"}
+          placeholder={""}
+          disabled={isEdit}
+          readOnly={true}
+          error={errors.options}
+          onClickDelete={(index: number) => onClickDelete(index)}
+          onClickEdit={(index: number) => onClickEdit(index)}
         />
         <br />
         <JustifyCenter>
@@ -338,4 +363,12 @@ export default EcCreateForm;
 
 const EcosystemArea = styled.div`
   margin-top: 4rem;
+`;
+const Section = styled.div`
+  margin-bottom: 24px;
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: 14px;
+  `}
 `;

@@ -11,16 +11,12 @@ import styled from "styled-components";
 // library
 import { ChartData } from "chart.js";
 // Component
-import {
-  OrCard,
-  OrCardProcess,
-  OrCardTextField,
-  OrCardBar,
-} from "@/components/organisms/EntryPoint";
+import { OrCard, OrCardProcess } from "@/components/organisms/EntryPoint";
 import {
   MoLabelText,
   MoLabelForm,
   MoLabelBar,
+  MoLabelTextField,
 } from "@/components/molecules/EntryPoint";
 import { AtButton } from "@/components/atoms/EntryPoint";
 import { H2, JustifyCenter } from "@/components/shared/EntryPoint";
@@ -322,20 +318,27 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
       )}
       <br />
       {adminUser && (
-        <OrCardTextField
-          title={t("common.dashboard.votersLink.title")}
-          required={false}
-          overView={t("common.dashboard.votersLink.detail")}
-          defaultValue={dashboard.voterLinks}
-          id={"votersLink"}
-          name={"votersLink"}
-          rows={10}
-          button={{
-            title: t("common.button.downloadTxt"),
-            disabled: false,
-            onClick: downloadTXT,
-          }}
-        />
+        <>
+          <Section>
+            <MoLabelTextField
+              title={t("common.dashboard.votersLink.title")}
+              required={false}
+              overView={t("common.dashboard.votersLink.detail")}
+              defaultValue={dashboard.voterLinks}
+              id={"votersLink"}
+              name={"votersLink"}
+              rows={10}
+            />
+          </Section>
+          <JustifyCenter>
+            <AtButton
+              title={t("common.button.downloadTxt")}
+              disabled={false}
+              onClick={downloadTXT}
+              accent={true}
+            />
+          </JustifyCenter>
+        </>
       )}
     </EcosystemArea>
   );
@@ -345,7 +348,9 @@ export default EcDashboard;
 const EcosystemArea = styled.div`
   margin-top: 4rem;
 `;
-
+const Section = styled.div`
+  margin-bottom: 24px;
+`;
 const Bar = styled.div`
   margin-bottom: 24px;
 `;

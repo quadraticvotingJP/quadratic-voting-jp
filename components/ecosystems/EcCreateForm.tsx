@@ -12,15 +12,18 @@ import {
 } from "@/utils/validation";
 import UUID from "uuidjs";
 import styled from "styled-components";
+import { sp, tab } from "@/media";
 // component
-import { AtButton } from "@/components/atoms/EntryPoint";
-import {
-  OrCard,
-  OrCardForms,
-  OrAccordion,
-} from "@/components/organisms/EntryPoint";
+import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
+import { OrCard, OrAccordion } from "@/components/organisms/EntryPoint";
 import { MoLabelForm } from "@/components/molecules/EntryPoint";
-import { H2, JustifyCenter } from "@/components/shared/EntryPoint";
+import {
+  H2,
+  JustifyCenter,
+  LabelArea,
+  LabelTitle,
+  OverView,
+} from "@/components/shared/EntryPoint";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
 import { postEvent } from "@/architecture/application/postEvent";
@@ -255,83 +258,92 @@ const EcCreateForm: React.FC = () => {
           />
         </OrCard>
         <br />
-        {/* 選択肢 */}
-        {getValues("options").length !== 0 && (
-          <OrAccordion
-            title={t("common.event.options.title")}
-            required={true}
-            options={getValues("options")}
-            register={register("options", {
-              validate: {
-                value: () => optionCheck(getValues("options")),
-              },
-            })}
-            id={"options"}
-            name={"options"}
-            type={"hidden"}
-            placeholder={""}
-            disabled={isEdit}
-            readOnly={true}
-            error={errors.options}
-            onClickDelete={(index: number) => onClickDelete(index)}
-            onClickEdit={(index: number) => onClickEdit(index)}
-          />
-        )}
-        <br />
         {/* 選択肢作成 */}
-        <OrCardForms
-          label={{
-            required: false,
-            title: t("common.event.createOption.formTitle"),
-            overView: t("common.event.createOption.formDetail"),
-          }}
-          form1={{
-            title: t("common.event.createOption.optionTitle"),
-            required: true,
-            placeholder: t("common.event.createOption.titlePlaceholder"),
-            register: {
-              ...register("optionsTitle"),
+        <OrCard>
+          <>
+            <LabelArea>
+              <LabelTitle>
+                <AtLabel
+                  required={false}
+                  title={t("common.event.createOption.formTitle")}
+                />
+              </LabelTitle>
+              <OverView>{t("common.event.createOption.formDetail")}</OverView>
+            </LabelArea>
+            <Section>
+              <MoLabelForm
+                title={t("common.event.createOption.optionTitle")}
+                required={true}
+                register={register("optionsTitle")}
+                id={"optionsTitle"}
+                name={"optionsTitle"}
+                type={"text"}
+                placeholder={t("common.event.createOption.titlePlaceholder")}
+                disabled={false}
+                error={errors.optionsTitle}
+                labelMark={false}
+              />
+            </Section>
+            <Section>
+              <MoLabelForm
+                title={t("common.event.createOption.optionDetail")}
+                required={false}
+                register={register("optionsOverview")}
+                id={"optionsOverview"}
+                name={"optionsOverview"}
+                type={"text"}
+                placeholder={t("common.event.createOption.detailPlaceholder")}
+                disabled={false}
+                error={errors.optionsOverview}
+                labelMark={false}
+              />
+            </Section>
+            <Section>
+              <MoLabelForm
+                title={t("common.event.createOption.optionLink")}
+                required={false}
+                register={register("optionsUrl")}
+                id={"optionsUrl"}
+                name={"optionsUrl"}
+                type={"url"}
+                placeholder={t("common.event.createOption.linkPlaceholder")}
+                disabled={false}
+                error={errors.optionsUrl}
+                labelMark={false}
+              />
+            </Section>
+            <JustifyCenter>
+              <AtButton
+                title={
+                  isEdit ? t("common.button.edit") : t("common.button.add")
+                }
+                disabled={watch("optionsTitle") === ""}
+                onClick={setOptions}
+                accent={true}
+              />
+            </JustifyCenter>
+          </>
+        </OrCard>
+        <br />
+        {/* 選択肢 */}
+        <OrAccordion
+          title={t("common.event.options.title")}
+          required={true}
+          options={getValues("options")}
+          register={register("options", {
+            validate: {
+              value: () => optionCheck(getValues("options")),
             },
-            disabled: false,
-            type: "text",
-            id: "optionsTitle",
-            name: "optionsTitle",
-            labelMark: false,
-            error: errors.optionsTitle,
-          }}
-          form2={{
-            title: t("common.event.createOption.optionDetail"),
-            required: false,
-            placeholder: t("common.event.createOption.detailPlaceholder"),
-            register: {
-              ...register("optionsOverview"),
-            },
-            disabled: false,
-            type: "text",
-            id: "optionsOverview",
-            name: "optionsOverview",
-            labelMark: false,
-            error: errors.optionsOverview,
-          }}
-          form3={{
-            title: t("common.event.createOption.optionLink"),
-            required: false,
-            placeholder: t("common.event.createOption.linkPlaceholder"),
-            register: {
-              ...register("optionsUrl"),
-            },
-            disabled: false,
-            type: "url",
-            id: "optionsUrl",
-            name: "optionsUrl",
-            labelMark: false,
-            error: errors.optionsUrl,
-          }}
-          button={{
-            title: isEdit ? t("common.button.edit") : t("common.button.add"),
-            disabled: watch("optionsTitle") === "",
-            onClick: setOptions,
-          }}
+          })}
+          id={"options"}
+          name={"options"}
+          type={"hidden"}
+          placeholder={""}
+          disabled={isEdit}
+          readOnly={true}
+          error={errors.options}
+          onClickDelete={(index: number) => onClickDelete(index)}
+          onClickEdit={(index: number) => onClickEdit(index)}
         />
         <br />
         <JustifyCenter>
@@ -351,4 +363,12 @@ export default EcCreateForm;
 
 const EcosystemArea = styled.div`
   margin-top: 4rem;
+`;
+const Section = styled.div`
+  margin-bottom: 24px;
+  ${tab`
+  `}
+  ${sp`
+    margin-bottom: 14px;
+  `}
 `;

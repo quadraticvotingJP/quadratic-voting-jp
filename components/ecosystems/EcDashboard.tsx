@@ -318,27 +318,29 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
       )}
       <br />
       {adminUser && (
-        <>
-          <Section>
-            <MoLabelTextField
-              title={t("common.dashboard.votersLink.title")}
-              required={false}
-              overView={t("common.dashboard.votersLink.detail")}
-              defaultValue={dashboard.voterLinks}
-              id={"votersLink"}
-              name={"votersLink"}
-              rows={10}
-            />
-          </Section>
-          <JustifyCenter>
-            <AtButton
-              title={t("common.button.downloadTxt")}
-              disabled={false}
-              onClick={downloadTXT}
-              accent={true}
-            />
-          </JustifyCenter>
-        </>
+        <OrCard>
+          <>
+            <Section>
+              <MoLabelTextField
+                title={t("common.dashboard.votersLink.title")}
+                required={false}
+                overView={t("common.dashboard.votersLink.detail")}
+                defaultValue={dashboard.voterLinks}
+                id={"votersLink"}
+                name={"votersLink"}
+                rows={10}
+              />
+            </Section>
+            <JustifyCenter>
+              <AtButton
+                title={t("common.button.downloadTxt")}
+                disabled={false}
+                onClick={downloadTXT}
+                accent={true}
+              />
+            </JustifyCenter>
+          </>
+        </OrCard>
       )}
     </EcosystemArea>
   );

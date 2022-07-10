@@ -8,18 +8,26 @@ import {
   inputDateMinCheck,
 } from "@/utils/validation";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 // library
 import { ChartData } from "chart.js";
 // Component
-import { OrCard, OrCardProcess } from "@/components/organisms/EntryPoint";
+import { OrCard } from "@/components/organisms/EntryPoint";
 import {
   MoLabelText,
   MoLabelForm,
   MoLabelBar,
   MoLabelTextField,
+  MoProcess,
 } from "@/components/molecules/EntryPoint";
-import { AtButton } from "@/components/atoms/EntryPoint";
-import { H2, JustifyCenter } from "@/components/shared/EntryPoint";
+import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
+import {
+  H2,
+  JustifyCenter,
+  LabelArea,
+  LabelTitle,
+  OverView,
+} from "@/components/shared/EntryPoint";
 // domain
 import { chartData } from "@/architecture/domain/chart";
 // application
@@ -141,20 +149,41 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
     <EcosystemArea>
       <H2>{t("pageTitle.dashboard")}</H2>
       <br />
-      <OrCardProcess
-        labelTitle={t("common.dashboard.participantAndCredits.title")}
-        overView={t("common.dashboard.participantAndCredits.overView")}
-        leftForm={{
-          title: t("common.dashboard.participant.title"),
-          molecule: dashboard.participantVotesMolecule,
-          denominator: dashboard.participantVotesDenominator,
-        }}
-        rightForm={{
-          title: t("common.dashboard.credits.title"),
-          molecule: dashboard.digestionCreditsMolecule,
-          denominator: dashboard.digestionCreditsDenominator,
-        }}
-      />
+      <OrCard>
+        <>
+          <LabelArea>
+            <LabelTitle>
+              <AtLabel
+                required={false}
+                title={t("common.dashboard.participantAndCredits.title")}
+              />
+            </LabelTitle>
+            <OverView>
+              {t("common.dashboard.participantAndCredits.overView")}
+            </OverView>
+          </LabelArea>
+          <ProcessElement>
+            <Participant>
+              <ProcessCard>
+                <MoProcess
+                  title={t("common.dashboard.participant.title")}
+                  molecule={dashboard.participantVotesMolecule}
+                  denominator={dashboard.participantVotesDenominator}
+                />
+              </ProcessCard>
+            </Participant>
+            <Credits>
+              <ProcessCard>
+                <MoProcess
+                  title={t("common.dashboard.credits.title")}
+                  molecule={dashboard.digestionCreditsMolecule}
+                  denominator={dashboard.digestionCreditsDenominator}
+                />
+              </ProcessCard>
+            </Credits>
+          </ProcessElement>
+        </>
+      </OrCard>
       <br />
       <OrCard>
         <>
@@ -202,7 +231,6 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
         />
       </OrCard>
       <br />
-
       {isPublicationStartDateEdit ? (
         // 公開開始日の修正
         <OrCard>
@@ -355,4 +383,22 @@ const Section = styled.div`
 `;
 const Bar = styled.div`
   margin-bottom: 24px;
+`;
+const ProcessElement = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const Participant = styled.div`
+  width: 100%;
+  margin-right: 16px;
+`;
+const Credits = styled.div`
+  width: 100%;
+`;
+const ProcessCard = styled.div`
+  padding: 12px;
+  background-color: ${BASE_CSS.color.white};
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 `;

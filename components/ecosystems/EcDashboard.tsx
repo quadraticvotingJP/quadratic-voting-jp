@@ -12,12 +12,13 @@ import styled from "styled-components";
 import { ChartData } from "chart.js";
 // Component
 import {
-  OrCardText,
+  OrCard,
   OrCardProcess,
   OrCardForm,
   OrCardTextField,
   OrCardBar,
 } from "@/components/organisms/EntryPoint";
+import { MoLabelText } from "@/components/molecules/EntryPoint";
 import { H2 } from "@/components/shared/EntryPoint";
 // domain
 import { chartData } from "@/architecture/domain/chart";
@@ -170,21 +171,25 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
         }}
       />
       <br />
-      <OrCardText
-        title={t("common.event.eventTitle.title")}
-        required={false}
-        contents={dashboard.title}
-        showEdit={false}
-        disabled={false}
-      />
+      <OrCard>
+        <MoLabelText
+          title={t("common.event.eventTitle.title")}
+          required={false}
+          contents={dashboard.title}
+          showEdit={false}
+          disabled={false}
+        />
+      </OrCard>
       <br />
-      <OrCardText
-        title={t("common.event.overview.title")}
-        required={false}
-        contents={dashboard.overview}
-        showEdit={false}
-        disabled={false}
-      />
+      <OrCard>
+        <MoLabelText
+          title={t("common.event.overview.title")}
+          required={false}
+          contents={dashboard.overview}
+          showEdit={false}
+          disabled={false}
+        />
+      </OrCard>
       <br />
 
       {isPublicationStartDateEdit ? (
@@ -215,14 +220,16 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
           onClick={() => changeEditMode("publicationStartDate", "Save")}
         />
       ) : (
-        <OrCardText
-          title={t("common.event.publicationStartDate.title")}
-          required={false}
-          contents={dashboard.detailPublicationStartDate}
-          showEdit
-          disabled={isPublicationEndDateEdit || !adminUser}
-          onClick={() => changeEditMode("publicationStartDate", "Edit")}
-        />
+        <OrCard>
+          <MoLabelText
+            title={t("common.event.publicationStartDate.title")}
+            required={false}
+            contents={dashboard.detailPublicationStartDate}
+            showEdit
+            disabled={isPublicationEndDateEdit || !adminUser}
+            onClick={() => changeEditMode("publicationStartDate", "Edit")}
+          />
+        </OrCard>
       )}
       <br />
       {isPublicationEndDateEdit ? (
@@ -253,14 +260,16 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
           error={errors.publicationEndDate}
         />
       ) : (
-        <OrCardText
-          title={t("common.event.publicationEndDate.title")}
-          required={false}
-          contents={dashboard.detailPublicationEndDate}
-          showEdit
-          disabled={isPublicationStartDateEdit || !adminUser}
-          onClick={() => changeEditMode("publicationEndDate", "Edit")}
-        />
+        <OrCard>
+          <MoLabelText
+            title={t("common.event.publicationEndDate.title")}
+            required={false}
+            contents={dashboard.detailPublicationEndDate}
+            showEdit
+            disabled={isPublicationStartDateEdit || !adminUser}
+            onClick={() => changeEditMode("publicationEndDate", "Edit")}
+          />
+        </OrCard>
       )}
       <br />
       <OrCardForm

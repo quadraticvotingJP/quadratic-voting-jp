@@ -14,11 +14,10 @@ import { ChartData } from "chart.js";
 import {
   OrCard,
   OrCardProcess,
-  OrCardForm,
   OrCardTextField,
   OrCardBar,
 } from "@/components/organisms/EntryPoint";
-import { MoLabelText } from "@/components/molecules/EntryPoint";
+import { MoLabelText, MoLabelForm } from "@/components/molecules/EntryPoint";
 import { H2 } from "@/components/shared/EntryPoint";
 // domain
 import { chartData } from "@/architecture/domain/chart";
@@ -194,31 +193,33 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
 
       {isPublicationStartDateEdit ? (
         // 公開開始日の修正
-        <OrCardForm
-          showSave
-          title={t("common.event.publicationStartDate.title")}
-          defaultValue={dashboard.formPublicationStartDate}
-          required={true}
-          register={register("publicationStartDate", {
-            required: utilsValidationRule.REQUIRED,
-            validate: {
-              // 開始日と終了日の比較validation
-              value: (publicationStartDate) =>
-                inputDateMinCheck(
-                  publicationStartDate,
-                  getValues("publicationEndDate")
-                ),
-            },
-          })}
-          min={today}
-          error={errors.publicationStartDate}
-          placeholder=""
-          disabled={false}
-          type="datetime-local"
-          id="publicationStartDate"
-          name="publicationStartDate"
-          onClick={() => changeEditMode("publicationStartDate", "Save")}
-        />
+        <OrCard>
+          <MoLabelForm
+            showSave
+            title={t("common.event.publicationStartDate.title")}
+            defaultValue={dashboard.formPublicationStartDate}
+            required={true}
+            register={register("publicationStartDate", {
+              required: utilsValidationRule.REQUIRED,
+              validate: {
+                // 開始日と終了日の比較validation
+                value: (publicationStartDate) =>
+                  inputDateMinCheck(
+                    publicationStartDate,
+                    getValues("publicationEndDate")
+                  ),
+              },
+            })}
+            min={today}
+            error={errors.publicationStartDate}
+            placeholder=""
+            disabled={false}
+            type="datetime-local"
+            id="publicationStartDate"
+            name="publicationStartDate"
+            onClick={() => changeEditMode("publicationStartDate", "Save")}
+          />
+        </OrCard>
       ) : (
         <OrCard>
           <MoLabelText
@@ -234,31 +235,33 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
       <br />
       {isPublicationEndDateEdit ? (
         // 公開終了日の修正
-        <OrCardForm
-          showSave
-          title={t("common.event.publicationEndDate.title")}
-          defaultValue={dashboard.formPublicationEndDate}
-          required={true}
-          register={register("publicationEndDate", {
-            required: utilsValidationRule.REQUIRED,
-            validate: {
-              // 開始日と終了日の比較validation
-              value: (publicationEndDate) =>
-                inputDateMaxCheck(
-                  publicationEndDate,
-                  getValues("publicationStartDate")
-                ),
-            },
-          })}
-          min={today}
-          placeholder=""
-          disabled={false}
-          type="datetime-local"
-          id="publicationEndDate"
-          name="publicationEndDate"
-          onClick={() => changeEditMode("publicationEndDate", "Save")}
-          error={errors.publicationEndDate}
-        />
+        <OrCard>
+          <MoLabelForm
+            showSave
+            title={t("common.event.publicationEndDate.title")}
+            defaultValue={dashboard.formPublicationEndDate}
+            required={true}
+            register={register("publicationEndDate", {
+              required: utilsValidationRule.REQUIRED,
+              validate: {
+                // 開始日と終了日の比較validation
+                value: (publicationEndDate) =>
+                  inputDateMaxCheck(
+                    publicationEndDate,
+                    getValues("publicationStartDate")
+                  ),
+              },
+            })}
+            min={today}
+            placeholder=""
+            disabled={false}
+            type="datetime-local"
+            id="publicationEndDate"
+            name="publicationEndDate"
+            onClick={() => changeEditMode("publicationEndDate", "Save")}
+            error={errors.publicationEndDate}
+          />
+        </OrCard>
       ) : (
         <OrCard>
           <MoLabelText
@@ -272,30 +275,34 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
         </OrCard>
       )}
       <br />
-      <OrCardForm
-        readOnly={true}
-        title={t("common.dashboard.participantDashboard.title")}
-        defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.participantDashboardLink}`}
-        required={false}
-        placeholder=""
-        disabled={false}
-        type="text"
-        id="participantDashboard"
-        name="participantDashboard"
-      />
-      <br />
-      {adminUser && (
-        <OrCardForm
+      <OrCard>
+        <MoLabelForm
           readOnly={true}
-          title={t("common.dashboard.adminDashboard.title")}
-          defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.adminDashboardLink}`}
+          title={t("common.dashboard.participantDashboard.title")}
+          defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.participantDashboardLink}`}
           required={false}
           placeholder=""
           disabled={false}
           type="text"
-          id="adminDashboard"
-          name="adminDashboard"
+          id="participantDashboard"
+          name="participantDashboard"
         />
+      </OrCard>
+      <br />
+      {adminUser && (
+        <OrCard>
+          <MoLabelForm
+            readOnly={true}
+            title={t("common.dashboard.adminDashboard.title")}
+            defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.adminDashboardLink}`}
+            required={false}
+            placeholder=""
+            disabled={false}
+            type="text"
+            id="adminDashboard"
+            name="adminDashboard"
+          />
+        </OrCard>
       )}
       <br />
       {adminUser && (

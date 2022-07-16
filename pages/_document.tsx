@@ -13,6 +13,8 @@ import Document, {
 // https://styled-components.com/docs/advanced#nextjs
 import { ServerStyleSheet } from "styled-components";
 import { GA_TRACKING_ID } from "@/lib/gtag";
+import { BASE_CSS } from "@/utils/baseCss";
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
@@ -41,6 +43,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="ja">
         <Head>
+          <meta name="theme-color" content={BASE_CSS.color.main} />
           {GA_TRACKING_ID && (
             <>
               {/* SEO */}

@@ -6,7 +6,7 @@ const Index = ({}) => {
   return (
     <>
       <NextSeo
-        title="プライバシーポリシー ｜革命的な民主主義を実現するアンケートフォーム"
+        title="プライバシーポリシー ｜民主主義のデジタル化を実現するアンケートフォーム"
         description="アンケート作成ページ。"
       />
       <EcPrivacyPolicy />

@@ -23,26 +23,15 @@ const EcLp: React.FC<Props> = ({ images }) => {
   const moveCreateEvent = (): void => routerPush("create");
   return (
     <>
-      <SectionFirstView id="firstView">
+      <SectionFirstView id="firstView" image={images["firstView"]}>
+        <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
+        <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
         <FirstViewJustifyCenterElement>
-          <div>
-            <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
-            <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
-          </div>
-          <AtImage
-            src={images["firstView"]}
-            alt="firstView"
-            layout="intrinsic"
-            width={600}
-            height={400}
-          />
-        </FirstViewJustifyCenterElement>
-        <FirstViewJustifyCenterElement>
-          <AtButton
+          <FirstViewButton
             title={t("common.button.startNow")}
             disabled={false}
             onClick={moveCreateEvent}
-            accent={true}
+            square={true}
           />
         </FirstViewJustifyCenterElement>
       </SectionFirstView>
@@ -64,7 +53,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 title={t("common.button.startNow")}
                 disabled={false}
                 onClick={moveCreateEvent}
-                accent={true}
+                square={true}
               />
             </IsQuadraticVotingJustifyCenterElement>
           </IsQuadraticVotingOverViewArea>
@@ -186,7 +175,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
                     title={t("common.button.startNow")}
                     disabled={false}
                     onClick={moveCreateEvent}
-                    accent={true}
+                    square={true}
                   />
                 </RuleJustifyCenterElement>
               </div>
@@ -227,7 +216,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
               title={t("common.button.startNow")}
               disabled={false}
               onClick={moveCreateEvent}
-              accent={true}
+              square={true}
             />
           </StartNowJustifyCenterElement>
         </StartNowMaxWidth1000>
@@ -238,9 +227,10 @@ const EcLp: React.FC<Props> = ({ images }) => {
 export default EcLp;
 
 // first view
-const SectionFirstView = styled.section`
-  padding: 185px 40px 158px 100px;
+const SectionFirstView = styled.section<{ image: string }>`
+  padding: 185px 50px 50px 50px;
   margin-bottom: 118px;
+  background-image: url(${(props) => props.image});
   background-size: 100% 100%;
   background-color: ${BASE_CSS.color.main};
   object-fit: cover;
@@ -271,7 +261,7 @@ const FirstViewSubTitle = styled.p`
   white-space: pre-wrap;
   font-size: 36px;
   font-weight: bold;
-  margin-bottom: 158px;
+  margin-bottom: 240px;
   ${tab`
     font-size: 25px;
   `}
@@ -282,6 +272,10 @@ const FirstViewSubTitle = styled.p`
 const FirstViewJustifyCenterElement = styled.div`
   display: flex;
   justify-content: center;
+`;
+const FirstViewButton = styled(AtButton)`
+  width: 318px;
+  height: 53px;
 `;
 
 // isQuadraticVoting

@@ -66,7 +66,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <DefaultSeo {...SEO} />
       <Container>
-        <MoHeader />
+        <MoHeader isLandingPage={isLandingPage} />
         {pageLoading ? (
           <EcLoading />
         ) : (
@@ -121,6 +121,7 @@ const Container = styled.div`
   min-height: 100vh;
 `;
 const Main = styled.main`
+  background-color: #f6f6f6;
   width: 100%;
   display: flex;
   justify-content: space-around;

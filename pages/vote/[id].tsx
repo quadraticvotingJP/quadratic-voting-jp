@@ -139,7 +139,7 @@ const Id = ({
   return (
     <>
       <NextSeo
-        title="投票 ｜革命的な民主主義を実現するアンケートフォーム"
+        title="投票 ｜民主主義のデジタル化を実現するアンケートフォーム"
         description="アンケートに対する投票ページ。"
       />
       <EcVoteForm

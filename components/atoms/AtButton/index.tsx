@@ -12,6 +12,7 @@ interface StyledBaseButtonProps {
   main?: boolean;
   accent?: boolean;
   fullWidth?: boolean;
+  square?: boolean;
 }
 
 // eslint-disable-next-line react/display-name
@@ -27,7 +28,6 @@ const BaseButton = styled.button<StyledBaseButtonProps>`
   background-color: ${BASE_CSS.color.base};
   color: rgb(47 155 255);
   border-width: 2px;
-  border-radius: 9999px;
   width: auto;
   -webkit-appearance: button;
   &:hover {
@@ -41,6 +41,7 @@ const BaseButton = styled.button<StyledBaseButtonProps>`
   ${(props) => props.main && MainButton};
   ${(props) => props.accent && AccentButton};
   ${(props) => props.fullWidth && FullWidth};
+  ${(props) => props.square && SquareButton};
   ${tab`
   `}
   ${sp`
@@ -50,6 +51,7 @@ const BaseButton = styled.button<StyledBaseButtonProps>`
 const MainButton = css`
   background-color: ${BASE_CSS.color.main};
   color: rgb(255 255 255);
+  border-radius: 9999px;
   &:disabled {
     background-color: rgb(191 219 254);
     border-color: rgb(191 219 254);
@@ -64,6 +66,7 @@ const AccentButton: FlattenSimpleInterpolation = css`
   color: ${BASE_CSS.color.base};
   width: auto;
   min-width: 200px;
+  border-radius: 9999px;
   &:hover {
     opacity: 0.7;
   }
@@ -80,5 +83,27 @@ const AccentButton: FlattenSimpleInterpolation = css`
 `;
 
 const FullWidth = css`
+  border-radius: 9999px;
   width: 100%;
+`;
+const SquareButton = css`
+  margin-top: 14px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: unset;
+  background-color: ${BASE_CSS.color.accent};
+  color: ${BASE_CSS.color.base};
+  width: auto;
+  min-width: 164px;
+  height: 34px;
+  &:hover {
+    opacity: 0.7;
+  }
+  &:disabled {
+    background-color: rgb(203 213 225);
+    color: ${BASE_CSS.color.base};
+    opacity: 1;
+  }
 `;

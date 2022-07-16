@@ -8,17 +8,26 @@ import {
   inputDateMinCheck,
 } from "@/utils/validation";
 import styled from "styled-components";
+import { BASE_CSS } from "@/utils/baseCss";
 // library
 import { ChartData } from "chart.js";
 // Component
+import { OrCard } from "@/components/organisms/EntryPoint";
 import {
-  OrCardText,
-  OrCardProcess,
-  OrCardForm,
-  OrCardTextField,
-  OrCardBar,
-} from "@/components/organisms/EntryPoint";
-import { H2 } from "@/components/shared/EntryPoint";
+  MoLabelText,
+  MoLabelForm,
+  MoLabelBar,
+  MoLabelTextField,
+  MoProcess,
+} from "@/components/molecules/EntryPoint";
+import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
+import {
+  H2,
+  JustifyCenter,
+  LabelArea,
+  LabelTitle,
+  OverView,
+} from "@/components/shared/EntryPoint";
 // domain
 import { chartData } from "@/architecture/domain/chart";
 // application
@@ -140,170 +149,226 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
     <EcosystemArea>
       <H2>{t("pageTitle.dashboard")}</H2>
       <br />
-      <OrCardProcess
-        labelTitle={t("common.dashboard.participantAndCredits.title")}
-        overView={t("common.dashboard.participantAndCredits.overView")}
-        leftForm={{
-          title: t("common.dashboard.participant.title"),
-          molecule: dashboard.participantVotesMolecule,
-          denominator: dashboard.participantVotesDenominator,
-        }}
-        rightForm={{
-          title: t("common.dashboard.credits.title"),
-          molecule: dashboard.digestionCreditsMolecule,
-          denominator: dashboard.digestionCreditsDenominator,
-        }}
-      />
+      <OrCard>
+        <>
+          <LabelArea>
+            <LabelTitle>
+              <AtLabel
+                required={false}
+                title={t("common.dashboard.participantAndCredits.title")}
+              />
+            </LabelTitle>
+            <OverView>
+              {t("common.dashboard.participantAndCredits.overView")}
+            </OverView>
+          </LabelArea>
+          <ProcessElement>
+            <Participant>
+              <ProcessCard>
+                <MoProcess
+                  title={t("common.dashboard.participant.title")}
+                  molecule={dashboard.participantVotesMolecule}
+                  denominator={dashboard.participantVotesDenominator}
+                />
+              </ProcessCard>
+            </Participant>
+            <Credits>
+              <ProcessCard>
+                <MoProcess
+                  title={t("common.dashboard.credits.title")}
+                  molecule={dashboard.digestionCreditsMolecule}
+                  denominator={dashboard.digestionCreditsDenominator}
+                />
+              </ProcessCard>
+            </Credits>
+          </ProcessElement>
+        </>
+      </OrCard>
       <br />
-      <OrCardBar
-        height={dashboard.grafHeight}
-        title={t("common.dashboard.effectiveVotesAndPercentCredits.title")}
-        overView={t(
-          "common.dashboard.effectiveVotesAndPercentCredits.overView"
-        )}
-        required={false}
-        data={grafData}
-        button={{
-          title: t("common.button.downloadXlsx"),
-          disabled: false,
-          onClick: downloadXLSX,
-        }}
-      />
+      <OrCard>
+        <>
+          <Bar>
+            <MoLabelBar
+              height={dashboard.grafHeight}
+              title={t(
+                "common.dashboard.effectiveVotesAndPercentCredits.title"
+              )}
+              overView={t(
+                "common.dashboard.effectiveVotesAndPercentCredits.overView"
+              )}
+              required={false}
+              data={grafData}
+            />
+          </Bar>
+          <JustifyCenter>
+            <AtButton
+              title={t("common.button.downloadXlsx")}
+              disabled={false}
+              onClick={downloadXLSX}
+              accent={true}
+            />
+          </JustifyCenter>
+        </>
+      </OrCard>
       <br />
-      <OrCardText
-        title={t("common.event.eventTitle.title")}
-        required={false}
-        contents={dashboard.title}
-        showEdit={false}
-        disabled={false}
-      />
+      <OrCard>
+        <MoLabelText
+          title={t("common.event.eventTitle.title")}
+          required={false}
+          contents={dashboard.title}
+          showEdit={false}
+          disabled={false}
+        />
+      </OrCard>
       <br />
-      <OrCardText
-        title={t("common.event.overview.title")}
-        required={false}
-        contents={dashboard.overview}
-        showEdit={false}
-        disabled={false}
-      />
+      <OrCard>
+        <MoLabelText
+          title={t("common.event.overview.title")}
+          required={false}
+          contents={dashboard.overview}
+          showEdit={false}
+          disabled={false}
+        />
+      </OrCard>
       <br />
-
       {isPublicationStartDateEdit ? (
         // 公開開始日の修正
-        <OrCardForm
-          showSave
-          title={t("common.event.publicationStartDate.title")}
-          defaultValue={dashboard.formPublicationStartDate}
-          required={true}
-          register={register("publicationStartDate", {
-            required: utilsValidationRule.REQUIRED,
-            validate: {
-              // 開始日と終了日の比較validation
-              value: (publicationStartDate) =>
-                inputDateMinCheck(
-                  publicationStartDate,
-                  getValues("publicationEndDate")
-                ),
-            },
-          })}
-          min={today}
-          error={errors.publicationStartDate}
-          placeholder=""
-          disabled={false}
-          type="datetime-local"
-          id="publicationStartDate"
-          name="publicationStartDate"
-          onClick={() => changeEditMode("publicationStartDate", "Save")}
-        />
+        <OrCard>
+          <MoLabelForm
+            showSave
+            title={t("common.event.publicationStartDate.title")}
+            defaultValue={dashboard.formPublicationStartDate}
+            required={true}
+            register={register("publicationStartDate", {
+              required: utilsValidationRule.REQUIRED,
+              validate: {
+                // 開始日と終了日の比較validation
+                value: (publicationStartDate) =>
+                  inputDateMinCheck(
+                    publicationStartDate,
+                    getValues("publicationEndDate")
+                  ),
+              },
+            })}
+            min={today}
+            error={errors.publicationStartDate}
+            placeholder=""
+            disabled={false}
+            type="datetime-local"
+            id="publicationStartDate"
+            name="publicationStartDate"
+            onClick={() => changeEditMode("publicationStartDate", "Save")}
+          />
+        </OrCard>
       ) : (
-        <OrCardText
-          title={t("common.event.publicationStartDate.title")}
-          required={false}
-          contents={dashboard.detailPublicationStartDate}
-          showEdit
-          disabled={isPublicationEndDateEdit || !adminUser}
-          onClick={() => changeEditMode("publicationStartDate", "Edit")}
-        />
+        <OrCard>
+          <MoLabelText
+            title={t("common.event.publicationStartDate.title")}
+            required={false}
+            contents={dashboard.detailPublicationStartDate}
+            showEdit
+            disabled={isPublicationEndDateEdit || !adminUser}
+            onClick={() => changeEditMode("publicationStartDate", "Edit")}
+          />
+        </OrCard>
       )}
       <br />
       {isPublicationEndDateEdit ? (
         // 公開終了日の修正
-        <OrCardForm
-          showSave
-          title={t("common.event.publicationEndDate.title")}
-          defaultValue={dashboard.formPublicationEndDate}
-          required={true}
-          register={register("publicationEndDate", {
-            required: utilsValidationRule.REQUIRED,
-            validate: {
-              // 開始日と終了日の比較validation
-              value: (publicationEndDate) =>
-                inputDateMaxCheck(
-                  publicationEndDate,
-                  getValues("publicationStartDate")
-                ),
-            },
-          })}
-          min={today}
-          placeholder=""
-          disabled={false}
-          type="datetime-local"
-          id="publicationEndDate"
-          name="publicationEndDate"
-          onClick={() => changeEditMode("publicationEndDate", "Save")}
-          error={errors.publicationEndDate}
-        />
+        <OrCard>
+          <MoLabelForm
+            showSave
+            title={t("common.event.publicationEndDate.title")}
+            defaultValue={dashboard.formPublicationEndDate}
+            required={true}
+            register={register("publicationEndDate", {
+              required: utilsValidationRule.REQUIRED,
+              validate: {
+                // 開始日と終了日の比較validation
+                value: (publicationEndDate) =>
+                  inputDateMaxCheck(
+                    publicationEndDate,
+                    getValues("publicationStartDate")
+                  ),
+              },
+            })}
+            min={today}
+            placeholder=""
+            disabled={false}
+            type="datetime-local"
+            id="publicationEndDate"
+            name="publicationEndDate"
+            onClick={() => changeEditMode("publicationEndDate", "Save")}
+            error={errors.publicationEndDate}
+          />
+        </OrCard>
       ) : (
-        <OrCardText
-          title={t("common.event.publicationEndDate.title")}
-          required={false}
-          contents={dashboard.detailPublicationEndDate}
-          showEdit
-          disabled={isPublicationStartDateEdit || !adminUser}
-          onClick={() => changeEditMode("publicationEndDate", "Edit")}
-        />
+        <OrCard>
+          <MoLabelText
+            title={t("common.event.publicationEndDate.title")}
+            required={false}
+            contents={dashboard.detailPublicationEndDate}
+            showEdit
+            disabled={isPublicationStartDateEdit || !adminUser}
+            onClick={() => changeEditMode("publicationEndDate", "Edit")}
+          />
+        </OrCard>
       )}
       <br />
-      <OrCardForm
-        readOnly={true}
-        title={t("common.dashboard.participantDashboard.title")}
-        defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.participantDashboardLink}`}
-        required={false}
-        placeholder=""
-        disabled={false}
-        type="text"
-        id="participantDashboard"
-        name="participantDashboard"
-      />
-      <br />
-      {adminUser && (
-        <OrCardForm
+      <OrCard>
+        <MoLabelForm
           readOnly={true}
-          title={t("common.dashboard.adminDashboard.title")}
-          defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.adminDashboardLink}`}
+          title={t("common.dashboard.participantDashboard.title")}
+          defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.participantDashboardLink}`}
           required={false}
           placeholder=""
           disabled={false}
           type="text"
-          id="adminDashboard"
-          name="adminDashboard"
+          id="participantDashboard"
+          name="participantDashboard"
         />
+      </OrCard>
+      <br />
+      {adminUser && (
+        <OrCard>
+          <MoLabelForm
+            readOnly={true}
+            title={t("common.dashboard.adminDashboard.title")}
+            defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.adminDashboardLink}`}
+            required={false}
+            placeholder=""
+            disabled={false}
+            type="text"
+            id="adminDashboard"
+            name="adminDashboard"
+          />
+        </OrCard>
       )}
       <br />
       {adminUser && (
-        <OrCardTextField
-          title={t("common.dashboard.votersLink.title")}
-          required={false}
-          overView={t("common.dashboard.votersLink.detail")}
-          defaultValue={dashboard.voterLinks}
-          id={"votersLink"}
-          name={"votersLink"}
-          rows={10}
-          button={{
-            title: t("common.button.downloadTxt"),
-            disabled: false,
-            onClick: downloadTXT,
-          }}
-        />
+        <OrCard>
+          <>
+            <Section>
+              <MoLabelTextField
+                title={t("common.dashboard.votersLink.title")}
+                required={false}
+                overView={t("common.dashboard.votersLink.detail")}
+                defaultValue={dashboard.voterLinks}
+                id={"votersLink"}
+                name={"votersLink"}
+                rows={10}
+              />
+            </Section>
+            <JustifyCenter>
+              <AtButton
+                title={t("common.button.downloadTxt")}
+                disabled={false}
+                onClick={downloadTXT}
+                accent={true}
+              />
+            </JustifyCenter>
+          </>
+        </OrCard>
       )}
     </EcosystemArea>
   );
@@ -312,4 +377,28 @@ export default EcDashboard;
 
 const EcosystemArea = styled.div`
   margin-top: 4rem;
+`;
+const Section = styled.div`
+  margin-bottom: 24px;
+`;
+const Bar = styled.div`
+  margin-bottom: 24px;
+`;
+const ProcessElement = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const Participant = styled.div`
+  width: 100%;
+  margin-right: 16px;
+`;
+const Credits = styled.div`
+  width: 100%;
+`;
+const ProcessCard = styled.div`
+  padding: 12px;
+  background-color: ${BASE_CSS.color.white};
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 `;

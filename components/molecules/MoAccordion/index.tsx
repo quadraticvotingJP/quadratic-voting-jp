@@ -54,7 +54,7 @@ export const MoAccordion: React.FC<Props> = React.memo(
             {option.overview && (
               <OverView>
                 <Title>概要</Title>
-                {option.overview}
+                <Text>{option.overview}</Text>
               </OverView>
             )}
             {option.url && (
@@ -106,4 +106,8 @@ const IconButtonElement = styled.div`
 `;
 const Link = styled.div`
   color: ${BASE_CSS.link.color};
+  word-break: break-word;
+`;
+const Text = styled.div`
+  word-break: break-word;
 `;

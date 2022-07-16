@@ -9,8 +9,9 @@ import { sp, tab } from "@/media";
 import { useTranslation } from "next-i18next";
 // component
 import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
+import { MoLabelText } from "@/components/molecules/EntryPoint";
 import {
-  OrCardText,
+  OrCard,
   OrVoteOptionCardForm,
   OrProposalBlocks,
 } from "@/components/organisms/EntryPoint";
@@ -143,29 +144,35 @@ const EcVoteForm: React.FC<Props> = ({
         <FlexAuto>
           <H2>{t("pageTitle.vote")}</H2>
           <br />
-          <OrCardText
-            title={t("common.event.eventTitle.title")}
-            required={false}
-            contents={conversionVoteData.title}
-            showEdit={false}
-            disabled={false}
-          />
+          <OrCard>
+            <MoLabelText
+              title={t("common.event.eventTitle.title")}
+              required={false}
+              contents={conversionVoteData.title}
+              showEdit={false}
+              disabled={false}
+            />
+          </OrCard>
           <br />
-          <OrCardText
-            title={t("common.event.overview.title")}
-            required={false}
-            contents={conversionVoteData.overview}
-            showEdit={false}
-            disabled={false}
-          />
+          <OrCard>
+            <MoLabelText
+              title={t("common.event.overview.title")}
+              required={false}
+              contents={conversionVoteData.overview}
+              showEdit={false}
+              disabled={false}
+            />
+          </OrCard>
           <br />
-          <OrCardText
-            title={t("common.event.eventDeadline.title")}
-            required={false}
-            contents={`${conversionVoteData.publicationStartDate} ~ ${conversionVoteData.publicationEndDate}`}
-            showEdit={false}
-            disabled={false}
-          />
+          <OrCard>
+            <MoLabelText
+              title={t("common.event.eventDeadline.title")}
+              required={false}
+              contents={`${conversionVoteData.publicationStartDate} ~ ${conversionVoteData.publicationEndDate}`}
+              showEdit={false}
+              disabled={false}
+            />
+          </OrCard>
           <br />
           <Card>
             <AtLabel required={false} title={t("common.event.options.title")} />

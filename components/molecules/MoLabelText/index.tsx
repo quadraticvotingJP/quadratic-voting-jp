@@ -66,6 +66,7 @@ const DateElement = styled.div`
   align-items: center;
 `;
 const Date = styled.div`
+  word-break: break-word;
   font-size: ${BASE_CSS.form.pc.formFontSize};
   font-weight: bold;
   ${tab`

@@ -102,7 +102,7 @@ const Section = styled.div`
 `;
 const Text = styled.p`
   font-size: ${BASE_CSS.form.pc.overView};
-  white-space: pre-wrap;
+  overflow-wrap: break-word;
   ${tab`
   `}
   ${sp`
@@ -116,5 +116,6 @@ const Option = styled.div`
   margin-bottom: 10px;
 `;
 const Link = styled.div`
+  overflow-wrap: break-word;
   color: ${BASE_CSS.link.color};
 `;

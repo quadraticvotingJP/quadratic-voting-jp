@@ -13,7 +13,7 @@ const Id = ({
   return (
     <>
       <NextSeo
-        title="ダッシュボード ｜革命的な民主主義を実現するアンケートフォーム"
+        title="ダッシュボード ｜民主主義のデジタル化を実現するアンケートフォーム"
         description="アンケートのダッシュボードページ。"
       />
       <EcDashboard dashboard={conversionEventData} query={query} />

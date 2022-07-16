@@ -49,7 +49,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
               {t("lp.isQuadraticVoting.overview")}
             </IsQuadraticVotingOverview>
             <IsQuadraticVotingJustifyCenterElement>
-              <AtButton
+              <IsQuadraticVotingButton
                 title={t("common.button.startNow")}
                 disabled={false}
                 onClick={moveCreateEvent}
@@ -63,8 +63,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 src={images["isQuadraticVotingJp"]}
                 alt="quadraticVoting"
                 layout="intrinsic"
-                width={600}
-                height={500}
+                width={459}
+                height={333}
               />
             </IsQuadraticVotingImageElement>
           </IsQuadraticVotingImageArea>
@@ -229,7 +229,6 @@ export default EcLp;
 // first view
 const SectionFirstView = styled.section<{ image: string }>`
   padding: 185px 50px 50px 50px;
-  margin-bottom: 118px;
   background-image: url(${(props) => props.image});
   background-size: 100% 100%;
   background-color: ${BASE_CSS.color.main};
@@ -280,9 +279,11 @@ const FirstViewButton = styled(AtButton)`
 
 // isQuadraticVoting
 const SectionIsQuadraticVoting = styled.section`
+  background-color: #f6f6f6;
   display: flex;
   justify-content: center;
-  margin-bottom: 160px;
+  padding: 118px 0px 120px 0px;
+  margin-bottom: 80px;
   ${tab`
     margin-bottom: 140px;
   `}
@@ -306,7 +307,7 @@ const IsQuadraticVotingJustifyBetweenMaxWidth1000 = styled.div`
   `}
 `;
 const IsQuadraticVotingOverViewArea = styled.div`
-  width: 65%;
+  width: 60%;
   ${tab`
   `}
   ${sp`
@@ -315,7 +316,7 @@ const IsQuadraticVotingOverViewArea = styled.div`
   `}
 `;
 const IsQuadraticVotingImageArea = styled.div`
-  width: 30%;
+  width: 40%;
   ${tab`
   `}
   ${sp`
@@ -335,7 +336,7 @@ const IsQuadraticVotingTitle = styled.p`
   `}
 `;
 const IsQuadraticVotingSubTitle = styled.p`
-  margin-bottom: 80px;
+  margin-bottom: 32px;
   font-size: 24px;
   white-space: pre-wrap;
   ${tab`
@@ -369,28 +370,20 @@ const IsQuadraticVotingImageElement = styled.div`
     align-items: center;
   `}
 `;
-const IsQuadraticVotingText = styled.p`
-  font-size: 16px;
-  white-space: pre-wrap;
-  ${tab`
-    font-size: 14px;
-  `}
-  ${sp`
-    font-weight: bold;
-    margin-bottom: 10px;
-    font-size: 18px;
-  `}
-`;
 const IsQuadraticVotingJustifyCenterElement = styled.div`
   display: flex;
   justify-content: center;
+`;
+const IsQuadraticVotingButton = styled(AtButton)`
+  width: 318px;
+  height: 53px;
 `;
 
 // feature
 const SectionFeature = styled.section`
   display: flex;
   justify-content: center;
-  margin-bottom: 160px;
+  padding-bottom: 120px;
   ${tab`
     margin-bottom: 140px;
   `}
@@ -508,7 +501,7 @@ const FeatureText = styled.p`
 const SectionRule = styled.section`
   display: flex;
   justify-content: center;
-  margin-bottom: 160px;
+  padding-bottom: 120px;
   ${tab`
     margin-bottom: 140px;
   `}
@@ -643,7 +636,7 @@ const RuleJustifyCenterElement = styled.div`
 const SectionScene = styled.section`
   display: flex;
   justify-content: center;
-  margin-bottom: 160px;
+  padding-bottom: 120px;
   ${tab`
     margin-bottom: 140px;
   `}
@@ -730,7 +723,7 @@ const SceneText = styled.p`
 const SectionStartNow = styled.section`
   display: flex;
   justify-content: center;
-  margin-bottom: 160px;
+  padding-bottom: 120px;
   ${tab`
     margin-bottom: 140px;
   `}

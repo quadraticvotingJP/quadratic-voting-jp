@@ -8,7 +8,8 @@ import { BASE_CSS } from "@/utils/baseCss";
 import { routerPush } from "@/architecture/application/routing";
 
 // component
-import { AtHref, AtButton, AtImage } from "@/components/atoms/EntryPoint";
+import { AtButton, AtImage } from "@/components/atoms/EntryPoint";
+import { OrCard } from "@/components/organisms/EntryPoint";
 
 interface Image {
   [index: string]: string;
@@ -162,16 +163,9 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 <RuleExample1>{t("lp.rule.example1")}</RuleExample1>
                 <RuleExample1>{t("lp.rule.example2")}</RuleExample1>
                 <RuleExample2>{t("lp.rule.example3")}</RuleExample2>
-                <Link>
-                  <AtHref
-                    blank={true}
-                    title={t("lp.rule.urlTitle")}
-                    link={t("lp.rule.url")}
-                  />
-                </Link>
                 <RuleExample3></RuleExample3>
                 <RuleJustifyCenterElement>
-                  <AtButton
+                  <RuleButton
                     title={t("common.button.startNow")}
                     disabled={false}
                     onClick={moveCreateEvent}
@@ -196,13 +190,27 @@ const EcLp: React.FC<Props> = ({ images }) => {
           <SceneTitle>{t("lp.scene.title")}</SceneTitle>
           <SceneDirectionColElement>
             <SceneListTop>
-              <SceneText>{t("lp.scene.scene1")}</SceneText>
-              <SceneText>{t("lp.scene.scene2")}</SceneText>
-              <SceneText>{t("lp.scene.scene3")}</SceneText>
+              <Card>
+                <SceneText>{t("lp.scene.scene1")}</SceneText>
+              </Card>
+              <br />
+              <Card>
+                <SceneText>{t("lp.scene.scene2")}</SceneText>
+              </Card>
+              <br />
+              <Card>
+                <SceneText>{t("lp.scene.scene3")}</SceneText>
+              </Card>
+              <br />
             </SceneListTop>
             <SceneListBottom>
-              <SceneText>{t("lp.scene.scene4")}</SceneText>
-              <SceneText>{t("lp.scene.scene5")}</SceneText>
+              <Card>
+                <SceneText>{t("lp.scene.scene4")}</SceneText>
+              </Card>
+              <br />
+              <Card>
+                <SceneText>{t("lp.scene.scene5")}</SceneText>
+              </Card>
             </SceneListBottom>
           </SceneDirectionColElement>
         </SceneDirectionColMaxWidth1000>
@@ -212,7 +220,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
         <StartNowMaxWidth1000>
           <StartNowTitle>{t("lp.startNow.title")}</StartNowTitle>
           <StartNowJustifyCenterElement>
-            <AtButton
+            <StartNowButton
               title={t("common.button.startNow")}
               disabled={false}
               onClick={moveCreateEvent}
@@ -288,7 +296,8 @@ const SectionIsQuadraticVoting = styled.section`
     margin-bottom: 140px;
   `}
   ${sp`
-    margin-bottom: 120px;
+    padding: 118px 0px 60px 0px;
+    margin-bottom: 60px;
   `}
 `;
 const IsQuadraticVotingJustifyBetweenMaxWidth1000 = styled.div`
@@ -388,7 +397,8 @@ const SectionFeature = styled.section`
     margin-bottom: 140px;
   `}
   ${sp`
-    margin-bottom: 120px;
+    padding-bottom: 60px
+    margin-bottom: 60px;
   `}
 `;
 const FeatureDirectionColMaxWidth1000 = styled.div`
@@ -406,6 +416,7 @@ const FeatureDirectionColMaxWidth1000 = styled.div`
 `;
 const FeatureTitle = styled.p`
   margin-bottom: 40px;
+  font-weight: bold;
   text-align: center;
   font-size: 20px;
   white-space: pre-wrap;
@@ -506,7 +517,8 @@ const SectionRule = styled.section`
     margin-bottom: 140px;
   `}
   ${sp`
-    margin-bottom: 120px;
+    padding-bottom: 60px
+    margin-bottom: 60px;
   `}
 `;
 const RuleDirectionColMaxWidth1000 = styled.div`
@@ -524,6 +536,7 @@ const RuleDirectionColMaxWidth1000 = styled.div`
 `;
 const RuleTitle = styled.p`
   margin-bottom: 40px;
+  font-weight: bold;
   text-align: center;
   font-size: 20px;
   white-space: pre-wrap;
@@ -609,11 +622,6 @@ const RuleExample2 = styled.p`
     font-size: 14px;
   `}
 `;
-const Link = styled.div`
-  color: ${BASE_CSS.link.color};
-  font-size: 12px;
-`;
-
 const RuleExample3 = styled.div`
   margin-bottom: 89px;
   ${tab`
@@ -631,17 +639,24 @@ const RuleJustifyCenterElement = styled.div`
     margin-bottom: 50px;
   `}
 `;
+const RuleButton = styled(AtButton)`
+  width: 318px;
+  height: 53px;
+`;
 
 // scene
 const SectionScene = styled.section`
+  background-color: #f6f6f6;
   display: flex;
   justify-content: center;
-  padding-bottom: 120px;
+  padding: 80px 0px;
+  margin-bottom: 80px;
   ${tab`
     margin-bottom: 140px;
   `}
   ${sp`
-    margin-bottom: 120px;
+    padding-bottom: 60px
+    margin-bottom: 60px;
   `}
 `;
 const SceneDirectionColMaxWidth1000 = styled.div`
@@ -659,6 +674,7 @@ const SceneDirectionColMaxWidth1000 = styled.div`
 `;
 const SceneTitle = styled.p`
   margin-bottom: 40px;
+  font-weight: bold;
   text-align: center;
   font-size: 20px;
   white-space: pre-wrap;
@@ -696,7 +712,6 @@ const SceneListBottom = styled.div`
   display: flex;
   justify-content: space-between;
   width: 475px;
-  margin-bottom: 163px;
   text-align: center;
   ${tab`
     width: 375px;
@@ -709,12 +724,18 @@ const SceneListBottom = styled.div`
 `;
 const SceneText = styled.p`
   font-size: 16px;
+  color: ${BASE_CSS.color.main};
   white-space: pre-wrap;
   ${tab`
     font-size: 14px;
   `}
   ${sp`
     font-size: 16px;
+    margin-bottom: 10px;
+  `}
+`;
+const Card = styled(OrCard)`
+  ${sp`
     margin-bottom: 10px;
   `}
 `;
@@ -728,7 +749,8 @@ const SectionStartNow = styled.section`
     margin-bottom: 140px;
   `}
   ${sp`
-    margin-bottom: 120px;
+    padding-bottom: 60px
+    margin-bottom: 60px;
   `}
 `;
 const StartNowMaxWidth1000 = styled.div`
@@ -756,4 +778,8 @@ const StartNowTitle = styled.p`
 const StartNowJustifyCenterElement = styled.div`
   display: flex;
   justify-content: center;
+`;
+const StartNowButton = styled(AtButton)`
+  width: 318px;
+  height: 53px;
 `;

@@ -8,7 +8,8 @@ import { BASE_CSS } from "@/utils/baseCss";
 import { routerPush } from "@/architecture/application/routing";
 
 // component
-import { AtHref, AtButton, AtImage } from "@/components/atoms/EntryPoint";
+import { AtButton, AtImage } from "@/components/atoms/EntryPoint";
+import { OrCard } from "@/components/organisms/EntryPoint";
 
 interface Image {
   [index: string]: string;
@@ -27,11 +28,11 @@ const EcLp: React.FC<Props> = ({ images }) => {
         <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
         <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
         <FirstViewJustifyCenterElement>
-          <AtButton
+          <FirstViewButton
             title={t("common.button.startNow")}
             disabled={false}
             onClick={moveCreateEvent}
-            accent={true}
+            square={true}
           />
         </FirstViewJustifyCenterElement>
       </SectionFirstView>
@@ -49,37 +50,22 @@ const EcLp: React.FC<Props> = ({ images }) => {
               {t("lp.isQuadraticVoting.overview")}
             </IsQuadraticVotingOverview>
             <IsQuadraticVotingJustifyCenterElement>
-              <AtButton
+              <IsQuadraticVotingButton
                 title={t("common.button.startNow")}
                 disabled={false}
                 onClick={moveCreateEvent}
-                accent={true}
+                square={true}
               />
             </IsQuadraticVotingJustifyCenterElement>
           </IsQuadraticVotingOverViewArea>
           <IsQuadraticVotingImageArea>
             <IsQuadraticVotingImageElement>
-              <IsQuadraticVotingText>
-                {t("lp.isQuadraticVoting.conventional")}
-              </IsQuadraticVotingText>
-              <AtImage
-                src={images["conventional"]}
-                alt="conventional"
-                layout="intrinsic"
-                width={261}
-                height={174}
-              />
-            </IsQuadraticVotingImageElement>
-            <IsQuadraticVotingImageElement>
-              <IsQuadraticVotingText>
-                {t("lp.isQuadraticVoting.quadraticVoting")}
-              </IsQuadraticVotingText>
               <AtImage
                 src={images["isQuadraticVotingJp"]}
                 alt="quadraticVoting"
                 layout="intrinsic"
-                width={261}
-                height={174}
+                width={459}
+                height={333}
               />
             </IsQuadraticVotingImageElement>
           </IsQuadraticVotingImageArea>
@@ -177,20 +163,13 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 <RuleExample1>{t("lp.rule.example1")}</RuleExample1>
                 <RuleExample1>{t("lp.rule.example2")}</RuleExample1>
                 <RuleExample2>{t("lp.rule.example3")}</RuleExample2>
-                <Link>
-                  <AtHref
-                    blank={true}
-                    title={t("lp.rule.urlTitle")}
-                    link={t("lp.rule.url")}
-                  />
-                </Link>
                 <RuleExample3></RuleExample3>
                 <RuleJustifyCenterElement>
-                  <AtButton
+                  <RuleButton
                     title={t("common.button.startNow")}
                     disabled={false}
                     onClick={moveCreateEvent}
-                    accent={true}
+                    square={true}
                   />
                 </RuleJustifyCenterElement>
               </div>
@@ -211,13 +190,27 @@ const EcLp: React.FC<Props> = ({ images }) => {
           <SceneTitle>{t("lp.scene.title")}</SceneTitle>
           <SceneDirectionColElement>
             <SceneListTop>
-              <SceneText>{t("lp.scene.scene1")}</SceneText>
-              <SceneText>{t("lp.scene.scene2")}</SceneText>
-              <SceneText>{t("lp.scene.scene3")}</SceneText>
+              <Card>
+                <SceneText>{t("lp.scene.scene1")}</SceneText>
+              </Card>
+              <br />
+              <Card>
+                <SceneText>{t("lp.scene.scene2")}</SceneText>
+              </Card>
+              <br />
+              <Card>
+                <SceneText>{t("lp.scene.scene3")}</SceneText>
+              </Card>
+              <br />
             </SceneListTop>
             <SceneListBottom>
-              <SceneText>{t("lp.scene.scene4")}</SceneText>
-              <SceneText>{t("lp.scene.scene5")}</SceneText>
+              <Card>
+                <SceneText>{t("lp.scene.scene4")}</SceneText>
+              </Card>
+              <br />
+              <Card>
+                <SceneText>{t("lp.scene.scene5")}</SceneText>
+              </Card>
             </SceneListBottom>
           </SceneDirectionColElement>
         </SceneDirectionColMaxWidth1000>
@@ -227,11 +220,11 @@ const EcLp: React.FC<Props> = ({ images }) => {
         <StartNowMaxWidth1000>
           <StartNowTitle>{t("lp.startNow.title")}</StartNowTitle>
           <StartNowJustifyCenterElement>
-            <AtButton
+            <StartNowButton
               title={t("common.button.startNow")}
               disabled={false}
               onClick={moveCreateEvent}
-              accent={true}
+              square={true}
             />
           </StartNowJustifyCenterElement>
         </StartNowMaxWidth1000>
@@ -243,10 +236,10 @@ export default EcLp;
 
 // first view
 const SectionFirstView = styled.section<{ image: string }>`
-  padding: 185px 100px 158px 100px;
-  margin-bottom: 118px;
+  padding: 185px 50px 50px 50px;
   background-image: url(${(props) => props.image});
   background-size: 100% 100%;
+  background-color: ${BASE_CSS.color.main};
   object-fit: cover;
   background-position: center;
   background-size: cover;
@@ -258,6 +251,7 @@ const SectionFirstView = styled.section<{ image: string }>`
   `}
 `;
 const FirstViewTitle = styled.p`
+  color: ${BASE_CSS.color.white};
   white-space: pre-wrap;
   font-size: 40px;
   font-weight: bold;
@@ -270,10 +264,11 @@ const FirstViewTitle = styled.p`
   `}
 `;
 const FirstViewSubTitle = styled.p`
+  color: ${BASE_CSS.color.white};
   white-space: pre-wrap;
   font-size: 36px;
   font-weight: bold;
-  margin-bottom: 158px;
+  margin-bottom: 240px;
   ${tab`
     font-size: 25px;
   `}
@@ -285,17 +280,24 @@ const FirstViewJustifyCenterElement = styled.div`
   display: flex;
   justify-content: center;
 `;
+const FirstViewButton = styled(AtButton)`
+  width: 318px;
+  height: 53px;
+`;
 
 // isQuadraticVoting
 const SectionIsQuadraticVoting = styled.section`
+  background-color: #f6f6f6;
   display: flex;
   justify-content: center;
-  margin-bottom: 160px;
+  padding: 118px 0px 120px 0px;
+  margin-bottom: 80px;
   ${tab`
     margin-bottom: 140px;
   `}
   ${sp`
-    margin-bottom: 120px;
+    padding: 118px 0px 60px 0px;
+    margin-bottom: 60px;
   `}
 `;
 const IsQuadraticVotingJustifyBetweenMaxWidth1000 = styled.div`
@@ -314,7 +316,7 @@ const IsQuadraticVotingJustifyBetweenMaxWidth1000 = styled.div`
   `}
 `;
 const IsQuadraticVotingOverViewArea = styled.div`
-  width: 65%;
+  width: 60%;
   ${tab`
   `}
   ${sp`
@@ -323,7 +325,7 @@ const IsQuadraticVotingOverViewArea = styled.div`
   `}
 `;
 const IsQuadraticVotingImageArea = styled.div`
-  width: 30%;
+  width: 40%;
   ${tab`
   `}
   ${sp`
@@ -343,7 +345,7 @@ const IsQuadraticVotingTitle = styled.p`
   `}
 `;
 const IsQuadraticVotingSubTitle = styled.p`
-  margin-bottom: 80px;
+  margin-bottom: 32px;
   font-size: 24px;
   white-space: pre-wrap;
   ${tab`
@@ -377,33 +379,26 @@ const IsQuadraticVotingImageElement = styled.div`
     align-items: center;
   `}
 `;
-const IsQuadraticVotingText = styled.p`
-  font-size: 16px;
-  white-space: pre-wrap;
-  ${tab`
-    font-size: 14px;
-  `}
-  ${sp`
-    font-weight: bold;
-    margin-bottom: 10px;
-    font-size: 18px;
-  `}
-`;
 const IsQuadraticVotingJustifyCenterElement = styled.div`
   display: flex;
   justify-content: center;
+`;
+const IsQuadraticVotingButton = styled(AtButton)`
+  width: 318px;
+  height: 53px;
 `;
 
 // feature
 const SectionFeature = styled.section`
   display: flex;
   justify-content: center;
-  margin-bottom: 160px;
+  padding-bottom: 120px;
   ${tab`
     margin-bottom: 140px;
   `}
   ${sp`
-    margin-bottom: 120px;
+    padding-bottom: 60px
+    margin-bottom: 60px;
   `}
 `;
 const FeatureDirectionColMaxWidth1000 = styled.div`
@@ -421,6 +416,7 @@ const FeatureDirectionColMaxWidth1000 = styled.div`
 `;
 const FeatureTitle = styled.p`
   margin-bottom: 40px;
+  font-weight: bold;
   text-align: center;
   font-size: 20px;
   white-space: pre-wrap;
@@ -481,12 +477,14 @@ const FeatureNo = styled.p`
   font-size: 40px;
   white-space: pre-wrap;
   margin-bottom: 16px;
+  color: ${BASE_CSS.color.main};
+  font-weight: bold;
   ${tab`
   `}
   ${sp`
     font-size: 30px;
     margin-bottom: 0px;
-  `}
+  `};
 `;
 const Feature = styled.p`
   font-size: 32px;
@@ -514,12 +512,13 @@ const FeatureText = styled.p`
 const SectionRule = styled.section`
   display: flex;
   justify-content: center;
-  margin-bottom: 160px;
+  padding-bottom: 120px;
   ${tab`
     margin-bottom: 140px;
   `}
   ${sp`
-    margin-bottom: 120px;
+    padding-bottom: 60px
+    margin-bottom: 60px;
   `}
 `;
 const RuleDirectionColMaxWidth1000 = styled.div`
@@ -537,6 +536,7 @@ const RuleDirectionColMaxWidth1000 = styled.div`
 `;
 const RuleTitle = styled.p`
   margin-bottom: 40px;
+  font-weight: bold;
   text-align: center;
   font-size: 20px;
   white-space: pre-wrap;
@@ -622,11 +622,6 @@ const RuleExample2 = styled.p`
     font-size: 14px;
   `}
 `;
-const Link = styled.div`
-  color: ${BASE_CSS.link.color};
-  font-size: 12px;
-`;
-
 const RuleExample3 = styled.div`
   margin-bottom: 89px;
   ${tab`
@@ -644,17 +639,24 @@ const RuleJustifyCenterElement = styled.div`
     margin-bottom: 50px;
   `}
 `;
+const RuleButton = styled(AtButton)`
+  width: 318px;
+  height: 53px;
+`;
 
 // scene
 const SectionScene = styled.section`
+  background-color: #f6f6f6;
   display: flex;
   justify-content: center;
-  margin-bottom: 160px;
+  padding: 80px 0px;
+  margin-bottom: 80px;
   ${tab`
     margin-bottom: 140px;
   `}
   ${sp`
-    margin-bottom: 120px;
+    padding-bottom: 60px
+    margin-bottom: 60px;
   `}
 `;
 const SceneDirectionColMaxWidth1000 = styled.div`
@@ -672,6 +674,7 @@ const SceneDirectionColMaxWidth1000 = styled.div`
 `;
 const SceneTitle = styled.p`
   margin-bottom: 40px;
+  font-weight: bold;
   text-align: center;
   font-size: 20px;
   white-space: pre-wrap;
@@ -709,7 +712,6 @@ const SceneListBottom = styled.div`
   display: flex;
   justify-content: space-between;
   width: 475px;
-  margin-bottom: 163px;
   text-align: center;
   ${tab`
     width: 375px;
@@ -722,6 +724,7 @@ const SceneListBottom = styled.div`
 `;
 const SceneText = styled.p`
   font-size: 16px;
+  color: ${BASE_CSS.color.main};
   white-space: pre-wrap;
   ${tab`
     font-size: 14px;
@@ -731,17 +734,23 @@ const SceneText = styled.p`
     margin-bottom: 10px;
   `}
 `;
+const Card = styled(OrCard)`
+  ${sp`
+    margin-bottom: 10px;
+  `}
+`;
 
 // startNow
 const SectionStartNow = styled.section`
   display: flex;
   justify-content: center;
-  margin-bottom: 160px;
+  padding-bottom: 120px;
   ${tab`
     margin-bottom: 140px;
   `}
   ${sp`
-    margin-bottom: 120px;
+    padding-bottom: 60px
+    margin-bottom: 60px;
   `}
 `;
 const StartNowMaxWidth1000 = styled.div`
@@ -769,4 +778,8 @@ const StartNowTitle = styled.p`
 const StartNowJustifyCenterElement = styled.div`
   display: flex;
   justify-content: center;
+`;
+const StartNowButton = styled(AtButton)`
+  width: 318px;
+  height: 53px;
 `;

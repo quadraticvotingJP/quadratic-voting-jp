@@ -72,7 +72,11 @@
   },
   "header": {
     "siteName": "QuadraticVoting.jp",
-    "link": "http://quadraticvoting.jp/"
+    "link": "http://quadraticvoting.jp/",
+    "isQv": "QVとは",
+    "feature": "3つの特徴",
+    "rule": "ルール活用",
+    "scene": "活用シーン"
   },
   "footer": {
     "privacyPolicy": "プライバシーポリシー",

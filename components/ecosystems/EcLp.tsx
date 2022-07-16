@@ -23,9 +23,20 @@ const EcLp: React.FC<Props> = ({ images }) => {
   const moveCreateEvent = (): void => routerPush("create");
   return (
     <>
-      <SectionFirstView id="firstView" image={images["firstView"]}>
-        <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
-        <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
+      <SectionFirstView id="firstView">
+        <FirstViewJustifyCenterElement>
+          <div>
+            <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
+            <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
+          </div>
+          <AtImage
+            src={images["firstView"]}
+            alt="firstView"
+            layout="intrinsic"
+            width={600}
+            height={400}
+          />
+        </FirstViewJustifyCenterElement>
         <FirstViewJustifyCenterElement>
           <AtButton
             title={t("common.button.startNow")}
@@ -59,27 +70,12 @@ const EcLp: React.FC<Props> = ({ images }) => {
           </IsQuadraticVotingOverViewArea>
           <IsQuadraticVotingImageArea>
             <IsQuadraticVotingImageElement>
-              <IsQuadraticVotingText>
-                {t("lp.isQuadraticVoting.conventional")}
-              </IsQuadraticVotingText>
-              <AtImage
-                src={images["conventional"]}
-                alt="conventional"
-                layout="intrinsic"
-                width={261}
-                height={174}
-              />
-            </IsQuadraticVotingImageElement>
-            <IsQuadraticVotingImageElement>
-              <IsQuadraticVotingText>
-                {t("lp.isQuadraticVoting.quadraticVoting")}
-              </IsQuadraticVotingText>
               <AtImage
                 src={images["isQuadraticVotingJp"]}
                 alt="quadraticVoting"
                 layout="intrinsic"
-                width={261}
-                height={174}
+                width={600}
+                height={500}
               />
             </IsQuadraticVotingImageElement>
           </IsQuadraticVotingImageArea>
@@ -242,11 +238,11 @@ const EcLp: React.FC<Props> = ({ images }) => {
 export default EcLp;
 
 // first view
-const SectionFirstView = styled.section<{ image: string }>`
-  padding: 185px 100px 158px 100px;
+const SectionFirstView = styled.section`
+  padding: 185px 40px 158px 100px;
   margin-bottom: 118px;
-  background-image: url(${(props) => props.image});
   background-size: 100% 100%;
+  background-color: ${BASE_CSS.color.main};
   object-fit: cover;
   background-position: center;
   background-size: cover;
@@ -258,6 +254,7 @@ const SectionFirstView = styled.section<{ image: string }>`
   `}
 `;
 const FirstViewTitle = styled.p`
+  color: ${BASE_CSS.color.white};
   white-space: pre-wrap;
   font-size: 40px;
   font-weight: bold;
@@ -270,6 +267,7 @@ const FirstViewTitle = styled.p`
   `}
 `;
 const FirstViewSubTitle = styled.p`
+  color: ${BASE_CSS.color.white};
   white-space: pre-wrap;
   font-size: 36px;
   font-weight: bold;
@@ -481,12 +479,14 @@ const FeatureNo = styled.p`
   font-size: 40px;
   white-space: pre-wrap;
   margin-bottom: 16px;
+  color: ${BASE_CSS.color.main};
+  font-weight: bold;
   ${tab`
   `}
   ${sp`
     font-size: 30px;
     margin-bottom: 0px;
-  `}
+  `};
 `;
 const Feature = styled.p`
   font-size: 32px;

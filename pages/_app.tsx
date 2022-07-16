@@ -66,7 +66,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <DefaultSeo {...SEO} />
       <Container>
-        <MoHeader />
+        <MoHeader isLandingPage={isLandingPage} />
         {pageLoading ? (
           <EcLoading />
         ) : (

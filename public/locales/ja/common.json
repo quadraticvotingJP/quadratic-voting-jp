@@ -46,7 +46,7 @@
       "rule2supplement": "1人の候補者に\n投票できるのは1回まで",
       "rule3": "99 → 0",
       "rule3supplement": "票は出来る限り\nすべて使い切ることを推奨",
-      "example1": "1人の最大所有票は99票。\n1票投票するごとに平方倍の票数を消化する。",
+      "example1": "1人の所有票は99票。\n1票投票するごとに平方倍の票数を消化する。",
       "example2": "１票投票した場合：1票の2乗= 1票消化\n２票投票した場合：2票の2乗= 4票消化\n３票投票した場合：3票の3乗= 9票消化",
       "example3": "1人の持ち票が99票なので、1つの選択肢には最大でも9票=81票 \n残りの18票は、別の選択肢にできる限り投票する。",
       "point1": "99票所持",
@@ -70,7 +70,7 @@
   },
   "header": {
     "siteName": "QuadraticVoting.jp",
-    "link": "http://quadraticvoting.jp/",
+    "link": "https://quadraticvoting.jp/",
     "isQv": "QVとは",
     "feature": "3つの特徴",
     "rule": "ルール活用",
@@ -78,11 +78,11 @@
   },
   "footer": {
     "privacyPolicy": "プライバシーポリシー",
-    "privacyPolicyLink": "http://quadraticvoting.jp/privacypolicy",
+    "privacyPolicyLink": "https://quadraticvoting.jp/privacypolicy",
     "termsOfService": "利用規約",
-    "termsOfServiceLink": "http://quadraticvoting.jp/termsofservice",
+    "termsOfServiceLink": "https://quadraticvoting.jp/termsofservice",
     "siteName": "Copyright (c) 2022 QuadraticVoting.jp",
-    "siteNameLink": "http://quadraticvoting.jp/"
+    "siteNameLink": "https://quadraticvoting.jp/"
   },
   "pageTitle": {
     "create": "アンケート作成",
@@ -157,7 +157,7 @@
     "dashboard": {
       "participantAndCredits": {
         "title": "参加者数・投票数",
-        "overView": "参加者数：合計の投票完了者 / 総参加者数\n投票数：投票完了者全員の総投票数 / 総参加者数×最大投票数\n※投票数では投票者がどのくらい票を消化しているのか把握することができます。"
+        "overView": "参加者数：合計の投票完了者 / 総参加者数\n投票数：投票完了者全員の総投票数 / 総参加者数×99票\n※投票数では投票者がどのくらい票を消化しているのか把握することができます。"
       },
       "participant": {
         "title": "参加者数"
@@ -183,7 +183,8 @@
     },
     "vote": {
       "message": {
-        "beforeDate": "開始まで"
+        "beforeDate": "開始まで",
+        "rule": "ルール"
       }
     },
     "validation": {
@@ -194,7 +195,7 @@
     "systemError": {
       "invalidUrl": "無効なURLです。正しいリンクを入力してください。",
       "indexPushComment": "トップページに戻る",
-      "indexPushURL": "http://quadraticvoting.jp/"
+      "indexPushURL": "https://quadraticvoting.jp/"
     }
   },
   "unique": {

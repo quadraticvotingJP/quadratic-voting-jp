@@ -5,6 +5,10 @@ import { NextSeo } from "next-seo";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
+// firebase
+import { authentication } from "@/firebase/initialize";
+import { signInAnonymously, UserCredential } from "firebase/auth";
+
 // component
 import {
   EcVoteForm,
@@ -24,7 +28,7 @@ import { voteData } from "@/architecture/application/voteData";
  * @description 処理概要
  * - QueryにドキュメントIDが存在しない
  * - 該当するイベントが存在しない
- * - Queryにユーザーデータが存在するか確認
+ * - 匿名データが取得できているか確認
  * - 回答者がすでに回答済みの場合
  * - 開始日と終了日内か確認
  *
@@ -38,7 +42,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const query: VotePageQuery = context.query; // クエリーパラメーター
   const documentId: string | undefined = query.id;
-  const userId: string | undefined = query.user;
+
+  const userInfo: UserCredential = await signInAnonymously(authentication);
 
   // QueryにドキュメントIDが存在しない場合
   if (!documentId) {
@@ -59,8 +64,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-  // Queryにユーザーデータが存在するか確認
-  if (!userId) {
+  // 匿名データが取得できているか確認
+  if (!userInfo) {
     return {
       props: {
         documentId,
@@ -69,7 +74,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  const answer = await answerInformation("event", documentId, "answer", userId); // //回答したデータが存在するかチェックするAPI
+  const uid: string = userInfo.user.uid;
+  const answer = await answerInformation("event", documentId, "answer", uid); // //回答したデータが存在するかチェックするAPI
 
   // 回答者がいた場合
   if (answer !== undefined) {
@@ -93,6 +99,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       query,
       isAnswer: false,
       isDate: false,
+      uid,
       ...(await serverSideTranslations(context.locale!, ["common"])),
     },
   };
@@ -105,6 +112,7 @@ const Id = ({
   isAnswer = true,
   cantVote = false,
   isDate = true,
+  uid = null,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { beforePublicationStartDate, afterPublicationEndDate, getNowToTime } =
     eventDateAuthorize(); // 日にちチェック
@@ -118,7 +126,13 @@ const Id = ({
     now
   ); // 終了後か確認
 
-  if (!documentId === null || isAnswer || cantVote || query === null) {
+  if (
+    !documentId === null ||
+    isAnswer ||
+    cantVote ||
+    query === null ||
+    uid === null
+  ) {
     return <EcInvalidLink />;
   }
   // 開始日と終了日内か確認
@@ -146,6 +160,7 @@ const Id = ({
         query={query}
         documentId={documentId}
         conversionVoteData={conversionVoteData}
+        uid={uid}
       />
     </>
   );

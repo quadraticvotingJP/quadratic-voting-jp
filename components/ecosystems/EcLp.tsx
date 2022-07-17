@@ -203,8 +203,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
         </SceneDirectionColMaxWidth1000>
       </SectionScene>
 
-      <SectionStartNow id="startNow" image={images["para"]}>
-        <StartNowMaxWidth1000>
+      <SectionStartNow id="startNow">
+        <StartNowMaxWidth1000 image={images["para"]}>
           <StartNowTitle>{t("lp.startNow.title")}</StartNowTitle>
           <StartNowJustifyCenterElement>
             <StartNowButton
@@ -758,11 +758,10 @@ const Card = styled.div`
 `;
 
 // startNow
-const SectionStartNow = styled.section<{ image: string }>`
+const SectionStartNow = styled.section`
   display: flex;
   justify-content: center;
   padding-bottom: 120px;
-  background-image: url(${(props) => props.image});
   ${tab`
     margin-bottom: 140px;
   `}
@@ -771,8 +770,12 @@ const SectionStartNow = styled.section<{ image: string }>`
     margin-bottom: 60px;
   `}
 `;
-const StartNowMaxWidth1000 = styled.div`
-  min-width: 1025px;
+const StartNowMaxWidth1000 = styled.div<{ image: string }>`
+  min-width: 1079px;
+  min-height: 285px;
+  background-image: url(${(props) => props.image});
+  background-size: contain;
+  background-repeat: no-repeat; /*画像が繰り返すのを防ぐ*/
   ${tab`
     min-width: 561px;
   `}

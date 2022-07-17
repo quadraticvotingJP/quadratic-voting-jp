@@ -70,7 +70,7 @@
   },
   "header": {
     "siteName": "QuadraticVoting.jp",
-    "link": "http://quadraticvoting.jp/",
+    "link": "https://quadraticvoting.jp/",
     "isQv": "QVとは",
     "feature": "3つの特徴",
     "rule": "ルール活用",
@@ -78,11 +78,11 @@
   },
   "footer": {
     "privacyPolicy": "プライバシーポリシー",
-    "privacyPolicyLink": "http://quadraticvoting.jp/privacypolicy",
+    "privacyPolicyLink": "https://quadraticvoting.jp/privacypolicy",
     "termsOfService": "利用規約",
-    "termsOfServiceLink": "http://quadraticvoting.jp/termsofservice",
+    "termsOfServiceLink": "https://quadraticvoting.jp/termsofservice",
     "siteName": "Copyright (c) 2022 QuadraticVoting.jp",
-    "siteNameLink": "http://quadraticvoting.jp/"
+    "siteNameLink": "https://quadraticvoting.jp/"
   },
   "pageTitle": {
     "create": "アンケート作成",
@@ -183,7 +183,8 @@
     },
     "vote": {
       "message": {
-        "beforeDate": "開始まで"
+        "beforeDate": "開始まで",
+        "rule": "ルール"
       }
     },
     "validation": {
@@ -194,7 +195,7 @@
     "systemError": {
       "invalidUrl": "無効なURLです。正しいリンクを入力してください。",
       "indexPushComment": "トップページに戻る",
-      "indexPushURL": "http://quadraticvoting.jp/"
+      "indexPushURL": "https://quadraticvoting.jp/"
     }
   },
   "unique": {

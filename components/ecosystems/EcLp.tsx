@@ -131,8 +131,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
                   src={images["choices"]}
                   alt="rule1"
                   layout="intrinsic"
-                  width={229}
-                  height={194}
+                  width={142}
+                  height={104}
                 />
                 <RuleText>{t("lp.rule.rule1supplement")}</RuleText>
               </Rule>
@@ -164,8 +164,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 src={images["vote"]}
                 alt="point4"
                 layout="intrinsic"
-                width={400}
-                height={400}
+                width={431}
+                height={296}
               />
             </RuleExampleElement>
           </RuleDirectionColElement>
@@ -522,10 +522,18 @@ const RuleDirectionColMaxWidth1000 = styled.div`
   `}
 `;
 const Rule02 = styled.p`
+  height: 104px;
+  line-height: 104px;
   font-size: 64px;
+  text-align: center;
+  color: ${BASE_CSS.color.feature};
 `;
 const Rule03 = styled.p`
+  height: 104px;
+  line-height: 104px;
   font-size: 64px;
+  text-align: center;
+  color: ${BASE_CSS.color.feature};
 `;
 const RuleTitle = styled.p`
   margin-bottom: 40px;
@@ -545,12 +553,13 @@ const RuleDirectionColElement = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 1025px;
 `;
 const RuleElement = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 80px;
+  margin-bottom: 48px;
   ${tab`
     min-width: 561px;
   `}
@@ -563,11 +572,14 @@ const RuleElement = styled.div`
   `}
 `;
 const Rule = styled.div`
-  padding: 24px;
+  width: 308px;
+  height: 234px;
+  padding: 32px;
   background-color: ${BASE_CSS.color.white};
   border-radius: 0.75rem;
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  text-align: center;
   ${tab`
   `}
   ${sp`

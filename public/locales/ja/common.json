@@ -184,7 +184,7 @@
     "vote": {
       "message": {
         "beforeDate": "開始まで",
-        "rule": "投票ルール"
+        "rule": "投票ルールについて"
       }
     },
     "validation": {

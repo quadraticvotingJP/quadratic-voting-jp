@@ -117,11 +117,6 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
     );
     window.open(process.env.NEXT_PUBLIC_A8ONAMAE120X600_A, "_blank");
   };
-  // 投票者リンクダウンロード
-  const downloadTXT = () => {
-    textFile(dashboard.voterLinks);
-    window.open(process.env.NEXT_PUBLIC_A8ONAMAE120X600_A, "_blank");
-  };
 
   // 公開開始日・公開終了日の更新
   const onSubmit: SubmitHandler<DashboardFormVales> = async (

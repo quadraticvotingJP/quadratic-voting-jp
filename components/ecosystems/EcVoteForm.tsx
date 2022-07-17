@@ -27,12 +27,14 @@ interface Props {
   query: {
     user: string;
   };
+  uid: string;
 }
 
 const EcVoteForm: React.FC<Props> = ({
   conversionVoteData,
   documentId,
   query,
+  uid,
 }) => {
   const { t } = useTranslation("common");
   const { voteEvent } = answer();
@@ -40,7 +42,6 @@ const EcVoteForm: React.FC<Props> = ({
     conversionVoteData.voteOptions
   ); // 選択肢
   const [credits, setCredits] = useState(conversionVoteData.votes); // 手持ち投票ポイント
-  const userId = query.user;
 
   // 回答イベント
   const onSubmit: (data: VoteOption[]) => void = async (data: VoteOption[]) => {
@@ -55,7 +56,7 @@ const EcVoteForm: React.FC<Props> = ({
       }),
     };
     // answerAPI
-    await voteEvent(redata, "event", documentId, "answer", userId);
+    await voteEvent(redata, "event", documentId, "answer", uid);
     routerPush(`/dashboard/${documentId}`);
   };
 

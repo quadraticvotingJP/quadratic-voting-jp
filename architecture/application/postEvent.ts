@@ -1,5 +1,3 @@
-// Event作成のAPI処理
-import UUID from "uuidjs";
 // domain
 import { event } from "@/architecture/domain/event";
 // adapter
@@ -38,15 +36,7 @@ export function postEvent() {
       votes,
       options,
     } = data;
-    let participantLinks: string[] = [];
-    // 参加者分の投票者リンクの作成
-    for (let index: number = 0; index < participant; index++) {
-      participantLinks.push(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/vote/${
-          documentInfo.id
-        }?user=${UUID.generate()}`
-      );
-    }
+    const participantLinks = `${process.env.NEXT_PUBLIC_BASE_URL}/vote/${documentInfo.id}`;
     // parameter作成
     const eventData = event(
       title,

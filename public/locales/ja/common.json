@@ -178,13 +178,13 @@
       },
       "votersLink": {
         "title": "投票者リンク",
-        "detail": "参加人数分の投票者リンクです。"
+        "detail": "参加の投票リンクです。"
       }
     },
     "vote": {
       "message": {
         "beforeDate": "開始まで",
-        "rule": "ルール"
+        "rule": "投票ルール"
       }
     },
     "validation": {

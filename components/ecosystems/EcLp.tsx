@@ -225,6 +225,8 @@ export default EcLp;
 const SectionFirstView = styled.section<{ image: string }>`
   padding: 185px 50px 50px 50px;
   background-image: url(${(props) => props.image});
+  background-size: contain;
+  background-repeat: no-repeat; /*画像が繰り返すのを防ぐ*/
   background-size: 100% 100%;
   background-color: ${BASE_CSS.color.main};
   object-fit: cover;
@@ -554,6 +556,13 @@ const RuleDirectionColElement = styled.div`
   flex-direction: column;
   align-items: center;
   min-width: 1025px;
+  ${tab`
+    min-width: 561px;
+  `}
+  ${sp`
+    max-width: 560px;
+    min-width: 320px;
+  `}
 `;
 const RuleElement = styled.div`
   display: flex;
@@ -753,8 +762,6 @@ const Card = styled.div`
   border-radius: 0.75rem;
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-  ${sp`
-  `}
 `;
 
 // startNow
@@ -767,7 +774,6 @@ const SectionStartNow = styled.section`
   `}
   ${sp`
     padding-bottom: 60px
-    margin-bottom: 60px;
   `}
 `;
 const StartNowMaxWidth1000 = styled.div<{ image: string }>`
@@ -777,10 +783,11 @@ const StartNowMaxWidth1000 = styled.div<{ image: string }>`
   background-size: contain;
   background-repeat: no-repeat; /*画像が繰り返すのを防ぐ*/
   ${tab`
+    width: 100%;
     min-width: 561px;
   `}
   ${sp`
-    max-width: 560px;
+    width: 100%;
     min-width: 320px;
   `}
 `;

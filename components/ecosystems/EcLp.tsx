@@ -9,7 +9,6 @@ import { routerPush } from "@/architecture/application/routing";
 
 // component
 import { AtButton, AtImage } from "@/components/atoms/EntryPoint";
-import { OrCard } from "@/components/organisms/EntryPoint";
 
 interface Image {
   [index: string]: string;
@@ -135,27 +134,15 @@ const EcLp: React.FC<Props> = ({ images }) => {
                   width={229}
                   height={194}
                 />
-                <RuleText>{t("lp.rule.rule1")}</RuleText>
+                <RuleText>{t("lp.rule.rule1supplement")}</RuleText>
               </Rule>
               <Rule>
-                <AtImage
-                  src={images["onlyOnce"]}
-                  alt="rule2"
-                  layout="intrinsic"
-                  width={229}
-                  height={194}
-                />
-                <RuleText>{t("lp.rule.rule2")}</RuleText>
+                <Rule02>{t("lp.rule.rule2")}</Rule02>
+                <RuleText>{t("lp.rule.rule2supplement")}</RuleText>
               </Rule>
               <Rule>
-                <AtImage
-                  src={images["useUp"]}
-                  alt="rule3"
-                  layout="intrinsic"
-                  width={229}
-                  height={194}
-                />
-                <RuleText>{t("lp.rule.rule3")}</RuleText>
+                <Rule03>{t("lp.rule.rule3")}</Rule03>
+                <RuleText>{t("lp.rule.rule3supplement")}</RuleText>
               </Rule>
             </RuleElement>
             <RuleExampleElement>
@@ -392,6 +379,7 @@ const IsQuadraticVotingButton = styled(AtButton)`
 const SectionFeature = styled.section`
   display: flex;
   justify-content: center;
+  padding-bottom: 120px;
   ${tab`
     margin-bottom: 140px;
   `}
@@ -511,14 +499,13 @@ const FeatureText = styled.p`
 const SectionRule = styled.section`
   display: flex;
   justify-content: center;
-  padding-bottom: 120px;
   background-color: rgba(47, 155, 255, 0.1);
+  padding: 118px 0px 120px 0px;
   ${tab`
-    margin-bottom: 140px;
+    padding: 118px 0px 120px 0px;
   `}
   ${sp`
-    padding-bottom: 60px
-    margin-bottom: 60px;
+    padding: 118px 0px 60px 0px;
   `}
 `;
 const RuleDirectionColMaxWidth1000 = styled.div`
@@ -533,6 +520,12 @@ const RuleDirectionColMaxWidth1000 = styled.div`
     max-width: 560px;
     min-width: 320px;
   `}
+`;
+const Rule02 = styled.p`
+  font-size: 64px;
+`;
+const Rule03 = styled.p`
+  font-size: 64px;
 `;
 const RuleTitle = styled.p`
   margin-bottom: 40px;
@@ -570,6 +563,11 @@ const RuleElement = styled.div`
   `}
 `;
 const Rule = styled.div`
+  padding: 24px;
+  background-color: ${BASE_CSS.color.white};
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
   ${tab`
   `}
   ${sp`
@@ -577,8 +575,9 @@ const Rule = styled.div`
   `}
 `;
 const RuleText = styled.p`
+  margin-top: 10px;
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
   white-space: pre-wrap;
   ${tab`
     font-size: 14px;
@@ -685,7 +684,6 @@ const SceneTitle = styled.p`
   ${sp`
     font-weight: bold;
     font-size: 24px;
-    margin-bottom: 15px;
   `}
 `;
 const SceneDirectionColElement = styled.div`
@@ -734,9 +732,16 @@ const SceneText = styled.p`
     margin-bottom: 10px;
   `}
 `;
-const Card = styled(OrCard)`
+const Card = styled.div`
+  width: 262px;
+  height: 100px;
+  line-height: 100px;
+  margin-right: 20px;
+  background-color: ${BASE_CSS.color.white};
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
   ${sp`
-    margin-bottom: 10px;
   `}
 `;
 

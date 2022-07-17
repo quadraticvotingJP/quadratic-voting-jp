@@ -28,6 +28,7 @@ export const BASE_CSS = {
     red: "#e60033",
     gray: "#e3e8ef",
     text: "#222222",
+    feature: "#FEBE56",
   },
   text: {
     label: {

@@ -216,7 +216,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
         </SceneDirectionColMaxWidth1000>
       </SectionScene>
 
-      <SectionStartNow id="startNow">
+      <SectionStartNow id="startNow" image={images["para"]}>
         <StartNowMaxWidth1000>
           <StartNowTitle>{t("lp.startNow.title")}</StartNowTitle>
           <StartNowJustifyCenterElement>
@@ -392,7 +392,6 @@ const IsQuadraticVotingButton = styled(AtButton)`
 const SectionFeature = styled.section`
   display: flex;
   justify-content: center;
-  padding-bottom: 120px;
   ${tab`
     margin-bottom: 140px;
   `}
@@ -474,10 +473,10 @@ const FeatureOverview = styled.div`
   `}
 `;
 const FeatureNo = styled.p`
-  font-size: 40px;
+  font-size: 60px;
   white-space: pre-wrap;
   margin-bottom: 16px;
-  color: ${BASE_CSS.color.main};
+  color: ${BASE_CSS.color.feature};
   font-weight: bold;
   ${tab`
   `}
@@ -513,6 +512,7 @@ const SectionRule = styled.section`
   display: flex;
   justify-content: center;
   padding-bottom: 120px;
+  background-color: rgba(47, 155, 255, 0.1);
   ${tab`
     margin-bottom: 140px;
   `}
@@ -741,10 +741,11 @@ const Card = styled(OrCard)`
 `;
 
 // startNow
-const SectionStartNow = styled.section`
+const SectionStartNow = styled.section<{ image: string }>`
   display: flex;
   justify-content: center;
   padding-bottom: 120px;
+  background-image: url(${(props) => props.image});
   ${tab`
     margin-bottom: 140px;
   `}

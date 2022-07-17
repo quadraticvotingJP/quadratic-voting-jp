@@ -48,6 +48,7 @@ const EcCreateForm: React.FC = () => {
     formState: { errors },
   } = useForm<EventValues>({
     defaultValues: {
+      votes: 99,
       options: [],
       optionsTitle: "",
       publicationStartDate: today,
@@ -237,8 +238,8 @@ const EcCreateForm: React.FC = () => {
           />
         </OrCard>
         <br />
-        {/* クレジット数 */}
-        <OrCard>
+        {/* 投票数 */}
+        {/* <OrCard>
           <MoLabelForm
             title={t("common.event.votes.title")}
             overView={t("common.event.votes.detail")}
@@ -257,7 +258,7 @@ const EcCreateForm: React.FC = () => {
             onWheel={noScrolling}
           />
         </OrCard>
-        <br />
+        <br /> */}
         {/* 選択肢作成 */}
         <OrCard>
           <>

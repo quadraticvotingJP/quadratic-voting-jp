@@ -5,10 +5,11 @@ import React, { useMemo, useState } from "react";
 import { routerPush } from "@/architecture/application/routing";
 import styled from "styled-components";
 import { sp, tab } from "@/media";
+import { BASE_CSS } from "@/utils/baseCss";
 // i18n
 import { useTranslation } from "next-i18next";
 // component
-import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
+import { AtButton, AtLabel, AtHref } from "@/components/atoms/EntryPoint";
 import { MoLabelText } from "@/components/molecules/EntryPoint";
 import {
   OrCard,
@@ -144,6 +145,14 @@ const EcVoteForm: React.FC<Props> = ({
         <FlexAuto>
           <H2>{t("pageTitle.vote")}</H2>
           <br />
+          <Link>
+            <AtHref
+              blank={true}
+              title={t("common.vote.message.rule")}
+              link={t("header.link")}
+            />
+          </Link>
+          <br />
           <OrCard>
             <MoLabelText
               title={t("common.event.eventTitle.title")}
@@ -229,4 +238,9 @@ const ProposalBlocksArea = styled.div`
   ${sp`
     width: 0px;
   `}
+`;
+const Link = styled.div`
+  overflow-wrap: break-word;
+  color: ${BASE_CSS.link.color};
+  font-size: 20px;
 `;

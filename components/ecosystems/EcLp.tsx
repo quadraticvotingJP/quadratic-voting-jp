@@ -9,7 +9,6 @@ import { routerPush } from "@/architecture/application/routing";
 
 // component
 import { AtButton, AtImage } from "@/components/atoms/EntryPoint";
-import { OrCard } from "@/components/organisms/EntryPoint";
 
 interface Image {
   [index: string]: string;
@@ -132,30 +131,18 @@ const EcLp: React.FC<Props> = ({ images }) => {
                   src={images["choices"]}
                   alt="rule1"
                   layout="intrinsic"
-                  width={229}
-                  height={194}
+                  width={142}
+                  height={104}
                 />
-                <RuleText>{t("lp.rule.rule1")}</RuleText>
+                <RuleText>{t("lp.rule.rule1supplement")}</RuleText>
               </Rule>
               <Rule>
-                <AtImage
-                  src={images["onlyOnce"]}
-                  alt="rule2"
-                  layout="intrinsic"
-                  width={229}
-                  height={194}
-                />
-                <RuleText>{t("lp.rule.rule2")}</RuleText>
+                <Rule02>{t("lp.rule.rule2")}</Rule02>
+                <RuleText>{t("lp.rule.rule2supplement")}</RuleText>
               </Rule>
               <Rule>
-                <AtImage
-                  src={images["useUp"]}
-                  alt="rule3"
-                  layout="intrinsic"
-                  width={229}
-                  height={194}
-                />
-                <RuleText>{t("lp.rule.rule3")}</RuleText>
+                <Rule03>{t("lp.rule.rule3")}</Rule03>
+                <RuleText>{t("lp.rule.rule3supplement")}</RuleText>
               </Rule>
             </RuleElement>
             <RuleExampleElement>
@@ -177,8 +164,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 src={images["vote"]}
                 alt="point4"
                 layout="intrinsic"
-                width={400}
-                height={400}
+                width={431}
+                height={296}
               />
             </RuleExampleElement>
           </RuleDirectionColElement>
@@ -217,7 +204,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
       </SectionScene>
 
       <SectionStartNow id="startNow">
-        <StartNowMaxWidth1000>
+        <StartNowMaxWidth1000 image={images["para"]}>
           <StartNowTitle>{t("lp.startNow.title")}</StartNowTitle>
           <StartNowJustifyCenterElement>
             <StartNowButton
@@ -238,6 +225,8 @@ export default EcLp;
 const SectionFirstView = styled.section<{ image: string }>`
   padding: 185px 50px 50px 50px;
   background-image: url(${(props) => props.image});
+  background-size: contain;
+  background-repeat: no-repeat; /*画像が繰り返すのを防ぐ*/
   background-size: 100% 100%;
   background-color: ${BASE_CSS.color.main};
   object-fit: cover;
@@ -474,10 +463,10 @@ const FeatureOverview = styled.div`
   `}
 `;
 const FeatureNo = styled.p`
-  font-size: 40px;
+  font-size: 60px;
   white-space: pre-wrap;
   margin-bottom: 16px;
-  color: ${BASE_CSS.color.main};
+  color: ${BASE_CSS.color.feature};
   font-weight: bold;
   ${tab`
   `}
@@ -512,13 +501,13 @@ const FeatureText = styled.p`
 const SectionRule = styled.section`
   display: flex;
   justify-content: center;
-  padding-bottom: 120px;
+  background-color: rgba(47, 155, 255, 0.1);
+  padding: 118px 0px 120px 0px;
   ${tab`
-    margin-bottom: 140px;
+    padding: 118px 0px 120px 0px;
   `}
   ${sp`
-    padding-bottom: 60px
-    margin-bottom: 60px;
+    padding: 118px 0px 60px 0px;
   `}
 `;
 const RuleDirectionColMaxWidth1000 = styled.div`
@@ -533,6 +522,20 @@ const RuleDirectionColMaxWidth1000 = styled.div`
     max-width: 560px;
     min-width: 320px;
   `}
+`;
+const Rule02 = styled.p`
+  height: 104px;
+  line-height: 104px;
+  font-size: 64px;
+  text-align: center;
+  color: ${BASE_CSS.color.feature};
+`;
+const Rule03 = styled.p`
+  height: 104px;
+  line-height: 104px;
+  font-size: 64px;
+  text-align: center;
+  color: ${BASE_CSS.color.feature};
 `;
 const RuleTitle = styled.p`
   margin-bottom: 40px;
@@ -552,12 +555,20 @@ const RuleDirectionColElement = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 1025px;
+  ${tab`
+    min-width: 561px;
+  `}
+  ${sp`
+    max-width: 560px;
+    min-width: 320px;
+  `}
 `;
 const RuleElement = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 80px;
+  margin-bottom: 48px;
   ${tab`
     min-width: 561px;
   `}
@@ -570,6 +581,14 @@ const RuleElement = styled.div`
   `}
 `;
 const Rule = styled.div`
+  width: 308px;
+  height: 234px;
+  padding: 32px;
+  background-color: ${BASE_CSS.color.white};
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  text-align: center;
   ${tab`
   `}
   ${sp`
@@ -577,8 +596,9 @@ const Rule = styled.div`
   `}
 `;
 const RuleText = styled.p`
+  margin-top: 10px;
   text-align: center;
-  font-size: 16px;
+  font-size: 18px;
   white-space: pre-wrap;
   ${tab`
     font-size: 14px;
@@ -685,7 +705,6 @@ const SceneTitle = styled.p`
   ${sp`
     font-weight: bold;
     font-size: 24px;
-    margin-bottom: 15px;
   `}
 `;
 const SceneDirectionColElement = styled.div`
@@ -734,10 +753,15 @@ const SceneText = styled.p`
     margin-bottom: 10px;
   `}
 `;
-const Card = styled(OrCard)`
-  ${sp`
-    margin-bottom: 10px;
-  `}
+const Card = styled.div`
+  width: 262px;
+  height: 100px;
+  line-height: 100px;
+  margin-right: 20px;
+  background-color: ${BASE_CSS.color.white};
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 `;
 
 // startNow
@@ -750,16 +774,20 @@ const SectionStartNow = styled.section`
   `}
   ${sp`
     padding-bottom: 60px
-    margin-bottom: 60px;
   `}
 `;
-const StartNowMaxWidth1000 = styled.div`
-  min-width: 1025px;
+const StartNowMaxWidth1000 = styled.div<{ image: string }>`
+  min-width: 1079px;
+  min-height: 285px;
+  background-image: url(${(props) => props.image});
+  background-size: contain;
+  background-repeat: no-repeat; /*画像が繰り返すのを防ぐ*/
   ${tab`
+    width: 100%;
     min-width: 561px;
   `}
   ${sp`
-    max-width: 560px;
+    width: 100%;
     min-width: 320px;
   `}
 `;

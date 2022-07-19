@@ -13,7 +13,6 @@ const defaultArgs: OrModalProps = {
   title: "回答確認",
   open: true,
   close: () => {},
-  showClearButton: false,
 };
 
 const defaultDesign = {
@@ -30,18 +29,5 @@ export const DefaultModal: ComponentStoryObj<typeof Presentation> = {
   },
   args: {
     ...defaultArgs,
-  },
-};
-
-export const ClearModal: ComponentStoryObj<typeof Presentation> = {
-  parameters: {
-    design: {
-      ...defaultDesign,
-      url: "https://www.figma.com/file/JG86nnzp5xE6caUrMLkt2N/%E3%82%B9%E3%83%9E%E3%82%B9%E3%82%B1?node-id=252%3A894",
-    },
-  },
-  args: {
-    ...defaultArgs,
-    showClearButton: true,
   },
 };

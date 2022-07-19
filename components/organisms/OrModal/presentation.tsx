@@ -48,7 +48,7 @@ const ContentElement = styled.div`
 `;
 
 export type OrModalProps = {
-  readonly children: ReactNode;
+  readonly children?: ReactNode;
   readonly title: string;
   readonly open: boolean;
   readonly close: () => void;

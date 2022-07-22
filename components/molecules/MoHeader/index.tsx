@@ -31,10 +31,11 @@ export const MoHeader = ({ isLandingPage }: Props) => {
             <>
               <Flex>
                 <Flex>
-                  <Text>{t("header.isQv")}</Text>
+                  {/* todo:clickした要素へのスクロール処理 */}
+                  {/* <Text>{t("header.isQv")}</Text>
                   <Text>{t("header.feature")}</Text>
                   <Text>{t("header.rule")}</Text>
-                  <Text>{t("header.scene")}</Text>
+                  <Text>{t("header.scene")}</Text> */}
                 </Flex>
                 <AtButton
                   title={t("common.button.startNow")}

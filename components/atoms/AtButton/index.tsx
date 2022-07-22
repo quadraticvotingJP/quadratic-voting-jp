@@ -85,6 +85,11 @@ const AccentButton: FlattenSimpleInterpolation = css`
 const FullWidth = css`
   border-radius: 9999px;
   width: 100%;
+  ${tab`
+  `}
+  ${sp`
+    font-size: 10px;
+  `}
 `;
 const SquareButton = css`
   margin-top: 14px;

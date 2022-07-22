@@ -13,6 +13,13 @@ export const MoFooter = React.memo(({}) => {
       <ul>
         <Li>
           <AtHref
+            title={t("footer.twitter")}
+            link={t("footer.twitterLink")}
+            blank
+          />
+        </Li>
+        <Li>
+          <AtHref
             title={t("footer.termsOfService")}
             link={t("footer.termsOfServiceLink")}
             blank

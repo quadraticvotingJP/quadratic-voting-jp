@@ -13,7 +13,7 @@ import { FieldValue } from "firebase/firestore";
  * @param participant @type {number}
  * @param votes @type {number}
  * @param options @type {Option[]}
- * @param participantLinks @type {string[]}
+ * @param participantLinks @type {string}
  * @param documentId @type {string}
  * @param secretKey @type {string}
  * @param createAt @type {FieldValue}
@@ -27,7 +27,7 @@ export function event(
   participant: number,
   votes: number,
   options: Option[],
-  participantLinks: string[],
+  participantLinks: string,
   documentId: string,
   secretKey: string,
   createAt: FieldValue

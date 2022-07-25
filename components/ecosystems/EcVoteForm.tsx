@@ -5,15 +5,17 @@ import React, { useMemo, useState } from "react";
 import { routerPush } from "@/architecture/application/routing";
 import styled from "styled-components";
 import { sp, tab } from "@/media";
+import { BASE_CSS } from "@/utils/baseCss";
 // i18n
 import { useTranslation } from "next-i18next";
 // component
-import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
-import { MoLabelText } from "@/components/molecules/EntryPoint";
+import { AtButton, AtLabel, AtHref } from "@/components/atoms/EntryPoint";
+import { MoLabelText, MoButtons } from "@/components/molecules/EntryPoint";
 import {
   OrCard,
   OrVoteOptionCardForm,
   OrProposalBlocks,
+  OrModal,
 } from "@/components/organisms/EntryPoint";
 import { Card, H2, JustifyCenter } from "@/components/shared/EntryPoint";
 
@@ -26,12 +28,14 @@ interface Props {
   query: {
     user: string;
   };
+  uid: string;
 }
 
 const EcVoteForm: React.FC<Props> = ({
   conversionVoteData,
   documentId,
   query,
+  uid,
 }) => {
   const { t } = useTranslation("common");
   const { voteEvent } = answer();
@@ -39,7 +43,6 @@ const EcVoteForm: React.FC<Props> = ({
     conversionVoteData.voteOptions
   ); // 選択肢
   const [credits, setCredits] = useState(conversionVoteData.votes); // 手持ち投票ポイント
-  const userId = query.user;
 
   // 回答イベント
   const onSubmit: (data: VoteOption[]) => void = async (data: VoteOption[]) => {
@@ -54,7 +57,7 @@ const EcVoteForm: React.FC<Props> = ({
       }),
     };
     // answerAPI
-    await voteEvent(redata, "event", documentId, "answer", userId);
+    await voteEvent(redata, "event", documentId, "answer", uid);
     routerPush(`/dashboard/${documentId}`);
   };
 
@@ -137,12 +140,21 @@ const EcVoteForm: React.FC<Props> = ({
       };
     });
   };
-
+  // モーダルロジック
+  const [showModal, setShowModal] = useState<boolean>(false);
   return (
     <>
       <FlexElement>
         <FlexAuto>
           <H2>{t("pageTitle.vote")}</H2>
+          <br />
+          <Link>
+            <AtHref
+              blank={true}
+              title={t("common.vote.message.rule")}
+              link={t("header.link")}
+            />
+          </Link>
           <br />
           <OrCard>
             <MoLabelText
@@ -196,7 +208,11 @@ const EcVoteForm: React.FC<Props> = ({
             <AtButton
               title={t("common.button.vote")}
               disabled={isActive}
-              onClick={() => onSubmit(voteOptions)}
+              onClick={
+                credits === 0
+                  ? () => onSubmit(voteOptions)
+                  : () => setShowModal(true)
+              }
               accent={true}
             />
           </JustifyCenter>
@@ -208,6 +224,37 @@ const EcVoteForm: React.FC<Props> = ({
             denominator={conversionVoteData.votes}
           />
         </ProposalBlocksArea>
+        {/* 投票確認モダール */}
+        <OrModal
+          title="投票確認"
+          open={showModal}
+          close={() => setShowModal(false)}
+        >
+          <RemainingCredits>
+            残{credits}票余っています。投票しますか？
+          </RemainingCredits>
+          <br />
+          <Link>
+            <AtHref
+              blank={true}
+              title={t("common.vote.message.rule")}
+              link={t("header.link")}
+            />
+          </Link>
+          <br />
+          <MoButtons
+            left={{
+              title: "いいえ",
+              disabled: false,
+              onClick: () => setShowModal(false),
+            }}
+            right={{
+              title: "はい",
+              disabled: false,
+              onClick: () => onSubmit(voteOptions),
+            }}
+          />
+        </OrModal>
       </FlexElement>
     </>
   );
@@ -229,4 +276,13 @@ const ProposalBlocksArea = styled.div`
   ${sp`
     width: 0px;
   `}
+`;
+const Link = styled.div`
+  overflow-wrap: break-word;
+  color: ${BASE_CSS.link.color};
+  font-size: 20px;
+`;
+const RemainingCredits = styled.p`
+  font-size: 20px;
+  text-align: center;
 `;

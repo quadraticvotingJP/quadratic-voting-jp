@@ -23,7 +23,11 @@ const EcLp: React.FC<Props> = ({ images }) => {
   const moveCreateEvent = (): void => routerPush("create");
   return (
     <>
-      <SectionFirstView id="firstView" image={images["firstView"]}>
+      <SectionFirstView
+        data-testid="top-page"
+        id="firstView"
+        image={images["firstView"]}
+      >
         <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
         <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
         <FirstViewJustifyCenterElement>

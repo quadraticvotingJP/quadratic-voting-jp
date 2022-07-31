@@ -7,7 +7,8 @@ import { getLpImages } from "@/architecture/application/getLpImages";
 // component
 import { EcLp } from "@/components/ecosystems/EntryPoint";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-const Top: NextPage = ({
+
+export const Top: NextPage = ({
   images,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
@@ -20,7 +21,6 @@ const Top: NextPage = ({
     </>
   );
 };
-export default Top;
 
 // getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
 export const getServerSideProps: GetServerSideProps = async (context) => {

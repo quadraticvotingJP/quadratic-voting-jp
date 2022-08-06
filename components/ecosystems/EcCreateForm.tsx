@@ -37,7 +37,6 @@ const EcCreateForm: React.FC = () => {
   const { createEvent } = postEvent(); // api
   const { createDate } = getToday(); // 本日の日付
   const secretKey = UUID.generate(); // secretKeyの生成
-  const [isEdit, setIsEdit] = useState<boolean>(false); // 編集モードかどうか
   const [id, setId] = useState<number>(1); // optionsのid
   const today = createDate();
   const {
@@ -123,6 +122,9 @@ const EcCreateForm: React.FC = () => {
 
   // todo 選択の表示非表示
   // todo 2個以上のバリデーション
+  // todo submitの値が入らない
+  // todo 送信後のselectedを削除して送信
+  // todo submit時値が更新されない
 
   return (
     <EcosystemArea>
@@ -273,23 +275,23 @@ const EcCreateForm: React.FC = () => {
                     removeOption={removeOption}
                   />
                 )}
-                {/* <MoForm
-                  register={register("options", {
-                    validate: {
-                      value: () => optionCheck(getValues("options")),
-                    },
-                  })}
-                  id={"options"}
-                  name={"options"}
-                  type={"hidden"}
-                  placeholder={""}
-                  disabled={false}
-                  readOnly={false}
-                  error={errors.options}
-                /> */}
                 <br />
               </div>
             ))}
+            <MoForm
+              register={register("options", {
+                validate: {
+                  value: () => optionCheck(getValues("options")),
+                },
+              })}
+              id={"options"}
+              name={"options"}
+              type={"hidden"}
+              placeholder={""}
+              disabled={false}
+              readOnly={false}
+              error={errors.options}
+            />
             <br />
             <JustifyCenter>
               <AtButton

@@ -3,19 +3,18 @@
  */
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import {
   utilsValidationRule,
   inputDateMaxCheck,
   inputDateMinCheck,
-  optionCheck,
 } from "@/utils/validation";
 import UUID from "uuidjs";
 import styled from "styled-components";
 import { sp, tab } from "@/media";
 // component
 import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
-import { OrCard, OrAccordion } from "@/components/organisms/EntryPoint";
+import { OrCard, OrOptionForms } from "@/components/organisms/EntryPoint";
 import { MoLabelForm } from "@/components/molecules/EntryPoint";
 import {
   H2,
@@ -41,81 +40,53 @@ const EcCreateForm: React.FC = () => {
     register,
     handleSubmit,
     getValues,
-    watch,
-    setValue,
+    control,
     reset,
-    trigger,
     formState: { errors },
   } = useForm<EventValues>({
     defaultValues: {
       votes: 99,
-      options: [],
-      optionsTitle: "",
       publicationStartDate: today,
+      options: [
+        {
+          id: id,
+          title: "選択肢(必須)",
+          overview: "補足(任意)",
+          url: "参考URL(任意)",
+        },
+      ],
     },
   });
 
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "options",
+  });
+
   const onSubmit: SubmitHandler<EventValues> = async (data: EventValues) => {
+    console.log(data);
     // apiを叩く
-    const document = await createEvent(data, "event", secretKey);
-    routerPush(`/dashboard/${document.id}?secret=${secretKey}`);
-    reset();
+    // const document = await createEvent(data, "event", secretKey);
+    // routerPush(`/dashboard/${document.id}?secret=${secretKey}`);
+    // reset();
   };
 
-  // 選択肢追加・編集
-  const setOptions = (): void => {
-    // 編集モードであれば解除
-    if (isEdit) setIsEdit(false);
-    const option = getValues(["optionsTitle", "optionsOverview", "optionsUrl"]);
-    const title = option[0];
-    const overview = option[1];
-    const url = option[2];
-    setValue("options", [
-      ...getValues("options"),
-      {
-        id: id,
-        title: title,
-        overview: overview,
-        url: url,
-      },
-    ]);
-    // 値リセット
-    setValue("optionsTitle", "");
-    setValue("optionsOverview", "");
-    setValue("optionsUrl", "");
-    setId(id + 1);
-  };
+  // todo 未使用のコンポーネントは削除
+  // todo 作成し終えたやつ選択肢はタイトルだけ表示
 
+  // 選択肢追加
+  const setOptions = () => {
+    const newId = id + 1;
+    setId(newId);
+    append({
+      id: newId,
+      title: "",
+      overview: "",
+      url: "",
+    });
+  };
   // 選択肢削除
-  const onClickDelete = (index: number): void => {
-    // 削除対象以外の選択肢リストを作成
-    const newOptions = getValues("options").filter(
-      (option, idx) => idx !== index
-    );
-    // 値のセット
-    setValue("options", newOptions);
-    // リストの更新
-    trigger("options");
-  };
-
-  // 選択肢編集
-  const onClickEdit = (index: number): void => {
-    setIsEdit(true);
-    // 編集対象を見つける
-    const editValues: any = getValues("options").find(
-      (option, idx) => idx === index
-    );
-    // 編集dataをフォームにセット
-    setValue("optionsTitle", editValues.title);
-    setValue("optionsOverview", editValues.overview);
-    setValue("optionsUrl", editValues.url);
-    // 編集するため選択したリストを一度削除
-    const newOptions = getValues("options").filter(
-      (option, idx) => idx !== index
-    );
-    // リストの更新
-    setValue("options", newOptions);
-  };
+  const removeOption = (index: number) => remove(index);
   // scrollによる値変更禁止
   // https://github.com/mui/material-ui/issues/7960#issuecomment-1076959490
   const noScrolling = (event: any): void =>
@@ -238,27 +209,6 @@ const EcCreateForm: React.FC = () => {
           />
         </OrCard>
         <br />
-        {/* 投票数 */}
-        {/* <OrCard>
-          <MoLabelForm
-            title={t("common.event.votes.title")}
-            overView={t("common.event.votes.detail")}
-            required={true}
-            register={register("votes", {
-              required: utilsValidationRule.REQUIRED,
-              max: utilsValidationRule.MAX_99,
-              min: utilsValidationRule.MIN_1,
-            })}
-            id="votes"
-            name="votes"
-            placeholder={t("common.event.votes.placeholder")}
-            disabled={false}
-            type="number"
-            error={errors.votes}
-            onWheel={noScrolling}
-          />
-        </OrCard>
-        <br /> */}
         {/* 選択肢作成 */}
         <OrCard>
           <>
@@ -271,81 +221,33 @@ const EcCreateForm: React.FC = () => {
               </LabelTitle>
               <OverView>{t("common.event.createOption.formDetail")}</OverView>
             </LabelArea>
-            <Section>
-              <MoLabelForm
-                title={t("common.event.createOption.optionTitle")}
-                required={true}
-                register={register("optionsTitle")}
-                id={"optionsTitle"}
-                name={"optionsTitle"}
-                type={"text"}
-                placeholder={t("common.event.createOption.titlePlaceholder")}
-                disabled={false}
-                error={errors.optionsTitle}
-                labelMark={false}
-              />
-            </Section>
-            <Section>
-              <MoLabelForm
-                title={t("common.event.createOption.optionDetail")}
-                required={false}
-                register={register("optionsOverview")}
-                id={"optionsOverview"}
-                name={"optionsOverview"}
-                type={"text"}
-                placeholder={t("common.event.createOption.detailPlaceholder")}
-                disabled={false}
-                error={errors.optionsOverview}
-                labelMark={false}
-              />
-            </Section>
-            <Section>
-              <MoLabelForm
-                title={t("common.event.createOption.optionLink")}
-                required={false}
-                register={register("optionsUrl")}
-                id={"optionsUrl"}
-                name={"optionsUrl"}
-                type={"url"}
-                placeholder={t("common.event.createOption.linkPlaceholder")}
-                disabled={false}
-                error={errors.optionsUrl}
-                labelMark={false}
-              />
-            </Section>
+            {fields.map((field, index) => (
+              <>
+                <OrCard key={field.id}>
+                  <OrOptionForms
+                    index={index}
+                    register={register}
+                    error={errors}
+                    removeOption={removeOption}
+                    getValues={getValues}
+                    field={field}
+                  />
+                </OrCard>
+                <br />
+              </>
+            ))}
+            <br />
             <JustifyCenter>
               <AtButton
-                title={
-                  isEdit ? t("common.button.edit") : t("common.button.add")
-                }
-                disabled={watch("optionsTitle") === ""}
-                onClick={setOptions}
+                title={t("common.button.add")}
+                disabled={false}
                 accent={true}
+                type="button"
+                onClick={setOptions}
               />
             </JustifyCenter>
           </>
         </OrCard>
-        <br />
-        {/* 選択肢 */}
-        <OrAccordion
-          title={t("common.event.options.title")}
-          required={true}
-          options={getValues("options")}
-          register={register("options", {
-            validate: {
-              value: () => optionCheck(getValues("options")),
-            },
-          })}
-          id={"options"}
-          name={"options"}
-          type={"hidden"}
-          placeholder={""}
-          disabled={isEdit}
-          readOnly={true}
-          error={errors.options}
-          onClickDelete={(index: number) => onClickDelete(index)}
-          onClickEdit={(index: number) => onClickEdit(index)}
-        />
         <br />
         <JustifyCenter>
           <AtButton
@@ -364,12 +266,4 @@ export default EcCreateForm;
 
 const EcosystemArea = styled.div`
   margin-top: 4rem;
-`;
-const Section = styled.div`
-  margin-bottom: 24px;
-  ${tab`
-  `}
-  ${sp`
-    margin-bottom: 14px;
-  `}
 `;

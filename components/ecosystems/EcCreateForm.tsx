@@ -8,14 +8,18 @@ import {
   utilsValidationRule,
   inputDateMaxCheck,
   inputDateMinCheck,
+  optionCheck,
 } from "@/utils/validation";
 import UUID from "uuidjs";
 import styled from "styled-components";
-import { sp, tab } from "@/media";
 // component
 import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
 import { OrCard, OrOptionForms } from "@/components/organisms/EntryPoint";
-import { MoLabelForm } from "@/components/molecules/EntryPoint";
+import {
+  MoLabelForm,
+  MoAccordion,
+  MoForm,
+} from "@/components/molecules/EntryPoint";
 import {
   H2,
   JustifyCenter,
@@ -40,7 +44,9 @@ const EcCreateForm: React.FC = () => {
     register,
     handleSubmit,
     getValues,
+    setValue,
     control,
+    watch,
     reset,
     formState: { errors },
   } = useForm<EventValues>({
@@ -50,47 +56,73 @@ const EcCreateForm: React.FC = () => {
       options: [
         {
           id: id,
-          title: "選択肢(必須)",
+          title: "選択肢1(必須)",
           overview: "補足(任意)",
           url: "参考URL(任意)",
+          selected: true,
         },
       ],
     },
   });
-
+  // イベントデータ
+  const eventData = getValues();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "options",
   });
 
+  // 送信
   const onSubmit: SubmitHandler<EventValues> = async (data: EventValues) => {
     console.log(data);
     // apiを叩く
     // const document = await createEvent(data, "event", secretKey);
     // routerPush(`/dashboard/${document.id}?secret=${secretKey}`);
     // reset();
+    // 送信時のselectedを削除する
   };
-
-  // todo 未使用のコンポーネントは削除
-  // todo 作成し終えたやつ選択肢はタイトルだけ表示
 
   // 選択肢追加
   const setOptions = () => {
+    // イベントデータの全てのselectedをfalseにする
+    eventData.options.forEach((_, index) => {
+      setValue(`options.${index}.selected`, false);
+    });
+    // 新しい選択肢の作成
     const newId = id + 1;
     setId(newId);
     append({
       id: newId,
-      title: "",
+      title: `選択肢${eventData.options.length + 1}`,
       overview: "",
       url: "",
+      selected: true,
     });
   };
+
   // 選択肢削除
-  const removeOption = (index: number) => remove(index);
+  const removeOption = (selectedIndex: number) => {
+    remove(selectedIndex);
+    setValue(`options.${eventData.options.length - 2}.selected`, true);
+  };
+
+  // 選択肢選択
+  const optionSelected = (selectedIndex: number) => {
+    // イベントデータの全てのselectedをfalseにする
+    eventData.options.forEach((_, index) => {
+      setValue(`options.${index}.selected`, false);
+    });
+    // 選択肢の編集モード
+    setValue(`options.${selectedIndex}.selected`, true);
+  };
+
   // scrollによる値変更禁止
   // https://github.com/mui/material-ui/issues/7960#issuecomment-1076959490
+  // 参加人数のスクロール禁止
   const noScrolling = (event: any): void =>
     event.target instanceof HTMLElement && event.target.blur();
+
+  // todo 選択の表示非表示
+  // todo 2個以上のバリデーション
 
   return (
     <EcosystemArea>
@@ -222,25 +254,49 @@ const EcCreateForm: React.FC = () => {
               <OverView>{t("common.event.createOption.formDetail")}</OverView>
             </LabelArea>
             {fields.map((field, index) => (
-              <>
-                <OrCard key={field.id}>
-                  <OrOptionForms
+              <div key={field.id}>
+                {field.selected ? (
+                  <OrCard>
+                    <OrOptionForms
+                      index={index}
+                      register={register}
+                      error={errors}
+                      removeOption={removeOption}
+                      getValues={getValues}
+                    />
+                  </OrCard>
+                ) : (
+                  <MoAccordion
                     index={index}
-                    register={register}
-                    error={errors}
-                    removeOption={removeOption}
-                    getValues={getValues}
                     field={field}
+                    optionSelected={optionSelected}
+                    removeOption={removeOption}
                   />
-                </OrCard>
+                )}
+                {/* <MoForm
+                  register={register("options", {
+                    validate: {
+                      value: () => optionCheck(getValues("options")),
+                    },
+                  })}
+                  id={"options"}
+                  name={"options"}
+                  type={"hidden"}
+                  placeholder={""}
+                  disabled={false}
+                  readOnly={false}
+                  error={errors.options}
+                /> */}
                 <br />
-              </>
+              </div>
             ))}
             <br />
             <JustifyCenter>
               <AtButton
                 title={t("common.button.add")}
-                disabled={false}
+                disabled={
+                  watch(`options.${eventData.options.length - 1}.title`) === ""
+                }
                 accent={true}
                 type="button"
                 onClick={setOptions}

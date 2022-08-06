@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  UseFormRegister,
-  UseFormGetValues,
-  FieldArrayWithId,
-} from "react-hook-form";
-import { utilsValidationRule, optionCheck } from "@/utils/validation";
+import { UseFormRegister, UseFormGetValues } from "react-hook-form";
+import { utilsValidationRule } from "@/utils/validation";
 
 // components
 import { JustifyCenter } from "@/components/shared/EntryPoint";
@@ -21,7 +17,6 @@ export interface Props {
   register: UseFormRegister<EventValues>;
   removeOption: (index: number) => void;
   getValues: UseFormGetValues<EventValues>;
-  field: FieldArrayWithId<EventValues, "options", "id">;
 }
 
 export const OrOptionForms: React.FC<Props> = ({
@@ -29,12 +24,8 @@ export const OrOptionForms: React.FC<Props> = ({
   register,
   error,
   removeOption,
-  getValues,
-  field,
 }) => {
   const { t } = useTranslation("common");
-  console.log(field);
-
   return (
     <>
       {/* 選択肢 */}
@@ -42,9 +33,6 @@ export const OrOptionForms: React.FC<Props> = ({
         register={register(`options.${index}.title` as const, {
           required: utilsValidationRule.REQUIRED,
           minLength: utilsValidationRule.MIN_LENGTH_1,
-          validate: {
-            value: () => optionCheck(getValues("options")),
-          },
         })}
         id={`${index}.title`}
         type={"text"}

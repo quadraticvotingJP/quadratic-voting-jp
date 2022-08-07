@@ -6,9 +6,10 @@ import { sp, tab } from "@/media";
 import { BASE_CSS } from "@/utils/baseCss";
 // architecture
 import { routerPush } from "@/architecture/application/routing";
-
 // component
 import { AtButton, AtImage } from "@/components/atoms/EntryPoint";
+// hooks
+import { useScreenSize } from "@/architecture/hooks/ screenSize";
 
 interface Image {
   [index: string]: string;
@@ -21,30 +22,49 @@ type Props = {
 const EcLp: React.FC<Props> = ({ images }) => {
   const { t } = useTranslation("common");
   const moveCreateEvent = (): void => routerPush("create");
+  const RESPONSIVE = useScreenSize();
   return (
-    <>
-      <SectionFirstView
-        data-testid="top-page"
-        id="firstView"
-        image={images["firstView"]}
-      >
-        <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
-        <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
-        <FirstViewJustifyCenterElement>
-          <FirstViewButton
-            title={t("common.button.startNow")}
-            disabled={false}
-            onClick={moveCreateEvent}
-            square={true}
+    <div data-testid="top-page">
+      {RESPONSIVE.SIZE_SP ? (
+        <SpSectionFirstView>
+          <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
+          <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
+          <AtImage
+            src={images["spFirstView"]}
+            alt="firstView"
+            layout="intrinsic"
+            width={326}
+            height={241}
           />
-        </FirstViewJustifyCenterElement>
-      </SectionFirstView>
+        </SpSectionFirstView>
+      ) : (
+        <SectionFirstView id="firstView" image={images["firstView"]}>
+          <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
+          <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
+          <FirstViewJustifyCenterElement>
+            <FirstViewButton
+              title={t("common.button.startNow")}
+              disabled={false}
+              onClick={moveCreateEvent}
+              square={true}
+            />
+          </FirstViewJustifyCenterElement>
+        </SectionFirstView>
+      )}
 
       <SectionIsQuadraticVoting id="isQuadraticVoting">
         <IsQuadraticVotingJustifyBetweenMaxWidth1000>
           <IsQuadraticVotingOverViewArea>
             <IsQuadraticVotingTitle>
-              {t("lp.isQuadraticVoting.title")}
+              {RESPONSIVE.SIZE_SP ? (
+                <>
+                  {t("lp.isQuadraticVoting.spTitle")}
+                  <br />
+                  {t("lp.isQuadraticVoting.spSubTitle")}
+                </>
+              ) : (
+                <>{t("lp.isQuadraticVoting.title")}</>
+              )}
             </IsQuadraticVotingTitle>
             <IsQuadraticVotingSubTitle>
               {t("lp.isQuadraticVoting.subTitle")}
@@ -52,14 +72,16 @@ const EcLp: React.FC<Props> = ({ images }) => {
             <IsQuadraticVotingOverview>
               {t("lp.isQuadraticVoting.overview")}
             </IsQuadraticVotingOverview>
-            <IsQuadraticVotingJustifyCenterElement>
-              <IsQuadraticVotingButton
-                title={t("common.button.startNow")}
-                disabled={false}
-                onClick={moveCreateEvent}
-                square={true}
-              />
-            </IsQuadraticVotingJustifyCenterElement>
+            {!RESPONSIVE.SIZE_SP && (
+              <IsQuadraticVotingJustifyCenterElement>
+                <IsQuadraticVotingButton
+                  title={t("common.button.startNow")}
+                  disabled={false}
+                  onClick={moveCreateEvent}
+                  square={true}
+                />
+              </IsQuadraticVotingJustifyCenterElement>
+            )}
           </IsQuadraticVotingOverViewArea>
           <IsQuadraticVotingImageArea>
             <IsQuadraticVotingImageElement>
@@ -72,6 +94,16 @@ const EcLp: React.FC<Props> = ({ images }) => {
               />
             </IsQuadraticVotingImageElement>
           </IsQuadraticVotingImageArea>
+          {RESPONSIVE.SIZE_SP && (
+            <IsQuadraticVotingJustifyCenterElement>
+              <IsQuadraticVotingButton
+                title={t("common.button.startNow")}
+                disabled={false}
+                onClick={moveCreateEvent}
+                square={true}
+              />
+            </IsQuadraticVotingJustifyCenterElement>
+          )}
         </IsQuadraticVotingJustifyBetweenMaxWidth1000>
       </SectionIsQuadraticVoting>
 
@@ -155,14 +187,16 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 <RuleExample1>{t("lp.rule.example2")}</RuleExample1>
                 <RuleExample2>{t("lp.rule.example3")}</RuleExample2>
                 <RuleExample3></RuleExample3>
-                <RuleJustifyCenterElement>
-                  <RuleButton
-                    title={t("common.button.startNow")}
-                    disabled={false}
-                    onClick={moveCreateEvent}
-                    square={true}
-                  />
-                </RuleJustifyCenterElement>
+                {!RESPONSIVE.SIZE_SP && (
+                  <RuleJustifyCenterElement>
+                    <RuleButton
+                      title={t("common.button.startNow")}
+                      disabled={false}
+                      onClick={moveCreateEvent}
+                      square={true}
+                    />
+                  </RuleJustifyCenterElement>
+                )}
               </div>
               <AtImage
                 src={images["vote"]}
@@ -171,6 +205,16 @@ const EcLp: React.FC<Props> = ({ images }) => {
                 width={431}
                 height={296}
               />
+              {RESPONSIVE.SIZE_SP && (
+                <RuleJustifyCenterElement>
+                  <RuleButton
+                    title={t("common.button.startNow")}
+                    disabled={false}
+                    onClick={moveCreateEvent}
+                    square={true}
+                  />
+                </RuleJustifyCenterElement>
+              )}
             </RuleExampleElement>
           </RuleDirectionColElement>
         </RuleDirectionColMaxWidth1000>
@@ -220,7 +264,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
           </StartNowJustifyCenterElement>
         </StartNowMaxWidth1000>
       </SectionStartNow>
-    </>
+    </div>
   );
 };
 export default EcLp;
@@ -239,9 +283,11 @@ const SectionFirstView = styled.section<{ image: string }>`
   ${tab`
     padding: 100px 60px 100px 60px;
   `}
-  ${sp`
-    padding: 100px 20px 100px 20px;
-  `}
+`;
+const SpSectionFirstView = styled.section`
+  background-color: ${BASE_CSS.color.main};
+  object-fit: cover;
+  padding: 100px 20px 100px 20px;
 `;
 const FirstViewTitle = styled.p`
   color: ${BASE_CSS.color.white};
@@ -253,7 +299,7 @@ const FirstViewTitle = styled.p`
     font-size: 35px;
   `}
   ${sp`
-    font-size: 25px;
+    font-size: 20px;
   `}
 `;
 const FirstViewSubTitle = styled.p`
@@ -267,6 +313,7 @@ const FirstViewSubTitle = styled.p`
   `}
   ${sp`
     font-size: 20px;
+    margin-bottom: 37px;
   `}
 `;
 const FirstViewJustifyCenterElement = styled.div`
@@ -288,10 +335,8 @@ const SectionIsQuadraticVoting = styled.section`
   ${tab`
     margin-bottom: 140px;
   `}
-  ${sp`
-    padding: 118px 0px 60px 0px;
-    margin-bottom: 60px;
-  `}
+  padding: 40px 0px 60px 0px;
+  margin-bottom: 60px;
 `;
 const IsQuadraticVotingJustifyBetweenMaxWidth1000 = styled.div`
   display: flex;
@@ -327,7 +372,8 @@ const IsQuadraticVotingImageArea = styled.div`
 `;
 const IsQuadraticVotingTitle = styled.p`
   margin-bottom: 32px;
-  font-size: 20px;
+  font-size: 16px;
+  font-weight: bold;
   white-space: pre-wrap;
   ${tab`
     font-size: 18px;
@@ -345,9 +391,8 @@ const IsQuadraticVotingSubTitle = styled.p`
     font-size: 22px;
   `}
   ${sp`
-    font-weight: bold;
     margin-bottom: 20px;
-    font-size: 16px;
+    font-size: 18px;
   `}
 `;
 const IsQuadraticVotingOverview = styled.p`
@@ -359,7 +404,7 @@ const IsQuadraticVotingOverview = styled.p`
   `}
   ${sp`
     margin-bottom: 50px;
-    font-size: 12px;
+    font-size: 16px;
   `}
 `;
 const IsQuadraticVotingImageElement = styled.div`
@@ -390,8 +435,8 @@ const SectionFeature = styled.section`
     margin-bottom: 140px;
   `}
   ${sp`
-    padding-bottom: 60px
-    margin-bottom: 60px;
+    padding-bottom: 0px;
+    margin-bottom: 40px;
   `}
 `;
 const FeatureDirectionColMaxWidth1000 = styled.div`
@@ -418,7 +463,7 @@ const FeatureTitle = styled.p`
   `}
   ${sp`
     font-weight: bold;
-    font-size: 24px;
+    font-size: 16px;
   `}
 `;
 const FeatureArea = styled.div`
@@ -441,8 +486,9 @@ const FeatureElement = styled.div`
   ${tab`
   `}
   ${sp`
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
+    margin-bottom: 32px;
   `}
 `;
 const FeatureElement2 = styled.div`
@@ -453,8 +499,9 @@ const FeatureElement2 = styled.div`
   ${tab`
   `}
   ${sp`
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
+    margin-bottom: 32px;
   `}
 `;
 
@@ -511,7 +558,8 @@ const SectionRule = styled.section`
     padding: 118px 0px 120px 0px;
   `}
   ${sp`
-    padding: 118px 0px 60px 0px;
+    padding: 40px 0px 60px 0px;
+    margin-bottom: 0px;
   `}
 `;
 const RuleDirectionColMaxWidth1000 = styled.div`
@@ -552,7 +600,7 @@ const RuleTitle = styled.p`
   `}
   ${sp`
     font-weight: bold;
-    font-size: 24px;
+    font-size: 16px;
   `}
 `;
 const RuleDirectionColElement = styled.div`
@@ -581,7 +629,7 @@ const RuleElement = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
   `}
 `;
 const Rule = styled.div`
@@ -632,7 +680,7 @@ const RuleExample1 = styled.p`
     font-size: 14px;
   `}
   ${sp`
-    font-size: 14px;
+    font-size: 16px;
   `}
 `;
 const RuleExample2 = styled.p`
@@ -679,7 +727,7 @@ const SectionScene = styled.section`
     margin-bottom: 140px;
   `}
   ${sp`
-    padding-bottom: 60px
+    padding: 40px 0px 60px 0px;
     margin-bottom: 60px;
   `}
 `;
@@ -708,7 +756,7 @@ const SceneTitle = styled.p`
   `}
   ${sp`
     font-weight: bold;
-    font-size: 24px;
+    font-size: 16px;
   `}
 `;
 const SceneDirectionColElement = styled.div`
@@ -804,7 +852,9 @@ const StartNowTitle = styled.p`
     font-size: 32px;
   `}
   ${sp`
-    font-size: 21px;
+    margin-top: 30px;
+    font-size: 16px;
+    margin-bottom: 70px;
   `}
 `;
 const StartNowJustifyCenterElement = styled.div`

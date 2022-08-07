@@ -7,5 +7,4 @@ export { MoHeader } from "@/components/molecules/MoHeader/index";
 export { MoLabelBar } from "@/components/molecules/MoLabelBar/index";
 export { MoLabelForm } from "@/components/molecules/MoLabelForm/index";
 export { MoLabelText } from "@/components/molecules/MoLabelText/index";
-export { MoLabelTextField } from "@/components/molecules/MoLabelTextField/index";
 export { MoProcess } from "@/components/molecules/MoProcess/index";

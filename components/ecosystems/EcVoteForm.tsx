@@ -10,11 +10,12 @@ import { BASE_CSS } from "@/utils/baseCss";
 import { useTranslation } from "next-i18next";
 // component
 import { AtButton, AtLabel, AtHref } from "@/components/atoms/EntryPoint";
-import { MoLabelText } from "@/components/molecules/EntryPoint";
+import { MoLabelText, MoButtons } from "@/components/molecules/EntryPoint";
 import {
   OrCard,
   OrVoteOptionCardForm,
   OrProposalBlocks,
+  OrModal,
 } from "@/components/organisms/EntryPoint";
 import { Card, H2, JustifyCenter } from "@/components/shared/EntryPoint";
 
@@ -139,7 +140,8 @@ const EcVoteForm: React.FC<Props> = ({
       };
     });
   };
-
+  // モーダルロジック
+  const [showModal, setShowModal] = useState<boolean>(false);
   return (
     <>
       <FlexElement>
@@ -206,7 +208,11 @@ const EcVoteForm: React.FC<Props> = ({
             <AtButton
               title={t("common.button.vote")}
               disabled={isActive}
-              onClick={() => onSubmit(voteOptions)}
+              onClick={
+                credits === 0
+                  ? () => onSubmit(voteOptions)
+                  : () => setShowModal(true)
+              }
               accent={true}
             />
           </JustifyCenter>
@@ -218,6 +224,37 @@ const EcVoteForm: React.FC<Props> = ({
             denominator={conversionVoteData.votes}
           />
         </ProposalBlocksArea>
+        {/* 投票確認モダール */}
+        <OrModal
+          title="投票確認"
+          open={showModal}
+          close={() => setShowModal(false)}
+        >
+          <RemainingCredits>
+            残{credits}票余っています。投票しますか？
+          </RemainingCredits>
+          <br />
+          <Link>
+            <AtHref
+              blank={true}
+              title={t("common.vote.message.rule")}
+              link={t("header.link")}
+            />
+          </Link>
+          <br />
+          <MoButtons
+            left={{
+              title: "いいえ",
+              disabled: false,
+              onClick: () => setShowModal(false),
+            }}
+            right={{
+              title: "はい",
+              disabled: false,
+              onClick: () => onSubmit(voteOptions),
+            }}
+          />
+        </OrModal>
       </FlexElement>
     </>
   );
@@ -244,4 +281,8 @@ const Link = styled.div`
   overflow-wrap: break-word;
   color: ${BASE_CSS.link.color};
   font-size: 20px;
+`;
+const RemainingCredits = styled.p`
+  font-size: 20px;
+  text-align: center;
 `;

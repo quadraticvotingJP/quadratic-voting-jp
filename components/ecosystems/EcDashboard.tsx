@@ -17,7 +17,6 @@ import {
   MoLabelText,
   MoLabelForm,
   MoLabelBar,
-  MoLabelTextField,
   MoProcess,
 } from "@/components/molecules/EntryPoint";
 import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
@@ -32,7 +31,6 @@ import {
 import { chartData } from "@/architecture/domain/chart";
 // application
 import { downloadXlsx } from "@/architecture/application/downloadXlsx";
-import { downloadTxt } from "@/architecture/application/downloadTxt";
 import { putEvent } from "@/architecture/application/putEvent";
 import { getDashboard } from "@/architecture/application/getDashboard";
 import { dashboardData } from "@/architecture/application/dashboardData";
@@ -50,7 +48,6 @@ interface Props {
 const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
   const { t } = useTranslation("common");
   const { excelFile } = downloadXlsx(); // ダウンロード
-  const { textFile } = downloadTxt(); // ダウンロード
   const { updateEvent } = putEvent(); // api
   const { createDate } = getToday(); // 本日の日付
   const { createAcquiredInformation } = getDashboard(); // api
@@ -118,11 +115,6 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
       dashboard.grafEffectiveVotes,
       dashboard.grafPercentCredits
     );
-    window.open(process.env.NEXT_PUBLIC_A8ONAMAE120X600_A, "_blank");
-  };
-  // 投票者リンクダウンロード
-  const downloadTXT = () => {
-    textFile(dashboard.voterLinks);
     window.open(process.env.NEXT_PUBLIC_A8ONAMAE120X600_A, "_blank");
   };
 
@@ -354,24 +346,19 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
         <OrCard>
           <>
             <Section>
-              <MoLabelTextField
+              <MoLabelForm
+                readOnly={true}
                 title={t("common.dashboard.votersLink.title")}
-                required={false}
                 overView={t("common.dashboard.votersLink.detail")}
                 defaultValue={dashboard.voterLinks}
+                required={false}
+                placeholder=""
+                disabled={false}
+                type="text"
                 id={"votersLink"}
                 name={"votersLink"}
-                rows={10}
               />
             </Section>
-            <JustifyCenter>
-              <AtButton
-                title={t("common.button.downloadTxt")}
-                disabled={false}
-                onClick={downloadTXT}
-                accent={true}
-              />
-            </JustifyCenter>
           </>
         </OrCard>
       )}

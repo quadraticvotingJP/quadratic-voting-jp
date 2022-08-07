@@ -24,7 +24,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
   const moveCreateEvent = (): void => routerPush("create");
   const RESPONSIVE = useScreenSize();
   return (
-    <>
+    <div data-testid="top-page">
       {RESPONSIVE.SIZE_SP ? (
         <SpSectionFirstView>
           <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
@@ -264,7 +264,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
           </StartNowJustifyCenterElement>
         </StartNowMaxWidth1000>
       </SectionStartNow>
-    </>
+    </div>
   );
 };
 export default EcLp;

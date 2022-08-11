@@ -79,6 +79,7 @@ const EcCreateForm: React.FC = () => {
   const onSubmit: SubmitHandler<EventValues> = async (data: EventValues) => {
     console.log(data);
     // apiを叩く
+    // todo 送信後のselectedを削除して送信
     // const document = await createEvent(data, "event", secretKey);
     // routerPush(`/dashboard/${document.id}?secret=${secretKey}`);
     // reset();
@@ -131,9 +132,6 @@ const EcCreateForm: React.FC = () => {
   // 参加人数のスクロール禁止
   const noScrolling = (event: any): void =>
     event.target instanceof HTMLElement && event.target.blur();
-
-  // todo 2個以上のバリデーション
-  // todo 送信後のselectedを削除して送信
 
   return (
     <EcosystemArea>
@@ -289,20 +287,6 @@ const EcCreateForm: React.FC = () => {
                 <br />
               </div>
             ))}
-            {/* <MoForm
-              register={register("options", {
-                validate: {
-                  value: () => optionCheck(getValues("options")),
-                },
-              })}
-              id={"options"}
-              name={"options"}
-              type={"hidden"}
-              placeholder={""}
-              disabled={false}
-              readOnly={false}
-              error={errors.options}
-            /> */}
             <br />
             <JustifyCenter>
               <AtButton
@@ -321,7 +305,7 @@ const EcCreateForm: React.FC = () => {
         <JustifyCenter>
           <AtButton
             title={t("common.button.eventCreation")}
-            disabled={false}
+            disabled={watch(`options.${selectedOptionsFormIndex}.title`) === ""}
             accent={true}
             type="button"
             onClick={() => handleSubmit(onSubmit)()}

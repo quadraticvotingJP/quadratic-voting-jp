@@ -1,7 +1,7 @@
 /**
  * @description イベント作成画面
  */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import {
@@ -65,6 +65,11 @@ const EcCreateForm: React.FC = () => {
   });
   // イベントデータ
   const eventData = getValues();
+  // 選択肢フォームで選択しているフォームのindex番号
+  const selectedOptionsFormIndex = eventData.options.findIndex(
+    (option) => option.selected === true
+  );
+
   const { append, remove } = useFieldArray({
     control,
     name: "options",
@@ -77,7 +82,6 @@ const EcCreateForm: React.FC = () => {
     // const document = await createEvent(data, "event", secretKey);
     // routerPush(`/dashboard/${document.id}?secret=${secretKey}`);
     // reset();
-    // 送信時のselectedを削除する
   };
 
   // 選択肢追加
@@ -128,8 +132,6 @@ const EcCreateForm: React.FC = () => {
   const noScrolling = (event: any): void =>
     event.target instanceof HTMLElement && event.target.blur();
 
-  // todo タイトルのが空欄ではななければが編集ボタンを押せるようにする
-  // todo 選択肢追加ボタンをselectedの値が空欄でなければ押せるようにする
   // todo 2個以上のバリデーション
   // todo 送信後のselectedを削除して送信
 
@@ -280,6 +282,8 @@ const EcCreateForm: React.FC = () => {
                     field={field}
                     optionSelected={optionSelected}
                     removeOption={removeOption}
+                    selectedFormIndex={selectedOptionsFormIndex}
+                    watch={watch}
                   />
                 )}
                 <br />
@@ -304,7 +308,7 @@ const EcCreateForm: React.FC = () => {
               <AtButton
                 title={t("common.button.add")}
                 disabled={
-                  watch(`options.${eventData.options.length - 1}.title`) === ""
+                  watch(`options.${selectedOptionsFormIndex}.title`) === ""
                 }
                 accent={true}
                 type="button"

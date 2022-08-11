@@ -10,18 +10,29 @@ import { OverView } from "@/components/shared/EntryPoint";
 // mui
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { FieldArrayWithId } from "react-hook-form";
+
+// react hook form
+import { UseFormWatch } from "react-hook-form";
 
 export type Props = {
   readonly field: any;
   readonly index: number;
   readonly optionSelected: (index: number) => void;
   readonly removeOption: (index: number) => void;
+  readonly selectedFormIndex: number;
+  readonly watch: UseFormWatch<EventValues>;
 };
 
 // eslint-disable-next-line react/display-name
 export const MoAccordion: React.FC<Props> = React.memo(
-  ({ field, optionSelected, removeOption, index }) => (
+  ({
+    field,
+    optionSelected,
+    removeOption,
+    index,
+    selectedFormIndex,
+    watch,
+  }) => (
     <>
       <Accordion>
         <AccordionSummary
@@ -38,12 +49,16 @@ export const MoAccordion: React.FC<Props> = React.memo(
                 showEdit
                 onClick={() => optionSelected(index)}
                 size={"large"}
+                disabled={watch(`options.${selectedFormIndex}.title`) === ""}
               />
               <AtIconButton
                 showDelete
                 onClick={() => removeOption(index)}
                 size={"large"}
-                disabled={index === 0}
+                disabled={
+                  index === 0 ||
+                  watch(`options.${selectedFormIndex}.title`) === ""
+                }
               />
             </IconButtonElement>
           </OptionElement>

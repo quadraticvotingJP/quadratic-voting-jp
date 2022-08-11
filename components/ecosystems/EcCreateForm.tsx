@@ -1,7 +1,7 @@
 /**
  * @description イベント作成画面
  */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import {
@@ -56,8 +56,8 @@ const EcCreateForm: React.FC = () => {
         {
           id: id,
           title: "選択肢1(必須)",
-          overview: "補足(任意)",
-          url: "参考URL(任意)",
+          overview: "",
+          url: "",
           selected: true,
         },
       ],
@@ -65,7 +65,7 @@ const EcCreateForm: React.FC = () => {
   });
   // イベントデータ
   const eventData = getValues();
-  const { fields, append, remove } = useFieldArray({
+  const { append, remove } = useFieldArray({
     control,
     name: "options",
   });
@@ -100,7 +100,13 @@ const EcCreateForm: React.FC = () => {
 
   // 選択肢削除
   const removeOption = (selectedIndex: number) => {
+    // イベントデータの全てのselectedをfalseにする
+    eventData.options.forEach((_, index) => {
+      setValue(`options.${index}.selected`, false);
+    });
+    // フォームの削除
     remove(selectedIndex);
+    // 最新のフォーにフォーカス
     setValue(`options.${eventData.options.length - 2}.selected`, true);
   };
 
@@ -112,6 +118,8 @@ const EcCreateForm: React.FC = () => {
     });
     // 選択肢の編集モード
     setValue(`options.${selectedIndex}.selected`, true);
+    // 画面の更新
+    watch(`options.${selectedIndex}.selected`);
   };
 
   // scrollによる値変更禁止
@@ -120,11 +128,10 @@ const EcCreateForm: React.FC = () => {
   const noScrolling = (event: any): void =>
     event.target instanceof HTMLElement && event.target.blur();
 
-  // todo 選択の表示非表示
+  // todo タイトルのが空欄ではななければが編集ボタンを押せるようにする
+  // todo 選択肢追加ボタンをselectedの値が空欄でなければ押せるようにする
   // todo 2個以上のバリデーション
-  // todo submitの値が入らない
   // todo 送信後のselectedを削除して送信
-  // todo submit時値が更新されない
 
   return (
     <EcosystemArea>
@@ -255,7 +262,7 @@ const EcCreateForm: React.FC = () => {
               </LabelTitle>
               <OverView>{t("common.event.createOption.formDetail")}</OverView>
             </LabelArea>
-            {fields.map((field, index) => (
+            {eventData.options.map((field, index) => (
               <div key={field.id}>
                 {field.selected ? (
                   <OrCard>
@@ -278,7 +285,7 @@ const EcCreateForm: React.FC = () => {
                 <br />
               </div>
             ))}
-            <MoForm
+            {/* <MoForm
               register={register("options", {
                 validate: {
                   value: () => optionCheck(getValues("options")),
@@ -291,7 +298,7 @@ const EcCreateForm: React.FC = () => {
               disabled={false}
               readOnly={false}
               error={errors.options}
-            />
+            /> */}
             <br />
             <JustifyCenter>
               <AtButton

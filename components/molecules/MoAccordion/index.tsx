@@ -13,7 +13,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { FieldArrayWithId } from "react-hook-form";
 
 export type Props = {
-  readonly field: FieldArrayWithId<EventValues, "options", "id">;
+  readonly field: any;
   readonly index: number;
   readonly optionSelected: (index: number) => void;
   readonly removeOption: (index: number) => void;

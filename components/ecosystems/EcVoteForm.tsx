@@ -231,16 +231,9 @@ const EcVoteForm: React.FC<Props> = ({
           close={() => setShowModal(false)}
         >
           <RemainingCredits>
-            残{credits}票余っています。投票しますか？
+            {credits}票余っています。投票しますか？
           </RemainingCredits>
           <br />
-          <Link>
-            <AtHref
-              blank={true}
-              title={t("common.vote.message.rule")}
-              link={t("header.link")}
-            />
-          </Link>
           <br />
           <MoButtons
             left={{

@@ -234,13 +234,6 @@ const EcVoteForm: React.FC<Props> = ({
             {credits}票余っています。投票しますか？
           </RemainingCredits>
           <br />
-          <Link>
-            <AtHref
-              blank={true}
-              title={t("common.vote.message.rule")}
-              link={t("header.link")}
-            />
-          </Link>
           <br />
           <MoButtons
             left={{

@@ -48,9 +48,24 @@ export const MoHeader = ({ isLandingPage }: Props) => {
           )}
         </SpaceBetWeen>
       ) : (
-        <Title isLandingPage={isLandingPage}>
-          <AtHref title={t("header.siteName")} link={t("header.link")} />
-        </Title>
+        <SpaceBetWeen>
+          <Title isLandingPage={isLandingPage}>
+            <AtHref title={t("header.siteName")} link={t("header.link")} />
+          </Title>
+          {SIZE_PC_TAB && (
+            <>
+              <Flex>
+                <Flex></Flex>
+                <AtButton
+                  title={t("common.button.createEvent")}
+                  disabled={false}
+                  onClick={moveCreateEvent}
+                  square={true}
+                />
+              </Flex>
+            </>
+          )}
+        </SpaceBetWeen>
       )}
     </Header>
   );

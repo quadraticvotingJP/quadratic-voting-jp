@@ -108,7 +108,8 @@
       "download": "ダウンロード",
       "downloadXlsx": "ダウンロード(.xlsx)",
       "downloadTxt": "ダウンロード(.txt)",
-      "startNow": "今すぐはじめる"
+      "startNow": "今すぐはじめる",
+      "createEvent": "イベント作成"
     },
     "event": {
       "eventTitle": {

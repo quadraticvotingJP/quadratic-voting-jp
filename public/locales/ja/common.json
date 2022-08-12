@@ -60,10 +60,10 @@
     },
     "scene": {
       "title": "様々なシーンで活躍できます",
-      "scene1": "企画・プレゼン投票",
-      "scene2": "セミナー・イベント",
-      "scene3": "社内アンケート調査",
-      "scene4": "候補決め",
+      "scene1": "コンペティション",
+      "scene2": "企画・プレゼン投票",
+      "scene3": "セミナー・イベント",
+      "scene4": "社内アンケート調査",
       "scene5": "飲み会の居酒屋調整"
     },
     "startNow": {
@@ -108,7 +108,8 @@
       "download": "ダウンロード",
       "downloadXlsx": "ダウンロード(.xlsx)",
       "downloadTxt": "ダウンロード(.txt)",
-      "startNow": "今すぐはじめる"
+      "startNow": "今すぐはじめる",
+      "createEvent": "イベント作成"
     },
     "event": {
       "eventTitle": {
@@ -145,7 +146,10 @@
         "placeholder": "99"
       },
       "options": {
-        "title": "選択肢"
+        "title": "選択肢一覧"
+      },
+      "vote": {
+        "title": "投票"
       },
       "createOption": {
         "formTitle": "選択肢作成",

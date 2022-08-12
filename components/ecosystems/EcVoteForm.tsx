@@ -188,6 +188,21 @@ const EcVoteForm: React.FC<Props> = ({
           <br />
           <Card>
             <AtLabel required={false} title={t("common.event.options.title")} />
+            <br />
+            <TitleArea>
+              {conversionVoteData.optionTitleArray.map((title, index) => {
+                return (
+                  <>
+                    <p key={`title-${index}`}>{title}</p>
+                    <br />
+                  </>
+                );
+              })}
+            </TitleArea>
+          </Card>
+          <br />
+          <Card>
+            <AtLabel required={false} title={t("common.event.vote.title")} />
             {voteOptions.map((option: VoteOption, index: number) => {
               return (
                 <div key={`${index}-${option.id}`}>
@@ -278,4 +293,9 @@ const Link = styled.div`
 const RemainingCredits = styled.p`
   font-size: 20px;
   text-align: center;
+`;
+
+const TitleArea = styled.div`
+  overflow: scroll;
+  height: 200px;
 `;

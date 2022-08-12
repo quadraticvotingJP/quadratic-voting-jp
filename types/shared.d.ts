@@ -64,6 +64,7 @@ interface VoteData {
   readonly publicationEndDate: string;
   readonly votes: number;
   readonly voteOptions: VoteOption[];
+  readonly optionTitleArray: string[];
 }
 
 // イベント作成時の型

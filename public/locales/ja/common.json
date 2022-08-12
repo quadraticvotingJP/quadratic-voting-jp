@@ -146,7 +146,10 @@
         "placeholder": "99"
       },
       "options": {
-        "title": "選択肢"
+        "title": "選択肢一覧"
+      },
+      "vote": {
+        "title": "投票"
       },
       "createOption": {
         "formTitle": "選択肢作成",

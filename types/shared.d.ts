@@ -47,6 +47,7 @@ interface Option {
   readonly title: string;
   readonly overview: string;
   readonly url: string;
+  readonly selected?: boolean;
 }
 
 // イベント投票時の型
@@ -74,9 +75,6 @@ interface EventValues {
   readonly participant: number;
   readonly votes: number;
   readonly options: Option[];
-  readonly optionsTitle: string;
-  readonly optionsOverview: string;
-  readonly optionsUrl: string;
 }
 
 // 新規作成時のイベント

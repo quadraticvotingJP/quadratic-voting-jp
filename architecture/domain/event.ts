@@ -39,7 +39,11 @@ export function event(
     publicationEndDate: publicationEndDate,
     participant: participant,
     votes: votes,
-    options: options,
+    options: options.map((option: Option) => {
+      const clone = Object.assign(option);
+      delete clone["selected"];
+      return clone;
+    }),
     participantLinks: participantLinks,
     documentId: documentId,
     secretKey: secretKey,

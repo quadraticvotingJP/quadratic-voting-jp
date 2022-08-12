@@ -102,7 +102,7 @@
     },
     "button": {
       "eventCreation": "アンケート作成",
-      "add": "追加",
+      "add": "選択肢追加",
       "edit": "編集",
       "vote": "投票",
       "download": "ダウンロード",
@@ -151,11 +151,11 @@
         "formTitle": "選択肢作成",
         "formDetail": "選択肢を追加してください。\n最低2件必要です。",
         "optionTitle": "タイトル",
-        "titlePlaceholder": "例：尾瀬ヶ原",
+        "titlePlaceholder": "選択肢のタイトルを作成してください（必須）",
         "optionDetail": "補足",
-        "detailPlaceholder": "例：福島・群馬・新潟３県境の尾瀬地域にある日本最大の湿原。",
+        "detailPlaceholder": "補足があれば入力してください（任意）",
         "optionLink": "リンク",
-        "linkPlaceholder": "https://www.oze-fnd.or.jp/"
+        "linkPlaceholder": "参考URL（任意）"
       }
     },
     "dashboard": {

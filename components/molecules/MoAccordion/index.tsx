@@ -11,70 +11,82 @@ import { OverView } from "@/components/shared/EntryPoint";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
+// react hook form
+import { UseFormWatch } from "react-hook-form";
+
 export type Props = {
-  readonly size: Readonly<ButtonSize>;
-  readonly option: Readonly<Option>;
-  readonly onClickEdit?: () => void;
-  readonly onClickDelete?: () => void;
-  readonly disabled: boolean;
+  readonly field: any;
+  readonly index: number;
+  readonly optionSelected: (index: number) => void;
+  readonly removeOption: (index: number) => void;
+  readonly selectedFormIndex: number;
+  readonly watch: UseFormWatch<EventValues>;
 };
 
 // eslint-disable-next-line react/display-name
 export const MoAccordion: React.FC<Props> = React.memo(
-  ({ option, size, onClickEdit, onClickDelete, disabled }) => {
-    return (
-      <>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <OptionElement>
-              <TitleElement>
-                <Title>{option.title}</Title>
-              </TitleElement>
-              <IconButtonElement>
-                <AtIconButton
-                  showEdit
-                  onClick={onClickEdit}
-                  size={size}
-                  disabled={disabled}
-                />
-                <AtIconButton
-                  showDelete
-                  onClick={onClickDelete}
-                  size={size}
-                  disabled={disabled}
-                />
-              </IconButtonElement>
-            </OptionElement>
-          </AccordionSummary>
-          <AccordionDetails>
-            {option.overview && (
-              <OverView>
-                <Title>概要</Title>
-                <Text>{option.overview}</Text>
-              </OverView>
-            )}
-            {option.url && (
-              <div>
-                <Title>リンク</Title>
-                <Link>
-                  <AtHref blank={true} title={option.url} link={option.url} />
-                </Link>
-              </div>
-            )}
-            {!option.url && !option.overview && (
-              <div>
-                <Title>概要とリンクは登録されていません。</Title>
-              </div>
-            )}
-          </AccordionDetails>
-        </Accordion>
-      </>
-    );
-  }
+  ({
+    field,
+    optionSelected,
+    removeOption,
+    index,
+    selectedFormIndex,
+    watch,
+  }) => (
+    <>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <OptionElement>
+            <TitleElement>
+              <Title>{field.title}</Title>
+            </TitleElement>
+            <IconButtonElement>
+              <AtIconButton
+                showEdit
+                onClick={() => optionSelected(index)}
+                size={"large"}
+                disabled={watch(`options.${selectedFormIndex}.title`) === ""}
+              />
+              <AtIconButton
+                showDelete
+                onClick={() => removeOption(index)}
+                size={"large"}
+                disabled={
+                  index === 0 ||
+                  watch(`options.${selectedFormIndex}.title`) === ""
+                }
+              />
+            </IconButtonElement>
+          </OptionElement>
+        </AccordionSummary>
+        <AccordionDetails>
+          {field.overview && (
+            <OverView>
+              <Title>補足</Title>
+              <Text>{field.overview}</Text>
+            </OverView>
+          )}
+          {field.url && (
+            <div>
+              <Title>リンク</Title>
+              <Link>
+                <AtHref blank={true} title={field.url} link={field.url} />
+              </Link>
+            </div>
+          )}
+          {!field.url && !field.overview && (
+            <div>
+              <Title>補足とリンクは登録されていません。</Title>
+            </div>
+          )}
+        </AccordionDetails>
+      </Accordion>
+    </>
+  )
 );
 const OptionElement = styled.div`
   width: 100%;

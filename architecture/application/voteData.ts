@@ -19,6 +19,10 @@ export function voteData() {
       });
     });
 
+    const optionTitleArray: string[] = options.map(
+      (option: Option) => option.title
+    );
+
     return {
       title: title,
       overview: overview,
@@ -26,6 +30,7 @@ export function voteData() {
       publicationEndDate: publicationEndDate.replace("T", " "),
       votes: votes,
       voteOptions,
+      optionTitleArray,
     };
   }
   return { conversion };

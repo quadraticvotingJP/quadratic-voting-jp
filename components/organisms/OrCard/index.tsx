@@ -8,7 +8,5 @@ export type Props = {
 
 // eslint-disable-next-line react/display-name
 export const OrCard: React.FC<Props> = ({ children }) => (
-  <>
-    <Card>{children}</Card>
-  </>
+  <Card>{children}</Card>
 );

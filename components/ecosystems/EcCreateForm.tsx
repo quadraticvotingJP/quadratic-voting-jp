@@ -77,12 +77,10 @@ const EcCreateForm: React.FC = () => {
 
   // 送信
   const onSubmit: SubmitHandler<EventValues> = async (data: EventValues) => {
-    console.log(data);
     // apiを叩く
-    // todo 送信後のselectedを削除して送信
-    // const document = await createEvent(data, "event", secretKey);
-    // routerPush(`/dashboard/${document.id}?secret=${secretKey}`);
-    // reset();
+    const document = await createEvent(data, "event", secretKey);
+    routerPush(`/dashboard/${document.id}?secret=${secretKey}`);
+    reset();
   };
 
   // 選択肢追加

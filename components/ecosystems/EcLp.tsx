@@ -23,34 +23,32 @@ const EcLp: React.FC<Props> = ({ images }) => {
   const { t } = useTranslation("common");
   const moveCreateEvent = (): void => routerPush("create");
   const RESPONSIVE = useScreenSize();
+  const SIZE_PC_TAB = RESPONSIVE.SIZE_PC || RESPONSIVE.SIZE_TAB;
   return (
     <div data-testid="top-page">
-      {RESPONSIVE.SIZE_SP ? (
-        <SpSectionFirstView>
-          <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
-          <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
+      <SectionFirstView id="firstView">
+        <FirstViewContentArea>
+          <FirstViewTitleArea>
+            <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
+            <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
+          </FirstViewTitleArea>
           <AtImage
             src={images["spFirstView"]}
             alt="firstView"
             layout="intrinsic"
-            width={326}
-            height={241}
+            width={SIZE_PC_TAB ? 539 : 326}
+            height={SIZE_PC_TAB ? 400 : 241}
           />
-        </SpSectionFirstView>
-      ) : (
-        <SectionFirstView id="firstView" image={images["firstView"]}>
-          <FirstViewTitle>{t("lp.firstView.title")}</FirstViewTitle>
-          <FirstViewSubTitle>{t("lp.firstView.subTitle")}</FirstViewSubTitle>
-          <FirstViewJustifyCenterElement>
-            <FirstViewButton
-              title={t("common.button.startNow")}
-              disabled={false}
-              onClick={moveCreateEvent}
-              square={true}
-            />
-          </FirstViewJustifyCenterElement>
-        </SectionFirstView>
-      )}
+        </FirstViewContentArea>
+        <FirstViewJustifyCenterElement>
+          <FirstViewButton
+            title={t("common.button.startNow")}
+            disabled={false}
+            onClick={moveCreateEvent}
+            square={true}
+          />
+        </FirstViewJustifyCenterElement>
+      </SectionFirstView>
 
       <SectionIsQuadraticVoting id="isQuadraticVoting">
         <IsQuadraticVotingJustifyBetweenMaxWidth1000>
@@ -270,36 +268,52 @@ const EcLp: React.FC<Props> = ({ images }) => {
 export default EcLp;
 
 // first view
-const SectionFirstView = styled.section<{ image: string }>`
-  padding: 185px 50px 50px 50px;
-  background-image: url(${(props) => props.image});
-  background-size: contain;
-  background-repeat: no-repeat; /*画像が繰り返すのを防ぐ*/
-  background-size: 100% 100%;
+const SectionFirstView = styled.section`
+  padding-top: 122px;
+  min-height: 742px;
   background-color: ${BASE_CSS.color.main};
-  object-fit: cover;
-  background-position: center;
-  background-size: cover;
   ${tab`
-    padding: 100px 60px 100px 60px;
+  `}
+  ${sp`
+    padding: 0px 16px;
+    min-height: 599px;
   `}
 `;
-const SpSectionFirstView = styled.section`
-  background-color: ${BASE_CSS.color.main};
-  object-fit: cover;
-  padding: 100px 20px 100px 20px;
+
+const FirstViewContentArea = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 38px;
+  ${tab`
+  `}
+  ${sp`
+    flex-direction: column;
+    margin-bottom: 40px;
+  `}
 `;
+
+const FirstViewTitleArea = styled.div`
+  margin-top: 58px;
+  ${tab`
+  `}
+  ${sp`
+    margin-top: 52px;
+    margin-bottom: 38px;
+  `}
+`;
+
 const FirstViewTitle = styled.p`
   color: ${BASE_CSS.color.white};
   white-space: pre-wrap;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: bold;
-  margin-bottom: 32px;
+  margin-bottom: 48px;
   ${tab`
     font-size: 35px;
   `}
   ${sp`
     font-size: 20px;
+    margin-bottom: 24px;
   `}
 `;
 const FirstViewSubTitle = styled.p`
@@ -307,13 +321,11 @@ const FirstViewSubTitle = styled.p`
   white-space: pre-wrap;
   font-size: 36px;
   font-weight: bold;
-  margin-bottom: 240px;
   ${tab`
-    font-size: 25px;
+    font-size: 35px;
   `}
   ${sp`
     font-size: 20px;
-    margin-bottom: 37px;
   `}
 `;
 const FirstViewJustifyCenterElement = styled.div`

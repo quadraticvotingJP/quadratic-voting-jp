@@ -166,38 +166,31 @@ const EcLp: React.FC<Props> = ({ images }) => {
             <RuleExampleElement>
               <div>
                 <RuleExample1>{t("lp.rule.example1")}</RuleExample1>
-                <RuleExample1>{t("lp.rule.example2")}</RuleExample1>
-                <RuleExample2>{t("lp.rule.example3")}</RuleExample2>
-                <RuleExample3></RuleExample3>
-                {!RESPONSIVE.SIZE_SP && (
-                  <RuleJustifyCenterElement>
-                    <RuleButton
-                      title={t("common.button.startNow")}
-                      disabled={false}
-                      onClick={moveCreateEvent}
-                      square={true}
-                    />
-                  </RuleJustifyCenterElement>
-                )}
+                <RuleExample2>
+                  <Vote1>{t("lp.rule.example2.vote1")}</Vote1>
+                  <Vote2>{t("lp.rule.example2.vote2")}</Vote2>
+                  <Vote3>{t("lp.rule.example2.vote3")}</Vote3>
+                </RuleExample2>
+                <RuleExample3>
+                  {SIZE_PC_TAB ? t("lp.rule.example4") : t("lp.rule.example3")}
+                </RuleExample3>
               </div>
               <AtImage
                 src={images["vote"]}
                 alt="point4"
                 layout="intrinsic"
-                width={431}
-                height={296}
+                width={SIZE_PC_TAB ? 460 : 343}
+                height={SIZE_PC_TAB ? 315 : 234}
               />
-              {RESPONSIVE.SIZE_SP && (
-                <RuleJustifyCenterElement>
-                  <RuleButton
-                    title={t("common.button.startNow")}
-                    disabled={false}
-                    onClick={moveCreateEvent}
-                    square={true}
-                  />
-                </RuleJustifyCenterElement>
-              )}
             </RuleExampleElement>
+            <RuleJustifyCenterElement>
+              <RuleButton
+                title={t("common.button.startNow")}
+                disabled={false}
+                onClick={moveCreateEvent}
+                square={true}
+              />
+            </RuleJustifyCenterElement>
           </RuleDirectionColElement>
         </RuleDirectionColMaxWidth1000>
       </SectionRule>
@@ -586,13 +579,11 @@ const SectionRule = styled.section`
   display: flex;
   justify-content: center;
   background-color: rgba(47, 155, 255, 0.1);
-  padding: 118px 0px 120px 0px;
+  padding: 80px 0px 120px 0px;
   ${tab`
-    padding: 118px 0px 120px 0px;
   `}
   ${sp`
-    padding: 40px 0px 60px 0px;
-    margin-bottom: 0px;
+    padding: 40px 0px 100px 0px;
   `}
 `;
 const RuleDirectionColMaxWidth1000 = styled.div`
@@ -614,6 +605,9 @@ const Rule02 = styled.p`
   font-size: 64px;
   text-align: center;
   color: ${BASE_CSS.color.feature};
+  ${tab`
+    font-size: 50px;
+  `}
 `;
 const Rule03 = styled.p`
   height: 104px;
@@ -621,26 +615,27 @@ const Rule03 = styled.p`
   font-size: 64px;
   text-align: center;
   color: ${BASE_CSS.color.feature};
+  ${tab`
+    font-size: 50px;
+  `}
 `;
 const RuleTitle = styled.p`
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   font-weight: bold;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   white-space: pre-wrap;
   ${tab`
-    font-size: 18px;
   `}
   ${sp`
-    font-weight: bold;
-    font-size: 16px;
+    font-size: 24px;
   `}
 `;
 const RuleDirectionColElement = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 1025px;
+  min-width: 1078px;
   ${tab`
     min-width: 561px;
   `}
@@ -655,14 +650,11 @@ const RuleElement = styled.div`
   width: 100%;
   margin-bottom: 48px;
   ${tab`
-    min-width: 561px;
+    padding: 0 34px;
   `}
   ${sp`
-    width: 80%;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 0px;
+    padding: 0 34px;
   `}
 `;
 const Rule = styled.div`
@@ -675,21 +667,24 @@ const Rule = styled.div`
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
   text-align: center;
   ${tab`
+    width: 230px;
   `}
   ${sp`
-    margin-bottom: 40px;
+    width: 100%;
+    margin-bottom: 16px;
   `}
 `;
 const RuleText = styled.p`
-  margin-top: 10px;
-  text-align: center;
+  margin-top: 24px;
   font-size: 18px;
+  line-height: 21px;
+  text-align: center;
   white-space: pre-wrap;
   ${tab`
-    font-size: 14px;
+    font-size: 16px;
   `}
   ${sp`
-    font-size: 16px;
+    margin-top: 16px;
   `}
 `;
 const RuleExampleElement = styled.div`
@@ -697,51 +692,84 @@ const RuleExampleElement = styled.div`
   justify-content: space-between;
   width: 100%;
   ${tab`
+    padding: 0 16px;
   `}
   ${sp`
-    width: 80%;
-    display: flex;
     flex-direction: column;
-    align-items: center;
+    padding: 0 16px;
+    margin-bottom: 48px;
   `}
 `;
 const RuleExample1 = styled.p`
   margin-bottom: 24px;
-  font-size: 16px;
+  font-size: 20px;
+  line-height: 27px;
   white-space: pre-wrap;
   ${tab`
-    font-size: 14px;
+  `}
+  ${sp`
+    font-size: 18px;
+  `}
+`;
+const RuleExample2 = styled.div`
+  margin-bottom: 24px;
+  line-height: 27px;
+  white-space: pre-wrap;
+`;
+const Vote1 = styled.p`
+  font-size: 18px;
+  line-height: 27px;
+  white-space: pre-wrap;
+  letter-spacing: 0.1em;
+  ${tab`
   `}
   ${sp`
     font-size: 16px;
   `}
 `;
-const RuleExample2 = styled.p`
-  margin-bottom: 0px;
-  font-size: 16px;
+const Vote2 = styled.p`
+  font-size: 18px;
+  line-height: 27px;
   white-space: pre-wrap;
+  letter-spacing: 0.079em;
   ${tab`
-    font-size: 14px;
   `}
   ${sp`
-    font-size: 14px;
+    font-size: 16px;
   `}
 `;
-const RuleExample3 = styled.div`
-  margin-bottom: 89px;
+const Vote3 = styled.p`
+  font-size: 18px;
+  line-height: 27px;
+  white-space: pre-wrap;
+  letter-spacing: 0.079em;
   ${tab`
   `}
   ${sp`
-    margin-bottom: 50px;
+    font-size: 16px;
+  `}
+`;
+
+const RuleExample3 = styled.p`
+  font-size: 18px;
+  line-height: 27px;
+  white-space: pre-wrap;
+  ${tab`
+  `}
+  ${sp`
+    font-size: 16px;
+    margin-bottom: 32px;
   `}
 `;
 const RuleJustifyCenterElement = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   ${tab`
+    padding: 0 16px;
   `}
   ${sp`
-    margin-bottom: 50px;
+    justify-content: center;
   `}
 `;
 const RuleButton = styled(AtButton)`

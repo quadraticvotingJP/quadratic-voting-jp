@@ -858,11 +858,13 @@ const SectionStartNow = styled.section`
   display: flex;
   justify-content: center;
   padding-bottom: 120px;
+  padding-top: 46px;
+  padding-bottom: 64px;
   ${tab`
-    margin-bottom: 140px;
   `}
   ${sp`
-    padding-bottom: 60px
+    padding-top: 42px;
+    padding-bottom: 80px;
   `}
 `;
 const StartNowMaxWidth1000 = styled.div<{ image: string }>`
@@ -872,26 +874,26 @@ const StartNowMaxWidth1000 = styled.div<{ image: string }>`
   background-size: contain;
   background-repeat: no-repeat; /*画像が繰り返すのを防ぐ*/
   ${tab`
-    width: 100%;
-    min-width: 561px;
+    min-width: 800px;
+    min-height: 211px;
   `}
   ${sp`
-    width: 100%;
-    min-width: 320px;
+    min-width: 370px;
+    min-height: 87px;
   `}
 `;
 const StartNowTitle = styled.p`
   font-size: 32px;
+  line-height: 42px;
   font-weight: bold;
-  margin-bottom: 80px;
+  margin-top: 74px;
+  margin-bottom: 60px;
   text-align: center;
   ${tab`
-    font-size: 32px;
   `}
   ${sp`
-    margin-top: 30px;
-    font-size: 16px;
-    margin-bottom: 70px;
+    font-size: 18px;
+    margin-top: 18px;
   `}
 `;
 const StartNowJustifyCenterElement = styled.div`

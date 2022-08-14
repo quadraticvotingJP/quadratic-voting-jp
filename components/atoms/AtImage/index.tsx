@@ -23,6 +23,7 @@ export const AtImage: React.FC<Props> = React.memo(
   ({ src, alt, layout = "fill", loader, objectFit, width, height }) => {
     return (
       <Image
+        loading={"lazy"}
         src={src}
         alt={alt}
         layout={layout}

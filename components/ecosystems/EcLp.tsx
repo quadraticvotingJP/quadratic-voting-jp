@@ -36,8 +36,8 @@ const EcLp: React.FC<Props> = ({ images }) => {
             src={images["spFirstView"]}
             alt="firstView"
             layout="intrinsic"
-            width={SIZE_PC_TAB ? 539 : 326}
-            height={SIZE_PC_TAB ? 400 : 241}
+            width={RESPONSIVE.SIZE_PC ? 539 : RESPONSIVE.SIZE_TAB ? 439 : 326}
+            height={RESPONSIVE.SIZE_PC ? 400 : RESPONSIVE.SIZE_TAB ? 300 : 241}
           />
         </FirstViewContentArea>
         <FirstViewJustifyCenterElement>
@@ -257,6 +257,7 @@ const SectionFirstView = styled.section`
   min-height: 742px;
   background-color: ${BASE_CSS.color.main};
   ${tab`
+    min-height: 642px;
   `}
   ${sp`
     padding: 0px 16px 80px 16px;
@@ -294,7 +295,9 @@ const FirstViewTitle = styled.p`
   margin-bottom: 48px;
   line-height: 47px;
   ${tab`
-    font-size: 35px;
+    margin-bottom: 24px;
+    font-size: 25px;
+    line-height: 35px;
   `}
   ${sp`
     font-size: 20px;
@@ -308,7 +311,8 @@ const FirstViewSubTitle = styled.p`
   font-size: 36px;
   font-weight: bold;
   ${tab`
-    font-size: 35px;
+    font-size: 30px;
+    line-height: 40px;
   `}
   ${sp`
     font-size: 20px;

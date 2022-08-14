@@ -755,13 +755,10 @@ const SectionScene = styled.section`
   display: flex;
   justify-content: center;
   padding: 80px 0px;
-  margin-bottom: 80px;
   ${tab`
-    margin-bottom: 140px;
   `}
   ${sp`
     padding: 40px 0px 60px 0px;
-    margin-bottom: 60px;
   `}
 `;
 const SceneDirectionColMaxWidth1000 = styled.div`
@@ -790,6 +787,7 @@ const SceneTitle = styled.p`
   ${sp`
     font-weight: bold;
     font-size: 16px;
+    margin-bottom: 24px;
   `}
 `;
 const SceneDirectionColElement = styled.div`
@@ -800,11 +798,11 @@ const SceneDirectionColElement = styled.div`
 const SceneListTop = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 804px;
-  margin-bottom: 51px;
+  width: 882px;
+  margin-bottom: 48px;
   text-align: center;
   ${tab`
-    width: 704px;
+    width: 782px;
   `}
   ${sp`
     width: 100%;
@@ -815,10 +813,10 @@ const SceneListTop = styled.div`
 const SceneListBottom = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 475px;
+  width: 572px;
   text-align: center;
   ${tab`
-    width: 375px;
+    width: 525px;
   `}
   ${sp`
     width: 100%;
@@ -827,7 +825,7 @@ const SceneListBottom = styled.div`
   `}
 `;
 const SceneText = styled.p`
-  font-size: 16px;
+  font-size: 18px;
   color: ${BASE_CSS.color.main};
   white-space: pre-wrap;
   ${tab`
@@ -839,14 +837,20 @@ const SceneText = styled.p`
   `}
 `;
 const Card = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 262px;
   height: 100px;
-  line-height: 100px;
-  margin-right: 20px;
   background-color: ${BASE_CSS.color.white};
   border-radius: 0.75rem;
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  ${tab`
+    width: 242px;
+  `}
+  ${sp`
+  `}
 `;
 
 // startNow

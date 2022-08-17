@@ -17,7 +17,7 @@ import {
   OrProposalBlocks,
   OrModal,
 } from "@/components/organisms/EntryPoint";
-import { Card, H2, JustifyCenter } from "@/components/shared/EntryPoint";
+import { Card, H1, JustifyCenter } from "@/components/shared/EntryPoint";
 
 // architecture
 import { answer } from "@/architecture/application/answer";
@@ -146,7 +146,7 @@ const EcVoteForm: React.FC<Props> = ({
     <>
       <FlexElement>
         <FlexAuto>
-          <H2>{t("pageTitle.vote")}</H2>
+          <H1>{t("pageTitle.vote")}</H1>
           <br />
           <Link>
             <AtHref

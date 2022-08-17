@@ -34,7 +34,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
           </FirstViewTitleArea>
           <AtImage
             src={images["spFirstView"]}
-            alt="firstView"
+            alt="ファーストビュー"
             layout="intrinsic"
             width={RESPONSIVE.SIZE_PC ? 539 : RESPONSIVE.SIZE_TAB ? 439 : 326}
             height={RESPONSIVE.SIZE_PC ? 400 : RESPONSIVE.SIZE_TAB ? 300 : 241}
@@ -67,7 +67,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
             <IsQuadraticVotingImageArea>
               <AtImage
                 src={images["isQuadraticVotingJp"]}
-                alt="quadraticVoting"
+                alt="QuadraticVotingとは？"
                 layout="intrinsic"
                 width={SIZE_PC_TAB ? 429 : 266}
                 height={SIZE_PC_TAB ? 312 : 193}
@@ -92,7 +92,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
             <FeatureElement1>
               <AtImage
                 src={images["easy"]}
-                alt="no1Feature"
+                alt="分散投票"
                 layout="intrinsic"
                 width={SIZE_PC_TAB ? 422.54 : 343.64}
                 height={SIZE_PC_TAB ? 258 : 210}
@@ -115,7 +115,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
               </FeatureOverview>
               <AtImage
                 src={images["minority"]}
-                alt="no2Feature"
+                alt="少数派の見える化"
                 layout="intrinsic"
                 width={SIZE_PC_TAB ? 422.54 : 343.64}
                 height={SIZE_PC_TAB ? 258 : 210}
@@ -124,7 +124,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
             <FeatureElement3>
               <AtImage
                 src={images["balance"]}
-                alt="no3Feature"
+                alt="優先順位の把握"
                 layout="intrinsic"
                 width={SIZE_PC_TAB ? 422.54 : 343.64}
                 height={SIZE_PC_TAB ? 258 : 210}
@@ -149,7 +149,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
               <Rule>
                 <AtImage
                   src={images["choices"]}
-                  alt="rule1"
+                  alt="選択"
                   layout="intrinsic"
                   width={142}
                   height={104}
@@ -179,7 +179,7 @@ const EcLp: React.FC<Props> = ({ images }) => {
               </div>
               <AtImage
                 src={images["vote"]}
-                alt="point4"
+                alt="投票の仕組み"
                 layout="intrinsic"
                 width={SIZE_PC_TAB ? 460 : 343}
                 height={SIZE_PC_TAB ? 315 : 234}

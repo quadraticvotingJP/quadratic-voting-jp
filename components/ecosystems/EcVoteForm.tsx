@@ -22,6 +22,10 @@ import { Card, H1, JustifyCenter } from "@/components/shared/EntryPoint";
 // architecture
 import { answer } from "@/architecture/application/answer";
 
+// GA
+import { gaSetLogEvent } from "@/architecture/application/gaLogEvent";
+import { VOTE } from "@/architecture/domain/gaEventName";
+
 interface Props {
   conversionVoteData: VoteData;
   documentId: string;
@@ -59,6 +63,7 @@ const EcVoteForm: React.FC<Props> = ({
     // answerAPI
     await voteEvent(redata, "event", documentId, "answer", uid);
     routerPush(`/dashboard/${documentId}`);
+    gaSetLogEvent(VOTE);
   };
 
   /**

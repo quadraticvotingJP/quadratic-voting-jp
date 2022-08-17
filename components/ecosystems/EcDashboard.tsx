@@ -21,7 +21,7 @@ import {
 } from "@/components/molecules/EntryPoint";
 import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
 import {
-  H2,
+  H1,
   JustifyCenter,
   LabelArea,
   LabelTitle,
@@ -144,7 +144,7 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
 
   return (
     <EcosystemArea>
-      <H2>{t("pageTitle.dashboard")}</H2>
+      <H1>{t("pageTitle.dashboard")}</H1>
       <br />
       <OrCard>
         <>

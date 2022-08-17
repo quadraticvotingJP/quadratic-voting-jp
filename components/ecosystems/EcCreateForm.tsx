@@ -8,20 +8,15 @@ import {
   utilsValidationRule,
   inputDateMaxCheck,
   inputDateMinCheck,
-  optionCheck,
 } from "@/utils/validation";
 import UUID from "uuidjs";
 import styled from "styled-components";
 // component
 import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
 import { OrCard, OrOptionForms } from "@/components/organisms/EntryPoint";
+import { MoLabelForm, MoAccordion } from "@/components/molecules/EntryPoint";
 import {
-  MoLabelForm,
-  MoAccordion,
-  MoForm,
-} from "@/components/molecules/EntryPoint";
-import {
-  H2,
+  H1,
   JustifyCenter,
   LabelArea,
   LabelTitle,
@@ -133,7 +128,7 @@ const EcCreateForm: React.FC = () => {
 
   return (
     <EcosystemArea>
-      <H2>{t("pageTitle.create")}</H2>
+      <H1>{t("pageTitle.create")}</H1>
       <form>
         {/* タイトル */}
         <OrCard>

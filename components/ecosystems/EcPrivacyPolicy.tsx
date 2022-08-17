@@ -11,11 +11,6 @@ const H1 = styled.h1`
   font-weight: bold;
   margin-bottom: 10px;
 `;
-const H2 = styled.h2`
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
 const H3 = styled.h3`
   font-size: 18px;
   font-weight: bold;
@@ -33,8 +28,7 @@ const EcPrivacyPolicy: React.FC = () => {
   const { t } = useTranslation("common");
   return (
     <>
-      <H1>{"QuadraticVoting.jp"}</H1>
-      <H2>{"プライバシーポリシー"}</H2>
+      <H1>{"プライバシーポリシー"}</H1>
       <section>
         <H3>{"当サイトが使用しているアクセス解析ツールについて"}</H3>
         <P>

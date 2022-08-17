@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import { NextSeo } from "next-seo";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 // application
 // import { getImages } from "@/architecture/application/getImages";
@@ -11,15 +10,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 const Top: NextPage = ({
   images,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  return (
-    <>
-      <NextSeo
-        title="トップページ ｜民主主義のデジタル化を実現するアンケートフォーム"
-        description="トップページ"
-      />
-      <EcLp images={images} />
-    </>
-  );
+  return <EcLp images={images} />;
 };
 
 export default Top;

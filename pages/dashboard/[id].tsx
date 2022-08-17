@@ -14,12 +14,12 @@ const Id = ({
     <>
       <NextSeo
         title="ダッシュボード | 民主主義のデジタル化を実現するアンケートフォーム【QuadraticVoting.jp】"
-        description="QuadraticVoting.jpのダッシュボードページです。QuadraticVotingとは台湾デジタル大臣のオードリー・タン氏が紹介したことから、世界中に広がっています。今までの投票方法とは異なった手法で、少数派の選択肢の意見にも耳を傾け、多くの意見を尊重することが可能です。"
+        description="QuadraticVoting.jpのダッシュボードページです。クアドラティックボーティングとは台湾デジタル大臣オードリー・タン氏が紹介したことから、世界中に広がっている投票方法です。QuadraticVoting.jpは少数派の選択肢の意見にも耳を傾け、多くの意見を尊重するクアドラティックボーティングを採用したアンケートフォームです。"
         openGraph={{
           title:
             "ダッシュボード | 民主主義のデジタル化を実現するアンケートフォーム【QuadraticVoting.jp】",
           description:
-            "QuadraticVoting.jpのダッシュボードページです。QuadraticVotingとは台湾デジタル大臣のオードリー・タン氏が紹介したことから、世界中に広がっています。今までの投票方法とは異なった手法で、少数派の選択肢の意見にも耳を傾け、多くの意見を尊重することが可能です。",
+            "QuadraticVoting.jpのダッシュボードページです。クアドラティックボーティングとは台湾デジタル大臣オードリー・タン氏が紹介したことから、世界中に広がっている投票方法です。QuadraticVoting.jpは少数派の選択肢の意見にも耳を傾け、多くの意見を尊重するクアドラティックボーティングを採用したアンケートフォームです。",
         }}
       />
       <EcDashboard dashboard={conversionEventData} query={query} />

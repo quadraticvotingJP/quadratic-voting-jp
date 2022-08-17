@@ -20,8 +20,8 @@ export const authentication = getAuth();
 export const storage = getStorage(firebase);
 
 // GA
-let analytics;
+let GetAnalytics;
 if (firebase.name && typeof window !== "undefined") {
-  analytics = getAnalytics(firebase);
+  GetAnalytics = getAnalytics(firebase);
 }
-export { analytics };
+export const analytics = GetAnalytics;

@@ -26,6 +26,9 @@ import {
 import { routerPush } from "@/architecture/application/routing";
 import { postEvent } from "@/architecture/application/postEvent";
 import { getToday } from "@/architecture/application/getToday";
+// GA
+import { gaSetLogEvent } from "@/architecture/application/gaLogEvent";
+import { CREATE_EVENT } from "@/architecture/domain/gaEventName";
 
 const EcCreateForm: React.FC = () => {
   const { t } = useTranslation("common");
@@ -76,6 +79,7 @@ const EcCreateForm: React.FC = () => {
     const document = await createEvent(data, "event", secretKey);
     routerPush(`/dashboard/${document.id}?secret=${secretKey}`);
     reset();
+    gaSetLogEvent(CREATE_EVENT);
   };
 
   // 選択肢追加

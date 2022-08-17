@@ -1,8 +1,15 @@
+import { useEffect } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextSeo } from "next-seo";
 // component
 import { EcPrivacyPolicy } from "@/components/ecosystems/EntryPoint";
+// GA
+import { gaSetLogEvent } from "@/architecture/application/gaLogEvent";
+import { PRIVACY_POLICY_VISIT } from "@/architecture/domain/gaEventName";
 const Index = ({}) => {
+  useEffect(() => {
+    gaSetLogEvent(PRIVACY_POLICY_VISIT);
+  }, []);
   return (
     <>
       <NextSeo

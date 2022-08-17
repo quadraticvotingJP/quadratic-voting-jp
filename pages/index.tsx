@@ -1,15 +1,22 @@
 import type { NextPage } from "next";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { useEffect } from "react";
 // application
 // import { getImages } from "@/architecture/application/getImages";
 import { getLpImages } from "@/architecture/application/getLpImages";
 // component
 import { EcLp } from "@/components/ecosystems/EntryPoint";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+// GA
+import { gaSetLogEvent } from "@/architecture/application/gaLogEvent";
+import { ROOT_VISIT } from "@/architecture/domain/gaEventName";
 
 const Top: NextPage = ({
   images,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  useEffect(() => {
+    gaSetLogEvent(ROOT_VISIT);
+  }, []);
   return <EcLp images={images} />;
 };
 

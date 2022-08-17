@@ -10,6 +10,9 @@ import { routerPush } from "@/architecture/application/routing";
 import { AtButton, AtImage } from "@/components/atoms/EntryPoint";
 // hooks
 import { useScreenSize } from "@/architecture/hooks/ screenSize";
+// GA
+import { gaSetLogEvent } from "@/architecture/application/gaLogEvent";
+import { ROOT_CHICK_MOVE_CREATE_EVENT } from "@/architecture/domain/gaEventName";
 
 interface Image {
   [index: string]: string;
@@ -21,7 +24,10 @@ type Props = {
 // eslint-disable-next-line react/display-name
 const EcLp: React.FC<Props> = ({ images }) => {
   const { t } = useTranslation("common");
-  const moveCreateEvent = (): void => routerPush("create");
+  const moveCreateEvent = (): void => {
+    gaSetLogEvent(ROOT_CHICK_MOVE_CREATE_EVENT);
+    routerPush("create");
+  };
   const RESPONSIVE = useScreenSize();
   const SIZE_PC_TAB = RESPONSIVE.SIZE_PC || RESPONSIVE.SIZE_TAB;
   return (

@@ -35,6 +35,9 @@ import { putEvent } from "@/architecture/application/putEvent";
 import { getDashboard } from "@/architecture/application/getDashboard";
 import { dashboardData } from "@/architecture/application/dashboardData";
 import { getToday } from "@/architecture/application/getToday";
+// GA
+import { gaSetLogEvent } from "@/architecture/application/gaLogEvent";
+import { DOWNLOAD_XLSX } from "@/architecture/domain/gaEventName";
 
 type PublicationStartDate = "publicationStartDate";
 type PublicationEndDate = "publicationEndDate";
@@ -115,7 +118,7 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
       dashboard.grafEffectiveVotes,
       dashboard.grafPercentCredits
     );
-    window.open(process.env.NEXT_PUBLIC_A8ONAMAE120X600_A, "_blank");
+    gaSetLogEvent(DOWNLOAD_XLSX);
   };
 
   // 公開開始日・公開終了日の更新

@@ -1,6 +1,7 @@
 import { initializeApp, apps, app } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -17,3 +18,10 @@ export const firebase = !apps ? initializeApp(firebaseConfig) : app();
 export const authentication = getAuth();
 // storage
 export const storage = getStorage(firebase);
+
+// GA
+let analytics;
+if (firebase.name && typeof window !== "undefined") {
+  analytics = getAnalytics(firebase);
+}
+export { analytics };

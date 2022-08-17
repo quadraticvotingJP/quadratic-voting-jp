@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { NextSeo } from "next-seo";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -5,11 +6,16 @@ import { EcDashboard } from "@/components/ecosystems/EntryPoint";
 // application
 import { getDashboard } from "@/architecture/application/getDashboard";
 import { dashboardData } from "@/architecture/application/dashboardData";
-
+// GA
+import { gaSetLogEvent } from "@/architecture/application/gaLogEvent";
+import { DASHBOARD_VISIT } from "@/architecture/domain/gaEventName";
 const Id = ({
   conversionEventData,
   query,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  useEffect(() => {
+    gaSetLogEvent(DASHBOARD_VISIT);
+  }, []);
   return (
     <>
       <NextSeo

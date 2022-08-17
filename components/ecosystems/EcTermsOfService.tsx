@@ -27,9 +27,8 @@ const EcTermsOfService: React.FC = () => {
   const { t } = useTranslation("common");
   return (
     <>
-      <H1>{"QuadraticVoting.jp"}</H1>
-      <H2>{"利用規約"}</H2>
-      <H3>{"はじめに"}</H3>
+      <H1>{"利用規約"}</H1>
+      <H2>{"はじめに"}</H2>
       <P>
         {
           "この利用規約（以下、「本規約」と言います。）は、「QuadraticVoting.jp」（以下、「当サイト」と言います）\nを利用する際の全ての行為について適用されます。"

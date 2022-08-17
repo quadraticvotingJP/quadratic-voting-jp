@@ -1,8 +1,16 @@
+import { useEffect } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextSeo } from "next-seo";
 // component
 import { EcTermsOfService } from "@/components/ecosystems/EntryPoint";
+// GA
+import { gaSetLogEvent } from "@/architecture/application/gaLogEvent";
+import { TERMS_OF_SERVICE_VISIT } from "@/architecture/domain/gaEventName";
+
 const Index = ({}) => {
+  useEffect(() => {
+    gaSetLogEvent(TERMS_OF_SERVICE_VISIT);
+  }, []);
   return (
     <>
       <NextSeo

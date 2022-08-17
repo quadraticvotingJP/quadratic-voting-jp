@@ -1,6 +1,6 @@
 /** 投票画面  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { NextSeo } from "next-seo";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -21,6 +21,10 @@ import { getAnswerData } from "@/architecture/application/getAnswer";
 import { getEventData } from "@/architecture/application/getEvent";
 import { eventDateAuthorize } from "@/architecture/application/getToday";
 import { voteData } from "@/architecture/application/voteData";
+
+// GA
+import { gaSetLogEvent } from "@/architecture/application/gaLogEvent";
+import { VOTE_VISIT } from "@/architecture/domain/gaEventName";
 
 /**
  * getServerSideProps→getInitialPropsをサーバサイドだけで実行するようにしたもの
@@ -114,6 +118,9 @@ const Id = ({
   isDate = true,
   uid = null,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  useEffect(() => {
+    gaSetLogEvent(VOTE_VISIT);
+  }, []);
   const { beforePublicationStartDate, afterPublicationEndDate, getNowToTime } =
     eventDateAuthorize(); // 日にちチェック
   const now = getNowToTime();

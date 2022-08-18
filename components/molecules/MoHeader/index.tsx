@@ -9,6 +9,12 @@ import { AtHref, AtButton } from "@/components/atoms/EntryPoint";
 import { routerPush } from "@/architecture/application/routing";
 // hooks
 import { useScreenSize } from "@/architecture/hooks/ screenSize";
+// GA
+import { gaSetLogEvent } from "@/architecture/application/gaLogEvent";
+import {
+  HEADER_CLICK_TITLE,
+  HEADER_CLICK_MOVE_CREATE_EVENT,
+} from "@/architecture/domain/gaEventName";
 
 export type Props = {
   readonly isLandingPage: boolean;
@@ -18,13 +24,17 @@ export type Props = {
 export const MoHeader = ({ isLandingPage }: Props) => {
   const RESPONSIVE = useScreenSize();
   const { t } = useTranslation("common");
-  const moveCreateEvent = (): void => routerPush("create");
+  const moveCreateEvent = (): void => {
+    routerPush("create");
+    gaSetLogEvent(HEADER_CLICK_MOVE_CREATE_EVENT);
+  };
+  const clickTitle = (): void => gaSetLogEvent(HEADER_CLICK_TITLE);
   const SIZE_PC_TAB = RESPONSIVE.SIZE_PC || RESPONSIVE.SIZE_TAB;
   return (
     <Header isLandingPage={isLandingPage}>
       {isLandingPage ? (
         <SpaceBetWeen>
-          <Title isLandingPage={isLandingPage}>
+          <Title isLandingPage={isLandingPage} onClick={clickTitle}>
             <AtHref title={t("header.siteName")} link={t("header.link")} />
           </Title>
           {SIZE_PC_TAB && (
@@ -49,7 +59,7 @@ export const MoHeader = ({ isLandingPage }: Props) => {
         </SpaceBetWeen>
       ) : (
         <SpaceBetWeen>
-          <Title isLandingPage={isLandingPage}>
+          <Title isLandingPage={isLandingPage} onClick={clickTitle}>
             <AtHref title={t("header.siteName")} link={t("header.link")} />
           </Title>
           {SIZE_PC_TAB && (

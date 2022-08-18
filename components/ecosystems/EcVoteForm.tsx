@@ -24,7 +24,11 @@ import { answer } from "@/architecture/application/answer";
 
 // GA
 import { gaSetLogEvent } from "@/architecture/application/gaLogEvent";
-import { VOTE } from "@/architecture/domain/gaEventName";
+import {
+  CLICK_VOTE_BUTTON,
+  CLICK_INCREMENT_VOTE,
+  CLICK_DECREMENT_VOTE,
+} from "@/architecture/domain/gaEventName";
 
 interface Props {
   conversionVoteData: VoteData;
@@ -63,7 +67,7 @@ const EcVoteForm: React.FC<Props> = ({
     // answerAPI
     await voteEvent(redata, "event", documentId, "answer", uid);
     routerPush(`/dashboard/${documentId}`);
-    gaSetLogEvent(VOTE);
+    gaSetLogEvent(CLICK_VOTE_BUTTON);
   };
 
   /**
@@ -75,11 +79,13 @@ const EcVoteForm: React.FC<Props> = ({
     setVoteOptions((oldOptions) => {
       return setNewVoteOptions(oldOptions, option, "+");
     });
+    gaSetLogEvent(CLICK_INCREMENT_VOTE);
   };
   const decrementVote = (option: VoteOption) => {
     setVoteOptions((oldOptions) => {
       return setNewVoteOptions(oldOptions, option, "-");
     });
+    gaSetLogEvent(CLICK_DECREMENT_VOTE);
   };
 
   // ボタンの活性・非活性制御

@@ -75,7 +75,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               <LPMain>
                 <Component {...pageProps} />
                 <BottomAdSense>
-                  <EcAdSense format="horizontal" a8netOnamae468x60 />
+                  {/* <EcAdSense format="horizontal" adSense /> */}
                 </BottomAdSense>
               </LPMain>
             ) : (
@@ -84,25 +84,13 @@ function MyApp({ Component, pageProps }: AppProps) {
                   <Component {...pageProps} />
                   {RESPONSIVE.SIZE_SP && (
                     <BottomAdSense>
-                      <EcAdSense format="horizontal" a8netOnamae468x60 />
+                      {/* <EcAdSense format="horizontal" adSense /> */}
                     </BottomAdSense>
                   )}
                 </Page>
                 {SIZE_PC_TAB && (
                   <PageAdSense>
-                    <EcAdSense format="horizontal" adSense />
-                    <br />
-                    <EcAdSense format="horizontal" a8netLoli300x300 />
-                    <br />
-                    <EcAdSense format="horizontal" a8netOnamae300x300 />
-                    <br />
-                    <EcAdSense format="horizontal" a8netOZUBI300x250 />
-                    <br />
-                    <EcAdSense format="horizontal" a8netXSERVER300x250 />
-                    <br />
-                    <EcAdSense format="horizontal" a8netA8300x250 />
-                    <br />
-                    <EcAdSense format="horizontal" a8netOnamae300x300 />
+                    <EcAdSense format="vertical" adSense />
                   </PageAdSense>
                 )}
               </Main>

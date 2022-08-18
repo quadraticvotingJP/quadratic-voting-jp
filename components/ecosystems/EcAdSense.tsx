@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { AtImage } from "@/components/atoms/EntryPoint";
 type Props = {
-  readonly format: string;
+  readonly format: "horizontal" | "auto" | "vertical";
   readonly adSense?: boolean;
   readonly a8netOnamae120x600?: boolean;
   readonly a8netOnamae468x60?: boolean;
@@ -25,22 +25,25 @@ const EcAdSense: React.FC<Props> = ({
   a8netA8300x250 = false,
 }) => {
   const { asPath } = useRouter();
-
   useEffect(() => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (err) {
-      console.log(err);
+      console.error("adsbygoogle.push() error:", err);
     }
   }, [asPath]);
+
   return (
     <>
       {adSense && (
+        // https://b.0218.jp/202104021830.html
+        // https://ez-net.jp/article/33/gSkGkq1B/v6f4-wLVfjLD/
         <div key={asPath}>
           <ins
             className="adsbygoogle"
             style={{ display: "block", textAlign: "center" }}
             data-ad-layout="in-article"
+            data-adtest={"on"} // test mode
             data-ad-format={format}
             data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENCE_PUB}
             data-ad-slot={process.env.NEXT_PUBLIC_GOOGLE_ADSENCE_SLOT}

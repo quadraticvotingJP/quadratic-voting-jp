@@ -41,9 +41,9 @@ const EcAdSense: React.FC<Props> = ({
         <div key={asPath}>
           <ins
             className="adsbygoogle"
-            style={{ display: "block", textAlign: "center" }}
+            style={{ display: "block", textAlign: "center", minWidth: "350px" }}
             data-ad-layout="in-article"
-            data-adtest={"on"} // test mode
+            data-adtest="on" // test mode
             data-ad-format={format}
             data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENCE_PUB}
             data-ad-slot={process.env.NEXT_PUBLIC_GOOGLE_ADSENCE_SLOT}

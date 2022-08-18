@@ -130,7 +130,7 @@ const Page = styled.div`
   `}
 `;
 const PageAdSense = styled.div`
-  width: 400px;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;

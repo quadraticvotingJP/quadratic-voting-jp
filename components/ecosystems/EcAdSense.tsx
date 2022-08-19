@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { AtImage } from "@/components/atoms/EntryPoint";
+import styled from "styled-components";
+
 type Props = {
-  readonly format: string;
+  readonly format: "horizontal" | "auto" | "vertical";
   readonly adSense?: boolean;
   readonly a8netOnamae120x600?: boolean;
   readonly a8netOnamae468x60?: boolean;
@@ -25,28 +27,31 @@ const EcAdSense: React.FC<Props> = ({
   a8netA8300x250 = false,
 }) => {
   const { asPath } = useRouter();
-
   useEffect(() => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (err) {
-      console.log(err);
+      console.error("adsbygoogle.push() error:", err);
     }
   }, [asPath]);
+
   return (
     <>
       {adSense && (
-        <div key={asPath}>
+        // https://b.0218.jp/202104021830.html
+        // https://ez-net.jp/article/33/gSkGkq1B/v6f4-wLVfjLD/
+        <AsPath key={asPath} className="adsbygoogle">
           <ins
             className="adsbygoogle"
             style={{ display: "block", textAlign: "center" }}
             data-ad-layout="in-article"
+            data-adtest="off" // test mode
             data-ad-format={format}
             data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENCE_PUB}
             data-ad-slot={process.env.NEXT_PUBLIC_GOOGLE_ADSENCE_SLOT}
             data-full-width-responsive="true"
           />
-        </div>
+        </AsPath>
       )}
       {a8netOnamae120x600 && (
         <a href={process.env.NEXT_PUBLIC_A8ONAMAE120X600_A} rel="nofollow">
@@ -178,3 +183,7 @@ const EcAdSense: React.FC<Props> = ({
   );
 };
 export default EcAdSense;
+
+const AsPath = styled.div`
+  min-width: 400px;
+`;

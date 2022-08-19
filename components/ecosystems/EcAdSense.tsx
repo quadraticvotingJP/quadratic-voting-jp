@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { AtImage } from "@/components/atoms/EntryPoint";
+import styled from "styled-components";
+
 type Props = {
   readonly format: "horizontal" | "auto" | "vertical";
   readonly adSense?: boolean;
@@ -38,18 +40,18 @@ const EcAdSense: React.FC<Props> = ({
       {adSense && (
         // https://b.0218.jp/202104021830.html
         // https://ez-net.jp/article/33/gSkGkq1B/v6f4-wLVfjLD/
-        <div key={asPath}>
+        <AsPath key={asPath}>
           <ins
             className="adsbygoogle"
-            style={{ display: "block", textAlign: "center", minWidth: "350px" }}
+            style={{ display: "block", textAlign: "center" }}
             data-ad-layout="in-article"
-            data-adtest="on" // test mode
+            data-adtest="off" // test mode
             data-ad-format={format}
             data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENCE_PUB}
             data-ad-slot={process.env.NEXT_PUBLIC_GOOGLE_ADSENCE_SLOT}
             data-full-width-responsive="true"
           />
-        </div>
+        </AsPath>
       )}
       {a8netOnamae120x600 && (
         <a href={process.env.NEXT_PUBLIC_A8ONAMAE120X600_A} rel="nofollow">
@@ -181,3 +183,7 @@ const EcAdSense: React.FC<Props> = ({
   );
 };
 export default EcAdSense;
+
+const AsPath = styled.div`
+  min-width: 400px;
+`;

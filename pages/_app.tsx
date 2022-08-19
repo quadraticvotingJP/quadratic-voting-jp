@@ -75,7 +75,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               <LPMain>
                 <Component {...pageProps} />
                 <BottomAdSense>
-                  {/* <EcAdSense format="horizontal" adSense /> */}
+                  <EcAdSense format="auto" adSense />
                 </BottomAdSense>
               </LPMain>
             ) : (
@@ -84,13 +84,13 @@ function MyApp({ Component, pageProps }: AppProps) {
                   <Component {...pageProps} />
                   {RESPONSIVE.SIZE_SP && (
                     <BottomAdSense>
-                      {/* <EcAdSense format="horizontal" adSense /> */}
+                      <EcAdSense format="auto" adSense />
                     </BottomAdSense>
                   )}
                 </Page>
                 {SIZE_PC_TAB && (
                   <PageAdSense>
-                    <EcAdSense format="vertical" adSense />
+                    <EcAdSense format="auto" adSense />
                   </PageAdSense>
                 )}
               </Main>
@@ -131,6 +131,7 @@ const Page = styled.div`
 `;
 const PageAdSense = styled.div`
   min-width: 400px;
+  padding-top: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;

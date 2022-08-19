@@ -40,7 +40,7 @@ const EcAdSense: React.FC<Props> = ({
       {adSense && (
         // https://b.0218.jp/202104021830.html
         // https://ez-net.jp/article/33/gSkGkq1B/v6f4-wLVfjLD/
-        <AsPath key={asPath}>
+        <AsPath key={asPath} className="adsbygoogle">
           <ins
             className="adsbygoogle"
             style={{ display: "block", textAlign: "center" }}

@@ -72,10 +72,14 @@ export default class MyDocument extends Document {
               />
               {/* google Adsense */}
               <script
+                async
                 id="google-adsense"
                 crossOrigin="anonymous"
-                async
                 src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.NEXT_PUBLIC_GOOGLE_ADSENCE}`}
+                data-ad-client={`${process.env.NEXT_PUBLIC_GOOGLE_ADSENCE_PUB}`}
+                onError={(e) => {
+                  console.error("Script failed to load:", e);
+                }}
               />
             </>
           )}

@@ -700,6 +700,7 @@ const RuleText = styled.p`
   line-height: 21px;
   text-align: center;
   white-space: pre-wrap;
+  font-weight: bold;
   ${tab`
     font-size: 16px;
   `}

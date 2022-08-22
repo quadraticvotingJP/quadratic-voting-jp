@@ -156,7 +156,7 @@
         "optionTitle": "タイトル",
         "titlePlaceholder": "選択肢のタイトルを作成してください（必須）",
         "optionDetail": "補足",
-        "detailPlaceholder": "補足があれば入力してください（任意）",
+        "detailPlaceholder": "補足（任意）",
         "optionLink": "リンク",
         "linkPlaceholder": "参考URL（任意）"
       }

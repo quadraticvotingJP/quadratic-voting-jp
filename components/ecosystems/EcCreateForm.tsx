@@ -53,7 +53,7 @@ const EcCreateForm: React.FC = () => {
       options: [
         {
           id: id,
-          title: "選択肢1(必須)",
+          title: "",
           overview: "",
           url: "",
           selected: true,
@@ -93,7 +93,7 @@ const EcCreateForm: React.FC = () => {
     setId(newId);
     append({
       id: newId,
-      title: `選択肢${eventData.options.length + 1}`,
+      title: "",
       overview: "",
       url: "",
       selected: true,

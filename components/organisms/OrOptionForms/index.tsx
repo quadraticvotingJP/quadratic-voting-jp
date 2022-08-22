@@ -41,7 +41,7 @@ export const OrOptionForms: React.FC<Props> = ({
         id={`${index}.title`}
         type={"text"}
         disabled={false}
-        placeholder={t("common.event.createOption.titlePlaceholder")}
+        placeholder={`選択肢${index + 1}のタイトル（必須）`}
       />
       <AtErrorMessage error={error?.options?.[index]?.title} />
       <br />

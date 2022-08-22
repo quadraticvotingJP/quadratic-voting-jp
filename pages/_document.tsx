@@ -81,8 +81,9 @@ export default class MyDocument extends Document {
                   console.error("Script failed to load:", e);
                 }}
               />
-              {/* google clarity */}
+              {/* microsoft clarity */}
               <script
+                id="microsoft-clarity"
                 dangerouslySetInnerHTML={{
                   __html: `
                     (function(c,l,a,r,i,t,y){

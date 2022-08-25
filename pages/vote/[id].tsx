@@ -79,17 +79,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   const uid: string = userInfo.user.uid;
-  const answer = await answerInformation("event", documentId, "answer", uid); // //回答したデータが存在するかチェックするAPI
 
-  // 回答者がいた場合
-  if (answer !== undefined) {
-    return {
-      props: {
-        documentId,
-        ...(await serverSideTranslations(context.locale!, ["common"])),
-      },
-    };
-  }
+  /**
+   * @todo ユーザー判定制御
+   * - 暫定 制御しない
+   * - 恒久 ユニーク制御入れる
+   */
+  // const answer = await answerInformation("event", documentId, "answer", uid); // //回答したデータが存在するかチェックするAPI
+  // if (answer !== undefined) {
+  //   return {
+  //     props: {
+  //       documentId,
+  //       ...(await serverSideTranslations(context.locale!, ["common"])),
+  //     },
+  //   };
+  // }
   delete event.createAt;
 
   // 投票用のKeyを取得した選択肢毎に追加する

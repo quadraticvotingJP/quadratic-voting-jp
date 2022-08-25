@@ -35,8 +35,10 @@ export type Props = {
   readonly readOnly?: boolean;
   readonly labelMark?: boolean;
   readonly showSave?: boolean;
+  readonly showCopy?: boolean;
   readonly onClick?: () => void;
   readonly onWheel?: <T>(arg: T) => void;
+  readonly onLinkCopy?: () => void;
 };
 
 // eslint-disable-next-line react/display-name
@@ -56,8 +58,10 @@ export const MoLabelForm: React.FC<Props> = ({
   defaultValue,
   error,
   showSave,
+  showCopy,
   onClick,
   onWheel,
+  onLinkCopy,
   labelMark = true,
   min,
 }) => (
@@ -94,6 +98,19 @@ export const MoLabelForm: React.FC<Props> = ({
           <AtIconButton size="small" showSave={showSave} onClick={onClick} />
         </EditElement>
       </>
+    ) : showCopy ? (
+      <FormArea>
+        <CopyFrom
+          defaultValue={defaultValue}
+          id={id}
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          disabled={disabled}
+          readOnly={readOnly}
+        />
+        <AtIconButton size="small" showCopy onClick={onLinkCopy} />
+      </FormArea>
     ) : (
       <>
         <AtInput
@@ -117,4 +134,12 @@ export const MoLabelForm: React.FC<Props> = ({
 const EditElement = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+const FormArea = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const CopyFrom = styled(AtInput)`
+  width: 90%;
 `;

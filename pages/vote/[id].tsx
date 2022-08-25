@@ -172,7 +172,6 @@ const Id = ({
           description:
             "QuadraticVoting.jpの投票ページです。クアドラティックボーティングとは台湾デジタル大臣オードリー・タン氏が紹介したことから、世界中に広がっている投票方法です。QuadraticVoting.jpは少数派の選択肢の意見にも耳を傾け、多くの意見を尊重するクアドラティックボーティングを採用したアンケートフォームです。",
         }}
-        noindex
       />
       <EcVoteForm
         query={query}

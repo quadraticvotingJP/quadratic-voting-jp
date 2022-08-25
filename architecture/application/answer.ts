@@ -29,7 +29,7 @@ export function answer() {
       subCollectionName
     );
     // fireStoreの登録情報生成
-    const documentInfo = doc(usersCollectionRef, userId);
+    const documentInfo = doc(usersCollectionRef);
     const { votes } = data;
     // parameter作成
     const eventData = vote(votes);

@@ -147,7 +147,11 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
 
   return (
     <EcosystemArea>
-      <H1>{t("pageTitle.dashboard")}</H1>
+      <H1>
+        {adminUser
+          ? t("pageTitle.adminDashboard")
+          : t("pageTitle.userDashboard")}
+      </H1>
       <br />
       <OrCard>
         <>

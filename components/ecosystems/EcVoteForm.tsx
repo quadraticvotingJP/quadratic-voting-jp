@@ -258,6 +258,10 @@ const EcVoteForm: React.FC<Props> = ({
         >
           <RemainingCredits>
             {credits}票余っています。投票しますか？
+            <AlertArea>
+              <AlertText>※投票は一度きりです。</AlertText>
+              <AlertText>※投票後の編集はできません。</AlertText>
+            </AlertArea>
           </RemainingCredits>
           <br />
           <br />
@@ -309,4 +313,17 @@ const RemainingCredits = styled.p`
 const TitleArea = styled.div`
   overflow: scroll;
   height: 200px;
+`;
+
+const AlertArea = styled.div`
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+const AlertText = styled.p`
+  width: 200px;
+  text-align: left;
+  font-size: 14px;
+  color: ${BASE_CSS.color.red};
 `;

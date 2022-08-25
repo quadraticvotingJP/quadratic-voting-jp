@@ -89,7 +89,8 @@
   },
   "pageTitle": {
     "create": "アンケート作成",
-    "dashboard": "ダッシュボード",
+    "adminDashboard": "管理者用 ダッシュボード",
+    "userDashboard": "参加者用 ダッシュボード",
     "vote": "投票"
   },
   "common": {

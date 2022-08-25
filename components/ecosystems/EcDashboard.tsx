@@ -19,7 +19,7 @@ import {
   MoLabelBar,
   MoProcess,
 } from "@/components/molecules/EntryPoint";
-import { AtButton, AtLabel } from "@/components/atoms/EntryPoint";
+import { AtButton, AtLabel, AtIconButton } from "@/components/atoms/EntryPoint";
 import {
   H1,
   JustifyCenter,
@@ -145,9 +145,20 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
     dashboard.detailPublicationEndDate = detailPublicationEndDate;
   };
 
+  /**
+   * リンクのコピー
+   */
+  const linCory = (copyValue: string) => {
+    navigator.clipboard.writeText(copyValue);
+  };
+
   return (
     <EcosystemArea>
-      <H1>{t("pageTitle.dashboard")}</H1>
+      <H1>
+        {adminUser
+          ? t("pageTitle.adminDashboard")
+          : t("pageTitle.userDashboard")}
+      </H1>
       <br />
       <OrCard>
         <>
@@ -317,6 +328,7 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
       <br />
       <OrCard>
         <MoLabelForm
+          showCopy
           readOnly={true}
           title={t("common.dashboard.participantDashboard.title")}
           defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.participantDashboardLink}`}
@@ -326,12 +338,18 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
           type="text"
           id="participantDashboard"
           name="participantDashboard"
+          onLinkCopy={() =>
+            linCory(
+              `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.participantDashboardLink}`
+            )
+          }
         />
       </OrCard>
       <br />
       {adminUser && (
         <OrCard>
           <MoLabelForm
+            showCopy
             readOnly={true}
             title={t("common.dashboard.adminDashboard.title")}
             defaultValue={`${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.adminDashboardLink}`}
@@ -341,6 +359,11 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
             type="text"
             id="adminDashboard"
             name="adminDashboard"
+            onLinkCopy={() =>
+              linCory(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard/${dashboard.adminDashboardLink}`
+              )
+            }
           />
         </OrCard>
       )}
@@ -350,6 +373,7 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
           <>
             <Section>
               <MoLabelForm
+                showCopy
                 readOnly={true}
                 title={t("common.dashboard.votersLink.title")}
                 overView={t("common.dashboard.votersLink.detail")}
@@ -360,6 +384,7 @@ const EcDashboard: React.FC<Props> = React.memo(({ dashboard, query }) => {
                 type="text"
                 id={"votersLink"}
                 name={"votersLink"}
+                onLinkCopy={() => linCory(dashboard.voterLinks)}
               />
             </Section>
           </>
